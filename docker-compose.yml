@@ -1,8 +1,8 @@
 version: '3.1'
 
 services:
-    fast-api:
-        container_name: fast-api
+    dam-backoffice-api:
+        container_name: dam-backoffice-api
         build:
             context: .
             dockerfile: pythonDockerfile
@@ -18,6 +18,7 @@ services:
             - appNetwork
 
     db:
+        container_name: postgresql
         image: postgres:14.8
         restart: always
         environment:

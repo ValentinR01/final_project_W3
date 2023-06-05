@@ -1,8 +1,7 @@
 FROM python:3.9
 
 WORKDIR /code
-COPY ./flask_app/requirements.txt /code/requirements.txt
+COPY ./flask_app/requirements.txt /code
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-COPY ./flask_app/ /code/
 
 ENTRYPOINT [ "python", "app/server_config.py"]

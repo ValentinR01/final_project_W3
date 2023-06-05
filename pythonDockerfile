@@ -5,4 +5,4 @@ COPY ./flask_app/requirements.txt /code/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 COPY ./flask_app/ /code/
 
-ENTRYPOINT [ "python", "app/app.py"]
+ENTRYPOINT [ "python", "app/server_config.py"]

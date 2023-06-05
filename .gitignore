@@ -1,4 +1,4 @@
-venv/
+/flask_app/env/
 
 *.pyc
 __pycache__/

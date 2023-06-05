@@ -8,11 +8,9 @@ services:
             dockerfile: pythonDockerfile
         ports:
             - '8004:8000'
-        environment:
-            - DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/data
+        volumes:
+            - ./flask_app/:/code
         depends_on:
-            - db
-        links:
             - db
         networks:
             - appNetwork

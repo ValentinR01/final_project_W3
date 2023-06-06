@@ -5,19 +5,18 @@ services:
         container_name: dam-backoffice-api
         build:
             context: .
-            dockerfile: pythonDockerfile
+            dockerfile: dockerfile/Dockerfile-api
         ports:
             - '8004:8000'
         volumes:
-            - ./flask_app/:/code
+            - ./flask_app:/code
         depends_on:
             - db
         networks:
             - appNetwork
-        restart: always
 
     db:
-        container_name: postgresql
+        container_name: dam-postgresql
         image: postgres:14.8
         restart: always
         environment:
@@ -31,6 +30,18 @@ services:
         networks:
             - appNetwork
 
+    # front:
+    #     container_name: dam-front
+    #     build:
+    #         context: .
+    #         dockerfile: dockerfile/Dockerfile-front
+    #     restart: always
+    #     ports:
+    #         - '80:80'
+    #     depends_on:
+    #         - dam-backoffice-api
+
+    
 
 volumes:
     db:

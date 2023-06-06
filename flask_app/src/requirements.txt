@@ -22,3 +22,4 @@ SQLAlchemy==2.0.15
 typing_extensions==4.6.3
 Werkzeug==2.3.4
 flask-swagger-ui==4.11.1
+Flask-SQLAlchemy==3.0.3

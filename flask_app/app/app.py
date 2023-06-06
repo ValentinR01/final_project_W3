@@ -5,5 +5,6 @@ app = Flask(__name__)
  
 @app.route('/')
 def home():
-    return 'hello, world!'
+    app.logger.info("Hello there")
+    return 'hello, world'
  

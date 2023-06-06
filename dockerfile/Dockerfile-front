@@ -1,4 +1,4 @@
-FROM node:lts-slim as build
+FROM node:lts-slim
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ RUN rm -rf node_modules && rm -rf build
 COPY ./front/ .
 RUN npm install 
 
-EXPOSE 8080
+
 ENTRYPOINT [ "npm", "run", "dev", "--", "--host" ]
 
 

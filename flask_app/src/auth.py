@@ -1,11 +1,14 @@
 import jwt
 from datetime import datetime, timedelta
 from werkzeug.security import check_password_hash
-from .models.user import User
+from models.user import User
+from conf import TOKEN_SECRET, TOKEN_EXPIRATION_HOURS
+
 
 class AuthHandler:
-
-    SECRET_KEY = 'H€t1C'
+    """
+    This class handles user authentication.
+    """
 
     @staticmethod
     def authenticate(email: str, password: str):
@@ -20,7 +23,8 @@ class AuthHandler:
         if user and check_password_hash(user.password, password):
             return user
 
-    def generate_token(self, user: User):
+    @staticmethod
+    def generate_token(user: User):
         """
         This method generates a JWT token for a user.
 
@@ -31,32 +35,24 @@ class AuthHandler:
             "id": user.id,
             "username": user.username,
             "email": user.email,
-            "exp": datetime.utcnow() + timedelta(seconds=30),
+            "exp": datetime.utcnow() + timedelta(hours=TOKEN_EXPIRATION_HOURS),
             "iat": datetime.utcnow()
         }
         return jwt.encode(
             payload=payload,
-            key=self.SECRET_KEY,
+            key=TOKEN_SECRET,
             algorithm='HS256'
         )
 
-    def decode_token(self, token: str):
+    @staticmethod
+    def decode_token(token: str):
         """
         This method decodes the JWT token
 
         :param token: JWT token
         :return:
         """
-        try:
-            payload = jwt.decode(token, self.SECRET_KEY, algorithms=['HS256'])
-            return payload
-        except jwt.ExpiredSignatureError:
-            raise {
-                'status': 401,
-                'message': 'Signature expired. Please log in again.'
-            }
-        except jwt.InvalidTokenError as e:
-            raise {
-                'status': 401,
-                'message': 'Invalid token.'
-            }
+        payload = jwt.decode(
+            jwt=token, key=TOKEN_SECRET, algorithms=['HS256']
+        )
+        return payload

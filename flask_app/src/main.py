@@ -1,15 +1,18 @@
 import os
 import re
+from conf import SQLALCHEMY_DATABASE_URI
 from flask_cors import CORS
 from flask import Flask, jsonify, request
 from werkzeug.security import generate_password_hash
 from models.user import User, db
-from security.auths import AuthHandler
+from auth import AuthHandler
+
 # Import postgres à faire ici
 # from mongoengine import connect
 
 app = Flask(__name__)
 app.config['RESTPLUS_MASK_SWAGGER'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 
 CORS(app)
 
@@ -61,7 +64,7 @@ def login():
         token = auth_handler.generate_token(user)
         return jsonify(
             {
-                'access_token': str(token, 'utf-8'),
+                'access_token': token,
                 'message': 'Login successful'
             }
         ), 200

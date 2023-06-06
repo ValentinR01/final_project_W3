@@ -1,15 +1,14 @@
-from werkzeug.security import check_password_hash
-from ..models.user import User
 import jwt
 from datetime import datetime, timedelta
-
+from werkzeug.security import check_password_hash
+from .models.user import User
 
 class AuthHandler:
 
     SECRET_KEY = 'H€t1C'
 
     @staticmethod
-    def authenticate(email, password):
+    def authenticate(email: str, password: str):
         """
         This method authenticates a user.
 
@@ -21,7 +20,7 @@ class AuthHandler:
         if user and check_password_hash(user.password, password):
             return user
 
-    def generate_token(self, user):
+    def generate_token(self, user: User):
         """
         This method generates a JWT token for a user.
 
@@ -41,7 +40,13 @@ class AuthHandler:
             algorithm='HS256'
         )
 
-    def decode_token(self, token):
+    def decode_token(self, token: str):
+        """
+        This method decodes the JWT token
+
+        :param token: JWT token
+        :return:
+        """
         try:
             payload = jwt.decode(token, self.SECRET_KEY, algorithms=['HS256'])
             return payload

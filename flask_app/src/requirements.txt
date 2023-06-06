@@ -20,4 +20,5 @@ pytz==2023.3
 six==1.16.0
 SQLAlchemy==2.0.15
 typing_extensions==4.6.3
-Werkzeug==0.16.1
+Werkzeug==2.3.4
+flask-swagger-ui==4.11.1

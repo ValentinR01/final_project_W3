@@ -31,7 +31,7 @@
 />
 
 <TextArea />
-<Button> Valider </Button>
+<Button> Valider</Button>
 
 <Icon name="add">
   <AddIcon />

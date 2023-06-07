@@ -4,10 +4,12 @@
   import Button from '../components/atoms/Button.svelte';
   import TextArea from "../components/atoms/Text-Area.svelte";
   import Radio from '../components/atoms/Radio.svelte'
+  import Checkbox from '../components/atoms/Checkbox.svelte'
   export let data;
 </script>
 
 <TextArea />
 <Button> Valider </Button>
-<Radio values={data.project.instruments} cat='instruments'/>
-<Radio values={data.project.languages} cat='languages'/>
+<Radio values={data.project.categorie} cat='categorie'/>
+<Checkbox values={data.project.instruments} cat='instruments'/>
+

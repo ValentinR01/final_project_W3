@@ -166,14 +166,16 @@ hr{
 }
 
 .text-preset-3{
-  font-size: var(--font-size-regular);
+  font-size: var(--font-size-heading-3);
   font-weight: var(--font-weight-semibold);
   line-height: 15px;
 }
 
 .text-preset-4{
-  font-size: var(--font-size-label-1);
-  line-height: 15px;
+  font-size: var(--font-size-regular);
+  line-height: 120%;
+  letter-spacing: 0.03em;
+  font-weight: var(--font-weight-light);
 }
 
 .text-preset-5{

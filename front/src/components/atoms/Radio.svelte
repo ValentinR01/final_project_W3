@@ -1,13 +1,12 @@
 <script>
-/**
-* @type {Array<string>}
-*/
+  /**
+  * @type {Array<string>}
+  * */
 
-const getValues = [ "italien","anglais","français"]
-
+  export let values;
 </script>
 
-{#each getValues as option}
-<input type=radio id={option} value={option} >
-<label for={option}> {option} </label>
+{#each values as option}
+  <input type=radio id={option} value={option} >
+  <label for={option}> {option} </label>
 {/each}

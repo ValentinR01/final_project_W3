@@ -15,7 +15,6 @@
   .link{
     font-family: var(--font-family-primary);
     font-size: var(--font-size-regular);
-    font-weight: var(--font-weight-regular);
     color: var(--color-text-dark);
     text-decoration: none;
     display: inline-block;

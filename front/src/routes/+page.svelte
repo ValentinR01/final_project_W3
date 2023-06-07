@@ -5,9 +5,8 @@
   export let data;
 </script>
 
-<h1> Tous les instruments </h1>
-<Radio values={data.project.instruments}/>
-<Radio values={data.project.languages}/>
+<Radio values={data.project.instruments} cat='instruments'/>
+<Radio values={data.project.languages} cat='languages'/>
 
 
 

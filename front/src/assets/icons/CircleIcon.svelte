@@ -1,1 +1,1 @@
-<circle cx="7.5" cy="7.5" r="7.5" fill="#DBDBDB" fill-opacity="0.7"/>
+<circle cx="15" cy="15" r="15" fill="#DBDBDB" fill-opacity="0.7"/>

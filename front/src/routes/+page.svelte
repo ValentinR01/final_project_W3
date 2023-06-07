@@ -1,6 +1,8 @@
 <script lang="ts">
   /** @type {import('./$types').PageData} */
   import '../assets/css/global.css';
+  import Logo from '../assets/img/logo_color.png'
+
   import Button from '../components/atoms/Button.svelte';
   import Icon from '../components/atoms/Icon.svelte';
   import TextArea from "../components/atoms/Text-Area.svelte";
@@ -10,8 +12,23 @@
   import Checkbox from '../components/atoms/Checkbox.svelte';
   import Link from '../components/atoms/Link.svelte';
   import UserIcon from '../assets/icons/UserIcon.svelte';
+  import Image from '../components/atoms/Image.svelte';
+
   export let data;
 </script>
+
+<Image
+  imageSrc={Logo}
+  imageAlt="Saline Academie Logo"
+  imageWidth=160
+/>
+
+<Image
+  imageSrc={Logo}
+  imageAlt="Saline Academie Logo"
+  imageWidth=160
+  border
+/>
 
 <TextArea />
 <Button> Valider </Button>

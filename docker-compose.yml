@@ -18,6 +18,7 @@ services:
             - db
         networks:
             - appNetwork
+        restart: always
 
     db:
         container_name: dam-postgresql

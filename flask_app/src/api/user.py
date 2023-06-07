@@ -1,5 +1,5 @@
 from flask import request
-from flask_restplus import Namespace, Resource, fields
+from flask_restx import Namespace, Resource, fields
 # from services.user_service import signup_service, login_service
 
 namespace = Namespace('hello_world', 'Hello World related endpoints')

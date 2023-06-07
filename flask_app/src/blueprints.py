@@ -1,16 +1,17 @@
 from flask import Blueprint
-from flask_restplus import Api
-from .api.user import namespace as hello_world_ns
+from flask_restx import Api
+from api.user import namespace as hello_world_ns
 
-blueprint = Blueprint('swagger', __name__, url_prefix='/swagger')
+blueprint = Blueprint('api', __name__)
+api = Api(blueprint)
 
-api_extension = Api(
+blueprint = Blueprint("api", __name__, url_prefix="/api/v1")
+
+api = Api(
     blueprint,
-    title='Flask RESTplus Demo',
-    version='1.0',
-    description='Application tutorial to demonstrate Flask RESTplus extension\
-        for better project structure and auto generated documentation',
-    doc='/doc'
+    version="1.0",
+    title="REST API",
+    description="A REST API",
 )
-
-api_extension.add_namespace(hello_world_ns)
+ns = api.namespace("items", description="Item operations")
+api.add_namespace(hello_world_ns)

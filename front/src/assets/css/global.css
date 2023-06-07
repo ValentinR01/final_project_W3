@@ -89,7 +89,7 @@ button:focus {
 
   /* FONTS */
   --font-family-primary: 'Montserrat';
-  
+
   --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-semibold: 600;
@@ -100,7 +100,7 @@ button:focus {
   --font-size-heading-3: 20px;
   --font-size-regular: 14px;
   --font-size-label-1: 12px;
-  
+
   /* BORDERS */
   --card-radius: 10px;
   --small-radius: 5px;

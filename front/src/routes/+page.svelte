@@ -39,10 +39,12 @@
   Our website
 </Text>
 <TextArea />
+
 <Input type='email' id='email' name='email' placeholder='Email' required/>
 <Input type='password' id='password' name='password' placeholder='Password' required/>
 <Button> Valider </Button>
 <Text textTag='p' class='text-preset-4' textColor='grey'>Already have an account ? <Link class='text--semibold' linkUrl='/login'>Login</Link></Text>
+
 
 <Icon name="add">
   <AddIcon />

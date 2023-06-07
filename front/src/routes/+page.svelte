@@ -13,6 +13,7 @@
   import Link from '../components/atoms/Link.svelte';
   import UserIcon from '../assets/icons/UserIcon.svelte';
   import Image from '../components/atoms/Image.svelte';
+  import Text from '../components/atoms/Text.svelte';
 
   export let data;
 </script>
@@ -22,7 +23,6 @@
   imageAlt="Saline Academie Logo"
   imageWidth=160
 />
-
 <Image
   imageSrc={Logo}
   imageAlt="Saline Academie Logo"
@@ -30,8 +30,16 @@
   border
 />
 
+<Text
+  textTag='h1'
+  class='text-preset-1'
+  textColor='blue'
+  >
+  Our website
+</Text>
 <TextArea />
 <Button> Valider </Button>
+<Text textTag='p' class='text-preset-4' textColor='grey'>Already have an account ? <Link class='text--semibold' linkUrl='/login'>Login</Link></Text>
 
 <Icon name="add">
   <AddIcon />

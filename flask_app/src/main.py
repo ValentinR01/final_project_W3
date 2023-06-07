@@ -1,5 +1,5 @@
 import re
-from conf import SQLALCHEMY_DATABASE_URI
+from conf import POSTGRESQL_DATABASE_URI
 from flask_cors import CORS
 from flask import Flask, jsonify, request
 from werkzeug.security import generate_password_hash
@@ -10,13 +10,14 @@ from blueprints import blueprint as api
 
 app = Flask(__name__)
 app.config['RESTPLUS_MASK_SWAGGER'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+app.config['SQLALCHEMY_DATABASE_URI'] = POSTGRESQL_DATABASE_URI
 app.register_blueprint(api)
 CORS(app)
 
 db.init_app(app)
 with app.app_context():
     db.create_all()
+
 
 @app.route('/')
 def index():

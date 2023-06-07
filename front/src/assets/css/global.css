@@ -83,6 +83,7 @@ button:focus {
   --color-background-tercary: var(--lighter-grey);
   --color-primary: var(--blue-base);
   --color-secondary: var(--darker-blue);
+  --color-highlight: var(--blue-base);
   --color-disabled: var(--grey);
   --color-border: var(--grey);
   --color-validation: var(--green);

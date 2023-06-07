@@ -8,6 +8,8 @@
   import CopyIcon from '../assets/icons/CopyIcon.svelte';
   import Radio from '../components/atoms/Radio.svelte';
   import Checkbox from '../components/atoms/Checkbox.svelte';
+  import Link from '../components/atoms/Link.svelte';
+  import UserIcon from '../assets/icons/UserIcon.svelte';
   export let data;
 </script>
 
@@ -20,6 +22,15 @@
 <Icon name="copy" width="20" height="20">
   <CopyIcon />
 </Icon>
+
+<Link
+  linkUrl='/dashboard'> 
+  dashboard
+</Link>
+<Link
+  linkUrl='/account'> 
+  <Icon name="user" width="50" height="50"> <UserIcon /> </Icon>
+</Link>
 
 <Radio values={data.project.categorie} cat='categorie'/>
 <Checkbox values={data.project.instruments} cat='instruments'/>

@@ -5,7 +5,7 @@
   export let values;
 
   /**
-  * @type {any}
+  * @type {String}
   */
   export let cat;
 </script>

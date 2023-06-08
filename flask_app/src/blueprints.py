@@ -1,6 +1,7 @@
 from flask import Blueprint
 from flask_restx import Api
-from api.user import namespace as hello_world_ns
+from api.user import namespace as user
+# from api.user import namespace as hello_world_ns
 
 blueprint = Blueprint('api', __name__)
 api = Api(blueprint)
@@ -14,4 +15,6 @@ api = Api(
     description="A REST API",
 )
 ns = api.namespace("items", description="Item operations")
-api.add_namespace(hello_world_ns)
+api.add_namespace(user)
+# api.add_namespace(hello_world_ns)
+#api.add_resource(Item, '/item/<string:name>')

@@ -5,6 +5,7 @@
   import TextArea from "../components/atoms/Text-Area.svelte";
   import Radio from '../components/atoms/Radio.svelte';
   import Checkbox from '../components/atoms/Checkbox.svelte';
+  import DatePicker from '../components/atoms/DatePicker.svelte';
   export let data;
 </script>
 
@@ -12,4 +13,5 @@
 <Button> Valider </Button>
 <Radio values={data.project.categorie} cat='categorie'/>
 <Checkbox values={data.project.instruments} cat='instruments'/>
+<DatePicker />
 

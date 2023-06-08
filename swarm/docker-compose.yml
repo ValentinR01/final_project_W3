@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+    dam-backoffice-api:
+        container_name: dam-backoffice-api
+        image: dam-backoffice-api
+        ports:
+            - '8004:8000'
+        depends_on:
+            - db
+        restart: always
+
+    db:
+        container_name: postgresql
+        image: postgres:14.8
+        restart: always
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=data
+        expose:
+            - '5432'
+        volumes:
+            - db:/var/lib/postgres
+        networks:
+            - appNetwork
+
+
+volumes:
+    db:

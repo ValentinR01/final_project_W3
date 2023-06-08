@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600;700&display=swap');
+
+/*------------------------------------*\
+  #RESET CSS
+\*------------------------------------*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+
+
+
+
+/*------------------------------------*\
+  #GLOBAL VARIABLES
+\*------------------------------------*/
+:root{
+  /* COLORS */
+  --blue-base: #4D6DCA;
+  --darker-blue: #3A4F86;
+  --black-blue: #161C3D;
+  --lighter-blue: #E0E6F5;
+  --grey: #E6E6E6;
+  --lighter-grey: #FBFBFB;
+  --darker-grey: #8B8D9E;
+  --dark-blue-grey: #5C6077;
+  --white: #FFFFFF;
+  --pale-blue: #F0F3FA;
+  --green: #A5F5C0;
+
+  --color-text-dark: var(--dark-blue-grey);
+  --color-text-medium: var(--darker-grey);
+  --color-text-light: var(--white);
+  --color-background-primary: var(--pale-blue);
+  --color-background-secondary: var(--white);
+  --color-background-tercary: var(--lighter-grey);
+  --color-primary: var(--blue-base);
+  --color-secondary: var(--darker-blue);
+  --color-highlight: var(--blue-base);
+  --color-disabled: var(--grey);
+  --color-border: var(--grey);
+  --color-validation: var(--green);
+
+  /* FONTS */
+  --font-family-primary: 'Montserrat';
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --font-size-heading-1: 30px;
+  --font-size-heading-2: 20px;
+  --font-size-heading-3: 20px;
+  --font-size-regular: 14px;
+  --font-size-label-1: 12px;
+
+  /* BORDERS */
+  --card-radius: 10px;
+  --small-radius: 5px;
+
+  --border-height-regular: 1px;
+  --border-height-thick: 2px;
+
+  /* SPACING */
+  --spacing-1: 5px; /* entre label & select button */
+  --spacing-2: 10px; /* entre label & input */
+  --spacing-3: 20px; /* espace entre card et le bouton retour */
+  --spacing-4: 35px; /* entre les éléments de menu et entre les lignes du tableau */
+  --spacing-5: 55px; /* titres */
+  --spacing-6: 75px; /* côtés card */
+}
+
+
+
+
+
+/*------------------------------------*\
+  #LAYOUT
+\*------------------------------------*/
+
+body{
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-regular);
+}
+
+.block-center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-center{
+  text-align: center;
+}
+
+hr{
+  border: 0.5px solid var(--color-border)
+}
+
+
+
+
+
+/*------------------------------------*\
+  #STYLES
+\*------------------------------------*/
+.hidden{
+  display: none !important;
+}
+
+.text-preset-1{
+  font-size: var(--font-size-heading-1);
+  font-weight: var(--font-weight-semibold);
+}
+
+.text-preset-2{
+  font-size: var(--font-size-heading-2);
+  font-weight: var(--font-weight-semibold);
+}
+
+.text-preset-3{
+  font-size: var(--font-size-heading-3);
+  font-weight: var(--font-weight-semibold);
+  line-height: 15px;
+}
+
+.text-preset-4{
+  font-size: var(--font-size-regular);
+  line-height: 120%;
+  letter-spacing: 0.03em;
+  font-weight: var(--font-weight-light);
+}
+
+.text-preset-5{
+  font-size: var(--font-size-label-1);
+}
+
+.text--bold{
+  font-weight: var(--font-weight-bold);
+}
+
+.text--semibold{
+  font-weight: var(--font-weight-semibold);
+}
+
+.text--light{
+  font-weight: var(--font-weight-light);
+}

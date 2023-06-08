@@ -1,0 +1,1 @@
+<rect width="30" height="30" fill-opacity="0.7"/>

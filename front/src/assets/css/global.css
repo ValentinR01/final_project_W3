@@ -185,6 +185,7 @@ hr{
 
 .text-preset-5{
   font-size: var(--font-size-label-1);
+  font-weight: var(--font-weight-light);
 }
 
 .text--bold{

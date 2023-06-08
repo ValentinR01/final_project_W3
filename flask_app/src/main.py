@@ -15,6 +15,7 @@ CORS(app)
 
 def create_tables():
     from db import db
+    from models import all_tables  # Don't erase !!
 
     with app.app_context():
         db.init_app(app)

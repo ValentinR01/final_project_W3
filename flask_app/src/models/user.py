@@ -14,8 +14,8 @@ class User(db.Model, CRUD):
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     count_assigning_asset = db.Column(db.Integer, default=0)
     # FK
-    role = db.relationship('role', backref='user', lazy=True)
-    # domain_id = db.Column(db.Integer, db.ForeignKey('domain.id'))
+    role = db.relationship('`Role', backref='user', lazy=True)
+    domain = db.relationship('Domain', backref='user', lazy=True)
 
 
     def __init__(self, email, fullname, password):
@@ -26,12 +26,3 @@ class User(db.Model, CRUD):
     @classmethod
     def find_by_email(cls, email):
         return cls.query.filter_by(email=email).first()
-
-
-class Domain(db.Model):
-    """This class represents the domain table."""
-    __tablename__ = 'domain'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), unique=True, nullable=False)
-    users = db.relationship('user', backref='domain')

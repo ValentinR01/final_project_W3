@@ -4,7 +4,7 @@ import Button from './Org.svelte';
 
 // More on how to set up stories at: https://storybook.js.org/docs/svelte/writing-stories/introduction
 const meta = {
-  title: 'Organismes/Organisme name',
+  title: 'Organisms/Organisme name',
   component: Button,
   tags: ['autodocs'],
 } satisfies Meta<Button>;

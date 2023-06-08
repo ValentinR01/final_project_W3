@@ -12,4 +12,4 @@
 
 </script>
 
-<input class='hey' type=date min={date.min} {...selected} bind:value={today}/>
+<input type=date min={date.min} {...selected} bind:value={today}/>

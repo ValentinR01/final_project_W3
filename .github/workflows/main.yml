@@ -12,8 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Build docker images 
+      - name: Checkout 
         uses: actions/checkout@v3
-        run: 
-          docker build ./dockerfile --file Dockerfile-api --tag dam-api:$(date +%s)
+        
+      - name: Build docker images 
+        run: docker build ./dockerfile --file Dockerfile-api --tag dam-api:$(date +%s)
           && docker build ./dockerfile --file Dockerfile-front --tag dam-front:$(date +%s)

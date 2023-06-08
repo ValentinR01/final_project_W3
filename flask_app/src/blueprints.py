@@ -17,3 +17,4 @@ api = Api(
 ns = api.namespace("items", description="Item operations")
 api.add_namespace(user)
 # api.add_namespace(hello_world_ns)
+#api.add_resource(Item, '/item/<string:name>')

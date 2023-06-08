@@ -32,7 +32,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
-ol, ul {
+ol, ul, li {
 	list-style: none;
 }
 blockquote, q {
@@ -154,6 +154,10 @@ hr{
 \*------------------------------------*/
 .hidden{
   display: none !important;
+}
+
+.text--uppercase{
+  text-transform: uppercase;
 }
 
 .text-preset-1{

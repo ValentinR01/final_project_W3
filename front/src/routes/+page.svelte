@@ -16,6 +16,7 @@
   import Text from '../components/atoms/Text.svelte';
   import Input from '../components/atoms/Input.svelte';
   import Rating from '../components/molecules/Rating.svelte';
+  import Menu from '../components/molecules/Menu.svelte';
 
   export let data;
 </script>
@@ -75,3 +76,5 @@
 </Text>
 
 <Rating rate={data.project.rating} />
+
+<Menu role={data.user.role} />

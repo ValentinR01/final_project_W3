@@ -15,7 +15,9 @@
   import Image from '../components/atoms/Image.svelte';
   import Text from '../components/atoms/Text.svelte';
   import Input from '../components/atoms/Input.svelte';
+
   import Rating from '../components/molecules/Rating.svelte';
+  import Searchbar from '../components/molecules/Searchbar.svelte';
 
   export let data;
 </script>
@@ -75,3 +77,4 @@
 </Text>
 
 <Rating rate={data.project.rating} />
+<Searchbar />

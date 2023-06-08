@@ -2,7 +2,7 @@
   on:click
   class="button text-preset-4"
 >            
-    <slot/>
+  <slot/>
 </button>
 
 

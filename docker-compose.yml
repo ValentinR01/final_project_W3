@@ -36,11 +36,12 @@ services:
         build:
             context: .
             dockerfile: dockerfile/Dockerfile-front
+            target: dev
         volumes:
             - ./front/src:/app/src
         restart: always
         ports:
-            - '80:5173'
+            - '80:8080'
         depends_on:
             - dam-backoffice-api
 

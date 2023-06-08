@@ -24,8 +24,6 @@ def index():
     return jsonify({'message': 'Hello World, SALINE IS COMING SOON...'}), 200
 
 
-
-
 @app.route('/decode', methods=['POST'])
 def decode():
     data = request.form

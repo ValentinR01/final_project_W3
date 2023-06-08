@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "vite dev",
+    "dev": "vite dev --port 8080",
     "build": "vite build",
     "start": "export PORT=8080 && node ./build",
     "preview": "vite preview",
@@ -37,5 +37,9 @@
     "vite": "^4.3.0",
     "vitest": "^0.25.3"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.43"
+  }
 }

@@ -18,7 +18,7 @@ class AuthHandler:
         :param email: user email
         :param password: user password
         """
-        user = User.query.filter_by(email=email).first()
+        user = User.find_by_email(email)
 
         if user and check_password_hash(user.password, password):
             return user
@@ -45,7 +45,7 @@ class AuthHandler:
         )
 
     @staticmethod
-    def decode_token(token: str):
+    def decode_token(token: str) -> dict:
         """
         This method decodes the JWT token
 

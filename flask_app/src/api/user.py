@@ -1,35 +1,78 @@
+import re
+from models.user import User
 from flask import request
 from flask_restx import Namespace, Resource, fields
-# from services.user_service import signup_service, login_service
+from werkzeug.security import generate_password_hash
+from auth import AuthHandler
 
-namespace = Namespace('hello_world', 'Hello World related endpoints')
+namespace = Namespace('user', ' User related endpoints')
 
-hello_world_model = namespace.model('HelloWorld', {
-    'message': fields.String(
-        readonly=True,
-        description='Hello world message'
-    )
+register_model = namespace.model('Register', {
+    'fullname': fields.String(),
+    'email': fields.String(),
+    'password': fields.String()
 })
 
-hello_world_example = {'message': 'Hello World!'}
+login_model = namespace.model('Login', {
+    'email': fields.String(),
+    'password': fields.String()
+})
 
 
-@namespace.route('')
-class HelloWorld(Resource):
-    @namespace.marshal_list_with(hello_world_model)
-    @namespace.response(500, 'Internal Server error')
-    def get(self):
-        """Hello world message endpoint"""
+@namespace.route('/register', methods=['POST'])
+class Register(Resource):
+    # @namespace.marshal_list_with(register_model)
+    @namespace.expect(register_model)
+    # @namespace.response(200, 'Successfully register')
+    def post(self):
+        """Register a new user"""
+        data = request.json
+        email = data.get('email')
+        fullname = data.get('fullname')
+        password = data.get('password')
 
-        return hello_world_example
+        if not email or not fullname or not password:
+            return {'message': 'Missing parameters'}, 400
 
-# @user_route.route("/api/v2/user/signup", methods=['POST'])
-# def signup():
-#     data = request.get_json()
-#     return signup_service(data)
-#
-#
-# @user_route.route("/api/v2/user/login", methods=['POST'])
-# def login():
-#     data = request.get_json()
-#     return login_service(data)
+        if re.match(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{"
+                    r"|}~-]+)*@saline.com", email) is None:
+            return {'message': 'Invalid email'}, 400
+
+        if User.find_by_email(email):
+            return {'message': 'Email already exists'}, 409
+
+        hashed_password = generate_password_hash(password, method='pbkdf2')
+        new_user = User(fullname=fullname, password=hashed_password,
+                        email=email)
+        new_user.create()
+
+        return {'message': 'User created successfully'}, 201
+
+
+@namespace.route('/login', methods=['POST'])
+class Login(Resource):
+    @namespace.expect(login_model)
+    @namespace.response(200, 'Successfully register')
+    def post(self):
+        try:
+            auth_handler = AuthHandler()
+            data = request.json
+            user = auth_handler.authenticate(
+                email=data.get('email'), password=data.get('password')
+            )
+            if not user:
+                return {'message': 'Invalid email or password'}, 401
+
+            token = auth_handler.generate_token(user)
+            return {
+                    'access_token': token,
+                    'message': 'Login successful'
+                }, 200
+        except Exception as e:
+            return {'message': str(e)}, 500
+
+
+@namespace.route('/domain/{domain_name}', methods=['GET'])
+class Domain(Resource):
+    def get(self, domain_name):
+        return {'message': f"{domain_name}"}, 200

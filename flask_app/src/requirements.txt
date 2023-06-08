@@ -22,3 +22,5 @@ six==1.16.0
 SQLAlchemy==2.0.15
 typing_extensions==4.6.3
 Werkzeug==2.3.4
+PyJWT==2.7.0
+psycopg2-binary==2.9.6

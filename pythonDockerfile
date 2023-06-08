@@ -1,7 +1,0 @@
-FROM python:3.9
-
-WORKDIR /code
-COPY ./flask_app/src/requirements.txt /code
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-
-ENTRYPOINT [ "python", "src/main.py"]

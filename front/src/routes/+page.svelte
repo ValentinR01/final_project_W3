@@ -2,7 +2,6 @@
   /** @type {import('./$types').PageData} */
   import '../assets/css/global.css';
   import Logo from '../assets/img/logo_color.png'
-
   import Button from '../components/atoms/Button.svelte';
   import Icon from '../components/atoms/Icon.svelte';
   import TextArea from "../components/atoms/Text-Area.svelte";
@@ -10,6 +9,7 @@
   import CopyIcon from '../assets/icons/CopyIcon.svelte';
   import Radio from '../components/atoms/Radio.svelte';
   import Checkbox from '../components/atoms/Checkbox.svelte';
+  import DatePicker from '../components/atoms/DatePicker.svelte';
   import Link from '../components/atoms/Link.svelte';
   import UserIcon from '../assets/icons/UserIcon.svelte';
   import Image from '../components/atoms/Image.svelte';
@@ -46,7 +46,6 @@
 <Button> Valider </Button>
 <Text textTag='p' class='text-preset-4' textColor='grey'>Already have an account ? <Link class='text--semibold' linkUrl='/login'>Login</Link></Text>
 
-
 <Icon name="add">
   <AddIcon />
 </Icon>
@@ -65,6 +64,7 @@
 
 <Radio values={data.project.categorie} cat='categorie'/>
 <Checkbox values={data.project.instruments} cat='instruments'/>
+<DatePicker />
 
 <Text
   textTag='h1'

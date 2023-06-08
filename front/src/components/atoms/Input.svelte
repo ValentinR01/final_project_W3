@@ -1,8 +1,8 @@
 <script>
-    export let type = '';
+    export let type = 'text';
     export let id = '';
     export let name = '';
-    export let placeholder = '';
+    export let placeholder = 'Votre texte...';
 </script>
 
 <input 
@@ -10,7 +10,7 @@
   id={id} 
   name={name} 
   placeholder={placeholder}
-  class="input {$$props.class}"
+  class="input text-preset-5 {$$props.class}"
 />
 
 <style>
@@ -22,6 +22,11 @@
     min-width: 280px;
     font-family: var(--font-family-primary);
     border-radius: var(--small-radius);
+  }
+
+  input::placeholder{
+    font-size: var(--font-size-label-1);
+    font-family: var(--font-family-primary);
   }
 
   .input:focus {

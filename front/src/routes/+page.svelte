@@ -9,7 +9,6 @@
   import CopyIcon from '../assets/icons/CopyIcon.svelte';
   import Radio from '../components/atoms/Radio.svelte';
   import Checkbox from '../components/atoms/Checkbox.svelte';
-  import DatePicker from '../components/atoms/DatePicker.svelte';
   import Link from '../components/atoms/Link.svelte';
   import UserIcon from '../assets/icons/UserIcon.svelte';
   import Image from '../components/atoms/Image.svelte';
@@ -17,6 +16,8 @@
   import Input from '../components/atoms/Input.svelte';
   import Rating from '../components/molecules/Rating.svelte';
   import Menu from '../components/molecules/Menu.svelte';
+  import InputForm from '../components/molecules/InputForm.svelte';
+  import TextareaForm from '../components/molecules/TextareaForm.svelte';
 
   export let data;
 </script>
@@ -65,7 +66,6 @@
 
 <Radio values={data.project.categorie} cat='categorie'/>
 <Checkbox values={data.project.instruments} cat='instruments'/>
-<DatePicker />
 
 <Text
   textTag='h1'
@@ -75,6 +75,10 @@
   Les molecules
 </Text>
 
-<Rating rate={data.project.rating} />
-
+<br>
 <Menu role={data.user.role} />
+<br>
+<Rating rate={data.project.rating} />
+<br>
+<InputForm id="project" name="project"> Nom du projet </InputForm>
+<TextareaForm name='commentaire'>Commentaire</TextareaForm>

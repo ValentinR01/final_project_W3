@@ -1,0 +1,20 @@
+name: CI
+
+# TO UPDATE
+on:
+  pull_request:
+    branches: [ "main" ]
+
+
+jobs:
+ 
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v3
+        
+      - name: Build docker images 
+        run: docker build ./dockerfile --file Dockerfile-api --tag dam-api:$(date +%s)
+          && docker build ./dockerfile --file Dockerfile-front --tag dam-front:$(date +%s)

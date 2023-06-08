@@ -15,9 +15,18 @@
   import Image from '../components/atoms/Image.svelte';
   import Text from '../components/atoms/Text.svelte';
   import Input from '../components/atoms/Input.svelte';
+  import Rating from '../components/molecules/Rating.svelte';
 
   export let data;
 </script>
+
+<Text
+  textTag='h1'
+  class='text-preset-1'
+  textColor='blue'
+  >
+  Les atomes
+</Text>
 
 <Image
   imageSrc={Logo}
@@ -30,14 +39,6 @@
   imageWidth=160
   border
 />
-
-<Text
-  textTag='h1'
-  class='text-preset-1'
-  textColor='blue'
-  >
-  Our website
-</Text>
 <TextArea />
 
 <Input type='email' id='email' name='email' placeholder='Email' required/>
@@ -64,3 +65,13 @@
 
 <Radio values={data.project.categorie} cat='categorie'/>
 <Checkbox values={data.project.instruments} cat='instruments'/>
+
+<Text
+  textTag='h1'
+  class='text-preset-1'
+  textColor='blue'
+  >
+  Les molecules
+</Text>
+
+<Rating rate={data.project.rating} />

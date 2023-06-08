@@ -19,5 +19,11 @@
     text-decoration: none;
     display: inline-block;
   }
+
+  .link--current{
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 5px;
+  }
 </style>
   

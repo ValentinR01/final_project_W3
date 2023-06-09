@@ -6,9 +6,9 @@
 
 <button
   on:click
-  class="{['button text-preset-4', mode].join(' ')}"
+  class="button text-preset-4 {$$props.class}"
 >            
-    <slot/>
+  <slot/>
 </button>
 
 

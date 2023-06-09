@@ -14,7 +14,9 @@
   import Image from '../components/atoms/Image.svelte';
   import Text from '../components/atoms/Text.svelte';
   import Input from '../components/atoms/Input.svelte';
+
   import Rating from '../components/molecules/Rating.svelte';
+  import Searchbar from '../components/molecules/Searchbar.svelte';
   import Menu from '../components/molecules/Menu.svelte';
   import InputForm from '../components/molecules/InputForm.svelte';
   import TextareaForm from '../components/molecules/TextareaForm.svelte';
@@ -64,8 +66,8 @@
   <Icon name="user" width="50" height="50"> <UserIcon /> </Icon>
 </Link>
 
-<Radio values={data.project.categorie} cat='categorie'/>
-<Checkbox values={data.project.instruments} cat='instruments'/>
+<Radio values={data.metadata.categorie} cat='categorie'/>
+<Checkbox values={data.metadata.instruments} cat='instruments'/>
 
 <Text
   textTag='h1'
@@ -75,6 +77,11 @@
   Les molecules
 </Text>
 
+<Rating rate={data.projects[0].rating} />
+<br>
+<Searchbar urlSearchbar="projects" data={data.projects} widthSearchbar="500" />
+<br>
+<Searchbar urlSearchbar="users" data={data.users} widthSearchbar="250" />
 <br>
 <Menu role={data.user.role} />
 <br>

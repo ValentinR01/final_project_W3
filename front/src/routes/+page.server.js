@@ -1,8 +1,8 @@
 export function load() {
     return {
         project: {
-            instruments: ["piano","violon","guitare","clavecin","harpe","flute","trompette","violoncelle"],
-            categorie: ["masterclass", "concert", "interview"],
+            instruments: ["Piano","Violon","Guitare","Clavecin","Harpe","Flute","Trompette","Violoncelle"],
+            categorie: ["Masterclass", "Concert", "Interview"],
             rating: 3
         }, 
         user: {

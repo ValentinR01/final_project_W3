@@ -2,7 +2,6 @@
   /** @type {import('./$types').PageData} */
   import '../assets/css/global.css';
   import Logo from '../assets/img/logo_color.png'
-
   import Button from '../components/atoms/Button.svelte';
   import Icon from '../components/atoms/Icon.svelte';
   import TextArea from "../components/atoms/Text-Area.svelte";
@@ -18,6 +17,9 @@
 
   import Rating from '../components/molecules/Rating.svelte';
   import Searchbar from '../components/molecules/Searchbar.svelte';
+  import Menu from '../components/molecules/Menu.svelte';
+  import InputForm from '../components/molecules/InputForm.svelte';
+  import TextareaForm from '../components/molecules/TextareaForm.svelte';
 
   export let data;
 </script>
@@ -48,7 +50,6 @@
 <Button> Valider </Button>
 <Text textTag='p' class='text-preset-4' textColor='grey'>Already have an account ? <Link class='text--semibold' linkUrl='/login'>Login</Link></Text>
 
-
 <Icon name="add">
   <AddIcon />
 </Icon>
@@ -77,5 +78,14 @@
 </Text>
 
 <Rating rate={data.projects[0].rating} />
+<br>
 <Searchbar urlSearchbar="projects" data={data.projects} widthSearchbar="500" />
+<br>
 <Searchbar urlSearchbar="users" data={data.users} widthSearchbar="250" />
+<br>
+<Menu role={data.user.role} />
+<br>
+<Rating rate={data.project.rating} />
+<br>
+<InputForm id="project" name="project"> Nom du projet </InputForm>
+<TextareaForm name='commentaire'>Commentaire</TextareaForm>

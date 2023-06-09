@@ -1,32 +1,11 @@
-FROM node:lts-slim
-
+FROM node:lts-slim as base
 WORKDIR /app
-
-COPY ./front/package*.json ./
-RUN rm -rf node_modules && rm -rf build
 COPY ./front/ .
-RUN npm install 
+RUN npm install
 
+FROM base as dev
+ENTRYPOINT [ "npm", "run", "dev", "--", "--host"]
 
-ENTRYPOINT [ "npm", "run", "dev", "--", "--host" ]
-
-
-
-# FROM node:lts-slim as build
-
-# WORKDIR /app
-
-# COPY ./front/package*.json ./
-# RUN rm -rf node_modules && rm -rf build
-# COPY ./front/ .
-# RUN npm install && npm run build
-
-# FROM node:lts-slim as run
-
-# WORKDIR /app
-# COPY --from=build /app/package.json ./package.json
-# COPY --from=build /app/build ./build
-# RUN npm install --production
-
-# EXPOSE 8080
-# ENTRYPOINT [ "npm", "run", "start" ]
+FROM base as prod
+RUN npm run build
+ENTRYPOINT [ "npm", "run", "start" ]

@@ -16,7 +16,7 @@
   id={id} 
   name={name} 
   placeholder={placeholder}
-  class="input {$$props.class}"
+  class="input text-preset-5 {$$props.class}"
   style="width: {width}"
   bind:value
 />
@@ -30,6 +30,11 @@
     padding: var(--spacing-2);
     font-family: var(--font-family-primary);
     border-radius: var(--small-radius);
+  }
+
+  input::placeholder{
+    font-size: var(--font-size-label-1);
+    font-family: var(--font-family-primary);
   }
 
   .input:focus {

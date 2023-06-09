@@ -176,6 +176,10 @@ hr{
   display: none !important;
 }
 
+.text--uppercase{
+  text-transform: uppercase;
+}
+
 .text-preset-1{
   font-size: var(--font-size-heading-1);
   font-weight: var(--font-weight-semibold);
@@ -201,6 +205,7 @@ hr{
 
 .text-preset-5{
   font-size: var(--font-size-label-1);
+  font-weight: var(--font-weight-light);
 }
 
 .text--bold{

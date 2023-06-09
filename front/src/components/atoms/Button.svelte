@@ -1,6 +1,6 @@
 <button
   on:click
-  class="button text-preset-4"
+  class="button text-preset-4 {$$props.class}"
 >            
   <slot/>
 </button>

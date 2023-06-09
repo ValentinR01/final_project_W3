@@ -65,8 +65,8 @@
   <Icon name="user" width="50" height="50"> <UserIcon /> </Icon>
 </Link>
 
-<Radio values={data.project.categorie} cat='categorie'/>
-<Checkbox values={data.project.instruments} cat='instruments'/>
+<Radio values={data.metadata.categorie} cat='categorie'/>
+<Checkbox values={data.metadata.instruments} cat='instruments'/>
 
 <Text
   textTag='h1'
@@ -76,5 +76,6 @@
   Les molecules
 </Text>
 
-<Rating rate={data.project.rating} />
-<Searchbar />
+<Rating rate={data.projects[0].rating} />
+<Searchbar urlSearchbar="projects" data={data.projects} widthSearchbar="500" />
+<Searchbar urlSearchbar="users" data={data.users} widthSearchbar="250" />

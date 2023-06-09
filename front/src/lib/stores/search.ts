@@ -17,8 +17,6 @@ export const createSearchStore = (data:any) => {
 export const searchHandler = (store:any) => {
 	const searchTerm = store.search.toLowerCase() || ""
 	store.filtered = store.data.filter((item:any) => {
-		console.log(searchTerm);
-		console.log(item.searchTerms);
 		return item.searchTerms.toLowerCase().includes(searchTerm)
 	})
 }

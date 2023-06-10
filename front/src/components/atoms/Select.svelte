@@ -13,7 +13,7 @@
   * @type {any}
   */
   export let index = 0;
-  export let value;
+  let value;
 
   $: {
     value = options[index];

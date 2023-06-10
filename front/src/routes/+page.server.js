@@ -2,7 +2,9 @@ export function load() {
     return {
         metadata:{
             instruments: ["piano","violon","guitare","violoncelle","trombone","harpe","trompette","flute"],
-            categorie: ["masterclass", "concert", "interview"]
+            categorie: ["masterclass", "concert", "interview"],
+            rating: [1,2,3,4],
+            role: ["superadmin","admin","user"]
         },
         projects: [
             {
@@ -52,27 +54,32 @@ export function load() {
             {
                 id: 1,
                 fullname: 'Chloé Doustalet',
-                email: 'test@gmail.com'
+                email: 'test@gmail.com',
+                role: 'user'
             },
             {
                 id: 2,
                 fullname: 'Nassim Yazi',
-                email: 'nassim@gmail.com'
+                email: 'nassim@gmail.com',
+                role: 'admin'
             },
             {
                 id: 3,
                 fullname: 'Julia Doustalet',
-                email: 'julia@gmail.com'
+                email: 'julia@gmail.com',
+                role: 'admin'
             },
             {
                 id: 4,
                 fullname: 'Doriane Farau',
-                email: 'doriane@gmail.com'
+                email: 'doriane@gmail.com',
+                role: 'user'
             },
             {
                 id: 5,
                 fullname: 'Zoé Logeais',
-                email: 'zoe@gmail.com'
+                email: 'zoe@gmail.com',
+                role: 'superadmin'
             }
         ]
     };

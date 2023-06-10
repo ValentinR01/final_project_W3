@@ -1,5 +1,4 @@
-<script lang="ts">
-  /** @type {import('./$types').PageData} */
+<script>
   import '../assets/css/global.css';
   import Logo from '../assets/img/logo_color.png'
   import Button from '../components/atoms/Button.svelte';
@@ -17,9 +16,11 @@
 
   import Rating from '../components/molecules/Rating.svelte';
   import Searchbar from '../components/molecules/Searchbar.svelte';
-  import Menu from '../components/molecules/Menu.svelte';
   import InputForm from '../components/molecules/InputForm.svelte';
   import TextareaForm from '../components/molecules/TextareaForm.svelte';
+  import Menu from '../components/molecules/Menu.svelte';
+  import Select from '../components/atoms/Select.svelte';
+  import SelectForm from '../components/molecules/SelectForm.svelte';
 
   export let data;
 </script>
@@ -77,15 +78,19 @@
   Les molecules
 </Text>
 
+<Select nameSelect="rating" options={data.metadata.rating}/>
+<br>
+<SelectForm nameSelect="role" options={data.metadata.role}>Rôle</SelectForm>
+<br>
 <Rating rate={data.projects[0].rating} />
 <br>
 <Searchbar urlSearchbar="projects" data={data.projects} widthSearchbar="500" />
 <br>
 <Searchbar urlSearchbar="users" data={data.users} widthSearchbar="250" />
 <br>
-<Menu role={data.user.role} />
+<Menu role={data.users[0].role} />
 <br>
-<Rating rate={data.project.rating} />
+<Rating rate={data.projects[0].rating} />
 <br>
 <InputForm id="project" name="project"> Nom du projet </InputForm>
 <TextareaForm name='commentaire'>Commentaire</TextareaForm>

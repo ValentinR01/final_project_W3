@@ -134,7 +134,7 @@ input[type="search"]::-webkit-search-results-decoration {
   -webkit-appearance: none;
 }
 
-input::placeholder {
+input::placeholder, select::placeholder {
   font-weight: var(--font-weight-light);
 }
 

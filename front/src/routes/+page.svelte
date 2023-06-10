@@ -1,5 +1,10 @@
 <script>
   import '../assets/css/global.css';
+
+  import Tab1 from "../tabs/tab1.svelte";
+  import Tab2 from "../tabs/tab2.svelte";
+  import Tab3 from "../tabs/tab3.svelte";
+
   import Logo from '../assets/img/logo_color.png'
   import Button from '../components/atoms/Button.svelte';
   import Icon from '../components/atoms/Icon.svelte';
@@ -21,8 +26,25 @@
   import Menu from '../components/molecules/Menu.svelte';
   import Select from '../components/atoms/Select.svelte';
   import SelectForm from '../components/molecules/SelectForm.svelte';
+  import Tabs from '../components/molecules/Tabs.svelte';
 
   export let data;
+
+  // List of tab items with labels, values and assigned components
+  let items = [
+    { label: "Tab 1",
+     value: 1,
+     component: Tab1
+    },
+    { label: "Tab 2",
+     value: 2,
+     component: Tab2
+    },
+    { label: "Tab 3",
+     value: 3,
+     component: Tab3
+    }
+  ];
 </script>
 
 <Text
@@ -70,6 +92,7 @@
 <Radio values={data.metadata.categorie} cat='categorie'/>
 <Checkbox values={data.metadata.instruments} cat='instruments'/>
 
+<br><br><br>
 <Text
   textTag='h1'
   class='text-preset-1'
@@ -78,6 +101,7 @@
   Les molecules
 </Text>
 
+<br><br>
 <Select nameSelect="rating" options={data.metadata.rating}/>
 <br>
 <SelectForm nameSelect="role" options={data.metadata.role}>Rôle</SelectForm>
@@ -90,7 +114,18 @@
 <br>
 <Menu role={data.users[0].role} />
 <br>
-<Rating rate={data.projects[0].rating} />
-<br>
 <InputForm id="project" name="project"> Nom du projet </InputForm>
+<br>
 <TextareaForm name='commentaire'>Commentaire</TextareaForm>
+
+<br><br><br>
+<Text
+  textTag='h1'
+  class='text-preset-1'
+  textColor='blue'
+  >
+  Les organismes
+</Text>
+<br><br>
+
+<Tabs {items}/>

@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
   import '../assets/css/global.css';
 
   import Tab1 from "../tabs/tab1.svelte";
@@ -27,6 +29,7 @@
   import Select from '../components/atoms/Select.svelte';
   import SelectForm from '../components/molecules/SelectForm.svelte';
   import Tabs from '../components/molecules/Tabs.svelte';
+  import Modal from '../components/molecules/cards/Modal.svelte';
 
   export let data;
 
@@ -128,4 +131,6 @@
 </Text>
 <br><br>
 
-<Tabs {items}/>
+<Modal id='modal-creation-project'>
+  <Text> CONTENU DE LA MODALE </Text>
+</Modal>

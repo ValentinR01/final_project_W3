@@ -219,3 +219,9 @@ hr{
 .text--light{
   font-weight: var(--font-weight-light);
 }
+
+
+
+.modal-open {
+  overflow: hidden;
+}

@@ -11,8 +11,6 @@
   */
   export let id = 'modal-creation-project';
 
-  import { onMount } from 'svelte';
-
   let showModal = false;
   
   function toggleModal() {

@@ -4,12 +4,13 @@
   */
   export let linkUrl = '#';
   export let linkColor = '';
+  export let linkStyle = '';
 </script>
 
 <a href="{linkUrl}"
   on:click
   class="link {$$props.class}"
-  style="color: {linkColor === 'grey' ? 'var(--color-text-medium)' : linkColor === 'blue' ? 'var(--color-primary)' : 'var(--color-text-regular)'}"
+  style="{linkStyle} color: {linkColor === 'grey' ? 'var(--color-text-medium)' : linkColor === 'blue' ? 'var(--color-primary)' : 'var(--color-text-regular)'}"
 >          
     <slot/>
 </a>

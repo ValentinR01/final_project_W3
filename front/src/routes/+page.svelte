@@ -120,6 +120,10 @@
 <InputForm id="project" name="project"> Nom du projet </InputForm>
 <br>
 <TextareaForm name='commentaire'>Commentaire</TextareaForm>
+<br><br>
+<Modal buttonText='Ouvrir modale'>
+  <Text> CONTENU DE LA MODALE </Text>
+</Modal>
 
 <br><br><br>
 <Text
@@ -130,7 +134,3 @@
   Les organismes
 </Text>
 <br><br>
-
-<Modal id='modal-creation-project'>
-  <Text> CONTENU DE LA MODALE </Text>
-</Modal>

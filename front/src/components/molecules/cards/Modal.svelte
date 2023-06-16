@@ -9,7 +9,7 @@
   /**
    * @type {string}
   */
-  export let id = 'modal-creation-project';
+  export let buttonText = 'Ouvrir modale';
 
   let showModal = false;
   
@@ -20,10 +20,10 @@
 
 </script>
 
-<Button on:click={toggleModal}>Ouvrir modale</Button>
+<Button on:click={toggleModal}> {buttonText} </Button>
 
 {#if showModal}
-  <div id={id} class='modal-background {$$props.class}'>
+  <div class='modal-background {$$props.class}'>
     <div class='modal block-center'>
       <Link
         linkStyle="position: absolute; right: var(--spacing-4); top: var(--spacing-4);"

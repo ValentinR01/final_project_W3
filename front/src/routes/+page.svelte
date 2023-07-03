@@ -24,13 +24,15 @@
 
   import Rating from '../components/molecules/Rating.svelte';
   import Searchbar from '../components/molecules/Searchbar.svelte';
-  import InputForm from '../components/molecules/InputForm.svelte';
-  import TextareaForm from '../components/molecules/TextareaForm.svelte';
+  import InputForm from '../components/molecules/formFields/InputForm.svelte';
+  import TextareaForm from '../components/molecules/formFields/TextareaForm.svelte';
+  import CheckboxForm from '../components/molecules/formFields/CheckboxForm.svelte';
   import Menu from '../components/molecules/Menu.svelte';
   import Select from '../components/atoms/Select.svelte';
-  import SelectForm from '../components/molecules/SelectForm.svelte';
+  import SelectForm from '../components/molecules/formFields/InputForm.svelte'
   import Tabs from '../components/molecules/Tabs.svelte';
   import Modal from '../components/molecules/cards/Modal.svelte';
+  import RadioForm from '../components/molecules/formFields/RadioForm.svelte';
 
   export let data;
 
@@ -58,7 +60,7 @@
   >
   Les atomes
 </Text>
-
+<br><br>
 <Image
   imageSrc={Logo}
   imageAlt="Saline Academie Logo"
@@ -70,16 +72,22 @@
   imageWidth=160
   border
 />
-<TextArea />
-
+<br><br>
+<TextArea placeholder="Enter your text here..." />
+<br><br>
 <Input type='email' id='email' name='email' placeholder='Email' required/>
+<br><br>
 <Input type='password' id='password' name='password' placeholder='Password' required/>
+<br><br>
 <Button> Valider </Button>
+<br><br>
 <Text textTag='p' class='text-preset-4' textColor='grey'>Already have an account ? <Link class='text--semibold' linkUrl='/login'>Login</Link></Text>
 
+<br><br>
 <Icon name="add">
   <AddIcon />
 </Icon>
+<br>
 <Icon name="copy" width="20" height="20">
   <CopyIcon />
 </Icon>
@@ -92,9 +100,11 @@
   linkUrl='/account'> 
   <Icon name="user" width="50" height="50"> <UserIcon /> </Icon>
 </Link>
-
+<br><br>
 <DatePicker />
+<br><br>
 <Radio values={data.metadata.categorie} cat='categorie'/>
+<br><br>
 <Checkbox values={data.metadata.instruments} cat='instruments'/>
 
 <br><br><br>
@@ -108,9 +118,20 @@
 
 <br><br>
 <Select nameSelect="rating" options={data.metadata.rating}/>
-<br>
+<br><br>
 <SelectForm nameSelect="role" options={data.metadata.role}>Rôle</SelectForm>
-<br>
+<br><br>
+<TextareaForm name='commentaire' placeholder='Enter your text here...'>
+  Commentaire
+</TextareaForm>
+<br><br>
+<SelectForm name='level' nameSelect="rating" options={data.metadata.rating}> Niveau </SelectForm>
+<br><br>
+<CheckboxForm data={data.metadata.instruments} catForm='instruments'> Instruments </CheckboxForm>
+<br><br>
+<RadioForm data={data.metadata.categorie} catForm='categorie'> Type de vidéo </RadioForm>
+<br><br><br>
+
 <Rating rate={data.projects[0].rating} />
 <br>
 <Searchbar urlSearchbar="projects" data={data.projects} widthSearchbar="500" />
@@ -120,9 +141,10 @@
 <Menu role={data.users[0].role} />
 <br>
 <InputForm id="project" name="project"> Nom du projet </InputForm>
-<br>
-<TextareaForm name='commentaire'>Commentaire</TextareaForm>
 <br><br>
+<Tabs {items}/>
+<br><br>
+
 <Modal buttonText='Ouvrir modale'>
   <Text> CONTENU DE LA MODALE </Text>
 </Modal>

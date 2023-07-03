@@ -26,3 +26,9 @@ class User(db.Model, CRUD):
     @classmethod
     def find_by_email(cls, email):
         return cls.query.filter_by(email=email).first()
+    
+    @classmethod
+    def get_all(cls, domain):
+        return cls.query.all()
+    
+

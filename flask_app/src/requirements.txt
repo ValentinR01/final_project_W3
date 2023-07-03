@@ -24,3 +24,4 @@ typing_extensions==4.6.3
 Werkzeug==2.3.4
 PyJWT==2.7.0
 psycopg2-binary==2.9.6
+logging==0.4.9.6

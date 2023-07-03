@@ -31,9 +31,11 @@
   import Select from '../components/atoms/Select.svelte';
   import SelectForm from '../components/molecules/formFields/InputForm.svelte'
   import Tabs from '../components/molecules/Tabs.svelte';
-  import Modal from '../components/molecules/cards/Modal.svelte';
+  import Modal from '../components/molecules/cards/ModalCard.svelte';
   import RadioForm from '../components/molecules/formFields/RadioForm.svelte';
   import Pagination from '../components/atoms/Pagination.svelte';
+  import VideoAction from '../components/molecules/cards/VideoAction.svelte';
+  import DownloadIcon from '../assets/icons/DownloadIcon.svelte';
 
   const examples = 'The Pudding is a digital publication that explains ideas debated in culture with visual essays.'.split(' ')
 	
@@ -164,6 +166,12 @@
 <Modal buttonText='Ouvrir modale'>
   <Text> CONTENU DE LA MODALE </Text>
 </Modal>
+<br><br>
+<VideoAction>
+  <DownloadIcon slot='icon' />
+  <span slot='text'>Télécharger la vidéo</span>
+</VideoAction>
+
 
 <br><br><br>
 <Text

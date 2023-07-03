@@ -75,10 +75,6 @@
     margin: 0 7px 0 5px;
   }
 
-  .selected{
-    background-color: var(--accent-color)
-  }
-
   .pagination-nav{
     background: none;
     border: none;

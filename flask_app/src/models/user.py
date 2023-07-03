@@ -28,7 +28,7 @@ class User(db.Model, CRUD):
         return cls.query.filter_by(email=email).first()
     
     @classmethod
-    def get_all(cls, domain):
+    def get_all(cls):
         return cls.query.all()
     
 

@@ -2,11 +2,17 @@
   import TextArea from "../atoms/Text-Area.svelte";
 
   export let name = '';
+  export let placeholder = '';
+  export let widthForm = '100%';
+
 </script>
   
-<div class="textarea-form">
+<div 
+  class="textarea-form" 
+  style="width: {widthForm}"
+>
   <label for={name} class="text-preset-4"> <slot /> </label>
-  <TextArea />
+  <TextArea placeholder={placeholder} />
 </div>
 
 <style>

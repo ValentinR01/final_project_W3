@@ -69,16 +69,22 @@
   imageWidth=160
   border
 />
-<TextArea />
-
+<br><br>
+<TextArea placeholder="Enter your text here..." />
+<br><br>
 <Input type='email' id='email' name='email' placeholder='Email' required/>
+<br><br>
 <Input type='password' id='password' name='password' placeholder='Password' required/>
+<br><br>
 <Button> Valider </Button>
+<br><br>
 <Text textTag='p' class='text-preset-4' textColor='grey'>Already have an account ? <Link class='text--semibold' linkUrl='/login'>Login</Link></Text>
 
+<br><br>
 <Icon name="add">
   <AddIcon />
 </Icon>
+<br><br>
 <Icon name="copy" width="20" height="20">
   <CopyIcon />
 </Icon>
@@ -118,8 +124,12 @@
 <Menu role={data.users[0].role} />
 <br>
 <InputForm id="project" name="project"> Nom du projet </InputForm>
-<br>
-<TextareaForm name='commentaire'>Commentaire</TextareaForm>
+<br><br>
+<Tabs {items}/>
+<br><br>
+<TextareaForm name='commentaire' placeholder='Enter your text here...'>
+  Commentaire
+</TextareaForm>
 <br><br>
 <Modal buttonText='Ouvrir modale'>
   <Text> CONTENU DE LA MODALE </Text>

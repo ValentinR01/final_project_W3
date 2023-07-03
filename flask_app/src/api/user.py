@@ -2,7 +2,6 @@ import re
 from models.user import User
 from flask import request
 from flask_restx import Namespace, Resource, fields
-from auth import AuthHandler
 from services.user_service import register_service, login_service, get_user_by_domain, get_all_users
 
 

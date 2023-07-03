@@ -5,7 +5,7 @@ from flask_restx import Namespace, Resource, fields
 from services.user_service import register_service, login_service, get_user_by_domain, get_all_users
 
 
-namespace = Namespace('users', ' User related endpoints')
+namespace = Namespace('users', 'User related endpoints')
 
 register_model = namespace.model('Register', {
     'fullname': fields.String(),

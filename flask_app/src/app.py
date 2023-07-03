@@ -2,9 +2,6 @@ from flask import Flask
 from flask_cors import CORS
 from blueprints import blueprint as api
 from conf import POSTGRESQL_DATABASE_URI
-import logging
-
-logging.basicConfig(level=logging.DEBUG)
 
 
 app = Flask(__name__)

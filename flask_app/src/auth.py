@@ -1,8 +1,8 @@
 import jwt
 from datetime import datetime, timedelta
 from werkzeug.security import check_password_hash
-from models.user import User
-from conf import TOKEN_SECRET, TOKEN_EXPIRATION_HOURS
+from flask_app.src.models.user import User
+from flask_app.src.conf import TOKEN_SECRET, TOKEN_EXPIRATION_HOURS
 
 
 class AuthHandler:

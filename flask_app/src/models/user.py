@@ -1,5 +1,5 @@
-from db import db
-from .crud import CRUD
+from flask_app.src.db import db
+from flask_app.src.models.crud import CRUD
 
 
 class User(db.Model, CRUD):
@@ -14,9 +14,9 @@ class User(db.Model, CRUD):
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     count_assigning_asset = db.Column(db.Integer, default=0)
     # FK
-    role = db.relationship('`Role', backref='user', lazy=True)
-    domain = db.relationship('Domain', backref='user', lazy=True)
-
+    role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=False)
+    domain_id = \
+        db.Column(db.Integer, db.ForeignKey('domain.id'), nullable=False)
 
     def __init__(self, email, fullname, password):
         self.email = email

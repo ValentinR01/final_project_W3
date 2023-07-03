@@ -1,4 +1,4 @@
-from db import db
+from flask_app.src.db import db
 
 
 class CRUD:
@@ -20,3 +20,15 @@ class CRUD:
     def delete(self):
         db.session.delete(self)
         return db.session.commit()
+
+    @classmethod
+    def init_value(cls, init_values: list):
+        """
+        This method will be used to initialize the values of a table.
+
+        :param init_values : The values to initialize the table with.
+        :return:
+        """
+        for init_value in init_values:
+            domain = cls(init_value)
+            domain.create()

@@ -1,22 +1,28 @@
 import re
-from models.user import User
+from flask_app.src.models.user import User
 from flask import request
-from flask_restx import Namespace, Resource, fields
+from flask_restx import Namespace, Resource, fields, Api
 from werkzeug.security import generate_password_hash
-from auth import AuthHandler
+from flask_app.src.auth import AuthHandler
 
 namespace = Namespace('user', ' User related endpoints')
 
-register_model = namespace.model('Register', {
-    'fullname': fields.String(),
-    'email': fields.String(),
-    'password': fields.String()
-})
+api = Api()
 
-login_model = namespace.model('Login', {
-    'email': fields.String(),
-    'password': fields.String()
-})
+register_model = namespace.model(
+    'Register', {
+        'fullname': fields.String(required=True, default='saline'),
+        'email': fields.String(required=True, default='saline@saline.com'),
+        'password': fields.String(required=True, default='Sªl1nĒ')
+    }
+)
+
+login_model = namespace.model(
+    'Login', {
+        'email': fields.String(required=True, default='saline@saline.com'),
+        'password': fields.String(required=True, default='Sªl1nĒ')
+    }
+)
 
 
 @namespace.route('/register', methods=['POST'])
@@ -42,8 +48,9 @@ class Register(Resource):
             return {'message': 'Email already exists'}, 409
 
         hashed_password = generate_password_hash(password, method='pbkdf2')
-        new_user = User(fullname=fullname, password=hashed_password,
-                        email=email)
+        new_user = User(
+            fullname=fullname, password=hashed_password, email=email
+        )
         new_user.create()
 
         return {'message': 'User created successfully'}, 201
@@ -52,7 +59,6 @@ class Register(Resource):
 @namespace.route('/login', methods=['POST'])
 class Login(Resource):
     @namespace.expect(login_model)
-    @namespace.response(200, 'Successfully register')
     def post(self):
         try:
             auth_handler = AuthHandler()
@@ -72,7 +78,15 @@ class Login(Resource):
             return {'message': str(e)}, 500
 
 
-@namespace.route('/domain/{domain_name}', methods=['GET'])
+@namespace.route('/domain/<domain_name>', methods=['GET'])
 class Domain(Resource):
-    def get(self, domain_name):
-        return {'message': f"{domain_name}"}, 200
+    @api.doc(
+        params={
+            'domain_name': {
+                'description': 'The domain name', 'required': True,
+                'type': 'string'
+            }
+        }
+    )
+    def get(self, domain_name: str):
+        return {'message': domain_name}, 200

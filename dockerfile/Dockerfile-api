@@ -4,4 +4,4 @@ WORKDIR /code
 COPY ./flask_app/ /code
 RUN pip install --no-cache-dir --upgrade -r /code/src/requirements.txt
 
-ENTRYPOINT [ "python", "src/main.py"]
+ENTRYPOINT [ "python", "src/app.py"]

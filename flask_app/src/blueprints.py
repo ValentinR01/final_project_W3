@@ -1,6 +1,6 @@
 from flask import Blueprint
 from flask_restx import Api
-from api.user import namespace as user
+from flask_app.src.api.user import namespace as user
 # from api.user import namespace as hello_world_ns
 
 blueprint = Blueprint('api', __name__)

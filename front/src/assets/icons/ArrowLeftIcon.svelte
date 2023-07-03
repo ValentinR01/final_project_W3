@@ -1,0 +1,1 @@
+<path d="M17.6667 1L1 16L17.6667 31" stroke="#161C3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

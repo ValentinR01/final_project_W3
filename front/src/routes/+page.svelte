@@ -33,6 +33,11 @@
   import Tabs from '../components/molecules/Tabs.svelte';
   import Modal from '../components/molecules/cards/Modal.svelte';
   import RadioForm from '../components/molecules/formFields/RadioForm.svelte';
+  import Pagination from '../components/atoms/Pagination.svelte';
+
+  const examples = 'The Pudding is a digital publication that explains ideas debated in culture with visual essays.'.split(' ')
+	
+	let values;
 
   export let data;
 
@@ -106,6 +111,17 @@
 <Radio values={data.metadata.categorie} cat='categorie'/>
 <br><br>
 <Checkbox values={data.metadata.instruments} cat='instruments'/>
+<br><br>
+<!-- Pagination exemple-->
+{#if values}
+  {#each values as value}
+    <p>
+    	{value}
+    </p>
+  {/each}
+{/if}
+<Pagination rows={data.metadata.instruments} perPage={3} bind:trimmedRows={values} />
+<!-- End pagination exemple -->
 
 <br><br><br>
 <Text

@@ -216,6 +216,10 @@ hr{
   font-weight: var(--font-weight-semibold);
 }
 
+.text--regular{
+  font-weight: var(--font-weight-regular);
+}
+
 .text--light{
   font-weight: var(--font-weight-light);
 }

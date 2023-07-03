@@ -59,7 +59,7 @@
   >
   Les atomes
 </Text>
-
+<br><br>
 <Image
   imageSrc={Logo}
   imageAlt="Saline Academie Logo"
@@ -86,7 +86,7 @@
 <Icon name="add">
   <AddIcon />
 </Icon>
-<br><br>
+<br>
 <Icon name="copy" width="20" height="20">
   <CopyIcon />
 </Icon>
@@ -115,9 +115,20 @@
 
 <br><br>
 <Select nameSelect="rating" options={data.metadata.rating}/>
-<br>
+<br><br>
 <SelectForm nameSelect="role" options={data.metadata.role}>Rôle</SelectForm>
-<br>
+<br><br>
+<TextareaForm name='commentaire' placeholder='Enter your text here...'>
+  Commentaire
+</TextareaForm>
+<br><br>
+<SelectForm name='level' nameSelect="rating" options={data.metadata.rating}> Niveau </SelectForm>
+<br><br>
+<CheckboxForm data={data.metadata.instruments} catForm='instruments'> Instruments </CheckboxForm>
+<br><br>
+<RadioForm data={data.metadata.categorie} catForm='categorie'> Type de vidéo </RadioForm>
+<br><br><br>
+
 <Rating rate={data.projects[0].rating} />
 <br>
 <Searchbar urlSearchbar="projects" data={data.projects} widthSearchbar="500" />
@@ -130,15 +141,7 @@
 <br><br>
 <Tabs {items}/>
 <br><br>
-<TextareaForm name='commentaire' placeholder='Enter your text here...'>
-  Commentaire
-</TextareaForm>
-<SelectForm name='level' nameSelect="rating" options={data.metadata.rating}> Niveau </SelectForm>
-<br><br>
-<CheckboxForm data={data.metadata.instruments} catForm='instruments'> Instruments </CheckboxForm>
-<br><br>
-<RadioForm data={data.metadata.categorie} catForm='categorie'> Type de vidéo </RadioForm>
-<br><br>
+
 <Modal buttonText='Ouvrir modale'>
   <Text> CONTENU DE LA MODALE </Text>
 </Modal>

@@ -26,7 +26,6 @@
   .input{
     color: var(--color-text-medium);
     border: var(--border-height-regular) solid var(--color-disabled);
-    border-radius: var(--color-disabled);
     padding: var(--spacing-2);
     font-family: var(--font-family-primary);
     border-radius: var(--small-radius);

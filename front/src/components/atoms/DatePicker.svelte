@@ -12,4 +12,35 @@
 
 </script>
 
-<input type=date min={date.min} {...selected} bind:value={today}/>
+<input class="date-picker" type=date min={date.min} {...selected} bind:value={today}/>
+
+<style>
+  .date-picker {
+    color: var(--color-text-medium);
+    border: var(--border-height-regular) solid var(--color-disabled);
+    border-radius: var(--color-disabled);
+    padding: var(--spacing-2);
+    min-width: 280px;
+    font-family: var(--font-family-primary);
+    border-radius: var(--small-radius);
+  }
+  .date-picker {
+    font-size: var(--font-size-label-1);
+    font-family: var(--font-family-primary);
+  }
+
+  .date-picker:focus {
+    color: var(--color-primary);
+  }
+
+  .date-picker:focus-visible {
+    outline: var(--border-height-regular) solid var(--color-highlight);
+    outline-offset: -1px;
+  }
+
+  ::-webkit-calendar-picker-indicator {
+    width: 100%;
+    position: absolute;
+    opacity: 0;
+  }
+</style>

@@ -21,15 +21,15 @@ class Register(Resource):
     
 
 @namespace.route('', methods=['GET'])
-class Register(Resource):
+class GetAll(Resource):
     @namespace.response(200, 'Speaker list')
     def get(self):
         """Get all speakers"""
         return get_all_speakers()
     
-    
+
 @namespace.route('/{speaker_id}', methods=['GET'])
-class Domain(Resource):
+class GetById(Resource):
     def get(self, speaker_id):
         """Get speaker by id"""
         return get_speaker_by_id(speaker_id) 

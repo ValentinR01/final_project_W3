@@ -16,6 +16,7 @@
   import Radio from '../components/atoms/Radio.svelte';
   import Checkbox from '../components/atoms/Checkbox.svelte';
   import Link from '../components/atoms/Link.svelte';
+  import DatePicker from '../components/atoms/DatePicker.svelte';
   import UserIcon from '../assets/icons/UserIcon.svelte';
   import Image from '../components/atoms/Image.svelte';
   import Text from '../components/atoms/Text.svelte';
@@ -99,6 +100,8 @@
   linkUrl='/account'> 
   <Icon name="user" width="50" height="50"> <UserIcon /> </Icon>
 </Link>
+<br><br>
+<DatePicker />
 <br><br>
 <Radio values={data.metadata.categorie} cat='categorie'/>
 <br><br>

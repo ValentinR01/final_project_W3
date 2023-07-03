@@ -39,6 +39,8 @@
   },
   "type": "module",
   "dependencies": {
+    "date-fns": "^2.30.0",
+    "date-picker-svelte": "^2.4.3",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43"
   }

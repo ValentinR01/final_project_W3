@@ -23,13 +23,15 @@
 
   import Rating from '../components/molecules/Rating.svelte';
   import Searchbar from '../components/molecules/Searchbar.svelte';
-  import InputForm from '../components/molecules/InputForm.svelte';
-  import TextareaForm from '../components/molecules/TextareaForm.svelte';
+  import InputForm from '../components/molecules/formFields/InputForm.svelte';
+  import TextareaForm from '../components/molecules/formFields/TextareaForm.svelte';
+  import CheckboxForm from '../components/molecules/formFields/CheckboxForm.svelte';
   import Menu from '../components/molecules/Menu.svelte';
   import Select from '../components/atoms/Select.svelte';
-  import SelectForm from '../components/molecules/SelectForm.svelte';
+  import SelectForm from '../components/molecules/formFields/InputForm.svelte'
   import Tabs from '../components/molecules/Tabs.svelte';
   import Modal from '../components/molecules/cards/Modal.svelte';
+  import RadioForm from '../components/molecules/formFields/RadioForm.svelte';
 
   export let data;
 
@@ -97,8 +99,9 @@
   linkUrl='/account'> 
   <Icon name="user" width="50" height="50"> <UserIcon /> </Icon>
 </Link>
-
+<br><br>
 <Radio values={data.metadata.categorie} cat='categorie'/>
+<br><br>
 <Checkbox values={data.metadata.instruments} cat='instruments'/>
 
 <br><br><br>
@@ -130,6 +133,11 @@
 <TextareaForm name='commentaire' placeholder='Enter your text here...'>
   Commentaire
 </TextareaForm>
+<SelectForm name='level' nameSelect="rating" options={data.metadata.rating}> Niveau </SelectForm>
+<br><br>
+<CheckboxForm data={data.metadata.instruments} catForm='instruments'> Instruments </CheckboxForm>
+<br><br>
+<RadioForm data={data.metadata.categorie} catForm='categorie'> Type de vidéo </RadioForm>
 <br><br>
 <Modal buttonText='Ouvrir modale'>
   <Text> CONTENU DE LA MODALE </Text>

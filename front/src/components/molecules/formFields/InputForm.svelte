@@ -1,22 +1,21 @@
 <script>
-  import TextArea from "../atoms/Text-Area.svelte";
-
-  export let name = '';
-  export let placeholder = '';
-  export let widthForm = '100%';
-
-</script>
+  import Input from "../../atoms/Input.svelte";
   
+  export let id = '';
+  export let name = '';
+  export let widthForm = '100%';
+</script>
+
 <div 
-  class="textarea-form" 
+  class="input-form"
   style="width: {widthForm}"
 >
   <label for={name} class="text-preset-4"> <slot /> </label>
-  <TextArea placeholder={placeholder} />
+  <Input name={name} id={id}/>
 </div>
 
 <style>
-  .textarea-form{
+  .input-form{
     display: inline-grid;
   }
 

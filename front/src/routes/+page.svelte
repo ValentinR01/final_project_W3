@@ -37,6 +37,7 @@
   import VideoAction from '../components/molecules/cards/VideoAction.svelte';
   import DownloadIcon from '../assets/icons/DownloadIcon.svelte';
   import EmployeeCard from '../components/molecules/cards/EmployeeCard.svelte';
+  import CommentaryCard from '../components/molecules/cards/CommentaryCard.svelte';
 
   const examples = 'The Pudding is a digital publication that explains ideas debated in culture with visual essays.'.split(' ')
 	
@@ -177,10 +178,18 @@
   <span slot='name'>{data.users[0].fullname}</span>
   <span slot='number-projects'>{data.users[0].count_assigning_asset}</span>
 </EmployeeCard>
+<br>
 <EmployeeCard employeePicture={data.users[1].profile_pic}>
   <span slot='name'>{data.users[1].fullname}</span>
   <span slot='number-projects'>{data.users[1].count_assigning_asset}</span>
 </EmployeeCard>
+<br><br>
+<CommentaryCard>
+  <span slot='name'>{data.users[1].fullname}</span>
+  <span slot='job'>{data.users[1].domain}</span>
+  <span slot='date'> 12/06/2023 </span>
+  <span slot='comment'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </span>
+</CommentaryCard>
 
 
 <br><br><br>

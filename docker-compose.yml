@@ -9,7 +9,7 @@ services:
         ports:
             - '8004:8000'
         volumes:
-            - ./flask_app:/code
+            - ./flask_app:/flask_app
         environment:
             - POSTGRES_USER=${POSTGRES_USER}
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}

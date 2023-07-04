@@ -12,11 +12,11 @@ def register_service(data):
     :param data: json data from request
     :return: json response
     """
-    email = data['email']
-    fullname = data['fullname']
-    password = data['password']
-    role = data['role']
-    domain = data['domain']
+    email = data.get('email')
+    fullname = data.get('fullname')
+    password = data.get('password')
+    role = data.get('role')
+    domain = data.get('domain')
 
     if not email or not fullname or not password or not role or not domain:
         return {'message': 'Missing parameters'}, 400
@@ -43,7 +43,7 @@ def login_service(userdata):
     try:
         auth_handler = AuthHandler()
         user = auth_handler.authenticate(
-            email=userdata['email'], password=userdata['password']
+            email=userdata.get('email'), password=userdata.get('password')
         )
         if not user:
             return {'message': 'Invalid email or password'}, 401

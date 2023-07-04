@@ -55,13 +55,16 @@ export function load() {
                 id: 1,
                 fullname: 'Chloé Doustalet',
                 email: 'test@gmail.com',
-                role: 'user'
+                role: 'user',
+                profile_pic: 'https://cdn.shopify.com/s/files/1/0442/6219/5368/files/3I3A1369-2.jpg?v=1685536090',
+                count_assigning_asset: 3
             },
             {
                 id: 2,
                 fullname: 'Nassim Yazi',
                 email: 'nassim@gmail.com',
-                role: 'admin'
+                role: 'admin',
+                count_assigning_asset: 1
             },
             {
                 id: 3,

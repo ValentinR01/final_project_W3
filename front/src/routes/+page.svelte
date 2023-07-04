@@ -36,6 +36,7 @@
   import Pagination from '../components/atoms/Pagination.svelte';
   import VideoAction from '../components/molecules/cards/VideoAction.svelte';
   import DownloadIcon from '../assets/icons/DownloadIcon.svelte';
+  import EmployeeCard from '../components/molecules/cards/EmployeeCard.svelte';
 
   const examples = 'The Pudding is a digital publication that explains ideas debated in culture with visual essays.'.split(' ')
 	
@@ -171,6 +172,15 @@
   <DownloadIcon slot='icon' />
   <span slot='text'>Télécharger la vidéo</span>
 </VideoAction>
+<br><br>
+<EmployeeCard employeePicture={data.users[0].profile_pic}>
+  <span slot='name'>{data.users[0].fullname}</span>
+  <span slot='number-projects'>{data.users[0].count_assigning_asset}</span>
+</EmployeeCard>
+<EmployeeCard employeePicture={data.users[1].profile_pic}>
+  <span slot='name'>{data.users[1].fullname}</span>
+  <span slot='number-projects'>{data.users[1].count_assigning_asset}</span>
+</EmployeeCard>
 
 
 <br><br><br>

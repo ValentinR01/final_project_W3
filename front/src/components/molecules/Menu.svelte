@@ -56,8 +56,4 @@
     align-items: center;
     column-gap: var(--spacing-4);
   }
-
-  .menu-el--active{
-    color: var(--color-primary);
-  }
 </style>

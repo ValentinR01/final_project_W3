@@ -36,7 +36,7 @@ services:
         build:
             context: .
             dockerfile: dockerfile/Dockerfile-front
-            target: dev
+            target: ${ENV}
         volumes:
             - ./front/src:/app/src
         restart: always

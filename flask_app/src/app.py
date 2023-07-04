@@ -4,7 +4,9 @@ from blueprints import blueprint as api
 from conf import POSTGRESQL_DATABASE_URI
 from db import db, migrate
 from models import all_tables  # Don't erase !!
+import logging
 
+logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 

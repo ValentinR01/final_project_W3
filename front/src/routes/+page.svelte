@@ -1,6 +1,12 @@
-<script lang="ts">
-  /** @type {import('./$types').PageData} */
+<script>
+// @ts-nocheck
+
   import '../assets/css/global.css';
+
+  import Tab1 from "../tabs/tab1.svelte";
+  import Tab2 from "../tabs/tab2.svelte";
+  import Tab3 from "../tabs/tab3.svelte";
+
   import Logo from '../assets/img/logo_color.png'
   import Button from '../components/atoms/Button.svelte';
   import Icon from '../components/atoms/Icon.svelte';
@@ -10,16 +16,48 @@
   import Radio from '../components/atoms/Radio.svelte';
   import Checkbox from '../components/atoms/Checkbox.svelte';
   import Link from '../components/atoms/Link.svelte';
+  import DatePicker from '../components/atoms/DatePicker.svelte';
   import UserIcon from '../assets/icons/UserIcon.svelte';
   import Image from '../components/atoms/Image.svelte';
   import Text from '../components/atoms/Text.svelte';
   import Input from '../components/atoms/Input.svelte';
+
   import Rating from '../components/molecules/Rating.svelte';
+  import Searchbar from '../components/molecules/Searchbar.svelte';
+  import InputForm from '../components/molecules/formFields/InputForm.svelte';
+  import TextareaForm from '../components/molecules/formFields/TextareaForm.svelte';
+  import CheckboxForm from '../components/molecules/formFields/CheckboxForm.svelte';
   import Menu from '../components/molecules/Menu.svelte';
-  import InputForm from '../components/molecules/InputForm.svelte';
-  import TextareaForm from '../components/molecules/TextareaForm.svelte';
+  import Select from '../components/atoms/Select.svelte';
+  import SelectForm from '../components/molecules/formFields/InputForm.svelte'
+  import Tabs from '../components/molecules/Tabs.svelte';
+  import Modal from '../components/molecules/cards/ModalCard.svelte';
+  import RadioForm from '../components/molecules/formFields/RadioForm.svelte';
+  import Pagination from '../components/atoms/Pagination.svelte';
+  import VideoAction from '../components/molecules/cards/VideoAction.svelte';
+  import DownloadIcon from '../assets/icons/DownloadIcon.svelte';
+
+  const examples = 'The Pudding is a digital publication that explains ideas debated in culture with visual essays.'.split(' ')
+	
+	let values;
 
   export let data;
+
+  // List of tab items with labels, values and assigned components
+  let items = [
+    { label: "Tab 1",
+     value: 1,
+     component: Tab1
+    },
+    { label: "Tab 2",
+     value: 2,
+     component: Tab2
+    },
+    { label: "Tab 3",
+     value: 3,
+     component: Tab3
+    }
+  ];
 </script>
 
 <Text
@@ -29,7 +67,7 @@
   >
   Les atomes
 </Text>
-
+<br><br>
 <Image
   imageSrc={Logo}
   imageAlt="Saline Academie Logo"
@@ -41,16 +79,22 @@
   imageWidth=160
   border
 />
-<TextArea />
-
+<br><br>
+<TextArea placeholder="Enter your text here..." />
+<br><br>
 <Input type='email' id='email' name='email' placeholder='Email' required/>
+<br><br>
 <Input type='password' id='password' name='password' placeholder='Password' required/>
+<br><br>
 <Button> Valider </Button>
+<br><br>
 <Text textTag='p' class='text-preset-4' textColor='grey'>Already have an account ? <Link class='text--semibold' linkUrl='/login'>Login</Link></Text>
 
+<br><br>
 <Icon name="add">
   <AddIcon />
 </Icon>
+<br>
 <Icon name="copy" width="20" height="20">
   <CopyIcon />
 </Icon>
@@ -63,10 +107,25 @@
   linkUrl='/account'> 
   <Icon name="user" width="50" height="50"> <UserIcon /> </Icon>
 </Link>
+<br><br>
+<DatePicker />
+<br><br>
+<Radio values={data.metadata.categorie} cat='categorie'/>
+<br><br>
+<Checkbox values={data.metadata.instruments} cat='instruments'/>
+<br><br>
+<!-- Pagination exemple-->
+{#if values}
+  {#each values as value}
+    <p>
+    	{value}
+    </p>
+  {/each}
+{/if}
+<Pagination rows={data.metadata.instruments} perPage={3} bind:trimmedRows={values} />
+<!-- End pagination exemple -->
 
-<Radio values={data.project.categorie} cat='categorie'/>
-<Checkbox values={data.project.instruments} cat='instruments'/>
-
+<br><br><br>
 <Text
   textTag='h1'
   class='text-preset-1'
@@ -75,10 +134,51 @@
   Les molecules
 </Text>
 
+<br><br>
+<Select nameSelect="rating" options={data.metadata.rating}/>
+<br><br>
+<SelectForm nameSelect="role" options={data.metadata.role}>Rôle</SelectForm>
+<br><br>
+<TextareaForm name='commentaire' placeholder='Enter your text here...'>
+  Commentaire
+</TextareaForm>
+<br><br>
+<SelectForm name='level' nameSelect="rating" options={data.metadata.rating}> Niveau </SelectForm>
+<br><br>
+<CheckboxForm data={data.metadata.instruments} catForm='instruments'> Instruments </CheckboxForm>
+<br><br>
+<RadioForm data={data.metadata.categorie} catForm='categorie'> Type de vidéo </RadioForm>
+<br><br><br>
+
+<Rating rate={data.projects[0].rating} />
 <br>
-<Menu role={data.user.role} />
+<Searchbar urlSearchbar="projects" data={data.projects} widthSearchbar="500" />
 <br>
-<Rating rate={data.project.rating} />
+<Searchbar urlSearchbar="users" data={data.users} widthSearchbar="250" />
+<br>
+<Menu role={data.users[0].role} />
 <br>
 <InputForm id="project" name="project"> Nom du projet </InputForm>
-<TextareaForm name='commentaire'>Commentaire</TextareaForm>
+<br><br>
+<Tabs {items}/>
+<br><br>
+
+<Modal buttonText='Ouvrir modale'>
+  <Text> CONTENU DE LA MODALE </Text>
+</Modal>
+<br><br>
+<VideoAction>
+  <DownloadIcon slot='icon' />
+  <span slot='text'>Télécharger la vidéo</span>
+</VideoAction>
+
+
+<br><br><br>
+<Text
+  textTag='h1'
+  class='text-preset-1'
+  textColor='blue'
+  >
+  Les organismes
+</Text>
+<br><br>

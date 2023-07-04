@@ -9,7 +9,7 @@ from conf import TOKEN_SECRET, TOKEN_EXPIRATION_HOURS
 class TestAuthHelper:
     @staticmethod
     def test_decode_token():
-        token = "token"   #To Replace
+        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6bnVsbCwiZnVsbG5hbWUiOiJWYWxlbnRpbiIsImVtYWlsIjoidmFsZW50aW5Ac2FsaW5lLmNvbSIsImV4cCI6MTY4ODU0OTYxMywiaWF0IjoxNjg4NTEzNjEzfQ.-Pq5mDh_qscLM-TaHDQ30ER9856yVR6RsH17-ZnFRaI"
 
         result = AuthHandler.decode_token(token)
 
@@ -38,7 +38,8 @@ class TestAuthHelper:
         
         # Verify that the token expiration time is set correctly
         expiration_time = datetime.utcnow() + timedelta(hours=TOKEN_EXPIRATION_HOURS)
-        #assert decoded['exp'] == expiration_time
+        difference = (expiration_time - datetime.utcfromtimestamp(decoded['exp'])).total_seconds()
+        assert (difference < 5) #in seconds
 
         # Verify that the token issue time is set correctly
         assert 'iat' in decoded  # Check if 'iat' key exists in the decoded payload

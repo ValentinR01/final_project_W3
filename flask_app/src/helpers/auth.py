@@ -18,7 +18,7 @@ class AuthHandler:
         :param email: user email
         :param password: user password
         """
-        user = User.find_by_email(email)
+        user = User.get_by(email=email)
 
         if user and check_password_hash(user.password, password):
             return user
@@ -33,7 +33,7 @@ class AuthHandler:
         """
         payload = {
             "id": user.id,
-            "username": user.username,
+            "fullname": user.fullname,
             "email": user.email,
             "exp": datetime.utcnow() + timedelta(hours=TOKEN_EXPIRATION_HOURS),
             "iat": datetime.utcnow()

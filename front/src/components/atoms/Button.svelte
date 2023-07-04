@@ -1,8 +1,14 @@
+<script lang=ts>
+  export let primary = false;
+
+  $: mode = primary ? 'button--primary' : 'button--secondary';
+</script>
+
 <button
   on:click
-  class="button text-preset-4"
+  class="button text-preset-4 {$$props.class}"
 >            
-    <slot/>
+  <slot/>
 </button>
 
 

@@ -57,32 +57,37 @@ export function load() {
                 email: 'test@gmail.com',
                 role: 'user',
                 profile_pic: 'https://cdn.shopify.com/s/files/1/0442/6219/5368/files/3I3A1369-2.jpg?v=1685536090',
-                count_assigning_asset: 3
+                count_assigning_asset: 3,
+                domain: 'Regisseur'
             },
             {
                 id: 2,
                 fullname: 'Nassim Yazi',
                 email: 'nassim@gmail.com',
                 role: 'admin',
-                count_assigning_asset: 1
+                count_assigning_asset: 1,
+                domain: 'Traducteur'
             },
             {
                 id: 3,
                 fullname: 'Julia Doustalet',
                 email: 'julia@gmail.com',
-                role: 'admin'
+                role: 'admin',
+                domain: 'Editeur'
             },
             {
                 id: 4,
                 fullname: 'Doriane Farau',
                 email: 'doriane@gmail.com',
-                role: 'user'
+                role: 'user',
+                domain: 'Post-prod'
             },
             {
                 id: 5,
                 fullname: 'Zoé Logeais',
                 email: 'zoe@gmail.com',
-                role: 'superadmin'
+                role: 'superadmin',
+                domain: 'Editeur'
             }
         ]
     };

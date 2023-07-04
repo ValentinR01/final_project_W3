@@ -1,5 +1,5 @@
-from flask_app.src.db import db
-from flask_app.src.models.crud import CRUD
+from db import db
+from models.crud import CRUD
 
 
 class User(db.Model, CRUD):
@@ -18,11 +18,12 @@ class User(db.Model, CRUD):
     domain_id = \
         db.Column(db.Integer, db.ForeignKey('domain.id'), nullable=False)
 
-    def __init__(self, email, fullname, password):
+    def __init__(self, email, fullname, password, domain_id,
+                 profile_picture=None, count_assigning_asset=0, role_id=1):
         self.email = email
         self.fullname = fullname
         self.password = password
-
-    @classmethod
-    def find_by_email(cls, email):
-        return cls.query.filter_by(email=email).first()
+        self.profile_picture = profile_picture
+        self.count_assigning_asset = count_assigning_asset
+        self.role_id = role_id
+        self.domain_id = domain_id

@@ -1,5 +1,5 @@
-from flask_app.src.db import db
-from flask_app.src.models.crud import CRUD
+from db import db
+from models.crud import CRUD
 
 
 class Role(db.Model, CRUD):

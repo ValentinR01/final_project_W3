@@ -1,5 +1,5 @@
-from flask_app.src.db import db
-from flask_app.src.models.crud import CRUD
+from db import db
+from models.crud import CRUD
 
 
 class Domain(db.Model, CRUD):
@@ -12,18 +12,3 @@ class Domain(db.Model, CRUD):
 
     def __init__(self, name):
         self.name = name
-
-    # @classmethod
-    # def init_domain(cls):
-    #     init_values = ['redaction', 'translation', 'management', 'development']
-    #     for init_value in init_values:
-    #         domain = cls(init_value)
-    #         domain.create()
-    #     return True
-
-    @classmethod
-    def init_domain(cls):
-        CRUD.init_value(
-            ['redaction', 'translation', 'management', 'development']
-        )
-

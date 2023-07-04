@@ -1,9 +1,9 @@
 import re
-from flask_app.src.models.user import User
+from models.user import User
 from flask import request
 from flask_restx import Namespace, Resource, fields, Api
 from werkzeug.security import generate_password_hash
-from flask_app.src.auth import AuthHandler
+from auth import AuthHandler
 
 namespace = Namespace('user', ' User related endpoints')
 
@@ -44,12 +44,14 @@ class Register(Resource):
                     r"|}~-]+)*@saline.com", email) is None:
             return {'message': 'Invalid email'}, 400
 
-        if User.find_by_email(email):
-            return {'message': 'Email already exists'}, 409
+        if User.get_by(fullname=fullname) or \
+                User.get_by(email=email):
+            return {'message': 'User already exists'}, 409
 
         hashed_password = generate_password_hash(password, method='pbkdf2')
         new_user = User(
-            fullname=fullname, password=hashed_password, email=email
+            fullname=fullname, password=hashed_password, email=email,
+            domain_id=4
         )
         new_user.create()
 

@@ -1,7 +1,7 @@
 FROM python:3.9-slim-buster
 
-WORKDIR /code
-COPY ./flask_app/ /code
-RUN pip install --no-cache-dir --upgrade -r /code/src/requirements.txt
+WORKDIR /flask_app
+COPY ./flask_app/ .
+RUN pip install --no-cache-dir --upgrade -r ./src/requirements.txt
 
 ENTRYPOINT [ "python", "src/app.py"]

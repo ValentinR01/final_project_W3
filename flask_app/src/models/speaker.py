@@ -1,8 +1,8 @@
 from db import db
-from .crud import CRUD
+from models.base import Base
 
 
-class Speaker(db.Model, CRUD):
+class Speaker(db.Model, Base):
     """This class represents the speakers table."""
     __tablename__ = 'speaker'
 

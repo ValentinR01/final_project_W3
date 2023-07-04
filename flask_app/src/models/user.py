@@ -1,8 +1,8 @@
 from db import db
-from models.crud import CRUD
+from models.base import Base
 
 
-class User(db.Model, CRUD):
+class User(db.Model, Base):
     """This class represents the users table."""
     __tablename__ = 'user'
 

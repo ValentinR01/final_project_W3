@@ -1,14 +1,14 @@
 from db import db
-from models.crud import CRUD
+from models.base import Base
 
 
-class Domain(db.Model, CRUD):
+class Domain(db.Model, Base):
     """This class represents the domain table."""
     __tablename__ = 'domain'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True, nullable=False)
-    user = db.relationship('User', backref='domain', lazy=True)
+    users = db.relationship('User', backref='domain_id', lazy=True)
 
     def __init__(self, name):
         self.name = name

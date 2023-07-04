@@ -25,7 +25,7 @@ def register_service(data):
                 r"|}~-]+)*@saline.com", email) is None:
         return {'message': 'Invalid email'}, 400
 
-    if User.get_by(fullname=fullname) or User.get_by(email=email):
+    if User.get_by(User, fullname=fullname) or User.get_by(User, email=email):
         return {'message': 'User already exists'}, 409
 
     # TODO: HS256 or pbkdf2

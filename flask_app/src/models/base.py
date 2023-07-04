@@ -1,8 +1,8 @@
 from db import db
 
 
-class CRUD:
-    """This class will be used to perform CRUD operations on the database."""
+class Base:
+    """This class will be used to perform Base operations on the database."""
     def __init__(self, id):
         self.id = id
 

@@ -8,7 +8,7 @@ class Composer(db.Model, Base):
 
     id = db.Column(db.Integer, primary_key=True)
     fullname = db.Column(db.String(100), unique=True, nullable=False)
-    biography = db.Column(db.String(1000), nullable=True)
+    biography = db.Column(db.String(5000), nullable=True)
 
     publishable = db.Column(db.Boolean, default=False)
 

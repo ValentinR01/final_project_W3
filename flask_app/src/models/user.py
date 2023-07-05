@@ -2,7 +2,7 @@ from db import db
 from models.base import Base
 
 
-class User(db.Model, Base):
+class User(Base):
     """This class represents the users table."""
     __tablename__ = 'user'
 

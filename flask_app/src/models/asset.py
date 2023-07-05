@@ -13,12 +13,12 @@ class Asset(db.Model, Base):
     music_title = db.Column(db.String(250), nullable=False)
 
     # Nullable True
-    art_description = db.Column(db.String(1000), nullable=True)
+    art_description = db.Column(db.String(5000), nullable=True)
     student_fullname = db.Column(db.String(250), nullable=True)
-    asset_description = db.Column(db.String(1000), nullable=True)
+    asset_description = db.Column(db.String(5000), nullable=True)
     link_partitions = db.Column(db.String(1000), nullable=True)
     thumbnail = db.Column(db.String(1000), nullable=True)
-    resumed = db.Column(db.String(1000), nullable=True)
+    resumed = db.Column(db.String(5000), nullable=True)
 
     # Boolean
     has_high_priority = db.Column(db.Boolean, default=False)

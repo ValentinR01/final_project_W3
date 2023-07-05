@@ -2,6 +2,7 @@ from flask import request
 from flask_restx import Namespace, Resource, fields, Api
 from services.user import \
     register_service, login_service, get_user_by_domain, get_all_users
+from helpers.decorators import rights_manager
 
 
 namespace = Namespace('users', 'User related endpoints')
@@ -31,9 +32,17 @@ user_login_model = namespace.model(
 
 @namespace.route('/register', methods=['POST'])
 class Register(Resource):
+
+    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZnVsbG" \
+            "5hbWUiOiJhbGluZSIsImVtYWlsIjoic2FsbmVAc2FsaW5lLmNvbSIsI" \
+            "nJvbGUiOiJ3b3JrZXIiLCJkb21haW4iOiJyZWRhY3Rpb24iLCJleHAi" \
+            "OjE2ODg1OTk2ODUsImlhdCI6MTY4ODU2MzY4NX0.Qxuk0UIyUBqPwmK" \
+            "qIq3p5jp_bLWFLwHIsdUOQMLEJSw"
+
     """Register a new user"""
     @namespace.expect(user_register_model)
     @namespace.response(201, 'Successfully register')
+    @rights_manager(token=token, role='worker', domain='redaction')
     def post(self):
         """Register a new user"""
         data = request.json

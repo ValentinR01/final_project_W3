@@ -35,6 +35,17 @@ class Base(db.Model):
         """
         return cls.query.filter_by(**kwargs).first()
 
+    @classmethod
+    def get_all_by(cls: db.Model, **kwargs):
+        """
+        This method will be used to get a record from a table.
+
+        :param cls: class to check
+        :param kwargs: values to check
+        :return: the first matching record
+        """
+        return cls.query.filter_by(**kwargs).all()
+
     # TODO: check self instead of table
     @staticmethod
     def init_db_value(init_values: list, table: db.Model()):

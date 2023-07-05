@@ -8,7 +8,7 @@ class Domain(db.Model, Base):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True, nullable=False)
-    users = db.relationship('User', backref='domain_id', lazy=True)
+    users = db.relationship('User', backref='domain', lazy=True)
 
     def __init__(self, name):
         self.name = name

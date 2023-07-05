@@ -8,7 +8,7 @@ class StatusByDomain(db.Model, Base):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True, nullable=False)
-    assets = db.relationship('Asset', backref='status_by_domain_id', lazy=True)
+    assets = db.relationship('Asset', backref='status_by_domain', lazy=True)
 
     def __init__(self, name):
         self.name = name

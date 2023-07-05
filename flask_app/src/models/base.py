@@ -1,3 +1,5 @@
+import logging
+
 from db import db
 
 
@@ -21,7 +23,7 @@ class Base:
         db.session.delete(self)
         return db.session.commit()
 
-    def get_by(self, **kwargs):
+    def get_by(self: db.Model(), **kwargs):
         """
         This method will be used to get a record from a table.
 

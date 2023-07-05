@@ -14,7 +14,7 @@ class Speaker(Base):
     # FK
     speaker_parent = \
         db.Column(db.Integer, db.ForeignKey('speaker.id'), nullable=False)
-    language = \
+    language_id = \
         db.Column(db.Integer, db.ForeignKey('language.id'), nullable=False)
 
     def __init__(self, fullname, biography, last_update, publishable):

@@ -15,10 +15,10 @@ def register_service(data):
     email = data.get('email')
     fullname = data.get('fullname')
     password = data.get('password')
-    role = data.get('role')
-    domain = data.get('domain')
+    role_id = data.get('role_id')
+    domain_id = data.get('domain_id')
 
-    if not email or not fullname or not password or not role or not domain:
+    if not email or not fullname or not password or not role_id or not domain_id:
         return {'message': 'Missing parameters'}, 400
 
     if re.match(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{"
@@ -32,7 +32,7 @@ def register_service(data):
     hashed_password = generate_password_hash(password, method='pbkdf2')
     new_user = User(
         fullname=fullname, password=hashed_password, email=email,
-        domain=domain, role=role
+        domain_id=domain_id, role_id=role_id
     )
     new_user.create()
 

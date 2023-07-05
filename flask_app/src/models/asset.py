@@ -32,33 +32,33 @@ class Asset(Base):
         db.Column(db.DateTime, default=db.func.current_timestamp())
 
     # FK
-    composer = \
+    composer_id = \
         db.Column(db.Integer, db.ForeignKey('composer.id'), nullable=False)
-    current_assigned_user = \
+    current_assigned_user_id = \
         db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    created_by = \
+    created_by_id = \
         db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    updated_by = \
+    updated_by_id = \
         db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    speaker = \
+    speaker_id = \
         db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    status_by_domain = db.Column(
+    status_by_domain_id = db.Column(
         db.Integer, db.ForeignKey('status_by_domain.id'), nullable=False
     )
-    step_lifecycle = db.Column(
+    step_lifecycle_id = db.Column(
         db.Integer, db.ForeignKey('step_lifecycle.id'), nullable=False
     )
-    booking = \
+    booking_id = \
         db.Column(db.Integer, db.ForeignKey('booking.id'), nullable=False)
-    captation = \
+    captation_id = \
         db.Column(db.Integer, db.ForeignKey('captation.id'), nullable=False)
-    post_prod = \
+    post_prod_id = \
         db.Column(db.Integer, db.ForeignKey('post_prod.id'), nullable=False)
-    transformation = db.Column(
+    transformation_id = db.Column(
         db.Integer, db.ForeignKey('transformation.id'), nullable=False
     )
-    asset_translated = db.Column(
+    asset_translated_id = db.Column(
         db.Integer, db.ForeignKey('asset_translated.id'), nullable=False
     )
-    subtitle = \
+    subtitle_id = \
         db.Column(db.Integer, db.ForeignKey('subtitle.id'), nullable=False)

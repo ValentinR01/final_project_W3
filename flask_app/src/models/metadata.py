@@ -7,10 +7,13 @@ class Metadata(Base):
     __tablename__ = 'metadata'
 
     id = db.Column(db.Integer, primary_key=True)
+
     # FK
-    # meta_key = db.relationship('`meta_key', backref='id', lazy=True) #To Check
-    # meta_value = db.relationship('`meta_value', backref='id', lazy=True) #To Check
-    # asset = db.relationship('asset', backref='asset', lazy=True) #To Check
+    meta_key_id = \
+        db.Column(db.Integer, db.ForeignKey('meta_key.id'), nullable=False)
+    meta_value_id = \
+        db.Column(db.Integer, db.ForeignKey('meta_value.id'), nullable=False)
+    asset_id = db.Column(db.Integer, db.ForeignKey('asset.id'), nullable=False)
 
     def __init__(self, meta_key, meta_value, asset):
         self.meta_key = meta_key

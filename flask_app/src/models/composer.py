@@ -17,5 +17,14 @@ class Composer(Base):
     # FK
     composer_parent = \
         db.Column(db.Integer, db.ForeignKey('composer.id'), nullable=True)
-    langage = \
+    langage_id = \
         db.Column(db.Integer, db.ForeignKey('langage.id'), nullable=False)
+
+    def __init__(self, fullname, biography, publishable, last_update,
+                 composer_parent, langage):
+        self.fullname = fullname
+        self.biography = biography
+        self.publishable = publishable
+        self.last_update = last_update
+        self.composer_parent = composer_parent
+        self.langage = langage

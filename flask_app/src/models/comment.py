@@ -13,7 +13,7 @@ class Comment(Base):
 
     # FK
     posted_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    asset = db.Column(db.Integer, db.ForeignKey('asset.id'), nullable=False)
+    asset_id = db.Column(db.Integer, db.ForeignKey('asset.id'), nullable=False)
 
 
     def __init__(self, content, created_at, external_name, posted_by, asset):

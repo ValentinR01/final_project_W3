@@ -20,6 +20,6 @@
 <style>
   .radioForm-label{
     display: block;
-    padding-bottom: var(--spacing-1);
+    padding-bottom: var(--spacing-2);
   }
 </style>

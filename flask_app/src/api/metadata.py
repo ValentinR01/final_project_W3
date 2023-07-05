@@ -2,7 +2,7 @@ import re
 from models.user import User
 from flask import request
 from flask_restx import Namespace, Resource, fields
-from services.metadata_service import get_all_metadatas
+from services.metadata import get_all_metadatas
 
 namespace = Namespace('metadatas', 'Metadata related endpoints')
 

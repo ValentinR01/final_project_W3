@@ -2,7 +2,7 @@ import re
 from models.user import User
 from flask import request
 from flask_restx import Namespace, Resource, fields
-from services.speaker_service import register_service, get_all_speakers, get_speaker_by_id
+from services.speaker import register_service, get_all_speakers, get_speaker_by_id
 
 namespace = Namespace('speakers', 'Speaker related endpoints')
 

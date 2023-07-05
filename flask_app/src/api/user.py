@@ -1,6 +1,6 @@
 from flask import request
 from flask_restx import Namespace, Resource, fields, Api
-from services.user_service import \
+from services.user import \
     register_service, login_service, get_user_by_domain, get_all_users
 
 

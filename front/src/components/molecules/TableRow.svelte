@@ -29,7 +29,7 @@
     {#each Object.entries(row) as [key,rowCell]}
       {#if key === 'has_high_priority' && rowCell === 1}
         <td>
-          <Icon class="block-center" name="prio" color="var(--blue-base)" width="15" height="15">
+          <Icon class="block-center" name="no-prio" color="var(--blue-base)" width="15" height="15">
             <CircleIcon />
           </Icon>
         </td>
@@ -37,25 +37,25 @@
         <td></td>
       {:else if (key === 'rush_received' && rowCell === 1)}
         <td>
-          <Icon class="block-center" name="prio" color="var(--green)" width="15" height="15">
+          <Icon class="block-center" name="rush" color="var(--green)" width="15" height="15">
             <CircleIcon />
           </Icon>
         </td>
       {:else if (key === 'rush_received' && rowCell === 0)}
         <td>
-          <Icon class="block-center" name="prio" color="var(--grey)" width="15" height="15">
+          <Icon class="block-center" name="no-rush" color="var(--grey)" width="15" height="15">
             <CircleIcon />
           </Icon>
         </td>
       {:else if (key === 'captation_done' && rowCell === 1)}
         <td>
-          <Icon class="block-center" name="prio" color="var(--green)" width="15" height="15">
+          <Icon class="block-center" name="captation" color="var(--green)" width="15" height="15">
             <CircleIcon />
           </Icon>
         </td>
       {:else if (key === 'captation_done' && rowCell === 0)}
         <td>
-          <Icon class="block-center" name="prio" color="var(--grey)" width="15" height="15">
+          <Icon class="block-center" name="no-captation" color="var(--grey)" width="15" height="15">
             <CircleIcon />
           </Icon>
         </td>

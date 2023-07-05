@@ -43,7 +43,7 @@ services:
             - ./front/src:/app/src
         restart: always
         ports:
-            - '80:8080'
+            - '8080'
         depends_on:
             - dam-backoffice-api
 

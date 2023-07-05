@@ -2,7 +2,7 @@ from db import db
 from models.base import Base
 
 
-class Asset(db.Model, Base):
+class Asset(Base):
     """This class represents the asset table."""
     __tablename__ = 'asset'
 
@@ -32,33 +32,33 @@ class Asset(db.Model, Base):
         db.Column(db.DateTime, default=db.func.current_timestamp())
 
     # FK
-    composer_id = \
+    composer = \
         db.Column(db.Integer, db.ForeignKey('composer.id'), nullable=False)
-    current_assigned_user_id = \
+    current_assigned_user = \
         db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    created_by_id = \
+    created_by = \
         db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    updated_by_id = \
+    updated_by = \
         db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    speaker_id = \
+    speaker = \
         db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    status_by_domain_id = db.Column(
+    status_by_domain = db.Column(
         db.Integer, db.ForeignKey('status_by_domain.id'), nullable=False
     )
-    step_lifecycle_id = db.Column(
+    step_lifecycle = db.Column(
         db.Integer, db.ForeignKey('step_lifecycle.id'), nullable=False
     )
-    booking_id = \
+    booking = \
         db.Column(db.Integer, db.ForeignKey('booking.id'), nullable=False)
-    captation_id = \
+    captation = \
         db.Column(db.Integer, db.ForeignKey('captation.id'), nullable=False)
-    post_prod_id = \
+    post_prod = \
         db.Column(db.Integer, db.ForeignKey('post_prod.id'), nullable=False)
-    transformation_id = db.Column(
+    transformation = db.Column(
         db.Integer, db.ForeignKey('transformation.id'), nullable=False
     )
-    asset_translated_id = db.Column(
+    asset_translated = db.Column(
         db.Integer, db.ForeignKey('asset_translated.id'), nullable=False
     )
-    subtitle_id = \
+    subtitle = \
         db.Column(db.Integer, db.ForeignKey('subtitle.id'), nullable=False)

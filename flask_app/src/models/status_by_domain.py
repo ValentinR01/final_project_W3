@@ -2,7 +2,7 @@ from db import db
 from models.base import Base
 
 
-class StatusByDomain(db.Model, Base):
+class StatusByDomain(Base):
     """This class represents the status by domain table."""
     __tablename__ = 'status_by_domain'
 

@@ -2,7 +2,7 @@ from db import db
 from models.base import Base
 
 
-class Composer(db.Model, Base):
+class Composer(Base):
     """This class represents the composer table."""
     __tablename__ = 'composer'
 
@@ -17,5 +17,5 @@ class Composer(db.Model, Base):
     # FK
     composer_parent = \
         db.Column(db.Integer, db.ForeignKey('composer.id'), nullable=True)
-    langage_id = \
+    langage = \
         db.Column(db.Integer, db.ForeignKey('langage.id'), nullable=False)

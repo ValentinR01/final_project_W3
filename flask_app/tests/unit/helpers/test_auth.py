@@ -20,7 +20,7 @@ class TestAuthHelper:
     @staticmethod
     def test_generate_token():
         # Create a user object for testing
-        user = User(fullname="Valentin", email="valentin@saline.com", password="123", domain_id=1)
+        user = User(fullname="Valentin", email="valentin@saline.com", password="123", domain=1)
         
         # Call the generate_token method and get the token
         token = AuthHandler.generate_token(user)

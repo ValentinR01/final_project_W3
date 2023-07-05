@@ -12,9 +12,10 @@ class Speaker(Base):
     last_update = db.Column(db.DateTime, default=db.func.current_timestamp())
     publishable = db.Column(db.Boolean, default=False)
     # FK
-    # speaker_parent = db.relationship('Speaker', backref='speaker',
-    # lazy=True) #To Check
-    # language = db.relationship('Language', backref='id', lazy=True) #To Check
+    speaker_parent = \
+        db.Column(db.Integer, db.ForeignKey('speaker.id'), nullable=False)
+    language = \
+        db.Column(db.Integer, db.ForeignKey('language.id'), nullable=False)
 
     def __init__(self, fullname, biography, last_update, publishable):
         self.fullname = fullname

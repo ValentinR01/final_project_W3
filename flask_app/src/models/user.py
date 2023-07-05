@@ -14,16 +14,16 @@ class User(Base):
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     count_assigning_asset = db.Column(db.Integer, default=0)
     # FK
-    role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=False)
-    domain_id = \
+    role = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=False)
+    domain = \
         db.Column(db.Integer, db.ForeignKey('domain.id'), nullable=False)
 
-    def __init__(self, email, fullname, password, domain_id,
-                 profile_picture=None, count_assigning_asset=0, role_id=1):
+    def __init__(self, email, fullname, password, domain, role,
+                 profile_picture=None, count_assigning_asset=0):
         self.email = email
         self.fullname = fullname
         self.password = password
         self.profile_picture = profile_picture
         self.count_assigning_asset = count_assigning_asset
-        self.role_id = role_id
-        self.domain_id = domain_id
+        self.role = role
+        self.domain = domain

@@ -1,3 +1,4 @@
+from db import db
 from models.base import Base
 
 
@@ -5,12 +6,15 @@ class Comment(Base):
     """This class represents the comment table."""
     __tablename__ = 'comment'
 
-    id = None
-    content = None
-    created_at = None
-    external_name = None
-    posted_by = None
-    asset = None
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(1000), nullable=False)
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    external_name = db.Column(db.String(100), nullable=False)
+
+    # FK
+    posted_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    asset = db.Column(db.Integer, db.ForeignKey('asset.id'), nullable=False)
+
 
     def __init__(self, content, created_at, external_name, posted_by, asset):
         self.content = content
@@ -18,20 +22,3 @@ class Comment(Base):
         self.external_name = external_name
         self.posted_by = posted_by
         self.asset = asset
-
-
-
-
-
-
-
-
-
-
-
-id - id
-content - str
-created_at - datetime
-external_name - string
-posted_by - uuid
-asset - uuid

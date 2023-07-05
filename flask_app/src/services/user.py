@@ -32,7 +32,7 @@ def register_service(data):
     hashed_password = generate_password_hash(password, method='pbkdf2')
     new_user = User(
         fullname=fullname, password=hashed_password, email=email,
-        domain_id=domain, role_id=role
+        domain=domain, role=role
     )
     new_user.create()
 

@@ -1,10 +1,10 @@
 from flask import Flask
 from flask_cors import CORS
-from blueprints import blueprint as api
-from conf import POSTGRESQL_DATABASE_URI
 from db import db, migrate
 from models import all_tables  # Don't erase !!
+from blueprints import blueprint as api
 import logging
+from conf import POSTGRESQL_DATABASE_URI, DEBUG, ENV
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -12,9 +12,11 @@ app = Flask(__name__)
 
 app.config['RESTPLUS_MASK_SWAGGER'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = POSTGRESQL_DATABASE_URI
-app.register_blueprint(api)
+
 
 CORS(app)
+
+app.register_blueprint(api)
 
 
 def init_values_in_db():
@@ -33,12 +35,18 @@ def init_values_in_db():
     )
 
 
-with app.app_context():
-    db.init_app(app)
-    db.create_all()
-    migrate.init_app(app, db)
-    init_values_in_db()
-
-
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    debug = bool(DEBUG)
+    print(debug)
+    if ENV == 'TEST':
+        app.run(debug=debug)
+    else:
+        with app.app_context():
+            db.init_app(app)
+            db.create_all()
+            migrate.init_app(app, db)
+            init_values_in_db()
+        app.run(host='0.0.0.0', port=8000, debug=debug)
+
+
+

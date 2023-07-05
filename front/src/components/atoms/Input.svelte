@@ -6,20 +6,37 @@
   export let width = '100%';
   export let value = '';
 
+  /**
+   * @type {boolean}
+  */
+  export let readonly = false;
+
   function typeAction(node:any) {
       node.type = type;
   }
 </script>
 
-<input 
-  use:typeAction
-  id={id} 
-  name={name} 
-  placeholder={placeholder}
-  class="input text-preset-5 {$$props.class}"
-  style="width: {width}"
-  bind:value
-/>
+{#if readonly}
+  <input 
+    use:typeAction
+    id={id} 
+    name={name} 
+    class="input text-preset-5 {$$props.class}"
+    style="width: {width}"
+    value="{value}"
+    readonly
+  />
+{:else}
+  <input 
+    use:typeAction
+    id={id} 
+    name={name} 
+    placeholder={placeholder}
+    class="input text-preset-5 {$$props.class}"
+    style="width: {width}"
+    bind:value
+  />
+{/if}
 
 <style>
 

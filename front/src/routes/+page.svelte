@@ -7,7 +7,7 @@
   import Tab2 from "../tabs/tab2.svelte";
   import Tab3 from "../tabs/tab3.svelte";
 
-  import Logo from '../assets/img/logo_color.png'
+  import Logo from '../assets/img/logo_color.png';
   import Button from '../components/atoms/Button.svelte';
   import Icon from '../components/atoms/Icon.svelte';
   import TextArea from "../components/atoms/Text-Area.svelte";
@@ -38,6 +38,9 @@
   import DownloadIcon from '../assets/icons/DownloadIcon.svelte';
   import EmployeeCard from '../components/molecules/cards/EmployeeCard.svelte';
   import CommentaryCard from '../components/molecules/cards/CommentaryCard.svelte';
+  import Header from '../components/organisms/Header.svelte';
+  import ModalCard from '../components/molecules/cards/ModalCard.svelte';
+  import ModalLinkVideo from '../components/organisms/ModalLinkVideo.svelte';
 
   const examples = 'The Pudding is a digital publication that explains ideas debated in culture with visual essays.'.split(' ')
 	
@@ -201,3 +204,5 @@
   Les organismes
 </Text>
 <br><br>
+<Header />
+<ModalLinkVideo value='https://jevouspartagemavideo.com/egtyhuhdizhmsjh'/>

@@ -10,7 +10,7 @@
 <a href="{linkUrl}"
   on:click
   class="link {$$props.class}"
-  style="{linkStyle} color: {linkColor === 'grey' ? 'var(--color-text-medium)' : linkColor === 'blue' ? 'var(--color-primary)' : 'var(--color-text-regular)'}"
+  style="{linkStyle} color: {linkColor === 'grey' ? 'var(--color-text-dark)' : linkColor === 'blue' ? 'var(--color-primary)' : 'var(--color-text-regular)'}"
 >          
     <slot/>
 </a>

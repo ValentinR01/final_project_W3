@@ -8,8 +8,8 @@ namespace = Namespace('users', 'User related endpoints')
 
 api = Api()
 
-register_model = namespace.model(
-    'Register', {
+user_register_model = namespace.model(
+    'user_register', {
         'fullname': fields.String(required=True, default='saline'),
         'email': fields.String(required=True, default='saline@saline.com'),
         'password': fields.String(required=True, default='Sªl1nĒ'),
@@ -18,8 +18,8 @@ register_model = namespace.model(
     }
 )
 
-login_model = namespace.model(
-    'Login', {
+user_login_model = namespace.model(
+    'user_login', {
         'email': fields.String(required=True, default='saline@saline.com'),
         'password': fields.String(required=True, default='Sªl1nĒ')
     }
@@ -32,7 +32,7 @@ login_model = namespace.model(
 @namespace.route('/register', methods=['POST'])
 class Register(Resource):
     """Register a new user"""
-    @namespace.expect(register_model)
+    @namespace.expect(user_register_model)
     @namespace.response(201, 'Successfully register')
     def post(self):
         """Register a new user"""
@@ -43,7 +43,7 @@ class Register(Resource):
 @namespace.route('/login', methods=['POST'])
 class Login(Resource):
     """Login a user"""
-    @namespace.expect(login_model)
+    @namespace.expect(user_login_model)
     @namespace.response(200, 'Successfully login')
     def post(self):
         """Login a user"""

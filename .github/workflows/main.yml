@@ -20,3 +20,6 @@ jobs:
       - name: Build docker images 
         run: docker buildx build . --file ./dockerfile/Dockerfile-api --tag dam-api:$(date +%s)
           && docker buildx build . --file ./dockerfile/Dockerfile-front --tag dam-front:$(date +%s)
+
+      - name: Run docker images
+        run: docker start $(docker ps -a -q)

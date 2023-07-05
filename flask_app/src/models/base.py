@@ -1,8 +1,11 @@
 from db import db
 
 
-class CRUD:
-    """This class will be used to perform CRUD operations on the database."""
+class Base(db.Model):
+    """This class will be used to perform Base operations on the database."""
+
+    __abstract__ = True
+
     def __init__(self, id):
         self.id = id
 
@@ -21,17 +24,18 @@ class CRUD:
         db.session.delete(self)
         return db.session.commit()
 
-    def get_by(self, **kwargs):
+    @classmethod
+    def get_by(cls: db.Model, **kwargs):
         """
         This method will be used to get a record from a table.
 
-        :param self: table to check
-        :param kwargs: value to check
-        :return:
+        :param cls: class to check
+        :param kwargs: values to check
+        :return: the first matching record
         """
-        return self.query.filter_by(**kwargs).first()
+        return cls.query.filter_by(**kwargs).first()
 
-    # TODO: check `self` instead of table
+    # TODO: check self instead of table
     @staticmethod
     def init_db_value(init_values: list, table: db.Model()):
         """

@@ -1,8 +1,8 @@
 from db import db
-from models.crud import CRUD
+from models.base import Base
 
 
-class Role(db.Model, CRUD):
+class Role(Base):
     """This class represents the role table."""
     __tablename__ = 'role'
 
@@ -15,6 +15,6 @@ class Role(db.Model, CRUD):
 
     @classmethod
     def init_domain(cls):
-        CRUD.init_value(
+        BaseModel.init_value(
             ['superadmin', 'worker', 'lead', 'developer']
         )

@@ -3,6 +3,7 @@
 /*------------------------------------*\
   #GLOBAL VARIABLES
 \*------------------------------------*/
+
 :root{
   /* COLORS */
   --blue-base: #4D6DCA;
@@ -119,6 +120,10 @@ table {
 	border-spacing: 0;
 }
 
+button{
+  cursor: pointer;
+}
+
 input:focus,
 select:focus,
 textarea:focus,
@@ -172,6 +177,7 @@ hr{
 /*------------------------------------*\
   #STYLES
 \*------------------------------------*/
+
 .hidden{
   display: none !important;
 }
@@ -213,7 +219,7 @@ hr{
 }
 
 .text--semibold{
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-semibold) !important;
 }
 
 .text--regular{
@@ -222,6 +228,12 @@ hr{
 
 .text--light{
   font-weight: var(--font-weight-light);
+}
+
+.button--transparent{
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 

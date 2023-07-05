@@ -9,7 +9,7 @@ TODO to install environment in local :
          - source venv/bin/activate
 
      Install dependencies :
-         - pip install -r requirements.txt
+         - pip install -r src/requirements.txt
 
 
 URL du swagger flask :

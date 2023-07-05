@@ -1,8 +1,8 @@
 from db import db
-from .crud import CRUD
+from models.base import Base
 
 
-class Metadata(db.Model, CRUD):
+class Metadata(Base):
     """This class represents the metadata table."""
     __tablename__ = 'metadata'
 

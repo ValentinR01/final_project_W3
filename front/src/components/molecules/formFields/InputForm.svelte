@@ -11,7 +11,7 @@
   style="width: {widthForm}"
 >
   <label for={name} class="text-preset-4"> <slot /> </label>
-  <Input name={name} id={id}/>
+  <Input name={name} id={id} width=auto/>
 </div>
 
 <style>

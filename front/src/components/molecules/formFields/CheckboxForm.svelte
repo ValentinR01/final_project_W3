@@ -6,20 +6,29 @@
   export let widthForm = '100%';
 
   /**
+   * @type {string[]}
+  */
+  export let disabled = [];
+
+  /**
    * @type {any}
-   */
-   export let data;
+  */
+  export let data;
 
 </script>
 
 <div style="width: {widthForm}">
   <label for={name} class="text-preset-4 checkboxForm-label"> <slot /> </label>
-  <Checkbox values={data} cat={catForm}/>
+  <Checkbox 
+    values={data} 
+    cat={catForm} 
+    disabled={disabled}
+  />
 </div>
 
 <style>
   .checkboxForm-label{
     display: block;
-    padding-bottom: var(--spacing-1);
+    padding-bottom: var(--spacing-2);
   }
 </style>

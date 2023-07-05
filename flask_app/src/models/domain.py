@@ -1,8 +1,8 @@
 from db import db
-from models.crud import CRUD
+from models.base import Base
 
 
-class Domain(db.Model, CRUD):
+class Domain(Base):
     """This class represents the domain table."""
     __tablename__ = 'domain'
 

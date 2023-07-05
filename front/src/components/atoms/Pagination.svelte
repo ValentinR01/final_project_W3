@@ -30,7 +30,7 @@
 {#if totalRows && totalRows > perPage}
   <div class='pagination'>
     <button on:click={() => currentPage -= 1}
-      class="pagination-nav"
+      class="pagination-nav button--transparent"
       disabled={currentPage === 0 ? true : false} 
       aria-label="left arrow icon" 
       aria-describedby="prev">
@@ -41,7 +41,7 @@
     <span id='prev' class='sr-only'>Load previous {perPage} rows</span>
     <p class="text-preset-5"> <span class="text--semibold"> {currentPage + 1} </span> - {totalPages}</p>
     <button on:click={() => currentPage += 1} 
-      class="pagination-nav"
+      class="pagination-nav button--transparent"
       disabled={currentPage === totalPages - 1 ? true : false} 
       aria-label="right arrow icon" 
       aria-describedby="next">
@@ -73,13 +73,6 @@
 
   .pagination p{
     margin: 0 7px 0 5px;
-  }
-
-  .pagination-nav{
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
   }
 
 </style>

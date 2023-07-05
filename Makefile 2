@@ -14,12 +14,16 @@ show-tables:
 
 select-table:
 	@echo "${RED}${table} table:${NC}"
-	$(RUN) bash -c "${PSQL} -c 'SELECT * FROM ${table}'"
+	$(RUN) bash -c "${PSQL} -c 'SELECT * FROM public.${table}'"
 
 describe-table:
 	@echo "${RED}Describing ${table} table:${NC}"
 	$(RUN) bash -c "${PSQL} -c '\d ${table}'"
 
-recreate-app:
-	@echo "${RED}Recreating app...${NC}"
-	$(RUN) docker compose down
+flask:
+	@echo "${RED}Starting Flask...${NC}"
+	docker exec -it dam-backoffice-api bash
+
+docker-reload:
+	@echo "${RED}Reloading Docker...${NC}"
+	 docker compose down && docker compose up -d --build

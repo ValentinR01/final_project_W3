@@ -2,7 +2,7 @@ from db import db
 from models.base import Base
 
 
-class Asset(Base):
+class Asset(db.Model, Base):
     """This class represents the asset table."""
     __tablename__ = 'asset'
 
@@ -13,12 +13,12 @@ class Asset(Base):
     music_title = db.Column(db.String(250), nullable=False)
 
     # Nullable True
-    art_description = db.Column(db.String(5000), nullable=True)
+    art_description = db.Column(db.String(1000), nullable=True)
     student_fullname = db.Column(db.String(250), nullable=True)
-    asset_description = db.Column(db.String(5000), nullable=True)
+    asset_description = db.Column(db.String(1000), nullable=True)
     link_partitions = db.Column(db.String(1000), nullable=True)
     thumbnail = db.Column(db.String(1000), nullable=True)
-    resumed = db.Column(db.String(5000), nullable=True)
+    resumed = db.Column(db.String(1000), nullable=True)
 
     # Boolean
     has_high_priority = db.Column(db.Boolean, default=False)
@@ -62,6 +62,3 @@ class Asset(Base):
     )
     subtitle_id = \
         db.Column(db.Integer, db.ForeignKey('subtitle.id'), nullable=False)
-
-    # Relationship
-    # metadatas = db.relationship('Metadata', backref='asset', lazy=True)

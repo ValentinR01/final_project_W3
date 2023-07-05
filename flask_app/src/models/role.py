@@ -2,7 +2,7 @@ from db import db
 from models.base import Base
 
 
-class Role(db.Model, Base):
+class Role(Base):
     """This class represents the role table."""
     __tablename__ = 'role'
 

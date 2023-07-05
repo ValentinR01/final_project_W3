@@ -48,5 +48,6 @@
   .infos__job, .commentary__date{
     color: var(--color-text-dark);
     margin-top: var(--spacing-1);
+    text-transform: capitalize;
   }
 </style>

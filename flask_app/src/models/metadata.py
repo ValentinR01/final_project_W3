@@ -2,7 +2,7 @@ from db import db
 from models.base import Base
 
 
-class Metadata(db.Model, Base):
+class Metadata(Base):
     """This class represents the metadata table."""
     __tablename__ = 'metadata'
 

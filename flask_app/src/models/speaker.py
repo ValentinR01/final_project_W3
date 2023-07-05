@@ -2,7 +2,7 @@ from db import db
 from models.base import Base
 
 
-class Speaker(db.Model, Base):
+class Speaker(Base):
     """This class represents the speakers table."""
     __tablename__ = 'speaker'
 

@@ -1,8 +1,11 @@
 from db import db
 
 
-class Base:
+class Base(db.Model):
     """This class will be used to perform Base operations on the database."""
+
+    __abstract__ = True
+
     def __init__(self, id):
         self.id = id
 
@@ -32,7 +35,7 @@ class Base:
         """
         return cls.query.filter_by(**kwargs).first()
 
-    # TODO: check `self` instead of table
+    # TODO: check self instead of table
     @staticmethod
     def init_db_value(init_values: list, table: db.Model()):
         """

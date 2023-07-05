@@ -4,56 +4,71 @@
   /**
    * @type {string}
   */
-  export let currentPage = 'projects';
+  export let currentPage = 'home';
   export let role = 'admin';
+  export let domain = 'traducteur';
 
 </script>
 
-<menu class="menu">
+<!-- REVOIR LES REDIRECTIONS APRES CREATION PAGES & RECUPERATION DES ROLES DEPUIS LA BDD -->
 
-  {@html '<!-- Mettre à jour la condition sur les rôles en fonction des entrées en BDD -->'}
-  {@html '<!-- Mettre à jour liens après que le routing ait été fait -->'}
-  {#if role === 'super admin' || role === 'admin'}
-    
-  <li >
+<ul class='nav'>
+  {#if role == 'superadmin' || role == 'admin' && domain == 'traducteur'}
     <Link
-      linkUrl='/dashboard'
-      class='text--uppercase {currentPage == 'projects' ? 'link--current' : undefined}'
+      class='text--uppercase text--semibold {currentPage === 'home' ? 'link--current' : ''}'
+      linkUrl='/dashboard-{domain}'
+      linkStyle='padding: 0 var(--spacing-3);'
+      linkColor='{currentPage === 'home' ? 'blue' : 'grey'}'
     > 
       Les projets
     </Link>
-  </li>
 
-  <li>
     <Link
-      linkUrl='/account'
-      class='text--uppercase {currentPage == 'account' ? 'link--current' : undefined}'
-    > 
+      class='text--uppercase text--semibold'
+      linkUrl='/dashboard'
+      linkStyle='padding: 0 var(--spacing-3);'
+      linkColor='grey'
+    >
       Vidéos en ligne
     </Link>
-  </li>
-
   {/if}
-
-  {#if role === 'super admin'}
   
-  <li>
+  {#if role == 'superadmin'}
     <Link
+      class='text--uppercase text--semibold'
       linkUrl='/dashboard'
-      class='text--uppercase {currentPage == 'users' ? 'link--current' : undefined}'
+      linkStyle='padding: 0 var(--spacing-3);'
+      linkColor='grey'
     > 
       Les utilisateurs
     </Link>
-  </li>
-
   {/if}
-</menu>
+
+  {#if role == 'admin' && domain == 'regisseur'}
+    <Link
+      class='text--uppercase text--semibold'
+      linkUrl='/dashboard-admin-regi'
+      linkStyle='padding: 0 var(--spacing-3);'
+      linkColor='grey'
+    > 
+      Mes projets
+    </Link>
+
+    <Link
+      class='text--uppercase text--semibold'
+      linkUrl='/dashboard-regi'
+      linkStyle='padding: 0 var(--spacing-3);'
+      linkColor='grey'
+    > 
+      Projets équipe
+    </Link>
+  {/if}
+</ul>
 
 <style>
-  .menu{
-    width: fit-content;
+  .nav{
+    width: calc(100% - 210px);
     display: flex;
-    align-items: center;
-    column-gap: var(--spacing-4);
+    justify-content: end;
   }
 </style>

@@ -58,7 +58,7 @@ export function load() {
                 role: 'user',
                 profile_pic: 'https://cdn.shopify.com/s/files/1/0442/6219/5368/files/3I3A1369-2.jpg?v=1685536090',
                 count_assigning_asset: 3,
-                domain: 'Regisseur'
+                domain: 'regisseur'
             },
             {
                 id: 2,
@@ -66,28 +66,28 @@ export function load() {
                 email: 'nassim@gmail.com',
                 role: 'admin',
                 count_assigning_asset: 1,
-                domain: 'Traducteur'
+                domain: 'traducteur'
             },
             {
                 id: 3,
                 fullname: 'Julia Doustalet',
                 email: 'julia@gmail.com',
                 role: 'admin',
-                domain: 'Editeur'
+                domain: 'editeur'
             },
             {
                 id: 4,
                 fullname: 'Doriane Farau',
                 email: 'doriane@gmail.com',
                 role: 'user',
-                domain: 'Post-prod'
+                domain: 'post-prod'
             },
             {
                 id: 5,
                 fullname: 'Zoé Logeais',
                 email: 'zoe@gmail.com',
                 role: 'superadmin',
-                domain: 'Editeur'
+                domain: 'editeur'
             }
         ]
     };

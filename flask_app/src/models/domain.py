@@ -2,7 +2,7 @@ from db import db
 from models.base import Base
 
 
-class Domain(db.Model, Base):
+class Domain(Base):
     """This class represents the domain table."""
     __tablename__ = 'domain'
 

@@ -1,0 +1,30 @@
+name: CI
+
+# TO UPDATE
+on:
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+
+jobs:
+
+
+  build-test-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build docker images
+        run: docker buildx build . --file ./dockerfile/Dockerfile-api --tag dam-api:latest
+          && docker buildx build . --file ./dockerfile/Dockerfile-front --tag dam-front:latest
+
+
+      - name: Unit Tests
+        run: docker run -d -e ENV=TEST --name=dam-api dam-api:latest
+              && docker exec dam-api bash -c 'python -m pytest'
+
+      - name: Push to Registry
+        run: echo 'Todo Push To Registry'

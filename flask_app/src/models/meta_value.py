@@ -3,7 +3,7 @@ from models.base import Base
 
 
 class MetaValue(Base):
-    """This class represents the meta_value table."""
+    """This class represents the meta_value table"""
     __tablename__ = 'meta_value'
 
     id = db.Column(db.Integer, primary_key=True)

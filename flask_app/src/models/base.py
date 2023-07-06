@@ -2,7 +2,7 @@ from db import db
 
 
 class Base(db.Model):
-    """This class will be used to perform Base operations on the database."""
+    """This class will be used to perform Base operations on the database"""
 
     __abstract__ = True
 

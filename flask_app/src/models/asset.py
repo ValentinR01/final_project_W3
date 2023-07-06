@@ -3,7 +3,7 @@ from models.base import Base
 
 
 class Asset(Base):
-    """This class represents the asset table."""
+    """This class represents the asset table"""
     __tablename__ = 'asset'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -41,7 +41,7 @@ class Asset(Base):
     updated_by_id = \
         db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     speaker_id = \
-        db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+        db.Column(db.Integer, db.ForeignKey('speaker.id'), nullable=False)
     status_by_domain_id = db.Column(
         db.Integer, db.ForeignKey('status_by_domain.id'), nullable=False
     )

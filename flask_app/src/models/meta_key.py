@@ -3,7 +3,7 @@ from models.base import Base
 
 
 class MetaKey(Base):
-    """This class represents the meta_key table."""
+    """This class represents the meta_key table"""
     __tablename__ = 'meta_key'
 
     id = db.Column(db.Integer, primary_key=True)

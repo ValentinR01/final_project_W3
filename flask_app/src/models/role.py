@@ -3,7 +3,7 @@ from models.base import Base
 
 
 class Role(Base):
-    """This class represents the role table."""
+    """This class represents the role table"""
     __tablename__ = 'role'
 
     id = db.Column(db.Integer, primary_key=True)

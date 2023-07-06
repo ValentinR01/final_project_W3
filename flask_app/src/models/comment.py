@@ -3,7 +3,7 @@ from models.base import Base
 
 
 class Comment(Base):
-    """This class represents the comment table."""
+    """This class represents the comment table"""
     __tablename__ = 'comment'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -15,10 +15,9 @@ class Comment(Base):
     posted_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     asset_id = db.Column(db.Integer, db.ForeignKey('asset.id'), nullable=False)
 
-
-    def __init__(self, content, created_at, external_name, posted_by, asset):
+    def __init__(self, content, created_at, external_name, posted_by, asset_id):
         self.content = content
         self.created_at = created_at
         self.external_name = external_name
         self.posted_by = posted_by
-        self.asset = asset
+        self.asset_id = asset_id

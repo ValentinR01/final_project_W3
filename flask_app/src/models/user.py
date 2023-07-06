@@ -3,7 +3,7 @@ from models.base import Base
 
 
 class User(Base):
-    """This class represents the users table."""
+    """This class represents the users table"""
     __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True)

@@ -3,7 +3,7 @@ from models.base import Base
 
 
 class Domain(Base):
-    """This class represents the domain table."""
+    """This class represents the domain table"""
     __tablename__ = 'domain'
 
     id = db.Column(db.Integer, primary_key=True)

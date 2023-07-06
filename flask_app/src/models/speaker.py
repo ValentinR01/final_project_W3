@@ -3,7 +3,7 @@ from models.base import Base
 
 
 class Speaker(Base):
-    """This class represents the speakers table."""
+    """This class represents the speakers table"""
     __tablename__ = 'speaker'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -17,8 +17,11 @@ class Speaker(Base):
     language_id = \
         db.Column(db.Integer, db.ForeignKey('language.id'), nullable=False)
 
-    def __init__(self, fullname, biography, last_update, publishable):
+    def __init__(self, fullname, biography, last_update, publishable,
+                 speaker_parent, language_id):
         self.fullname = fullname
         self.biography = biography
         self.last_update = last_update
         self.publishable = publishable
+        self.speaker_parent = speaker_parent
+        self.language_id = language_id

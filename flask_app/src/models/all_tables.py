@@ -9,3 +9,13 @@ from models.meta_value import MetaValue
 from models.meta_key import MetaKey
 from models.language import Language
 from models.asset import Asset
+from models.status_by_domain import StatusByDomain
+from models.step_lifecycle import StepLifecycle
+from models.booking import Booking
+from models.room import Room
+from models.captation import Captation
+from models.type import Type
+from models.post_prod import PostProd
+from models.transformation import Transformation
+from models.asset_translated import AssetTranslated
+from models.subtitle import Subtitle

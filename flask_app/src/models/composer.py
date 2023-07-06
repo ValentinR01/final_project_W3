@@ -3,7 +3,7 @@ from models.base import Base
 
 
 class Composer(Base):
-    """This class represents the composer table."""
+    """This class represents the composer table"""
     __tablename__ = 'composer'
 
     id = db.Column(db.Integer, primary_key=True)

@@ -1,9 +1,7 @@
-output "prod-saline-ip_address" {
-  value       = digitalocean_droplet.prod-saline.ipv4_address
-  description = "Saline production IP address"
-}
-
-output "preprod-saline-ip_address" {
-  value       = digitalocean_droplet.preprod-saline.ipv4_address
-  description = "Saline pre-production IP address"
+output "public_ip_addresses" {
+  description = "Public IP addresses of the resource groups"
+  value = {
+    for rg in azurerm_resource_group.resource_group :
+    rg.name => azurerm_public_ip.public_ip[rg.tags.environment].ip_address
+  }
 }

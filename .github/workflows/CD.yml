@@ -1,0 +1,19 @@
+name: CD
+
+# TO UPDATE
+on:
+  workflow_run:
+    workflows: [ "CI" ]
+    branches: [ main ]
+    types:
+      - completed
+
+
+jobs:
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: deploy
+        run: echo 'Todo Deployment'

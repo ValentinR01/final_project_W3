@@ -10,7 +10,7 @@
   class="input-form"
   style="width: {widthForm}"
 >
-  <label for={name} class="text-preset-4"> <slot /> </label>
+  <label for={name} class="input-form__label text-preset-4"> <slot /> </label>
   <Input name={name} id={id} width=auto/>
 </div>
 
@@ -19,7 +19,7 @@
     display: inline-grid;
   }
 
-  label{
-    margin-bottom: 5px;
+  .input-form__label{
+    margin-bottom: var(--spacing-1);
   }
 </style>

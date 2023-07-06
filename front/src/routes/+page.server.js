@@ -5,7 +5,10 @@ export function load() {
             categorie: ["masterclass", "concert", "interview"],
             rating: [1,2,3,4],
             role: ["superadmin","admin","user"], 
-            translations: ["Français","Anglais","Italien","Espagnol","Allemand","Japonais","Russe","Arabe","Chinois","Coréen","Portugais"]
+            domain: ["post-prod","regisseur","traducteur","editeur"], 
+            translations: ["Français","Anglais","Italien","Espagnol","Allemand","Japonais","Russe","Arabe","Chinois","Coréen","Portugais"],
+            style: ["classical","jazz","medieval"],
+            era: ["XII","XVI","XVIII","XIX","XX"]
         },
         projects: [
             {
@@ -93,6 +96,10 @@ export function load() {
                 role: 'superadmin',
                 domain: 'editeur'
             }
-        ]
+        ],
+        booking:{
+            room: [ 'Salle 1', 'Salle 2', 'Salle 3' ],
+            time_slot: ['8h - 10h', '10h - 12h', '12h - 14h', '14h - 16h', '16h - 18h', '18h - 20h']
+        }
     };
 }

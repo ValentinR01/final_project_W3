@@ -1,9 +1,6 @@
 <script>
   import Button from "../../atoms/Button.svelte";
   import InputForm from "../../molecules/formFields/InputForm.svelte";
-
-  export let data;
-
   
   /**
    * @type {{ error: any; }}

@@ -40,7 +40,9 @@
   import CommentaryCard from '../components/molecules/cards/CommentaryCard.svelte';
   import Header from '../components/organisms/Header.svelte';
   import ModalCard from '../components/molecules/cards/ModalCard.svelte';
-  import ModalLinkVideo from '../components/organisms/ModalLinkVideo.svelte';
+  import ModalLinkVideo from '../components/organisms/Modals/ModalLinkVideo.svelte';
+  import ModalIntervenor from '../components/organisms/Modals/ModalIntervenor.svelte';
+  import SubtitlesRequest from '../components/organisms/Forms/SubtitlesRequest.svelte';
 
   const examples = 'The Pudding is a digital publication that explains ideas debated in culture with visual essays.'.split(' ')
 	
@@ -207,3 +209,7 @@
 <Header />
 <br>
 <ModalLinkVideo value='https://jevouspartagemavideo.com/egtyhuhdizhmsjh'/>
+<br><br>
+<ModalIntervenor type='composer'/>
+<br><br>
+<SubtitlesRequest languages={data.metadata.translations} data={data.projects[0].translations} />

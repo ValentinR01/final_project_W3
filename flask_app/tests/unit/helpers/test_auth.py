@@ -9,7 +9,7 @@ from conf import TOKEN_SECRET, TOKEN_EXPIRATION_HOURS
 class TestAuthHelper:
     @staticmethod
     def test_decode_token():
-        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6bnVsbCwiZnVsbG5hbWUiOiJWYWxlbnRpbiIsImVtYWlsIjoidmFsZW50aW5Ac2FsaW5lLmNvbSIsImV4cCI6MTY4ODU0OTYxMywiaWF0IjoxNjg4NTEzNjEzfQ.-Pq5mDh_qscLM-TaHDQ30ER9856yVR6RsH17-ZnFRaI"
+        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6bnVsbCwiZnVsbG5hbWUiOiJWYWxlbnRpbiIsImVtYWlsIjoidmFsZW50aW5Ac2FsaW5lLmNvbSIsImV4cCI6Mzc2ODg2Mjg0NzMsImlhdCI6MTY4ODYyODQ3M30.TGBZLuaPcgYEUxZwl311jszMSa-Zmoh8tNr2hE-gz2s"
 
         result = AuthHandler.decode_token(token)
 

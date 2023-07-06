@@ -1,7 +1,8 @@
 import os
 
 
-DEBUG = os.environ.get("DEBUG", 0)
+DEBUG = os.environ.get("DEBUG")
+ENV = os.environ.get("ENV")
 
 # JWT
 TOKEN_EXPIRATION_HOURS = os.environ.get("TOKEN_EXPIRATION_HOURS", 10)

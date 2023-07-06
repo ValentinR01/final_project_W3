@@ -2,12 +2,12 @@
   import { onMount } from 'svelte';
   import { writable } from 'svelte/store';
 
-  import CopyIcon from "../../assets/icons/CopyIcon.svelte";
-  import Icon from "../atoms/Icon.svelte";
-  import Input from "../atoms/Input.svelte";
-  import Text from "../atoms/Text.svelte";
-  import ModalCard from "../molecules/cards/ModalCard.svelte";
-  import CheckIcon from '../../assets/icons/CheckIcon.svelte';
+  import CopyIcon from "../../../assets/icons/CopyIcon.svelte";
+  import Icon from "../../atoms/Icon.svelte";
+  import Input from "../../atoms/Input.svelte";
+  import Text from "../../atoms/Text.svelte";
+  import ModalCard from "../../molecules/cards/ModalCard.svelte";
+  import CheckIcon from '../../../assets/icons/CheckIcon.svelte';
 
   export let value = '';
   let copied = writable(false);
@@ -35,7 +35,7 @@
 
 <ModalCard buttonText='Ouvrir modale partage lien video'>
   <Text
-    textTag='h1'
+    textTag='h2'
     class='text-preset-2 text--uppercase text-center'
   >
     Lien à partager

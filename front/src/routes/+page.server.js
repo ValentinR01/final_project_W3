@@ -4,7 +4,8 @@ export function load() {
             instruments: ["piano","violon","guitare","violoncelle","trombone","harpe","trompette","flute"],
             categorie: ["masterclass", "concert", "interview"],
             rating: [1,2,3,4],
-            role: ["superadmin","admin","user"]
+            role: ["superadmin","admin","user"], 
+            translations: ["Français","Anglais","Italien","Espagnol","Allemand","Japonais","Russe","Arabe","Chinois","Coréen","Portugais"]
         },
         projects: [
             {
@@ -12,21 +13,24 @@ export function load() {
                 name: "Interview 1",
                 instruments: ["piano","violon","guitare"],
                 categorie: "interview",
-                rating: 3
+                rating: 3,
+                translations: ["Français","Anglais"]
             },
             {
                 id: 2,
                 name: "Interview 2",
                 instruments: ["piano","violon","guitare"],
                 categorie: "interview",
-                rating: 4
+                rating: 4,
+                translations: ["Français","Allemand"]
             },
             {
                 id: 3,
                 name: "Concert de Jean Mich",
                 instruments: ["piano","violon","guitare"],
                 categorie: "concert",
-                rating: 1
+                rating: 1,
+                translations: ["Russe","Espagnol","Chinois"]
             },
             {
                 id: 4,

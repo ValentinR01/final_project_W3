@@ -5,6 +5,11 @@
   export let values;
 
   /**
+   * @type {string | string[]}
+  */
+  export let disabled = [];
+
+  /**
   * @type {any}
   */
   export let cat;
@@ -12,8 +17,13 @@
   
 <div class='checkbox'>
   {#each values as option}
-    <input class="input-checkbox" type=checkbox id={option} value={option} name={cat}>
-    <label class="label-checkbox text-preset-5" for={option}> {option} </label>
+    {#if disabled.length > 0 && disabled.includes(option)}
+      <input class="input-checkbox input-checkbox--disabled" type=checkbox id={option} value={option} name={cat} disabled>
+      <label class="label-checkbox label-checkbox--disabled text-preset-5" for={option}> {option} </label>
+    {:else}
+      <input class="input-checkbox" type=checkbox id={option} value={option} name={cat}>
+      <label class="label-checkbox text-preset-5" for={option}> {option} </label>
+    {/if }
   {/each}
 </div>
 
@@ -26,6 +36,7 @@
 
   .label-checkbox{
     width: 150px;
+    height: 15px;
   }
 
   .input-checkbox:checked,
@@ -84,5 +95,13 @@
 
   .input-checkbox:checked + .label-checkbox:before{
     border-color: var(--blue-base);
+  }
+
+  .input-checkbox.input-checkbox--disabled + .label-checkbox:before{
+    background: var(--color-disabled);
+  }
+
+  .label-checkbox.label-checkbox--disabled{
+    color: var(--color-text-medium);
   }
 </style>

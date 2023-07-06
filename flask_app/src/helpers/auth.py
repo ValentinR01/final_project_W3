@@ -2,6 +2,8 @@ import jwt
 from datetime import datetime, timedelta
 from werkzeug.security import check_password_hash
 from models.user import User
+from models.role import Role
+from models.domain import Domain
 from conf import TOKEN_SECRET, TOKEN_EXPIRATION_HOURS
 
 
@@ -31,10 +33,20 @@ class AuthHandler:
         :param user: user object
         :return:
         """
+        user_role_id = user.role_id
+        role = Role.get_by(id=user_role_id)
+        role_name = role.name
+
+        user_domain_id = user.domain_id
+        domain = Domain.get_by(id=user_domain_id)
+        domain_name = domain.name
+
         payload = {
             "id": user.id,
             "fullname": user.fullname,
             "email": user.email,
+            "role": role_name,
+            "domain": domain_name,
             "exp": datetime.utcnow() + timedelta(hours=TOKEN_EXPIRATION_HOURS),
             "iat": datetime.utcnow()
         }

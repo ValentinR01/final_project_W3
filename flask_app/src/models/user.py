@@ -3,7 +3,7 @@ from models.base import Base
 
 
 class User(Base):
-    """This class represents the users table."""
+    """This class represents the users table"""
     __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -18,8 +18,8 @@ class User(Base):
     domain_id = \
         db.Column(db.Integer, db.ForeignKey('domain.id'), nullable=False)
 
-    def __init__(self, email, fullname, password, domain_id,
-                 profile_picture=None, count_assigning_asset=0, role_id=1):
+    def __init__(self, email, fullname, password, domain_id, role_id,
+                 profile_picture=None, count_assigning_asset=0):
         self.email = email
         self.fullname = fullname
         self.password = password

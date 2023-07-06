@@ -14,8 +14,8 @@ user_register_model = namespace.model(
         'fullname': fields.String(required=True, default='saline'),
         'email': fields.String(required=True, default='saline@saline.com'),
         'password': fields.String(required=True, default='Sªl1nĒ'),
-        'role': fields.Integer(required=True, default=1),
-        'domain': fields.Integer(required=True, default=1)
+        'role_id': fields.Integer(required=True, default=1),
+        'domain_id': fields.Integer(required=True, default=1)
     }
 )
 

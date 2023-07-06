@@ -3,9 +3,9 @@ WORKDIR /app
 COPY ./front/ .
 RUN npm install
 
-FROM base as dev
+FROM base as DEV
 ENTRYPOINT [ "npm", "run", "dev", "--", "--host"]
 
-FROM base as prod
+FROM base as PROD
 RUN npm run build
 ENTRYPOINT [ "npm", "run", "start" ]

@@ -8,8 +8,8 @@ on:
 
 
 jobs:
-  
- 
+
+
   build-test-push:
     runs-on: ubuntu-latest
 
@@ -22,6 +22,9 @@ jobs:
           && docker buildx build . --file ./dockerfile/Dockerfile-front --tag dam-front:latest
 
 
-      - name: Test
+      - name: Unit Tests
         run: docker run -d -e ENV=TEST --name=dam-api dam-api:latest
               && docker exec dam-api bash -c 'python -m pytest'
+
+      - name: Push to Registry
+        run: echo 'Todo Push To Registry'

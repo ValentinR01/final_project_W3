@@ -12,9 +12,9 @@
 </script>
 
 <form class="form-newUser">
-  <InputForm widthForm='calc(50% - 5px)'> Nom </InputForm>
-  <InputForm widthForm='calc(50% - 5px)'> Prénom </InputForm>
-  <InputForm> Email </InputForm>
+  <InputForm id='lastname' name='lastname' widthForm='calc(50% - 5px)'> Nom </InputForm>
+  <InputForm id='firstname' name='firstname' widthForm='calc(50% - 5px)'> Prénom </InputForm>
+  <InputForm id='email' name='email'> Email </InputForm>
   <SelectForm nameSelect="domain" data={data.metadata.domain} labelName='domain' widthForm='calc(50% - 5px)' > Domaine </SelectForm>
   <SelectForm nameSelect="role" data={data.metadata.role} labelName='role' widthForm='calc(50% - 5px)' > Rôle </SelectForm>
   <CheckboxForm data={data.metadata.translations} catForm='langues-traducteur'> Langues de traduction </CheckboxForm>

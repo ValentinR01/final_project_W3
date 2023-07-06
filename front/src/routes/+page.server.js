@@ -6,7 +6,9 @@ export function load() {
             rating: [1,2,3,4],
             role: ["superadmin","admin","user"], 
             domain: ["post-prod","regisseur","traducteur","editeur"], 
-            translations: ["Français","Anglais","Italien","Espagnol","Allemand","Japonais","Russe","Arabe","Chinois","Coréen","Portugais"]
+            translations: ["Français","Anglais","Italien","Espagnol","Allemand","Japonais","Russe","Arabe","Chinois","Coréen","Portugais"],
+            style: ["classical","jazz","medieval"],
+            era: ["XII","XVI","XVIII","XIX","XX"]
         },
         projects: [
             {

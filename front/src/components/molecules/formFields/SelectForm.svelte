@@ -19,6 +19,7 @@
 
 <style>
   .select-form__label{
+    display: inline-block;
     margin-bottom: var(--spacing-1);
   }
 </style>

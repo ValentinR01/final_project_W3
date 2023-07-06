@@ -41,6 +41,7 @@
 <style>
 
   .input{
+    height: 18px;
     color: var(--color-text-medium);
     border: var(--border-height-regular) solid var(--color-disabled);
     padding: var(--spacing-2);

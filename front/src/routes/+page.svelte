@@ -44,6 +44,7 @@
   import SubtitlesRequest from '../components/organisms/Forms/SubtitlesRequest.svelte';
   import CommentaryForm from '../components/organisms/Forms/CommentaryForm.svelte';
   import NewUserForm from '../components/organisms/Forms/NewUserForm.svelte';
+  import ProjectCreationForm from '../components/organisms/Forms/ProjectEditionForm.svelte';
 
   const examples = 'The Pudding is a digital publication that explains ideas debated in culture with visual essays.'.split(' ')
 	
@@ -213,8 +214,9 @@
 <ModalIntervenor type='composer'/>
 <br><br>
 <!--
-<SubtitlesRequest languages={data.metadata.translations} data={data.projects[0].translations} /> -->
+<SubtitlesRequest languages={data.metadata.translations} data={data.projects[0].translations} /> 
 <br><br>
 <CommentaryForm />
 <br><br>
-<NewUserForm data={data}/>
+<NewUserForm data={data}/> -->
+<ProjectCreationForm data={data} />

@@ -5,6 +5,7 @@ export function load() {
             categorie: ["masterclass", "concert", "interview"],
             rating: [1,2,3,4],
             role: ["superadmin","admin","user"], 
+            domain: ["post-prod","regisseur","traducteur","editeur"], 
             translations: ["Français","Anglais","Italien","Espagnol","Allemand","Japonais","Russe","Arabe","Chinois","Coréen","Portugais"]
         },
         projects: [

@@ -46,6 +46,7 @@
     font-weight: var(--font-weight-light);
     border-radius: var(--small-radius);
     text-align: center;
+    text-transform: capitalize;
   }
 
   .select-wrapper {

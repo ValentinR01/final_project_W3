@@ -29,7 +29,7 @@
   import CheckboxForm from '../components/molecules/formFields/CheckboxForm.svelte';
   import Menu from '../components/molecules/Menu.svelte';
   import Select from '../components/atoms/Select.svelte';
-  import SelectForm from '../components/molecules/formFields/InputForm.svelte'
+  import SelectForm from '../components/molecules/formFields/SelectForm.svelte'
   import Tabs from '../components/molecules/Tabs.svelte';
   import Modal from '../components/molecules/cards/ModalCard.svelte';
   import RadioForm from '../components/molecules/formFields/RadioForm.svelte';
@@ -39,10 +39,11 @@
   import EmployeeCard from '../components/molecules/cards/EmployeeCard.svelte';
   import CommentaryCard from '../components/molecules/cards/CommentaryCard.svelte';
   import Header from '../components/organisms/Header.svelte';
-  import ModalCard from '../components/molecules/cards/ModalCard.svelte';
   import ModalLinkVideo from '../components/organisms/Modals/ModalLinkVideo.svelte';
   import ModalIntervenor from '../components/organisms/Modals/ModalIntervenor.svelte';
   import SubtitlesRequest from '../components/organisms/Forms/SubtitlesRequest.svelte';
+  import CommentaryForm from '../components/organisms/Forms/CommentaryForm.svelte';
+  import NewUserForm from '../components/organisms/Forms/NewUserForm.svelte';
 
   const examples = 'The Pudding is a digital publication that explains ideas debated in culture with visual essays.'.split(' ')
 	
@@ -93,6 +94,8 @@
 <br><br>
 <Input type='password' id='password' name='password' placeholder='Password' required/>
 <br><br>
+<Select nameSelect="rating" options={data.metadata.rating}/>
+<br><br>
 <Button> Valider </Button>
 <br><br>
 <Text textTag='p' class='text-preset-4' textColor='grey'>Already have an account ? <Link class='text--semibold' linkUrl='/login'>Login</Link></Text>
@@ -141,16 +144,13 @@
   Les molecules
 </Text>
 
-<br><br>
-<Select nameSelect="rating" options={data.metadata.rating}/>
-<br><br>
 <SelectForm nameSelect="role" options={data.metadata.role}>Rôle</SelectForm>
 <br><br>
 <TextareaForm name='commentaire' placeholder='Enter your text here...'>
   Commentaire
 </TextareaForm>
 <br><br>
-<SelectForm name='level' nameSelect="rating" options={data.metadata.rating}> Niveau </SelectForm>
+<SelectForm labelName='level' nameSelect="rating" options={data.metadata.rating}> Niveau </SelectForm>
 <br><br>
 <CheckboxForm data={data.metadata.instruments} catForm='instruments'> Instruments </CheckboxForm>
 <br><br>
@@ -212,4 +212,9 @@
 <br><br>
 <ModalIntervenor type='composer'/>
 <br><br>
-<SubtitlesRequest languages={data.metadata.translations} data={data.projects[0].translations} />
+<!--
+<SubtitlesRequest languages={data.metadata.translations} data={data.projects[0].translations} /> -->
+<br><br>
+<CommentaryForm />
+<br><br>
+<NewUserForm data={data}/>

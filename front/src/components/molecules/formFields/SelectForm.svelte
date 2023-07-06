@@ -3,7 +3,7 @@
 
   export let labelName = "";
   export let nameSelect = "";
-  export let widthForm = '50%';
+  export let widthForm = '100%';
 
   /**
    * @type {any}

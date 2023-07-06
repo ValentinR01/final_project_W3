@@ -96,6 +96,10 @@ export function load() {
                 role: 'superadmin',
                 domain: 'editeur'
             }
-        ]
+        ],
+        booking:{
+            room: [ 'Salle 1', 'Salle 2', 'Salle 3' ],
+            time_slot: ['8h - 10h', '10h - 12h', '12h - 14h', '14h - 16h', '16h - 18h', '18h - 20h']
+        }
     };
 }

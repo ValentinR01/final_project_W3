@@ -45,6 +45,7 @@
   import CommentaryForm from '../components/organisms/Forms/CommentaryForm.svelte';
   import NewUserForm from '../components/organisms/Forms/NewUserForm.svelte';
   import ProjectCreationForm from '../components/organisms/Forms/ProjectEditionForm.svelte';
+  import BioEdition from '../components/organisms/Forms/BioEdition.svelte';
 
   const examples = 'The Pudding is a digital publication that explains ideas debated in culture with visual essays.'.split(' ')
 	
@@ -218,5 +219,6 @@
 <br><br>
 <CommentaryForm />
 <br><br>
-<NewUserForm data={data}/> -->
-<ProjectCreationForm data={data} />
+<NewUserForm data={data}/>
+<ProjectCreationForm data={data} />-->
+<BioEdition typeBio='composer' />

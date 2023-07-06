@@ -1,0 +1,19 @@
+name: Final Tests
+
+# TO UPDATE
+on:
+  workflow_run:
+    workflows: [ "CD" ]
+    branches: [ main ]
+    types:
+      - completed
+
+
+jobs:
+
+  final-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Final API tests
+        run: echo 'Todo Final API Tests'

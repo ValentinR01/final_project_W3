@@ -16,14 +16,6 @@
 -->
 
 <form method="POST" action='?/create'>
-  <div class='form-intevenor'>
-    <InputForm name="name"> Name </InputForm>
-  </div>
-  <Button class='block-center'> Valider </Button>
+  <InputForm id="name" name="name"> Name </InputForm>
+  <Button class='block-center' marginTop='var(--spacing-3)'> Valider </Button>
 </form>
-
-<style>
-  .form-intevenor{
-    margin: var(--spacing-3) 0;
-  }
-</style>

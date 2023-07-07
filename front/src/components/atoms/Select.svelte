@@ -12,11 +12,11 @@
   /**
   * @type {any}
   */
-  export let index = 0;
+  export let valueSelected = options[0];
   let value;
 
   $: {
-    value = options[index];
+    value = valueSelected;
   }
 </script>
 
@@ -24,10 +24,10 @@
 <div class="select-wrapper">
   <select 
     name={nameSelect} 
-    bind:value={index}
+    bind:value={valueSelected}
   >
-    {#each options as option, i}
-      <option value={i}>{option}</option>
+    {#each options as valueSelected}
+      <option value={valueSelected}>{valueSelected}</option>
     {/each}
   </select>
 </div>

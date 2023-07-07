@@ -72,6 +72,7 @@
   ];
 </script>
 
+<!--
 <Text
   textTag='h1'
   class='text-preset-1'
@@ -127,7 +128,7 @@
 <Radio values={data.metadata.categorie} cat='categorie'/>
 <br><br>
 <Checkbox values={data.metadata.instruments} cat='instruments'/>
-<br><br>
+<br><br> -->
 <!-- Pagination exemple-->
 {#if values}
   {#each values as value}
@@ -138,7 +139,7 @@
 {/if}
 <Pagination rows={data.metadata.instruments} perPage={3} bind:trimmedRows={values} />
 <!-- End pagination exemple -->
-
+<!--
 <br><br><br>
 <Text
   textTag='h1'
@@ -199,7 +200,7 @@
   <span slot='date'> 12/06/2023 </span>
   <span slot='comment'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </span>
 </CommentaryCard>
-
+-->
 
 <br><br><br>
 <Text

@@ -2,7 +2,7 @@ export function load() {
     return {
         metadata:{
             instruments: ["piano","violon","guitare","violoncelle","trombone","harpe","trompette","flute"],
-            categorie: ["masterclass", "concert", "interview"],
+            categorie: ["concert", "interview", "masterclass"],
             rating: [1,2,3,4],
             role: ["superadmin","admin","user"], 
             domain: ["post-prod","regisseur","traducteur","editeur"], 

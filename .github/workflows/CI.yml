@@ -26,5 +26,8 @@ jobs:
         run: docker run -d -e ENV=TEST --name=dam-api dam-api:latest
               && docker exec dam-api bash -c 'python -m pytest'
 
+      - name: Login to Registry
+        run: echo $TOKEN | docker login salineprod.azurecr.io -u $REGISTRY_USER --password-stdin
+
       - name: Push to Registry
         run: echo 'Todo Push To Registry'

@@ -1,7 +1,7 @@
 <script>
 
   import Button from "../../atoms/Button.svelte";
-import CheckboxForm from "../../molecules/formFields/CheckboxForm.svelte";
+  import CheckboxForm from "../../molecules/formFields/CheckboxForm.svelte";
 
   /**
    * @type {any}
@@ -18,14 +18,6 @@ import CheckboxForm from "../../molecules/formFields/CheckboxForm.svelte";
 </script>
 
 <form method="POST">
-  <div class='form-subtitles'>
-    <CheckboxForm data={languages} disabled={disabled} catForm='subtitles'> Demande sous-titres aditionnels </CheckboxForm>
-  </div>
-  <Button class='block-center'>Valider</Button>
+  <CheckboxForm data={languages} disabled={disabled} catForm='subtitles'> Demande sous-titres aditionnels </CheckboxForm>
+  <Button class='block-center' marginTop='var(--spacing-4)'>Valider</Button>
 </form>
-
-<style>
-  .form-subtitles{
-    margin: var(--spacing-4) 0;
-  }
-</style>

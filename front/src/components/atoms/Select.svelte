@@ -37,6 +37,7 @@
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
+    height: 40px;
     color: var(--color-text-medium);
     border: var(--border-height-regular) solid var(--color-disabled);
     border-radius: var(--color-disabled);
@@ -46,6 +47,7 @@
     font-weight: var(--font-weight-light);
     border-radius: var(--small-radius);
     text-align: center;
+    text-transform: capitalize;
   }
 
   .select-wrapper {

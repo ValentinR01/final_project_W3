@@ -1,5 +1,6 @@
 <script lang=ts>
   export let primary = false;
+  export let marginTop = "0";
 
   $: mode = primary ? 'button--primary' : 'button--secondary';
 </script>
@@ -7,6 +8,7 @@
 <button
   on:click
   class="button text-preset-4 {$$props.class}"
+  style='margin-top: {marginTop}'
 >            
   <slot/>
 </button>

@@ -42,7 +42,7 @@ class Base(db.Model):
 
         :param cls: class to check
         :param kwargs: values to check
-        :return: the first matching record
+        :return: all matching records
         """
         return cls.query.filter_by(**kwargs).all()
 

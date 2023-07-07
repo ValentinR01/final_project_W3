@@ -1,6 +1,8 @@
 from models.user import User
+from models.domain import Domain
 from werkzeug.security import generate_password_hash
 from helpers.auth import AuthHandler
+from flask_restx import abort
 import logging
 import re
 
@@ -59,8 +61,17 @@ def login_service(userdata):
 
 
 def get_user_by_domain(domain_name):
-    user_list = User.get_by(name=domain_name)
-    return user_list, 200 #TODO
+    domain = Domain.get_by(name=domain_name)
+    if domain is None:
+        abort(404, "Domain not found")
+
+    domain_id = domain.id
+    user_list = User.get_all_by(domain_id=domain_id)
+
+    if user_list is None:
+        return {'users': []}
+
+    return {'users': user_list}
 
 
 def get_all_users():

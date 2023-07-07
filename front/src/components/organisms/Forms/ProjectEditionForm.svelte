@@ -13,7 +13,7 @@
 
 </script>
 
-<form class="project-creation">
+<form class="form-projectEdition">
   <Text
     textTag='h1'
     class='text-preset-1 text--uppercase'
@@ -37,7 +37,7 @@
 </form>
 
 <style>
-  .project-creation{
+  .form-projectEdition{
     display: flex;
     flex-wrap: wrap;
     row-gap: var(--spacing-3);

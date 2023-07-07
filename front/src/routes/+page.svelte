@@ -44,7 +44,8 @@
   import SubtitlesRequest from '../components/organisms/Forms/SubtitlesRequest.svelte';
   import CommentaryForm from '../components/organisms/Forms/CommentaryForm.svelte';
   import NewUserForm from '../components/organisms/Forms/NewUserForm.svelte';
-  import ProjectCreationForm from '../components/organisms/Forms/ProjectEditionForm.svelte';
+  import ProjectEditionForm from '../components/organisms/Forms/ProjectEditionForm.svelte';
+  import ProjectCreationForm from '../components/organisms/Forms/ProjectCreationForm.svelte';
   import BioEdition from '../components/organisms/Forms/BioEdition.svelte';
   import RoomRegistrationForm from '../components/organisms/Forms/RoomRegistrationForm.svelte';
 
@@ -221,6 +222,7 @@
 <CommentaryForm />
 <br><br>
 <NewUserForm data={data}/>
+<ProjectEditionForm data={data} />
+<BioEdition typeBio='composer' />
+<RoomRegistrationForm data={data.booking}/>-->
 <ProjectCreationForm data={data} />
-<BioEdition typeBio='composer' />-->
-<RoomRegistrationForm data={data.booking}/>

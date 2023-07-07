@@ -7,6 +7,11 @@
   import TextareaForm from "../../molecules/formFields/TextareaForm.svelte";
 
   /**
+   * @type {string}
+  */
+  export let selectValue;
+
+  /**
    * @type {any}
   */
   export let data;
@@ -26,12 +31,12 @@
   <InputForm id='name-work' name='name-work'> Nom de l'oeuvre </InputForm>
   <TextareaForm> Description de l'oeuvre </TextareaForm>
   <CheckboxForm data={data.metadata.instruments} catForm='langues-traducteur'> Instruments </CheckboxForm>
-  <InputForm id='duration' name='duration' widthForm='calc(50% - 5px)'> Durée (en min) </InputForm>
-  <SelectForm nameSelect="language" data={data.metadata.translations} labelName='language' widthForm='calc(50% - 5px)' > Langue </SelectForm>
+  <InputForm id='duration' name='duration' type='number' widthForm='calc(50% - 5px)'> Durée (en min) </InputForm>
+  <SelectForm nameSelect="language" data={data.metadata.translations} labelName='language' widthForm='calc(50% - 5px)' bind:selectValue={selectValue} > Langue </SelectForm>
   <CheckboxForm data={data.metadata.translations} catForm='langues-traducteur'> Langue(s) des sous-titres </CheckboxForm>
-  <SelectForm nameSelect="duration" data={data.metadata.style} labelName='duration' widthForm='calc(50% - 5px)' > Style de musique </SelectForm>
-  <SelectForm nameSelect="language" data={data.metadata.era} labelName='language' widthForm='calc(50% - 5px)' > Epoque </SelectForm>
-  <SelectForm nameSelect="difficulty" data={data.metadata.rating} labelName='duration' widthForm='calc(50% - 5px)' > Niveau de difficulté </SelectForm>
+  <SelectForm nameSelect="duration" data={data.metadata.style} labelName='duration' widthForm='calc(50% - 5px)' bind:selectValue={selectValue}> Style de musique </SelectForm>
+  <SelectForm nameSelect="language" data={data.metadata.era} labelName='language' widthForm='calc(50% - 5px)' bind:selectValue={selectValue}> Epoque </SelectForm>
+  <SelectForm nameSelect="difficulty" data={data.metadata.rating} labelName='duration' widthForm='calc(50% - 5px)' bind:selectValue={selectValue}> Niveau de difficulté </SelectForm>
   <InputForm id='musical-store' name='musical-store' widthForm='calc(50% - 5px)'> Partition </InputForm>
   <Button marginTop='var(--spacing-2)'> Valider </Button>
 </form>

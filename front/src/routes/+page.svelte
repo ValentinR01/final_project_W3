@@ -72,7 +72,7 @@
   ];
 </script>
 
-<!--
+
 <Text
   textTag='h1'
   class='text-preset-1'
@@ -128,7 +128,7 @@
 <Radio values={data.metadata.categorie} cat='categorie'/>
 <br><br>
 <Checkbox values={data.metadata.instruments} cat='instruments'/>
-<br><br> -->
+<br><br>
 <!-- Pagination exemple-->
 {#if values}
   {#each values as value}
@@ -139,7 +139,7 @@
 {/if}
 <Pagination rows={data.metadata.instruments} perPage={3} bind:trimmedRows={values} />
 <!-- End pagination exemple -->
-<!--
+
 <br><br><br>
 <Text
   textTag='h1'
@@ -150,6 +150,8 @@
 </Text>
 
 <SelectForm nameSelect="role" options={data.metadata.role}>Rôle</SelectForm>
+<br><br>
+<InputForm id="project" name="project"> Nom du projet </InputForm>
 <br><br>
 <TextareaForm name='commentaire' placeholder='Enter your text here...'>
   Commentaire
@@ -169,8 +171,6 @@
 <Searchbar urlSearchbar="users" data={data.users} widthSearchbar="250" />
 <br>
 <Menu role={data.users[0].role} />
-<br>
-<InputForm id="project" name="project"> Nom du projet </InputForm>
 <br><br>
 <Tabs {items}/>
 <br><br>
@@ -200,7 +200,6 @@
   <span slot='date'> 12/06/2023 </span>
   <span slot='comment'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </span>
 </CommentaryCard>
--->
 
 <br><br><br>
 <Text
@@ -225,5 +224,8 @@
 <ProjectEditionForm data={data} />
 <BioEdition typeBio='composer' />
 <RoomRegistrationForm data={data.booking}/>
-<ProjectCreationForm data={data} />-->
-<NewUserForm data={data}/>
+<ProjectCreationForm data={data} />
+<NewUserForm data={data}/>-->
+
+<Input type='number' id='email' name='email' placeholder='Number' required/>
+<InputForm id="number" name="number" type='number' placeholder='Enter number 2'> Number 2 </InputForm>

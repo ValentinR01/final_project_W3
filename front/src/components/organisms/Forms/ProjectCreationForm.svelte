@@ -8,11 +8,19 @@
   import CheckboxForm from "../../molecules/formFields/CheckboxForm.svelte";
 
   /**
+   * @type {string}
+  */
+  export let radioValue;
+
+  /**
+   * @type {string}
+  */
+  export let selectValue;
+
+  /**
    * @type { any }
   */
   export let data; 
-
-  export let radioValue;
 
 </script>
 
@@ -27,14 +35,14 @@
   <InputForm id='name-project' name='name-project'> Nom du projet </InputForm>
   <RadioForm data={data.metadata.categorie} catForm='categorie' bind:radioValue={radioValue}> Catégorie du projet </RadioForm>
   {#if radioValue == 'masterclass'}
-    <SelectForm nameSelect="duration" data={data.intervenor} labelName='room' widthForm='calc(50% - 5px)'> Nom de l'intervenant </SelectForm>
+    <SelectForm nameSelect="duration" data={data.intervenor} labelName='room' widthForm='calc(50% - 5px)' bind:selectValue={selectValue}> Nom de l'intervenant </SelectForm>
     <InputForm id='name-project' name='name-project' widthForm='calc(50% - 5px)'> Nom de l'étudiant </InputForm>
   {:else}
-    <SelectForm nameSelect="duration" data={data.intervenor} labelName='room'> Nom de l'intervenant </SelectForm>
+    <SelectForm nameSelect="duration" data={data.intervenor} labelName='room' bind:selectValue={selectValue}> Nom de l'intervenant </SelectForm>
   {/if}
   <CheckboxForm data={data.metadata.instruments} catForm='langues-traducteur'> Instruments </CheckboxForm>
-  <InputForm id='name-project' name='name-project' widthForm='calc(50% - 5px)'> Nom(s) du/des morceau(x)t </InputForm>
-  <SelectForm nameSelect="duration" data={data.composer} labelName='room' widthForm='calc(50% - 5px)'> Compositeur </SelectForm>
+  <InputForm id='name-project' name='name-project' widthForm='calc(50% - 5px)'> Nom(s) du/des morceau(x) </InputForm>
+  <SelectForm nameSelect="duration" data={data.composer} labelName='room' widthForm='calc(50% - 5px)' bind:selectValue={selectValue}> Compositeur </SelectForm>
   <TextareaForm> Commentaire </TextareaForm>
 
   <Button> Valider </Button>

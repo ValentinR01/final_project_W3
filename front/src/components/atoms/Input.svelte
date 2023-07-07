@@ -12,7 +12,7 @@
   export let readonly = false;
 
   function typeAction(node:any) {
-      node.type = type;
+    node.type = type;
   }
 </script>
 

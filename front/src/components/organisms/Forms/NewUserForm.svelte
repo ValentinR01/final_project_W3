@@ -4,13 +4,16 @@
   import SelectForm from "../../molecules/formFields/SelectForm.svelte";
   import InputForm from "../../molecules/formFields/InputForm.svelte";
   import CheckboxForm from "../../molecules/formFields/CheckboxForm.svelte";
-  
+
+  /**
+   * @type {string}
+  */
+  export let selectValue;
+
   /**
    * @type {any}
   */
   export let data;
-
-  export let selectValue;
 
 </script>
 
@@ -24,9 +27,9 @@
 
   <InputForm id='lastname' name='lastname' widthForm='calc(50% - 5px)'> Nom </InputForm>
   <InputForm id='firstname' name='firstname' widthForm='calc(50% - 5px)'> Prénom </InputForm>
-  <InputForm id='email' name='email'> Email </InputForm>
+  <InputForm id='email' name='email' type='email'> Email </InputForm>
   <SelectForm nameSelect="domain" data={data.metadata.domain} labelName='domain' widthForm='calc(50% - 5px)' bind:selectValue={selectValue} > Domaine </SelectForm>
-  <SelectForm nameSelect="role" data={data.metadata.role} labelName='role' widthForm='calc(50% - 5px)' > Rôle </SelectForm>
+  <SelectForm nameSelect="role" data={data.metadata.role} labelName='role' widthForm='calc(50% - 5px)'  bind:selectValue={selectValue}> Rôle </SelectForm>
   {#if selectValue == 'traducteur'}
     <CheckboxForm data={data.metadata.translations} catForm='langues-traducteur'> Langues de traduction </CheckboxForm>
   {/if}

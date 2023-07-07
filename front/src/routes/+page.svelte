@@ -222,8 +222,8 @@
 <br><br>
 <CommentaryForm />
 <br><br>
-<NewUserForm data={data}/>
 <ProjectEditionForm data={data} />
 <BioEdition typeBio='composer' />
-<RoomRegistrationForm data={data.booking}/>-->
-<ProjectCreationForm data={data} />
+<RoomRegistrationForm data={data.booking}/>
+<ProjectCreationForm data={data} />-->
+<NewUserForm data={data}/>

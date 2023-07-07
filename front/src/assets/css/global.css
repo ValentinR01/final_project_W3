@@ -166,6 +166,10 @@ body{
   text-align: center;
 }
 
+.w-100{
+  width: 100%;
+}
+
 hr{
   border: 0.5px solid var(--color-border)
 }

@@ -14,13 +14,6 @@
 
   export let radioValue;
 
-  let selectedValue;
-  let showStudent = false;
-
-  const handleSelection = () => {
-    console.log('TEST');
-    showStudent = selectedValue === 'masterclass';
-  };
 </script>
 
 <form class='form-projectCreation'>
@@ -43,7 +36,7 @@
   <InputForm id='name-project' name='name-project' widthForm='calc(50% - 5px)'> Nom(s) du/des morceau(x)t </InputForm>
   <SelectForm nameSelect="duration" data={data.composer} labelName='room' widthForm='calc(50% - 5px)'> Compositeur </SelectForm>
   <TextareaForm> Commentaire </TextareaForm>
-  
+
   <Button> Valider </Button>
 </form>
 

@@ -226,6 +226,3 @@
 <RoomRegistrationForm data={data.booking}/>
 <ProjectCreationForm data={data} />
 <NewUserForm data={data}/>-->
-
-<Input type='number' id='email' name='email' placeholder='Number' required/>
-<InputForm id="number" name="number" type='number' placeholder='Enter number 2'> Number 2 </InputForm>

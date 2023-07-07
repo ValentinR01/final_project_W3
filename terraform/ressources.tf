@@ -21,7 +21,7 @@ resource "azurerm_virtual_machine" "vm" {
   resource_group_name = each.value.name
   location            = each.value.location
   network_interface_ids = [azurerm_network_interface.network_interface[each.key].id]
-  vm_size               = "Standard_DS1_v2"
+  vm_size               = "Standard_B1ls"
 
 
   delete_os_disk_on_termination = true

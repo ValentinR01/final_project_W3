@@ -26,23 +26,34 @@ user_login_model = namespace.model(
     }
 )
 
- # @namespace.marshal_list_with(register_model)
+user_by_domain_model = namespace.model(
+    'user_by_domain', {
+        'id': fields.Integer(),
+        'email': fields.String(),
+        'fullname': fields.String(),
+        'password': fields.String(),
+        'profile_picture': fields.String(),
+        'created_at': fields.DateTime(),
+        'count_assigning_asset': fields.String(),
+        'role_id': fields.Integer(),
+        'domain_id': fields.Integer(),
+    }
+)
+
+user_list_by_domain_model = namespace.model(
+    'user_list_by_domain', {
+        'users': fields.List(fields.Nested(user_by_domain_model)),
+    }
+)
+
  # @namespace.response(200, 'Successfully register')
 
 
 @namespace.route('/register', methods=['POST'])
 class Register(Resource):
-
-    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZnVsbG" \
-            "5hbWUiOiJhbGluZSIsImVtYWlsIjoic2FsbmVAc2FsaW5lLmNvbSIsI" \
-            "nJvbGUiOiJ3b3JrZXIiLCJkb21haW4iOiJyZWRhY3Rpb24iLCJleHAi" \
-            "OjE2ODg1OTk2ODUsImlhdCI6MTY4ODU2MzY4NX0.Qxuk0UIyUBqPwmK" \
-            "qIq3p5jp_bLWFLwHIsdUOQMLEJSw"
-
     """Register a new user"""
     @namespace.expect(user_register_model)
     @namespace.response(201, 'Successfully register')
-    @rights_manager(token=token, role='worker', domain='redaction')
     def post(self):
         """Register a new user"""
         data = request.json
@@ -62,6 +73,13 @@ class Login(Resource):
 
 @namespace.route('/domain/<domain_name>', methods=['GET'])
 class Domain(Resource):
+
+    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZnVsbG5hbW" \
+            "UiOiJzYWxpbmUiLCJlbWFpbCI6InNhbGluZUBzYWxpbmUuY29tIiwicm9sZS" \
+            "I6IndvcmtlciIsImRvbWFpbiI6InJlZGFjdGlvbiIsImV4cCI6MTY4ODc1NT" \
+            "g2MCwiaWF0IjoxNjg4NzE5ODYwfQ.Rf1x4RuLSIurxs-_RdxBZSz4c-ieXBp" \
+            "BrFraAhXyQlc"
+
     """Filter users by domain name"""
     @api.doc(
         params={
@@ -71,9 +89,11 @@ class Domain(Resource):
             }
         }
     )
+    @rights_manager(token=token, role='worker', domain='redaction')
+    @namespace.marshal_with(user_list_by_domain_model)
     def get(self, domain_name):
         """Filter users by domain name"""
-        return get_user_by_domain(domain_name) #TODO
+        return get_user_by_domain(domain_name)
 
 
 @namespace.route('', methods=['GET'])

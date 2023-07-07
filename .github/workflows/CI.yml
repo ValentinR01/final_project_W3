@@ -24,9 +24,8 @@ jobs:
         run: docker buildx build . --file ./dockerfile/Dockerfile-api --tag "${{ env.REGISTRY_URL }}"/dam-api:latest
           && docker buildx build . --file ./dockerfile/Dockerfile-front --tag "${{ env.REGISTRY_URL }}"/dam-front:latest
 
-
       - name: Run Unit Tests
-        run: docker run -d -e ENV=TEST --name=dam-api dam-api:latest
+        run: docker run -d -e ENV=TEST --name=dam-api "${{ env.REGISTRY_URL }}"/dam-api:latest
               && docker exec dam-api bash -c 'python -m pytest'
 
       - name: Login to Registry

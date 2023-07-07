@@ -20,11 +20,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Build docker images
-        run: docker buildx build . --file ./dockerfile/Dockerfile-api --tag dam-api:latest
-          && docker buildx build . --file ./dockerfile/Dockerfile-front --tag dam-front:latest
+      - name: Build Docker Images
+        run: docker buildx build . --file ./dockerfile/Dockerfile-api --tag "${{ env.REGISTRY_URL }}"/dam-api:latest
+          && docker buildx build . --file ./dockerfile/Dockerfile-front --tag "${{ env.REGISTRY_URL }}"/dam-front:latest
 
-      - name: Unit Tests
+
+      - name: Run Unit Tests
         run: docker run -d -e ENV=TEST --name=dam-api dam-api:latest
               && docker exec dam-api bash -c 'python -m pytest'
 
@@ -32,4 +33,5 @@ jobs:
         run: echo "${{ env.TOKEN }}" | docker login "${{ env.REGISTRY_URL }}" -u "${{ env.REGISTRY_USER }}" --password-stdin
 
       - name: Push to Registry
-        run: echo 'Todo Push To Registry'
+        run: docker push "${{ env.REGISTRY_URL }}"/dam-front:latest
+          && docker push "${{ env.REGISTRY_URL }}"/dam-api:latest

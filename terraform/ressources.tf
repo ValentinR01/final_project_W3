@@ -43,8 +43,8 @@ resource "azurerm_virtual_machine" "vm" {
 
   os_profile {
     computer_name  = each.value.name
-    admin_username = ""
-    admin_password = ""
+    admin_username = var.admin_username
+    admin_password = var.admin_password
   }
 
   os_profile_linux_config {
@@ -54,4 +54,13 @@ resource "azurerm_virtual_machine" "vm" {
   tags = {
     environment = each.key
   }
+}
+
+resource "azurerm_container_registry" "acr" {
+  for_each            = azurerm_resource_group.resource_group
+  name                = "saline${each.key}"
+  resource_group_name = each.value.name
+  location            = each.value.location
+  sku                 = "Basic"
+  admin_enabled       = true
 }

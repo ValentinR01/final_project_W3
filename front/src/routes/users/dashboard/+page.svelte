@@ -1,0 +1,38 @@
+<script>
+  import Pagination from '../../../components/atoms/Pagination.svelte';
+  import Text from '../../../components/atoms/Text.svelte';
+  import Searchbar from '../../../components/molecules/Searchbar.svelte';
+  import Button from '../../../components/atoms/Button.svelte';
+
+  export let data;
+  /**
+   * @type {any}
+   */
+  let values;
+</script>
+
+<div class='card block-center'>
+  <Text
+    textTag='h1'
+    class='text-preset-1 text-center text--uppercase'
+    >
+    Les utilisateurs
+  </Text>
+
+  <div class='dashboard-nav'>
+    <Searchbar urlSearchbar="projects" data={data.users} widthSearchbar="190" />
+    <Button> Ajouter </Button>
+  </div>
+
+  <p> REMPLACER PAR TABLEAU </p>
+
+  <Pagination rows={data.users} perPage={5} bind:trimmedRows={values} />
+</div>
+
+<style>
+  .dashboard-nav{
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--spacing-5);
+  }
+</style>

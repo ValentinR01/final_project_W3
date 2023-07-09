@@ -4,25 +4,33 @@
   */
   export let items = [];
   export let activeTabValue = 1;
+
+  /**
+   * @type {any}
+  */
+  export let data; 
  
   const handleClick = (/** @type {number} */ tabValue) => () => (activeTabValue = tabValue);
 </script>
- 
- <ul>
+
+<div class="tabs">
+  <ul>
+    {#each items as item}
+      <li class={activeTabValue === item.value ? 'active' : ''}>
+  	  <span class="text-preset-3" on:click={handleClick(item.value)}>{item.label}</span>
+      </li>
+    {/each}
+  </ul>
+   
   {#each items as item}
-    <li class={activeTabValue === item.value ? 'active' : ''}>
-	  <span class="text-preset-3" on:click={handleClick(item.value)}>{item.label}</span>
-    </li>
+    {#if activeTabValue == item.value}
+      <div class="box">
+  	    <svelte:component this={item.component} data={data} />
+      </div>
+    {/if}
   {/each}
- </ul>
- 
-{#each items as item}
-  {#if activeTabValue == item.value}
-    <div class="box">
-	  <svelte:component this={item.component}/>
-    </div>
-  {/if}
-{/each}
+
+</div>
  
  <style>
   .box {

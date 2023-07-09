@@ -33,7 +33,7 @@
 
   .input-icon{
     position: absolute;
-    top: 5px;
+    top: 3px;
     right: 8px;
   }
 </style>

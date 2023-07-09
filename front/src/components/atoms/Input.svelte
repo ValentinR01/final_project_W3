@@ -72,7 +72,8 @@
   }
 
   .input-with-icon{
-    padding-right: 30px;
+    height: 30px;
+    padding-right: 20px;
   }
 
 </style>

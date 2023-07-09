@@ -3,9 +3,9 @@
 
   import '../assets/css/global.css';
 
-  import Tab1 from "../tabs/tab1.svelte";
-  import Tab2 from "../tabs/tab2.svelte";
-  import Tab3 from "../tabs/tab3.svelte";
+  import ValidationMontage from "../tabs/validation-montage.svelte";
+  import ValidationFinale from "../tabs/validation-finale.svelte";
+  import EncoursSuperadmin from "../tabs/encours-superadmin.svelte";
 
   import Logo from '../assets/img/logo_color.png';
   import Button from '../components/atoms/Button.svelte';
@@ -48,8 +48,6 @@
   import ProjectCreationForm from '../components/organisms/Forms/ProjectCreationForm.svelte';
   import BioEdition from '../components/organisms/Forms/BioEdition.svelte';
   import RoomRegistrationForm from '../components/organisms/Forms/RoomRegistrationForm.svelte';
-
-  const examples = 'The Pudding is a digital publication that explains ideas debated in culture with visual essays.'.split(' ')
 	
 	let values;
 
@@ -59,15 +57,15 @@
   let items = [
     { label: "Tab 1",
      value: 1,
-     component: Tab1
+     component: ValidationMontage
     },
     { label: "Tab 2",
      value: 2,
-     component: Tab2
+     component: ValidationFinale
     },
     { label: "Tab 3",
      value: 3,
-     component: Tab3
+     component: EncoursSuperadmin
     }
   ];
 </script>
@@ -172,7 +170,7 @@
 <br>
 <Menu role={data.users[0].role} />
 <br><br>
-<Tabs {items}/>
+<Tabs {items} data={data}/>
 <br><br>
 
 <Modal buttonText='Ouvrir modale'>

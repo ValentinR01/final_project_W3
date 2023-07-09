@@ -24,11 +24,3 @@
 </Text>
 <Searchbar urlSearchbar="projects" data={data.projects} widthSearchbar="190" />
 <Pagination rows={data.projects} perPage={5} bind:trimmedRows={values} />
-
-<style>
-  :global(.searchbar-container){
-    position: absolute;
-    right: 0;
-    top: -5px;
-  }
-</style>

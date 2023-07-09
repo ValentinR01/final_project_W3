@@ -1,10 +1,10 @@
 <script>
-  import Text from '../../components/atoms/Text.svelte';
-  import Tabs from '../../components/molecules/Tabs.svelte';
+  import Text from '../../../components/atoms/Text.svelte';
+  import Tabs from '../../../components/molecules/Tabs.svelte';
 
-  import Tab1 from "../../tabs/validation-montage.svelte";
-  import Tab2 from "../../tabs/validation-finale.svelte";
-  import Tab3 from "../../tabs/encours-superadmin.svelte";
+  import Tab1 from "../../../tabs/validation-montage.svelte";
+  import Tab2 from "../../../tabs/validation-finale.svelte";
+  import Tab3 from "../../../tabs/encours-superadmin.svelte";
 
   export let data;
 
@@ -27,7 +27,7 @@
 <div class='card block-center'>
   <Text
     textTag='h1'
-    class='text-preset-1 text-center'
+    class='text-preset-1 text-center text--uppercase'
     >
     Les projets
   </Text>

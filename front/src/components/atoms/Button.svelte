@@ -21,8 +21,8 @@
     color: var(--color-text-light);
     border: var(--border-height-thick) solid var(--color-primary);
     border-radius: var(--small-radius);
-    height: fit-content;
-    padding: 10px 40px;
+    height: 30px;
+    padding: 0 40px;
     cursor: pointer;
   }
   

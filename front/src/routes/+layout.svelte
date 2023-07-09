@@ -18,7 +18,7 @@
     border-radius: var(--card-radius);
   }
 
-  :global(.card) :global(.searchbar-container){
+  :global(.tabs) :global(.searchbar-container){
     position: absolute;
     right: 0;
     top: -5px;

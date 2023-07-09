@@ -5,7 +5,7 @@
    * @type {string}
   */
   export let currentPage = 'home';
-  export let role = 'admin';
+  export let role = 'superadmin';
   export let domain = 'traducteur';
 
 </script>
@@ -16,7 +16,7 @@
   {#if role == 'superadmin' || role == 'admin' && domain == 'traducteur'}
     <Link
       class='text--uppercase text--semibold {currentPage === 'home' ? 'link--current' : ''}'
-      linkUrl='/dashboard-{domain}'
+      linkUrl='projects/dashboard'
       linkStyle='padding: 0 var(--spacing-3);'
       linkColor='{currentPage === 'home' ? 'blue' : 'grey'}'
     > 
@@ -25,7 +25,7 @@
 
     <Link
       class='text--uppercase text--semibold'
-      linkUrl='/dashboard'
+      linkUrl='/projects/online'
       linkStyle='padding: 0 var(--spacing-3);'
       linkColor='grey'
     >
@@ -36,7 +36,7 @@
   {#if role == 'superadmin'}
     <Link
       class='text--uppercase text--semibold'
-      linkUrl='/dashboard'
+      linkUrl='/users/dashboard'
       linkStyle='padding: 0 var(--spacing-3);'
       linkColor='grey'
     > 

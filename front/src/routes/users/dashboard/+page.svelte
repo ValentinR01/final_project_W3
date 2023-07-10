@@ -3,6 +3,7 @@
   import Text from '../../../components/atoms/Text.svelte';
   import Searchbar from '../../../components/molecules/Searchbar.svelte';
   import Button from '../../../components/atoms/Button.svelte';
+  import Link from '../../../components/atoms/Link.svelte';
 
   export let data;
   /**
@@ -21,10 +22,10 @@
 
   <div class='dashboard-nav'>
     <Searchbar urlSearchbar="projects" data={data.users} widthSearchbar="190" />
-    <Button> Ajouter </Button>
+    <Link linkUrl='/users/create' linkColor='white' class='link--button'> Ajouter </Link>
   </div>
 
-  <p> REMPLACER PAR TABLEAU </p>
+  <p class='text-center'> REMPLACER PAR TABLEAU </p>
 
   <Pagination rows={data.users} perPage={5} bind:trimmedRows={values} />
 </div>

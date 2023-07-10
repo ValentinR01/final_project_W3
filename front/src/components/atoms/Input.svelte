@@ -3,7 +3,7 @@
   export let id = '';
   export let name = '';
   export let placeholder = '';
-  export let width = '100%';
+  export let width = 'calc(100% - 20px)';
   export let value = '';
 
   /**

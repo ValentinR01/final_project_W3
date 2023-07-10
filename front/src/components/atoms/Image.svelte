@@ -23,7 +23,7 @@
 
 <style>
   .image{
-    object-fit: contain;
+    object-fit: cover;
   }
 
   .image--border{

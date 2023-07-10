@@ -14,6 +14,7 @@
       imageSrc={employeePicture ? employeePicture : Account }
       imageAlt="Employee picture"
       imageWidth=40
+      imageHeight=40
       border
     />
     <div class='commentary__infos'>

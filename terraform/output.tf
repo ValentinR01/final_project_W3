@@ -6,6 +6,7 @@ output "public_ip_addresses" {
   }
 }
 
+
 output "registry" {
   sensitive = true
   value = {

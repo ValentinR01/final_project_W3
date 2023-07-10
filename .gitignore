@@ -16,3 +16,4 @@ build/
 .idea/
 
 /flask_app/venv/
+.terraform

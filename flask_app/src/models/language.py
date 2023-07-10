@@ -12,6 +12,10 @@ class Language(Base):
 
     # Relationships
     speakers = db.relationship('Speaker', backref='language', lazy=True)
+    composers = db.relationship('Composer', backref='language', lazy=True)
+    assets_translated = \
+        db.relationship('AssetTranslated', backref='language', lazy=True)
+    subtitles = db.relationship('Subtitle', backref='language', lazy=True)
 
     def __init__(self, name, code=None):
         self.name = name

@@ -1,3 +1,4 @@
+-- Description: This query will insert the layer 2 data into the database.
 
 
 -- Subtitle

@@ -2,7 +2,7 @@
 
 
 -- Step Life Cycle
-INSERT INTO "step_life_cycle" (step)
+INSERT INTO "step_lifecycle" (step)
 VALUES ('upload'), ('transformation'), ('subtitle'), ('review'), ('publish'), ('archive'), ('delete');
 
 

@@ -34,7 +34,7 @@ jobs:
 
       # Perform your desired actions that require SSH access here
       - name: Run SSH command
-        run: ssh -oStrictHostKeyChecking=no -i ~/.ssh/id_rsa "${{ env.USERNAME }}"@"${{ env.HOST }}" "echo Hello, SSH!"
+        run: ssh -oStrictHostKeyChecking=no -i ~/.ssh/id_rsa cd_deploy@51.103.71.186 "echo Hello, SSH!"
 
       - name: Deploy
         run: echo ${{ secrets.SSH_PRIVATE_KEY }} | ssh -i /dev/stdin cd_deploy@"${{ secrets.PROD_CD_HOST }}" \ 

@@ -24,10 +24,6 @@ jobs:
 
 
     steps:
-      - name: Start SSH agent
-        uses: webfactory/ssh-agent@v0.5.2
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: SSH init
         run: |
@@ -38,7 +34,7 @@ jobs:
 
       # Perform your desired actions that require SSH access here
       - name: Run SSH command
-        run: ssh -oStrictHostKeyChecking=no "${{ env.USERNAME }}"@"${{ env.HOST }}" "echo Hello, SSH!"
+        run: ssh -oStrictHostKeyChecking=no -i ~/.ssh/id_rsa "${{ env.USERNAME }}"@"${{ env.HOST }}" "echo Hello, SSH!"
 
       - name: Deploy
         run: echo ${{ secrets.SSH_PRIVATE_KEY }} | ssh -i /dev/stdin cd_deploy@"${{ secrets.PROD_CD_HOST }}" \ 

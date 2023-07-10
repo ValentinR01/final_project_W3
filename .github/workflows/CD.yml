@@ -24,11 +24,19 @@ jobs:
 
 
     steps:
-      - name: SSH init
-        uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Start SSH agent
+         uses: webfactory/ssh-agent@v0.5.2
 
+      - name: SSH init
+        run: |
+          mkdir -p ~/.ssh
+          cd ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_rsa
+          chmod 600 id_rsa
+
+      # Perform your desired actions that require SSH access here
+      - name: Run SSH command
+        run: ssh "${{ env.USERNAME }}"@"${{ env.HOST }}" "echo Hello, SSH!"
 
       - name: Deploy
         run: echo ${{ secrets.SSH_PRIVATE_KEY }} | ssh -i /dev/stdin cd_deploy@"${{ secrets.PROD_CD_HOST }}" \ 

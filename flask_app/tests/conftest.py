@@ -1,9 +1,7 @@
 # pylint: disable=redefined-outer-name
-import pytest
-import sys
+import pytest, sys
+sys.path.append( '/flask_app/src/' )
 from flask_app.src.app import app as flask_app
-
-sys.path.append('/flask_app/src/')
 
 
 @pytest.fixture

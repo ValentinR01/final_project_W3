@@ -23,20 +23,6 @@ CORS(app)
 app.register_blueprint(api)
 
 
-def init_values_in_db():
-    """
-    This function will be used to initialize the values of the database.
-    """
-    all_tables.Domain.init_db_value(
-        ['redaction', 'translation', 'management', 'development'],
-        #all_tables.Domain
-    )
-    all_tables.Role.init_db_value(
-        ['worker', 'lead', 'superadmin', 'dev'],
-        #all_tables.Role
-    )
-
-
 if __name__ == "__main__":
     debug = bool(DEBUG)
     if ENV == 'TEST':

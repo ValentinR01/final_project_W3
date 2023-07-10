@@ -25,7 +25,7 @@ jobs:
 
     steps:
       - name: Start SSH agent
-         uses: webfactory/ssh-agent@v0.5.2
+        uses: webfactory/ssh-agent@v0.5.2
 
       - name: SSH init
         run: |

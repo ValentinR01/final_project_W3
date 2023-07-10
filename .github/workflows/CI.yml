@@ -12,16 +12,16 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      TOKEN: ${{ github.head_ref == 'main' && secrets.PROD_REGISTRY_TOKEN || secrets.PREPROD_REGISTRY_TOKEN }}
-      REGISTRY_URL: ${{ github.head_ref  == 'main' && secrets.PROD_REGISTRY_URL || secrets.PREPROD_REGISTRY_URL }}
-      REGISTRY_USER: ${{ github.head_ref  == 'main' && secrets.PROD_REGISTRY_USER || secrets.PREPROD_REGISTRY_USER }}
+      TOKEN: ${{ github.event.pull_request.base.ref == 'main' && secrets.PROD_REGISTRY_TOKEN || secrets.PREPROD_REGISTRY_TOKEN }}
+      REGISTRY_URL: ${{ github.event.pull_request.base.ref  == 'main' && secrets.PROD_REGISTRY_URL || secrets.PREPROD_REGISTRY_URL }}
+      REGISTRY_USER: ${{ github.event.pull_request.base.ref  == 'main' && secrets.PROD_REGISTRY_USER || secrets.PREPROD_REGISTRY_USER }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         
       - name: Test Echo
-        run: echo ${{github.head_ref}}
+        run: echo ${{github.event.pull_request.base.ref}}
 
       - name: Build Docker Images
         run: docker buildx build . --file ./dockerfile/Dockerfile-api --tag "${{ env.REGISTRY_URL }}"/dam-api:latest

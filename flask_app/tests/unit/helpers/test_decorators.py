@@ -1,5 +1,4 @@
 from unittest import mock
-from helpers.auth import AuthHandler
 from helpers.decorators import rights_manager
 
 
@@ -41,6 +40,6 @@ def test_rights_manager_unauthorized():
         result = protected_function()
 
     assert result == (
-        {"message": "unauthorized: the user hasn't the right"},
+        {"message": "unauthorized : the user hasn't the right"},
         401
     )

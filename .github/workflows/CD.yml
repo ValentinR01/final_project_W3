@@ -26,9 +26,9 @@ jobs:
     steps:
       - name: SSH init
         uses: webfactory/ssh-agent@v0.5.2
-        
-      - name: SSH add
-        run: echo "${{ secrets.SSH_PRIVATE_KEY }}" | ssh-add -
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
 
       - name: Deploy
         run: ssh "${{ env.USERNAME }}"@"${{ env.HOST }}" \

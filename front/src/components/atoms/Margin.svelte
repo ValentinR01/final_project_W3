@@ -5,7 +5,8 @@
   export let marginRight = '0px';
 </script>
 
-<div 
+<div
+  class="{$$props.class}"
   style='margin-top: {marginTop}; margin-bottom: {marginBottom}; margin-left: {marginLeft}; margin-right: {marginRight}'>
   <slot></slot>
 </div>

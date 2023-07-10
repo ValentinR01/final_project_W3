@@ -5,7 +5,7 @@
   /**
    * @type {any}
   */
-  export let employeePicture;
+  export let employeePicture = '';
 </script>
 
 <div class='commentary-card'>
@@ -29,7 +29,7 @@
 
 <style>
   .commentary-card{
-    padding: var(--spacing-3);
+    padding: var(--spacing-3) var(--spacing-4);
     background-color: var(--color-background-tercary);
     border: 1px solid var(--color-border);
     border-radius: var(--card-radius);

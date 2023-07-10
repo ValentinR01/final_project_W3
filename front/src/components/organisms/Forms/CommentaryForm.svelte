@@ -20,6 +20,7 @@
     flex-wrap: wrap;
     justify-content: end;
     row-gap: var(--spacing-2);
+    width: 100%;
   }
 
   .commentary-form :global(textarea){

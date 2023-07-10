@@ -26,12 +26,6 @@ VALUES
 
 
 -- Composer
-        self.fullname = fullname
-        self.biography = biography
-        self.publishable = publishable
-        self.last_update = last_update
-        self.composer_parent = composer_parent
-        self.language_id = language_id
 INSERT INTO "composer"
     (fullname, biography, publishable, last_update, composer_parent_id, language_id)
 VALUES

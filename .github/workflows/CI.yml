@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      TOKEN: ${{ github.ref == 'refs/heads/main' && secrets.PROD_REGISTRY_TOKEN || secrets.PREPROD_REGISTRY_TOKEN }}
-      REGISTRY_URL: ${{ github.ref == 'refs/heads/main' && secrets.PROD_REGISTRY_URL || secrets.PREPROD_REGISTRY_URL }}
-      REGISTRY_USER: ${{ github.ref == 'refs/heads/main' && secrets.PROD_REGISTRY_USER || secrets.PREPROD_REGISTRY_USER }}
+      TOKEN: ${{ github.head_ref == 'main' && secrets.PROD_REGISTRY_TOKEN || secrets.PREPROD_REGISTRY_TOKEN }}
+      REGISTRY_URL: ${{ github.head_ref  == 'main' && secrets.PROD_REGISTRY_URL || secrets.PREPROD_REGISTRY_URL }}
+      REGISTRY_USER: ${{ github.head_ref  == 'main' && secrets.PROD_REGISTRY_USER || secrets.PREPROD_REGISTRY_USER }}
 
     steps:
       - name: Checkout

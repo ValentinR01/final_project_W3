@@ -11,12 +11,30 @@
   */
   export let readonly = false;
 
+  
+  let files: any;
+
   function typeAction(node:any) {
     node.type = type;
   }
 </script>
 
-{#if readonly}
+{#if type == 'file'}
+  <input accept="image/png, image/jpeg" 
+    bind:files 
+    id="avatar" 
+    name="avatar" 
+    type="file"
+    hidden
+  />
+
+  {#if files}
+    <span class='text-preset-5'>Image:</span>
+    {#each files as file}
+      <p class='text-preset-5'>{file.name} ({file.size} bytes)</p>
+    {/each}
+  {/if}
+{:else if readonly}
   <input 
     use:typeAction
     id={id} 

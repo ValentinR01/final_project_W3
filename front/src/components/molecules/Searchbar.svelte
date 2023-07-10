@@ -31,6 +31,7 @@
       id='search' 
       name='search'
       class='input-with-icon'
+      width='100%';
       bind:value={$searchStore.search} 
     /> 
 

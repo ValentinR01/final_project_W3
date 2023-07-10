@@ -10,6 +10,7 @@ resource "azurerm_virtual_network" "virtual_network" {
   }
 }
 
+
 resource "azurerm_subnet" "subnet" {
   for_each            = azurerm_resource_group.resource_group
   name                 = "${each.value.name}-subnet"
@@ -17,6 +18,7 @@ resource "azurerm_subnet" "subnet" {
   virtual_network_name = azurerm_virtual_network.virtual_network[each.key].name
   address_prefixes     = ["10.0.1.0/24"]
 }
+
 
 resource "azurerm_public_ip" "public_ip" {
   for_each            = azurerm_resource_group.resource_group
@@ -26,6 +28,7 @@ resource "azurerm_public_ip" "public_ip" {
   allocation_method   = "Static"
   sku                 = "Standard"
 }
+
 
 resource "azurerm_network_interface" "network_interface" {
   for_each            = azurerm_resource_group.resource_group
@@ -39,6 +42,7 @@ resource "azurerm_network_interface" "network_interface" {
     public_ip_address_id          = azurerm_public_ip.public_ip[each.key].id
   }
 }
+
 
 resource "azurerm_network_security_group" "security_group" {
     for_each            = azurerm_resource_group.resource_group
@@ -61,7 +65,7 @@ resource "azurerm_network_security_group" "security_group" {
     security_rule {
           name                       = "HTTP"
           priority                   = 1002
-          direction                  = "Outbound"
+          direction                  = "Inbound"
           access                     = "Allow"
           protocol                   = "Tcp"
           source_port_range          = "*"
@@ -74,6 +78,7 @@ resource "azurerm_network_security_group" "security_group" {
         environment = each.key
     }
 }
+
 
 resource "azurerm_subnet_network_security_group_association" "mgmt-nsg-association" {
     for_each                  = azurerm_resource_group.resource_group

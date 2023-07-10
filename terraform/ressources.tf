@@ -5,6 +5,7 @@ locals {
   }
 }
 
+
 resource "azurerm_resource_group" "resource_group" {
   for_each = local.resource_groups
   name     = each.value
@@ -15,6 +16,7 @@ resource "azurerm_resource_group" "resource_group" {
   }
 }
 
+
 resource "azurerm_virtual_machine" "vm" {
   for_each            = azurerm_resource_group.resource_group
   name                = "${each.value.name}-vm"
@@ -22,7 +24,6 @@ resource "azurerm_virtual_machine" "vm" {
   location            = each.value.location
   network_interface_ids = [azurerm_network_interface.network_interface[each.key].id]
   vm_size               = "Standard_B1ls"
-
 
   delete_os_disk_on_termination = true
   delete_data_disks_on_termination = true
@@ -55,6 +56,26 @@ resource "azurerm_virtual_machine" "vm" {
     environment = each.key
   }
 }
+
+
+resource "azurerm_virtual_machine_extension" "example" {
+  for_each             = azurerm_resource_group.resource_group
+  name                 = "${each.value.name}-vm-extension"
+  virtual_machine_id   = azurerm_virtual_machine.vm[each.key].id
+  publisher            = "Microsoft.Azure.Extensions"
+  type                 = "CustomScript"
+  type_handler_version = "2.0"
+
+  protected_settings = <<PROTECTED_SETTINGS
+    {
+      "script": "${base64encode(templatefile("scripts/init.sh", {
+        cd_username = var.cd_username,
+        cd_password = var.cd_password
+      }))}"
+    }
+  PROTECTED_SETTINGS
+}
+
 
 resource "azurerm_container_registry" "acr" {
   for_each            = azurerm_resource_group.resource_group

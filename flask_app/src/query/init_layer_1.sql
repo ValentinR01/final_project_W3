@@ -6,8 +6,7 @@ INSERT INTO "user"
     (email, fullname, password, profile_picture, created_at,
     count_assigning_asset, role_id, domain_id)
 VALUES
-    ('nass@saline.com', 'Nass La Menass',
-    'HASH', NULL, CURRENT_TIMESTAMP, 0, 4, 4);
+    ('nass@saline.com', 'Nass La Menass', 'HASH', NULL, CURRENT_TIMESTAMP, 0, 4, 4);
 
 
 -- Meta Value

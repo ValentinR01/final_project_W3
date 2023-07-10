@@ -13,6 +13,7 @@ class User(Base):
     profile_picture = db.Column(db.String(1000), nullable=True)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     count_assigning_asset = db.Column(db.Integer, default=0)
+
     # FK
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=False)
     domain_id = \

@@ -31,7 +31,7 @@ jobs:
 
 
       - name: Deploy
-        run: ssh -v  cd_deploy@"${{ secrets.PROD_CD_HOST }}" \
+        run: echo ${{ secrets.SSH_PRIVATE_KEY }} | ssh -i /dev/stdin cd_deploy@"${{ secrets.PROD_CD_HOST }}" \ 
           'docker compose pull && docker compose up -d'
 
       - name: Login to Registery

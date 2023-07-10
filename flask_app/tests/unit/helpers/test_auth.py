@@ -11,7 +11,7 @@ from models.domain import Domain
 from conf import TOKEN_SECRET
 
 
-@pytest.fixturetest_decode_token_with_valid_token
+@pytest.fixture
 def user():
     return User(
         email="john@example.com",

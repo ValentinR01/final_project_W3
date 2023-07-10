@@ -3,9 +3,9 @@
 
   import '../assets/css/global.css';
 
-  import Tab1 from "../tabs/tab1.svelte";
-  import Tab2 from "../tabs/tab2.svelte";
-  import Tab3 from "../tabs/tab3.svelte";
+  import ValidationMontage from "../tabs/validation-montage.svelte";
+  import ValidationFinale from "../tabs/validation-finale.svelte";
+  import EncoursSuperadmin from "../tabs/encours-superadmin.svelte";
 
   import Logo from '../assets/img/logo_color.png';
   import Button from '../components/atoms/Button.svelte';
@@ -44,11 +44,10 @@
   import SubtitlesRequest from '../components/organisms/Forms/SubtitlesRequest.svelte';
   import CommentaryForm from '../components/organisms/Forms/CommentaryForm.svelte';
   import NewUserForm from '../components/organisms/Forms/NewUserForm.svelte';
-  import ProjectCreationForm from '../components/organisms/Forms/ProjectEditionForm.svelte';
+  import ProjectEditionForm from '../components/organisms/Forms/ProjectEditionForm.svelte';
+  import ProjectCreationForm from '../components/organisms/Forms/ProjectCreationForm.svelte';
   import BioEdition from '../components/organisms/Forms/BioEdition.svelte';
   import RoomRegistrationForm from '../components/organisms/Forms/RoomRegistrationForm.svelte';
-
-  const examples = 'The Pudding is a digital publication that explains ideas debated in culture with visual essays.'.split(' ')
 	
 	let values;
 
@@ -58,18 +57,19 @@
   let items = [
     { label: "Tab 1",
      value: 1,
-     component: Tab1
+     component: ValidationMontage
     },
     { label: "Tab 2",
      value: 2,
-     component: Tab2
+     component: ValidationFinale
     },
     { label: "Tab 3",
      value: 3,
-     component: Tab3
+     component: EncoursSuperadmin
     }
   ];
 </script>
+
 
 <Text
   textTag='h1'
@@ -149,6 +149,8 @@
 
 <SelectForm nameSelect="role" options={data.metadata.role}>Rôle</SelectForm>
 <br><br>
+<InputForm id="project" name="project"> Nom du projet </InputForm>
+<br><br>
 <TextareaForm name='commentaire' placeholder='Enter your text here...'>
   Commentaire
 </TextareaForm>
@@ -167,10 +169,8 @@
 <Searchbar urlSearchbar="users" data={data.users} widthSearchbar="250" />
 <br>
 <Menu role={data.users[0].role} />
-<br>
-<InputForm id="project" name="project"> Nom du projet </InputForm>
 <br><br>
-<Tabs {items}/>
+<Tabs {items} data={data}/>
 <br><br>
 
 <Modal buttonText='Ouvrir modale'>
@@ -199,7 +199,6 @@
   <span slot='comment'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </span>
 </CommentaryCard>
 
-
 <br><br><br>
 <Text
   textTag='h1'
@@ -220,7 +219,8 @@
 <br><br>
 <CommentaryForm />
 <br><br>
-<NewUserForm data={data}/>
-<ProjectCreationForm data={data} />
-<BioEdition typeBio='composer' />-->
+<ProjectEditionForm data={data} />
+<BioEdition typeBio='composer' />
 <RoomRegistrationForm data={data.booking}/>
+<ProjectCreationForm data={data} />
+<NewUserForm data={data}/>-->

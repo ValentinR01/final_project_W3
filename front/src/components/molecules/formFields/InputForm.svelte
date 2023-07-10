@@ -3,6 +3,8 @@
   
   export let id = '';
   export let name = '';
+  export let type = 'text';
+  export let placeholder = "";
   export let widthForm = '100%';
 </script>
 
@@ -11,7 +13,7 @@
   style="width: {widthForm}"
 >
   <label for={name} class="input-form__label text-preset-4"> <slot /> </label>
-  <Input name={name} id={id} width=auto/>
+  <Input name={name} id={id} type={type} placeholder={placeholder} width=auto/>
 </div>
 
 <style>

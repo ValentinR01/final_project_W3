@@ -67,7 +67,7 @@
   .pagination{
     display: flex;
     align-items: baseline;
-    justify-content: center;
+    justify-content: end;
     pointer-events: all;
   }
 

@@ -1,6 +1,8 @@
 import jwt
+from flask_restx import abort
 from datetime import datetime, timedelta
 from werkzeug.security import check_password_hash
+
 from models.user import User
 from models.role import Role
 from models.domain import Domain
@@ -62,9 +64,13 @@ class AuthHandler:
         This method decodes the JWT token
 
         :param token: JWT token
-        :return:
+        :return: Decoded payload
         """
-        payload = jwt.decode(
-            jwt=token, key=TOKEN_SECRET, algorithms=['HS256']
-        )
-        return payload
+        try:
+            payload = jwt.decode(token, key=TOKEN_SECRET,
+                                 algorithms=['HS256'])
+            return payload
+        except jwt.ExpiredSignatureError:
+            abort(401, "Token has expired.")
+        except jwt.InvalidTokenError:
+            abort(401, "Invalid token.")

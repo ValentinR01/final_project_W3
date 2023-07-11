@@ -24,7 +24,7 @@ jobs:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
           event-type: CI-CD
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+          ref: ${{ github.sha }}
 
       - name: SSH init
         run: |

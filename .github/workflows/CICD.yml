@@ -1,3 +1,4 @@
+name: CI-CD
 # TO UPDATE
 on:
   pull_request:

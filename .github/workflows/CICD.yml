@@ -1,4 +1,4 @@
-name: CI-CD
+name: CI
 # TO UPDATE
 on:
   pull_request:
@@ -7,8 +7,8 @@ on:
 
 jobs:
 
-  CI-CD:
-    name: CI-CD
+  CI:
+    name: CI
     runs-on: ubuntu-latest
 
     env:
@@ -36,4 +36,3 @@ jobs:
       - name: Push to Registry
         run: docker push "${{ env.REGISTRY_URL }}"/dam-front:latest
           && docker push "${{ env.REGISTRY_URL }}"/dam-api:latest
-          

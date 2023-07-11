@@ -2,11 +2,14 @@
 
 
 -- User
-INSERT INTO "user"
-    (email, fullname, password, profile_picture, created_at,
-    count_assigning_asset, role_id, domain_id)
-VALUES
-    ('nass@saline.com', 'Nass La Menass', 'HASH', NULL, CURRENT_TIMESTAMP, 0, 4, 4);
+INSERT INTO "user" (
+    email, fullname, password, profile_picture, created_at,
+    count_assigning_asset, role_id, domain_id
+)
+VALUES (
+    'nass@saline.com', 'Nass La Menass', 'pbkdf2:sha256:600000$MFIgXR9G8QmB3Yqw$cc22c03b43785f647894db48313da07f71a6204029985e671bf611e0c07493b7',
+    NULL, CURRENT_TIMESTAMP, 0, 4, 4
+);
 
 
 -- Meta Value

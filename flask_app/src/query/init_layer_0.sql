@@ -47,8 +47,10 @@ VALUES ('worker'), ('lead'), ('superadmin'), ('dev');
 
 
 -- Post Prod
-INSERT INTO "post_prod"
-    (rush_received, started_at, ended_at, validated_at, deposit_path, version)
-VALUES
-    (true, null, null, null, '/saline/post_prod/file20230602_AA.mp4', 1);
+INSERT INTO "post_prod" (
+    rush_received, started_at, ended_at, validated_at, deposit_path, version
+)
+VALUES (
+    true, null, null, null, '/saline/post_prod/file20230602_AA.mp4', 1
+);
 

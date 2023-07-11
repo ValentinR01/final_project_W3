@@ -27,3 +27,9 @@ flask:
 docker-reload:
 	@echo "${RED}Reloading Docker...${NC}"
 	 docker compose down && docker compose up -d --build
+
+docker-rm-all:
+	@echo "${RED}Removing all Docker containers...${NC}"
+	docker compose down
+	docker image rm $$(docker image -a -q)
+	docker volume rm $$(docker volume ls -q)

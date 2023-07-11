@@ -17,13 +17,17 @@ class Speaker(Base):
         db.Integer, db.ForeignKey('speaker.id'), nullable=True, default=id
     )
     language_id = \
-        db.Column(db.Integer, db.ForeignKey('language.id'), nullable=False)
+        db.Column(db.Integer, db.ForeignKey('language.id'), nullable=True)
 
-    def __init__(self, fullname, biography, language_id,
-                 last_update=None, publishable=False, speaker_parent=None):
+    def __init__(self, fullname, biography=None, last_update=None, publishable=False,
+                 speaker_parent=None, language_id=None):
         self.fullname = fullname
         self.biography = biography
         self.last_update = last_update
         self.publishable = publishable
         self.speaker_parent = speaker_parent
         self.language_id = language_id
+
+    @classmethod
+    def get_all_speaker(cls):
+        return cls.query.all()

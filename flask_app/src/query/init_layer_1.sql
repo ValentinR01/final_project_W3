@@ -22,7 +22,7 @@ VALUES
     -- Difficulty Level
     ('beginner', 3), ('intermediate', 3), ('advanced', 3),
     -- Instruments
-    ('piano', 4), ('guitar', 4), ('violin', 4), ('drums', 4), ('saxophone', 4), ('trumpet', 4), ('flute', 4),
+    ('piano', 4), ('guitar', 4), ('violin', 4), ('drums', 4), ('saxophone', 4), ('trumpet', 4), ('flute', 4), ('harmonica', 4), ('bass', 4), ('harp', 4),
     -- Skill
     ('sight-reading', 5), ('ear-training', 5), ('improvisation', 5), ('composition', 5);
 

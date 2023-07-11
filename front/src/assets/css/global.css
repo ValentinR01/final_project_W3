@@ -154,6 +154,7 @@ body{
   font-family: var(--font-family-primary);
   font-size: var(--font-size-regular);
   color: var(--color-text-regular);
+  background-color: var(--color-background-primary);
 }
 
 .block-center{
@@ -166,10 +167,17 @@ body{
   text-align: center;
 }
 
+.w-100{
+  width: 100%;
+}
+
 hr{
   border: 0.5px solid var(--color-border)
 }
 
+form h1{
+  margin-bottom: var(--spacing-3);
+}
 
 
 

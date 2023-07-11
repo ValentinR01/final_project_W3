@@ -12,7 +12,7 @@
   export let readonly = false;
 
   function typeAction(node:any) {
-      node.type = type;
+    node.type = type;
   }
 </script>
 
@@ -41,6 +41,7 @@
 <style>
 
   .input{
+    height: 18px;
     color: var(--color-text-medium);
     border: var(--border-height-regular) solid var(--color-disabled);
     padding: var(--spacing-2);
@@ -71,7 +72,8 @@
   }
 
   .input-with-icon{
-    padding-right: 30px;
+    height: 30px;
+    padding-right: 20px;
   }
 
 </style>

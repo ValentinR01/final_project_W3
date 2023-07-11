@@ -32,8 +32,9 @@
 <style>
   .header{
     display: flex;
-    margin: var(--spacing-3) var(--spacing-5);
+    padding: var(--spacing-3) var(--spacing-5);
     align-items: center;
     column-gap: var(--spacing-3);
+    background-color: var(--color-background-secondary);
   }
 </style>

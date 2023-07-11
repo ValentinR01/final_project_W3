@@ -1,11 +1,16 @@
+import { error } from '@sveltejs/kit';
+  
 export function load() {
     return {
         metadata:{
             instruments: ["piano","violon","guitare","violoncelle","trombone","harpe","trompette","flute"],
-            categorie: ["masterclass", "concert", "interview"],
+            categorie: ["concert", "interview", "masterclass"],
             rating: [1,2,3,4],
             role: ["superadmin","admin","user"], 
-            translations: ["Français","Anglais","Italien","Espagnol","Allemand","Japonais","Russe","Arabe","Chinois","Coréen","Portugais"]
+            domain: ["post-prod","regisseur","traducteur","editeur"], 
+            translations: ["Français","Anglais","Italien","Espagnol","Allemand","Japonais","Russe","Arabe","Chinois","Coréen","Portugais"],
+            style: ["classical","jazz","medieval"],
+            era: ["XII","XVI","XVIII","XIX","XX"]
         },
         projects: [
             {
@@ -93,6 +98,12 @@ export function load() {
                 role: 'superadmin',
                 domain: 'editeur'
             }
-        ]
+        ],
+        booking:{
+            room: [ 'Salle 1', 'Salle 2', 'Salle 3' ],
+            time_slot: ['8h - 10h', '10h - 12h', '12h - 14h', '14h - 16h', '16h - 18h', '18h - 20h']
+        },
+        composer:[ "Compositeur 1","Compositeur 2","Compositeur 3","Compositeur 4","Compositeur 5" ],
+        intervenor:[ "Intervenant 1","Intervenant 2","Intervenant 3","Intervenant 4","Intervenant 5" ],
     };
 }

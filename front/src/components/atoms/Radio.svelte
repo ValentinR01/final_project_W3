@@ -8,11 +8,13 @@
   * @type {String}
   */
   export let cat;
+
+  export let valueSelected = values[0];
 </script>
 
 <div class='radio'>
   {#each values as option}
-    <input class="input-radio" type=radio id={option} value={option} name={cat}>
+    <input class="input-radio" type=radio id={option} value={option} name={cat} bind:group={valueSelected}>
     <label class="label-radio text-preset-5" for={option}> {option} </label>
   {/each}
 </div>

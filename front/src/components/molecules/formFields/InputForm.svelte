@@ -3,6 +3,8 @@
   
   export let id = '';
   export let name = '';
+  export let type = 'text';
+  export let placeholder = "";
   export let widthForm = '100%';
 </script>
 
@@ -10,8 +12,8 @@
   class="input-form"
   style="width: {widthForm}"
 >
-  <label for={name} class="text-preset-4"> <slot /> </label>
-  <Input name={name} id={id} width=auto/>
+  <label for={name} class="input-form__label text-preset-4"> <slot /> </label>
+  <Input name={name} id={id} type={type} placeholder={placeholder} width=auto/>
 </div>
 
 <style>
@@ -19,7 +21,7 @@
     display: inline-grid;
   }
 
-  label{
-    margin-bottom: 5px;
+  .input-form__label{
+    margin-bottom: var(--spacing-1);
   }
 </style>

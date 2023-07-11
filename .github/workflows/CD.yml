@@ -1,7 +1,9 @@
 name: Deploy
 on:
-  pull_request:
-    branches: [ "main", "develop" ]
+  workflow_run:
+    workflows: ['CI-CD']
+    types:
+      - completed
   workflow_dispatch:
 
 jobs:

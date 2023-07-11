@@ -31,6 +31,10 @@ class Asset(Base):
     last_assignment_at = \
         db.Column(db.DateTime, default=db.func.current_timestamp())
 
+    # Relationship
+    assets_translated = db.relationship('AssetTranslated', backref='asset')
+    subtitles = db.relationship('Subtitle', backref='asset')
+
     # FK
     composer_id = \
         db.Column(db.Integer, db.ForeignKey('composer.id'), nullable=False)
@@ -57,11 +61,6 @@ class Asset(Base):
     transformation_id = db.Column(
         db.Integer, db.ForeignKey('transformation.id'), nullable=False
     )
-    asset_translated_id = db.Column(
-        db.Integer, db.ForeignKey('asset_translated.id'), nullable=False
-    )
-    subtitle_id = \
-        db.Column(db.Integer, db.ForeignKey('subtitle.id'), nullable=False)
 
     def __init__(self, title, music_title, art_description, student_fullname,
                  asset_description, link_partitions, thumbnail, resumed,
@@ -69,8 +68,7 @@ class Asset(Base):
                  published_at, last_assignment_at, composer_id,
                  current_assigned_user_id, created_by_id, updated_by_id,
                  speaker_id, status_by_domain_id, step_lifecycle_id,
-                 booking_id, captation_id, post_prod_id, transformation_id,
-                 asset_translated_id, subtitle_id):
+                 booking_id, captation_id, post_prod_id, transformation_id):
         self.title = title
         self.music_title = music_title
         self.art_description = art_description
@@ -96,5 +94,3 @@ class Asset(Base):
         self.captation_id = captation_id
         self.post_prod_id = post_prod_id
         self.transformation_id = transformation_id
-        self.asset_translated_id = asset_translated_id
-        self.subtitle_id = subtitle_id

@@ -69,8 +69,7 @@ INSERT INTO "asset"(
     link_partitions, thumbnail, resumed, has_high_priority, published, created_at,
     updated_at, published_at, last_assignment_at, composer_id, current_assigned_user_id,
     created_by_id, updated_by_id, speaker_id, status_by_domain_id, step_lifecycle_id,
-    booking_id, captation_id, post_prod_id, transformation_id, asset_translated_id,
-    subtitle_id
+    booking_id, captation_id, post_prod_id, transformation_id
 )
 VALUES (
     'Title', 'Music Title', 'Art Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -78,5 +77,5 @@ VALUES (
     'https://www.saline.com/partition/toto?file', 'https://www.saline.com/thumbnail/toto?picture',
     'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium',
     true, false, '2023-07-11', '2023-07-11', '2023-07-11', '2023-07-11',
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 );

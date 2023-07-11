@@ -10,7 +10,7 @@ class AssetTranslated(Base):
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(5000), nullable=False)
     music_title = db.Column(db.String(100), nullable=False)
-    last_update = db.Column(db.DateTime, nullable=False)
+
     created_at = db.Column(
         db.DateTime, nullable=False, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, nullable=False)
@@ -18,6 +18,7 @@ class AssetTranslated(Base):
     resumed = db.Column(db.String(5000), nullable=False)
 
     # FK
+    asset_id = db.Column(db.Integer, db.ForeignKey('asset.id'), nullable=False)
     current_assigned_user_id = \
         db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     composer_id = \
@@ -31,14 +32,13 @@ class AssetTranslated(Base):
     status_by_domain_id = db.Column(
         db.Integer, db.ForeignKey('status_by_domain.id'), nullable=False)
 
-    def __init__(self, title, description, music_title, last_update,
-                 created_at, updated_at, last_assignment_date, resumed,
-                 current_assigned_user_id, composer_id, speaker_id,
-                 language_id, step_lifecycle_id, status_by_domain_id):
+    def __init__(self, title, description, music_title, created_at, updated_at,
+                 last_assignment_date, resumed, current_assigned_user_id,
+                 composer_id, speaker_id, language_id, step_lifecycle_id,
+                 status_by_domain_id, asset_id):
         self.title = title
         self.description = description
         self.music_title = music_title
-        self.last_update = last_update
         self.created_at = created_at
         self.updated_at = updated_at
         self.last_assignment_date = last_assignment_date
@@ -49,3 +49,4 @@ class AssetTranslated(Base):
         self.language_id = language_id
         self.step_lifecycle_id = step_lifecycle_id
         self.status_by_domain_id = status_by_domain_id
+        self.asset_id = asset_id

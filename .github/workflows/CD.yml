@@ -11,6 +11,7 @@ on:
 jobs:
 
   deploy:
+    permissions: write-all
     name: Deploy
     runs-on: ubuntu-latest
 

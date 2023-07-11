@@ -28,7 +28,7 @@ VALUES ('/saline/transformation/file20230602_AA.mp4');
 
 -- Type
 INSERT INTO "type" (name)
-VALUES ('lesson'), ('interview'), ('presentation'), ('concert'), ('other');
+VALUES ('lesson'), ('interview'), ('presentation'), ('concert'), ('masterclass'),('other');
 
 
 -- Domain

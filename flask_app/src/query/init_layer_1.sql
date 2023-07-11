@@ -13,9 +13,9 @@ VALUES
 INSERT INTO "meta_value" (value, meta_key_id)
 VALUES
     -- Style
-    ('baroque', 1), ('classical', 1), ('romantic', 1), ('contemporary', 1),
+    ('jazz', 1), ('classical', 1), ('blues', 1), ('country', 1), ('rock', 1), ('pop', 1), ('electronic', 1),
     -- Period
-    ('renaissance', 2), ('baroque', 2), ('classical', 2), ('romantic', 2), ('modern', 2),
+    ('renaissance', 2), ('baroque', 2), ('romantic', 2), ('modern', 2), ('medieval', 2),
     -- Difficulty Level
     ('beginner', 3), ('intermediate', 3), ('advanced', 3),
     -- Instruments

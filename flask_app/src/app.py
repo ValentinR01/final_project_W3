@@ -36,13 +36,15 @@ if __name__ == "__main__":
             session = db.session()
             for file in os.listdir('src/query/'):
                 if fnmatch.fnmatch(file, 'init_layer_*.sql'):
-                    print(f"Executing {file}")
+                    logging.info(f"Executing {file}")
                     with open(f'src/query/{file}', 'r') as query:
                         try:
                             session.execute(text(query.read()))
                             session.commit()
+                            logging.info(f"Layer {file} been executed "
+                                         f"successfully")
                         except IntegrityError as e:
                             session.rollback()
-                            print(f"Error: {e}")
+                            logging.error(f"Error: {e}")
 
         app.run(host='0.0.0.0', port=8000, debug=debug)

@@ -1,9 +1,7 @@
 name: Deploy
 on:
-  workflow_run:
-    workflows: ["CI-CD"]
-    types:
-      - completed
+  pull_request:
+    branches: [ "main", "develop" ]
   workflow_dispatch:
 
 jobs:
@@ -20,6 +18,13 @@ jobs:
       HOST: ${{ github.event.pull_request.base.ref == 'main' && secrets.PROD_CD_HOST || secrets.PREPROD_CD_HOST }}
 
     steps:
+      - name: Wait for tests to succeed
+        uses: lewagon/wait-on-check-action@v1.3.1
+        with:
+          ref: ${{ github.ref }}
+          check-name: 'CI-CD'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
 
       - name: SSH init
         run: |

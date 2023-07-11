@@ -25,7 +25,7 @@ class GetAll(Resource):
     @namespace.response(200, 'Speaker list')
     def get(self):
         """Get all speakers"""
-        return get_all_speakers()
+        return get_all_speakers(self)
     
 
 @namespace.route('/{speaker_id}', methods=['GET'])

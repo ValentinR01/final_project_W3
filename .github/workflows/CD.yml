@@ -1,14 +1,9 @@
-# TO UPDATE
 on:
-  workflow_run:
-    workflows: [ "CI-CD" ]
-    types:
-      - completed
+  pull_request:
+    branches: [ "main", "develop" ]
   workflow_dispatch:
 
-
 jobs:
-
   deploy:
     permissions: write-all
     name: Deploy
@@ -21,8 +16,14 @@ jobs:
       USERNAME: ${{ github.event.pull_request.base.ref == 'main' && secrets.PROD_CD_USERNAME || secrets.PREPROD_CD_USERNAME }}
       HOST: ${{ github.event.pull_request.base.ref == 'main' && secrets.PROD_CD_HOST || secrets.PREPROD_CD_HOST }}
 
-
     steps:
+      - name: Wait for tests to succeed
+        uses: lewagon/wait-on-check-action@v1.3.1
+        with:
+          ref: ${{ github.ref }}
+          check-name: 'Push to Registry'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
 
       - name: SSH init
         run: |
@@ -30,40 +31,10 @@ jobs:
           cd ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_rsa
           chmod 600 id_rsa
-          
       
-      - name: Login to Registery
-        run: ssh  -oStrictHostKeyChecking=no -i ~/.ssh/id_rsa "${{ env.USERNAME }}"@"${{ env.HOST }}" 'echo "${{ env.TOKEN }}" | docker login "${{ env.REGISTRY_URL }}" -u "${{ env.REGISTRY_USER }}" --password-stdin'
-
+      - name: Login to Registry
+        run: ssh -oStrictHostKeyChecking=no -i ~/.ssh/id_rsa "${{ env.USERNAME }}"@"${{ env.HOST }}" 'echo "${{ env.TOKEN }}" | docker login "${{ env.REGISTRY_URL }}" -u "${{ env.REGISTRY_USER }}" --password-stdin'
 
       - name: Deploy
-        run: ssh -oStrictHostKeyChecking=no -i ~/.ssh/id_rsa "${{ env.USERNAME }}"@"${{ env.HOST }}"  \ 
+        run: ssh -oStrictHostKeyChecking=no -i ~/.ssh/id_rsa "${{ env.USERNAME }}"@"${{ env.HOST }}" \
           'docker compose pull && docker compose up -d'
-          
-      - name: Deployed ✅
-        if: ${{ success() }}
-        run: |
-          curl --request POST \
-          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
-          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          --header 'content-type: application/json' \
-          --data '{
-            "context": "Deploy",
-            "state": "success",
-            "description": "Deployed",
-            "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          }'
-          
-      - name: Failure on deployment 🚨
-        if: ${{ failure() }}
-        run: |
-          curl --request POST \
-          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
-          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          --header 'content-type: application/json' \
-          --data '{
-            "context": "Deploy",
-            "state": "failure",
-            "description": "Failure on deployment",
-            "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          }'

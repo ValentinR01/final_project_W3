@@ -21,7 +21,7 @@ jobs:
       - name: Wait for CI to succeed
         uses: lewagon/wait-on-check-action@master
         with:
-          check-name: 'CI'
+          running-workflow-name: 'CI'
           ref: ${{ github.sha }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10

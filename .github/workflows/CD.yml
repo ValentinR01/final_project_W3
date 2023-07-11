@@ -1,7 +1,10 @@
 # TO UPDATE
 on:
-  pull_request:
+  workflow_run:
+    workflows: [ "CI" ]
     branches: [ "main", "develop" ]
+    types:
+      - completed
   workflow_dispatch:
 
 

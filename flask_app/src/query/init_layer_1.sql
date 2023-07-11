@@ -26,7 +26,7 @@ VALUES
 
 -- Composer
 INSERT INTO "composer"
-    (fullname, biography, publishable, last_update, composer_parent_id, language_id)
+    (fullname, biography, publishable, last_update, composer_parent, language_id)
 VALUES
     ('Johann Sebastian Bach', 'Johann Sebastian Bach was a German composer and musician of the Baroque period. He is known for instrumental compositions such as the Brandenburg Concertos and the Goldberg Variations, and for vocal music such as the St Matthew Passion and the Mass in B minor.', true, CURRENT_TIMESTAMP, NULL, 1),
     ('Ludwig van Beethoven', 'Ludwig van Beethoven was a German composer and pianist. A crucial figure in the transition between the classical and romantic eras in classical music, he remains one of the most recognized and influential musicians of this period, and is considered to be one of the greatest composers of all time.', true, CURRENT_TIMESTAMP, NULL, 1),
@@ -38,7 +38,7 @@ VALUES
 
 -- Speaker
 INSERT INTO "speaker"
-    (fullname, biography, last_update, publishable, speaker_parent_id, language_id)
+    (fullname, biography, last_update, publishable, speaker_parent, language_id)
 VALUES
     ('John Doe', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', CURRENT_TIMESTAMP, true, NULL, 1),
     ('Jane Smith', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem.', CURRENT_TIMESTAMP, true, NULL, 2),

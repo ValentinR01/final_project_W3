@@ -15,16 +15,17 @@ class Composer(Base):
     last_update = db.Column(db.DateTime, default=db.func.current_timestamp())
 
     # FK
-    composer_parent = \
-        db.Column(db.Integer, db.ForeignKey('composer.id'), nullable=True)
+    composer_parent = db.Column(
+        db.Integer, db.ForeignKey('composer.id'), nullable=True, default=id
+    )
     language_id = \
         db.Column(db.Integer, db.ForeignKey('language.id'), nullable=False)
 
     def __init__(self, fullname, biography, publishable, last_update,
-                 composer_parent, language_id):
+                 language_id, composer_parent=None):
         self.fullname = fullname
         self.biography = biography
         self.publishable = publishable
         self.last_update = last_update
-        self.composer_parent = composer_parent
+        self.composer_parent = composer_parent or id
         self.language_id = language_id

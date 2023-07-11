@@ -60,10 +60,10 @@ VALUES
 -- Captation
 INSERT INTO "captation" (duration, filmed_at, deposit_path, report, type_id)
 VALUES
-    (3600, '2023-10-08', '/saline/captation/file20230602_AA.mp4', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 1),
-    (3750, '2023-10-08', '/saline/captation/file20230602_AA.mp4', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 1),
-    (2500, '2023-10-08', '/saline/captation/file20230602_AA.mp4', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 1),
-    (1200, '2023-10-08', '/saline/captation/file20230602_AA.mp4', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 1);
+    (3600, '2023-10-08', '/saline/captation/file20231008_AA.mp4', 'Report: Lorem ipsum adipiscing elit', 1),
+    (3750, '2023-10-08', '/saline/captation/file20231008_AB.mp4', 'Report: Lorem ipsum adipiscing elit', 1),
+    (2500, '2023-06-02', '/saline/captation/file20230602_AC.mp4', 'Report: Lorem ipsum adipiscing elit', 2),
+    (1200, '2023-06-02', '/saline/captation/file20230602_AD.mp4', 'Report: Lorem ipsum adipiscing elit', 2);
 
 
 -- Asset
@@ -78,7 +78,7 @@ VALUES (
     'Title', 'Music Title', 'Art Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     'Jean VALJEAN','Asset Description: Lorem ipsum dolor sit amet',
     'https://www.saline.com/partition/toto?file', 'https://www.saline.com/thumbnail/toto?picture',
-    'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium',
-    true, false, '2023-07-11', '2023-07-11', '2023-07-11', '2023-07-11',
+    'Resumed: At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium',
+    true, false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, '2023-07-11',
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 );

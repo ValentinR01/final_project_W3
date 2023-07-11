@@ -15,7 +15,8 @@ class Comment(Base):
     posted_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     asset_id = db.Column(db.Integer, db.ForeignKey('asset.id'), nullable=False)
 
-    def __init__(self, content, created_at, external_name, posted_by, asset_id):
+    def __init__(self, content, external_name, posted_by, asset_id,
+                 created_at=None):
         self.content = content
         self.created_at = created_at
         self.external_name = external_name

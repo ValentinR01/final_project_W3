@@ -9,13 +9,13 @@ VALUES ('/saline/subtitle/file20230602_AA.sub', true, 1, 1, 1);
 -- Asset Translated
 INSERT INTO "asset_translated" (
     title, description, music_title, created_at, updated_at,
-    last_assignment_date, resumed, current_assigned_user_id, composer_id,
+    last_assignment_at, resumed, current_assigned_user_id, composer_id,
     speaker_id, language_id, step_lifecycle_id, status_by_domain_id, asset_id
 )
 VALUES (
     'Title translated',
-    'Description: taque earum rerum us maiores  repellat.translated',
+    'Description: taque earum rerum us maiores  repellat translated',
     'Music title translated', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP,
-    'Resumed: Sed ut perspiciatis unde omnis iste natus error sit',
+    'Resumed: Sed ut perspiciatis unde omnis iste natus error sit translated',
     1, 1, 1, 1, 1, 1, 1
 );

@@ -20,7 +20,8 @@ class User(Base):
         db.Column(db.Integer, db.ForeignKey('domain.id'), nullable=False)
 
     def __init__(self, email, fullname, password, domain_id, role_id,
-                 created_at=None, profile_picture=None, count_assigning_asset=0):
+                 created_at=None, profile_picture=None,
+                 count_assigning_asset=0):
         self.email = email
         self.fullname = fullname
         self.password = password

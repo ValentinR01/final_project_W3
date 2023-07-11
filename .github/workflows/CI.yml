@@ -55,4 +55,4 @@ jobs:
 
       - name: Deploy
         run: ssh -oStrictHostKeyChecking=no -i ~/.ssh/id_rsa "${{ env.USERNAME }}"@"${{ env.HOST }}" \
-            'docker compose pull && docker compose up -d'
+            'docker compose pull front && docker compose pull dam-backoffice-api && docker compose up -d'

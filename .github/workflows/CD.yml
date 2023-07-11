@@ -18,12 +18,12 @@ jobs:
       HOST: ${{ github.event.pull_request.base.ref == 'main' && secrets.PROD_CD_HOST || secrets.PREPROD_CD_HOST }}
 
     steps:
-      - name: Wait for tests to succeed
+      - name: Wait for CI to succeed
         uses: lewagon/wait-on-check-action@master
         with:
           repo-token: ${{ github.token }}
           repository: ${{ github.repository }}
-          event-type: CI-CD
+          event-type: CI
           ref: ${{ github.sha }}
 
       - name: SSH init

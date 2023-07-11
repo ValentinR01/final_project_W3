@@ -7,10 +7,10 @@ class StatusByDomain(Base):
     __tablename__ = 'status_by_domain'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), unique=True, nullable=False)
+    status = db.Column(db.String(100), unique=True, nullable=False)
 
     # Relationships
     assets = db.relationship('Asset', backref='status_by_domain', lazy=True)
 
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, status):
+        self.status = status

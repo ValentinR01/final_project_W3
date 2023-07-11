@@ -7,12 +7,16 @@ class Language(Base):
     __tablename__ = 'language'
 
     id = db.Column(db.Integer, primary_key=True)
-    langue = db.Column(db.String(100), unique=True, nullable=False)
+    name = db.Column(db.String(100), unique=True, nullable=False)
     code = db.Column(db.String(2), unique=True, nullable=False)
 
     # Relationships
     speakers = db.relationship('Speaker', backref='language', lazy=True)
+    composers = db.relationship('Composer', backref='language', lazy=True)
+    assets_translated = \
+        db.relationship('AssetTranslated', backref='language', lazy=True)
+    subtitles = db.relationship('Subtitle', backref='language', lazy=True)
 
-    def __init__(self, langue, code=None):
-        self.langue = langue
-        self.code = code or langue[:2].lower()
+    def __init__(self, name, code=None):
+        self.name = name
+        self.code = code or name[:2].lower()

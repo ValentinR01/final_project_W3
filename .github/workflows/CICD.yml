@@ -1,5 +1,3 @@
-name: CI-CD
-
 # TO UPDATE
 on:
   pull_request:
@@ -9,6 +7,7 @@ on:
 jobs:
 
   CI-CD:
+    name: CI-CD
     runs-on: ubuntu-latest
 
     env:

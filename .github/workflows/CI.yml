@@ -36,3 +36,5 @@ jobs:
       - name: Push to Registry
         run: docker push "${{ env.REGISTRY_URL }}"/dam-front:latest
           && docker push "${{ env.REGISTRY_URL }}"/dam-api:latest
+          
+          

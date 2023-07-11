@@ -46,23 +46,22 @@ class Base(db.Model):
         """
         return cls.query.filter_by(**kwargs).all()
 
-    # TODO: check self instead of table
-    @staticmethod
-    def init_db_value(init_values: list, table: db.Model()):
+    @classmethod
+    def init_db_value(cls: db.Model, init_values: list):
         """
         This method will be used to initialize the values of a table.
 
+        :param cls: table to initialize
         :param init_values: list of values to initialize
-        :param table: table to initialize
         :return:
         """
         for init_value in init_values:
             try:
-                domain = table.query.filter_by(name=init_value).first()
+                domain = cls.query.filter_by(name=init_value).first()
                 if domain:
                     continue
                 else:
-                    domain = table(name=init_value)
+                    domain = cls(name=init_value)
                     domain.create()
             except Exception as e:
                 print(e)

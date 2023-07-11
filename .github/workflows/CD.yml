@@ -2,7 +2,6 @@
 on:
   workflow_run:
     workflows: [ "CI" ]
-    branches: [ "main", "develop" ]
     types:
       - completed
   workflow_dispatch:

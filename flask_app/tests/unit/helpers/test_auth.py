@@ -60,7 +60,7 @@ def test_decode_token_with_valid_token(user):
         "email": user.email,
         "role": "admin",
         "domain": "example.com",
-        "exp": 1689020385,
+        "exp": 1752179546,
         "iat": 1688984385
     }
     token = jwt.encode(payload, key=TOKEN_SECRET, algorithm='HS256')

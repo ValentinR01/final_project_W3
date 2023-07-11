@@ -1,0 +1,52 @@
+name: CI-CD
+
+# TO UPDATE
+on:
+  pull_request:
+    branches: [ "main", "develop" ]
+  workflow_dispatch:
+
+jobs:
+
+  CI-CD:
+    runs-on: ubuntu-latest
+
+    env:
+      TOKEN: ${{ github.event.pull_request.base.ref == 'main' && secrets.PROD_REGISTRY_TOKEN || secrets.PREPROD_REGISTRY_TOKEN }}
+      REGISTRY_URL: ${{ github.event.pull_request.base.ref  == 'main' && secrets.PROD_REGISTRY_URL || secrets.PREPROD_REGISTRY_URL }}
+      REGISTRY_USER: ${{ github.event.pull_request.base.ref  == 'main' && secrets.PROD_REGISTRY_USER || secrets.PREPROD_REGISTRY_USER }}
+      USERNAME: ${{ github.event.pull_request.base.ref == 'main' && secrets.PROD_CD_USERNAME || secrets.PREPROD_CD_USERNAME }}
+      HOST: ${{ github.event.pull_request.base.ref == 'main' && secrets.PROD_CD_HOST || secrets.PREPROD_CD_HOST }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build Docker Images
+        run: docker buildx build . --file ./dockerfile/Dockerfile-api --tag "${{ env.REGISTRY_URL }}"/dam-api:latest
+          && docker buildx build . --file ./dockerfile/Dockerfile-front --tag "${{ env.REGISTRY_URL }}"/dam-front:latest
+
+      - name: Run Unit Tests
+        run: docker run -d -e ENV=TEST --name=dam-api "${{ env.REGISTRY_URL }}"/dam-api:latest
+              && docker exec dam-api bash -c 'python -m pytest'
+
+      - name: Login to Registry
+        run: echo "${{ env.TOKEN }}" | docker login "${{ env.REGISTRY_URL }}" -u "${{ env.REGISTRY_USER }}" --password-stdin
+
+      - name: Push to Registry
+        run: docker push "${{ env.REGISTRY_URL }}"/dam-front:latest
+          && docker push "${{ env.REGISTRY_URL }}"/dam-api:latest
+          
+      - name: SSH init
+        run: |
+          mkdir -p ~/.ssh
+          cd ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_rsa
+          chmod 600 id_rsa
+          
+      - name: Login to Registery on Remote Host
+        run: ssh  -oStrictHostKeyChecking=no -i ~/.ssh/id_rsa "${{ env.USERNAME }}"@"${{ env.HOST }}" 'echo "${{ env.TOKEN }}" | docker login "${{ env.REGISTRY_URL }}" -u "${{ env.REGISTRY_USER }}" --password-stdin'
+    
+      - name: Deploy
+        run: ssh -oStrictHostKeyChecking=no -i ~/.ssh/id_rsa "${{ env.USERNAME }}"@"${{ env.HOST }}"  \ 
+          'docker compose pull && docker compose up -d'

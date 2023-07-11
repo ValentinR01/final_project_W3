@@ -11,9 +11,11 @@ class Speaker(Base):
     biography = db.Column(db.String(5000), nullable=True)
     last_update = db.Column(db.DateTime, default=db.func.current_timestamp())
     publishable = db.Column(db.Boolean, default=False)
+
     # FK
-    speaker_parent = \
-        db.Column(db.Integer, db.ForeignKey('speaker.id'), nullable=True)
+    speaker_parent = db.Column(
+        db.Integer, db.ForeignKey('speaker.id'), nullable=True, default=id
+    )
     language_id = \
         db.Column(db.Integer, db.ForeignKey('language.id'), nullable=True)
 

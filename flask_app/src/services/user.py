@@ -20,7 +20,8 @@ def register_service(data):
     role_id = data.get('role_id')
     domain_id = data.get('domain_id')
 
-    if not email or not fullname or not password or not role_id or not domain_id:
+    if not email or not fullname or not password or not role_id or not \
+            domain_id:
         return {'message': 'Missing parameters'}, 400
 
     if re.match(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{"

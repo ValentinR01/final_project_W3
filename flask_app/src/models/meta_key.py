@@ -7,10 +7,10 @@ class MetaKey(Base):
     __tablename__ = 'meta_key'
 
     id = db.Column(db.Integer, primary_key=True)
-    key = db.Column(db.String(100), unique=True, nullable=False)
+    key = db.Column(db.String(50), unique=True, nullable=False)
 
     # Relationships
-    metadatas = db.relationship('Metadata', backref='meta_key', lazy=True)
+    meta_values = db.relationship('MetaValue', backref='meta_key', lazy=True)
 
     def __init__(self, key):
         self.key = key

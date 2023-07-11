@@ -11,7 +11,7 @@ class PostProd(Base):
     started_at = db.Column(db.DateTime, nullable=True)
     ended_at = db.Column(db.DateTime, nullable=True)
     validated_at = db.Column(db.DateTime, nullable=True)
-    deposit_path = db.Column(db.String(100), nullable=True)
+    deposit_path = db.Column(db.String(100), nullable=True, unique=True)
     version = db.Column(db.Integer, nullable=False)
 
     def __init__(self, rush_received, started_at, ended_at, validated_at,

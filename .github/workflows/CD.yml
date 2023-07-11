@@ -1,7 +1,7 @@
 # TO UPDATE
 on:
   workflow_run:
-    workflows: [ "CI" ]
+    workflows: [ "CICD" ]
     types:
       - completed
   workflow_dispatch:

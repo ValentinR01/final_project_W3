@@ -23,7 +23,7 @@ jobs:
         with:
           repo-token: ${{ github.token }}
           repository: ${{ github.repository }}
-          check-name: CI
+          check-name: 'CI'
           ref: ${{ github.sha }}
 
       - name: SSH init

@@ -11,12 +11,8 @@ api = Api()
 @namespace.route('/create', methods=['POST'])
 class Create(Resource):
     """Create a new asset"""
-    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZnVsbG5hbWU" \
-            "iOiJzYWxpbiIsImVtYWlsIjoic2FsaW5Ac2FsaW5lLmNvbSIsInJvbGUiOiJ" \
-            "3b3JrZXIiLCJkb21haW4iOiJyZWRhY3Rpb24iLCJleHAiOjE2ODkwMjk5MDI" \
-            "sImlhdCI6MTY4ODk5MzkwMn0.r4UalimTKPHVIDABZei3px6armJdAd_TOVA" \
-            "M_uEazTM"
-
+    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9" \
+            ".eyJpZCI6NSwiZnVsbG5hbWUiOiJ3b3JrZXIiLCJlbWFpbCI6IndvcmtlckBzYWxpbmUuY29tIiwicm9sZSI6IndvcmtlciIsImRvbWFpbiI6InJlZGFjdGlvbiIsImV4cCI6MTY4OTIwNzM3NiwiaWF0IjoxNjg5MTcxMzc2fQ.5SicmBfgh0MYCfbATo4WswHgY8soNjsewbACDiQcZ6o"
     @api.doc(
         params={
             # Required parameters
@@ -113,4 +109,5 @@ class Create(Resource):
     @rights_manager(token=token, role='worker', domain='redaction')
     @namespace.response(200, '')
     def post(self):
-        return create_asset(request.json)
+        return {"message": "Asset created successfully."}
+        # return create_asset(request.json)

@@ -6,8 +6,8 @@
 
   /**
    * @type { any }
-   */
-   export let data;
+  */
+  export let data;
 
 </script>
 

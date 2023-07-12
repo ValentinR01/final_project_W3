@@ -26,8 +26,8 @@ user_login_model = namespace.model(
     }
 )
 
-user_by_domain_model = namespace.model(
-    'user_by_domain', {
+users_model = namespace.model(
+    'users_model', {
         'id': fields.Integer(),
         'email': fields.String(),
         'fullname': fields.String(),
@@ -40,13 +40,11 @@ user_by_domain_model = namespace.model(
     }
 )
 
-user_list_by_domain_model = namespace.model(
-    'user_list_by_domain', {
-        'users': fields.List(fields.Nested(user_by_domain_model)),
+user_list_model = namespace.model(
+    'user_list_model', {
+        'users': fields.List(fields.Nested(users_model)),
     }
 )
-
- # @namespace.response(200, 'Successfully register')
 
 
 @namespace.route('/register', methods=['POST'])
@@ -90,14 +88,17 @@ class Domain(Resource):
         }
     )
     @rights_manager(token=token, role='worker', domain='redaction')
-    @namespace.marshal_with(user_list_by_domain_model)
+    @namespace.marshal_with(user_list_model)
+    @namespace.response(200, '')
     def get(self, domain_name):
         """Filter users by domain name"""
         return get_user_by_domain(domain_name)
 
 
 @namespace.route('', methods=['GET'])
+@namespace.response(200, '')
 class Users(Resource):
+    @namespace.marshal_with(user_list_model)
     def get(self):
         """Get all users"""
-        return get_all_users() #TODO
+        return get_all_users()

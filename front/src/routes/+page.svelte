@@ -32,6 +32,8 @@
   import Tabs from '../components/molecules/Tabs.svelte';
   import Modal from '../components/molecules/cards/Modal.svelte';
 
+  import Table from '../components/organisms/Table.svelte';
+
   export let data;
 
   // List of tab items with labels, values and assigned components
@@ -71,6 +73,8 @@
   border
 />
 <TextArea />
+<br><br>
+<!-- <SortArrow /> -->
 
 <Input type='email' id='email' name='email' placeholder='Email' required/>
 <Input type='password' id='password' name='password' placeholder='Password' required/>
@@ -111,9 +115,9 @@
 <br>
 <SelectForm nameSelect="role" options={data.metadata.role}>Rôle</SelectForm>
 <br>
-<Rating rate={data.projects[0].rating} />
+<Rating rate={data.asset[0].rating} />
 <br>
-<Searchbar urlSearchbar="projects" data={data.projects} widthSearchbar="500" />
+<Searchbar urlSearchbar="projects" data={data.asset} widthSearchbar="500" />
 <br>
 <Searchbar urlSearchbar="users" data={data.users} widthSearchbar="250" />
 <br>
@@ -126,6 +130,7 @@
 <Modal buttonText='Ouvrir modale'>
   <Text> CONTENU DE LA MODALE </Text>
 </Modal>
+<Tabs/>
 
 <br><br><br>
 <Text
@@ -135,4 +140,6 @@
   >
   Les organismes
 </Text>
+<Table rowElements={data.asset}/>
+
 <br><br>

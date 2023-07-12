@@ -5,7 +5,8 @@ from helpers.auth import AuthHandler
 from flask_restx import abort
 from flask import make_response
 from conf import TOKEN_EXPIRATION_HOURS
-import logging, datetime
+import logging
+import datetime
 import re
 
 
@@ -40,8 +41,6 @@ def register_service(data):
         domain_id=domain_id, role_id=role_id
     )
     new_user.create()
-
-
     return {'message': 'User created successfully'}, 201
 
 

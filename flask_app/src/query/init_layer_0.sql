@@ -43,7 +43,7 @@ VALUES ('pending'), ('to assign'), ('in progress'), ('to review'), ('done');
 
 -- Role
 INSERT INTO "role" (name)
-VALUES ('worker'), ('lead'), ('superadmin'), ('dev');
+VALUES ('worker'), ('lead'), ('superadmin');
 
 
 -- Post Prod

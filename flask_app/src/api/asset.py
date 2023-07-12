@@ -1,7 +1,7 @@
 from flask import request
-from flask_restx import Namespace, Resource, fields, Api
+from flask_restx import Namespace, Resource, Api
 from helpers.decorators import rights_manager
-
+from services.asset import create_asset
 
 namespace = Namespace('assets', 'Asset related endpoints')
 
@@ -112,5 +112,5 @@ class Create(Resource):
     )
     @rights_manager(token=token, role='worker', domain='redaction')
     @namespace.response(200, '')
-    def post(self, domain_name):
-        return get_user_by_domain(domain_name)
+    def post(self):
+        return create_asset(request.json)

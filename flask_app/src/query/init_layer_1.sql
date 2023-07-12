@@ -8,7 +8,7 @@ INSERT INTO "user" (
 )
 VALUES (
     'nass@saline.com', 'Nass La Menass', 'pbkdf2:sha256:600000$MFIgXR9G8QmB3Yqw$cc22c03b43785f647894db48313da07f71a6204029985e671bf611e0c07493b7',
-    NULL, CURRENT_TIMESTAMP, 0, 4, 4
+    NULL, CURRENT_TIMESTAMP, 0, 3, 4
 );
 
 

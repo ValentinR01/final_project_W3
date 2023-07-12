@@ -63,8 +63,8 @@ def login_service(userdata):
         response.set_cookie('authorization', token, expires=expiration_date)  # Set the authorization cookie
         return response
     except Exception as e:
-        logging.error()
-        return {e}, 500
+        logging.error(e)
+        return {}, 500
 
 
 def get_user_by_domain(domain_name):

@@ -28,12 +28,12 @@ VALUES ('/saline/transformation/file20230602_AA.mp4');
 
 -- Type
 INSERT INTO "type" (name)
-VALUES ('lesson'), ('interview'), ('presentation'), ('concert'), ('masterclass'),('other');
+VALUES ('lesson'), ('interview'), ('presentation'), ('concert'), ('masterclass'), ('other');
 
 
 -- Domain
 INSERT INTO "domain" (name)
-VALUES ('redaction'), ('translation'), ('management'), ('development');
+VALUES ('redaction'), ('translation'), ('management'), ('development'), ('regisseur');
 
 
 -- Status By Domain

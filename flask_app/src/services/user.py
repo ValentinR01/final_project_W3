@@ -64,19 +64,19 @@ def login_service(userdata):
         return response
     except Exception as e:
         logging.error(e)
-        return {}, 500
+        return {e}, 500
 
 
 def get_user_by_domain(domain_name):
     domain = Domain.get_by(name=domain_name)
     if domain is None:
-        abort(404, "Domain not found")
+        return {'message': 'Domain not found'}, 404
 
     domain_id = domain.id
     user_list = User.get_all_by(domain_id=domain_id)
 
     if user_list is None:
-        return {'users': []}
+        return {'users': []}, 200
 
     return {'users': user_list}, 200
 

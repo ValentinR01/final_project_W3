@@ -19,3 +19,8 @@ VALUES (
     'Resumed: Sed ut perspiciatis unde omnis iste natus error sit translated',
     1, 1, 1, 1, 1, 1, 1
 );
+
+
+-- Metadata
+INSERT INTO "metadata" (meta_value_id, asset_id)
+VALUES (1, 1), (7, 1), (11, 1), (12, 1);

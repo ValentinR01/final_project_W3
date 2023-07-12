@@ -15,7 +15,7 @@ register_model = namespace.model('Register', {
 @namespace.route('/register', methods=['POST'])
 class Register(Resource):
     @namespace.expect(register_model)
-    @namespace.response(201, 'Speaker well created')
+    @namespace.response(201, 'Composer well created')
     def post(self):
         """Register a new speaker"""
         data = request.json

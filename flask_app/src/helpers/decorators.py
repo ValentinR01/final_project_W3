@@ -17,6 +17,7 @@ def rights_manager(request, role: str, domain: str = None):
             decode_token = AuthHandler.decode_token(token)
 
             role_list_endpoint = Role.get_all()
+            # TODO mettre en cache les appels à la BDD
             role_list = []
             for roles in role_list_endpoint:
                 role_list.append(roles.name)

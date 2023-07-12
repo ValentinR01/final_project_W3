@@ -64,7 +64,7 @@
 		{#if selectedRowElement.name_by_domain}
 			<td>{selectedRowElement.name_by_domain}</td>
 		{/if}
-    	{#if selectedRowElement.name_by_domain.length === 0 }
+    {#if selectedRowElement.name_by_domain.length === 0 }
 			<td><a href="">Ajouter</a></td>
 		{/if}
 		{#if isTrue.rush_received_is_true}

@@ -87,7 +87,7 @@ class Domain(Resource):
             }
         }
     )
-    @rights_manager(token=token, role='worker', domain='redaction')
+    @rights_manager(request, role='worker', domain='development')
     @namespace.marshal_with(user_list_model)
     @namespace.response(200, '')
     def get(self, domain_name):

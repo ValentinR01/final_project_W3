@@ -14,7 +14,7 @@ class Speaker(Base):
 
     # FK
     speaker_parent = db.Column(
-        db.Integer, db.ForeignKey('speaker.id'), nullable=True, default=id
+        db.Integer, db.ForeignKey('speaker.id'), nullable=True
     )
     language_id = \
         db.Column(db.Integer, db.ForeignKey('language.id'), nullable=True)
@@ -27,7 +27,3 @@ class Speaker(Base):
         self.publishable = publishable
         self.speaker_parent = speaker_parent
         self.language_id = language_id
-
-    @classmethod
-    def get_all_speaker(cls):
-        return cls.query.all()

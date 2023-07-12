@@ -1,6 +1,5 @@
 from models.speaker import Speaker
-import logging
-import re
+
 
 
 def register_service(data):
@@ -12,12 +11,12 @@ def register_service(data):
 
     return {'message': 'Speaker well created'}, 201
 
-
-def get_all_speakers(self):
-    speaker_list = Speaker.get_all(self)
-    return speaker_list, 200 
-
 def get_speaker_by_id(speaker_id):
     speaker = Speaker.find_by_id(speaker_id)
-    return speaker, 200 
+    return speaker, 200
+
+
+def get_all_speakers():
+    speakers_list = Speaker.get_all()
+    return {'speakers': speakers_list}, 200
 

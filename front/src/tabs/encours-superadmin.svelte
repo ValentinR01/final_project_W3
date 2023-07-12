@@ -22,5 +22,5 @@
 >
   Mettre dashboard
 </Text>
-<Searchbar urlSearchbar="projects" data={data.projects} widthSearchbar="190" />
-<Pagination rows={data.projects} perPage={5} bind:trimmedRows={values} />
+<Searchbar urlSearchbar="projects" data={data.asset} widthSearchbar="190" />
+<Pagination rows={data.asset} perPage={5} bind:trimmedRows={values} />

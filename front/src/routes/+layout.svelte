@@ -20,6 +20,7 @@
 
   :global(.card--wide){
     max-height: 100%;
+    margin-bottom: var(--spacing-4);
   }
 
   :global(.tabs) :global(.searchbar-container){

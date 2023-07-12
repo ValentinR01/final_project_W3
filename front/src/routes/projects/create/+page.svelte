@@ -7,7 +7,3 @@
 <div class='card card--wide block-center'>
   <ProjectCreationForm data={data}/>
 </div>
-
-<style>
-
-</style>

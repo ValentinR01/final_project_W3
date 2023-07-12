@@ -83,6 +83,4 @@ def get_user_by_domain(domain_name):
 
 def get_all_users():
     user_list = User.get_all()
-    if user_list is None:
-        return {'users': []}
     return {'users': user_list}, 200

@@ -65,9 +65,10 @@ class Asset(Base):
     def __init__(self, title, music_title, composer_id,
                  current_assigned_user_id, created_by_id,
                  updated_by_id, speaker_id, status_by_domain_id,
-                 step_lifecycle_id, booking_id, captation_id, post_prod_id,
-                 transformation_id, has_high_priority=False, published=False,
-                 created_at=None, updated_at=None, published_at=None,
+                 step_lifecycle_id, booking_id, captation_id=None,
+                 post_prod_id=None, transformation_id=None,
+                 has_high_priority=False, published=False, created_at=None,
+                 updated_at=None, published_at=None,
                  last_assignment_at=None, student_fullname=None,
                  art_description=None, asset_description=None,
                  link_partitions=None, thumbnail=None, resumed=None):

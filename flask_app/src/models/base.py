@@ -14,15 +14,16 @@ class Base(db.Model):
             db.session.add(self)
         return db.session.commit()
 
-    def get_all(self):
-        return self.query.all()
-
     def update(self):
         return db.session.commit()
 
     def delete(self):
         db.session.delete(self)
         return db.session.commit()
+
+    @classmethod
+    def get_all(cls: db.Model):
+        return cls.query.all()
 
     @classmethod
     def get_by(cls: db.Model, **kwargs):

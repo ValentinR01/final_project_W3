@@ -10,7 +10,7 @@ export function load() {
             style: ["classical","jazz","medieval"],
             era: ["XII","XVI","XVIII","XIX","XX"]
         },
-        projects: [
+        asset: [
             {
                 id: 1,
                 name: "Interview 1",

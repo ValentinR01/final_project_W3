@@ -48,6 +48,8 @@
   import ProjectCreationForm from '../components/organisms/Forms/ProjectCreationForm.svelte';
   import BioEdition from '../components/organisms/Forms/BioEdition.svelte';
   import RoomRegistrationForm from '../components/organisms/Forms/RoomRegistrationForm.svelte';
+  import Table from '../components/organisms/Table.svelte';
+
 	
 	let values;
 
@@ -78,6 +80,7 @@
   >
   Les atomes
 </Text>
+
 <br><br>
 <Image
   imageSrc={Logo}
@@ -102,16 +105,15 @@
 <Button> Valider </Button>
 <br><br>
 <Text textTag='p' class='text-preset-4' textColor='grey'>Already have an account ? <Link class='text--semibold' linkUrl='/login'>Login</Link></Text>
-
 <br><br>
 <Icon name="add">
   <AddIcon />
 </Icon>
-<br>
+<br><br>
 <Icon name="copy" width="20" height="20">
   <CopyIcon />
 </Icon>
-
+<br><br>
 <Link
   linkUrl='/dashboard'> 
   dashboard
@@ -147,6 +149,7 @@
   Les molecules
 </Text>
 
+<br><br>
 <SelectForm nameSelect="role" options={data.metadata.role}>Rôle</SelectForm>
 <br><br>
 <InputForm id="project" name="project"> Nom du projet </InputForm>
@@ -161,18 +164,16 @@
 <br><br>
 <RadioForm data={data.metadata.categorie} catForm='categorie'> Type de vidéo </RadioForm>
 <br><br><br>
-
-<Rating rate={data.projects[0].rating} />
-<br>
-<Searchbar urlSearchbar="projects" data={data.projects} widthSearchbar="500" />
-<br>
+<Rating rate={data.asset[0].rating} />
+<br><br>
+<Searchbar urlSearchbar="projects" data={data.asset} widthSearchbar="500" />
+<br><br>
 <Searchbar urlSearchbar="users" data={data.users} widthSearchbar="250" />
-<br>
+<br><br>
 <Menu role={data.users[0].role} />
 <br><br>
 <Tabs {items} data={data}/>
 <br><br>
-
 <Modal buttonText='Ouvrir modale'>
   <Text> CONTENU DE LA MODALE </Text>
 </Modal>
@@ -186,7 +187,7 @@
   <span slot='name'>{data.users[0].fullname}</span>
   <span slot='number-projects'>{data.users[0].count_assigning_asset}</span>
 </EmployeeCard>
-<br>
+<br><br>
 <EmployeeCard employeePicture={data.users[1].profile_pic}>
   <span slot='name'>{data.users[1].fullname}</span>
   <span slot='number-projects'>{data.users[1].count_assigning_asset}</span>
@@ -207,15 +208,18 @@
   >
   Les organismes
 </Text>
+
+<br><br>
+<Table rowElements={data.asset}/>
 <br><br>
 <Header />
-<br>
+<br><br>
 <ModalLinkVideo value='https://jevouspartagemavideo.com/egtyhuhdizhmsjh'/>
 <br><br>
 <ModalIntervenor type='composer'/>
 <br><br>
 <!--
-<SubtitlesRequest languages={data.metadata.translations} data={data.projects[0].translations} /> 
+<SubtitlesRequest languages={data.metadata.translations} data={data.asset[0].translations} /> 
 <br><br>
 <CommentaryForm />
 <br><br>

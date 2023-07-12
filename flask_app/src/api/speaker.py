@@ -27,8 +27,8 @@ speaker_model = namespace.model(
 
 speakers_list_model = namespace.model(
     'speakers_list', {
-        'speakers': fields.List(fields.Nested(speaker_model)),
-    }
+        'speakers': fields.List(fields.Nested(speaker_model))
+    }, default={}
 )
 
 
@@ -52,6 +52,7 @@ class GetBySpeakerId(Resource):
             }
         }
     )
+    @namespace.marshal_with(speaker_model, skip_none=True)
     def get(self, speaker_id):
         """Get speaker by id"""
         return get_speaker_by_id(speaker_id)

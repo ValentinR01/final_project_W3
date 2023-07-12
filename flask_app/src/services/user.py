@@ -3,7 +3,9 @@ from models.domain import Domain
 from werkzeug.security import generate_password_hash
 from helpers.auth import AuthHandler
 from flask_restx import abort
-import logging
+from flask import make_response
+from conf import TOKEN_EXPIRATION_HOURS
+import logging, datetime
 import re
 
 
@@ -20,7 +22,8 @@ def register_service(data):
     role_id = data.get('role_id')
     domain_id = data.get('domain_id')
 
-    if not email or not fullname or not password or not role_id or not domain_id:
+    if not email or not fullname or not password or not role_id or not \
+            domain_id:
         return {'message': 'Missing parameters'}, 400
 
     if re.match(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{"
@@ -38,6 +41,7 @@ def register_service(data):
     )
     new_user.create()
 
+
     return {'message': 'User created successfully'}, 201
 
 
@@ -51,10 +55,13 @@ def login_service(userdata):
             return {'message': 'Invalid email or password'}, 401
 
         token = auth_handler.generate_token(user)
-        return {
-                'access_token': token,
-                'message': 'Login successful'
-            }, 200
+        expiration_date = datetime.datetime.now() + datetime.timedelta(hours=TOKEN_EXPIRATION_HOURS)
+        response = make_response({
+            'access_token': token,
+            'message': 'Login successful'
+        }, 200)
+        response.set_cookie('authorization', token, expires=expiration_date)  # Set the authorization cookie
+        return response
     except Exception as e:
         logging.error(e)
         return {}, 500

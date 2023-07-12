@@ -10,7 +10,7 @@ namespace = Namespace('users', 'User related endpoints')
 api = Api()
 
 user_register_model = namespace.model(
-    'user_register', {
+    'user_register_model', {
         'fullname': fields.String(required=True, default='saline'),
         'email': fields.String(required=True, default='saline@saline.com'),
         'password': fields.String(required=True, default='Sªl1nĒ'),

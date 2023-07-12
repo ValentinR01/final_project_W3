@@ -17,6 +17,6 @@ class Register(Resource):
     @namespace.expect(register_model)
     @namespace.response(201, 'Composer well created')
     def post(self):
-        """Register a new speaker"""
+        """Register a new composer"""
         data = request.json
         return register_service(data)

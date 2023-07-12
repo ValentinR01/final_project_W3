@@ -18,13 +18,13 @@ def composer():
 def test_register_service(composer):
     data = {'fullname': 'Robert Schumann'}
 
-    # Test creation of a new speaker
+    # Test creation of a new composer
     with patch('models.composer.Composer.get_by', return_value=False):
         with patch('models.composer.Composer.create', return_value=True):
             response = register_service(data)
             assert response == ({'message': 'Composer well created'}, 201)
 
-    # Test creation of an existing speaker
+    # Test creation of an existing composer
     with patch('models.composer.Composer.get_by', return_value=composer):
         response = register_service(data)
         assert response == ({'message': 'Composer already exists'}, 409)

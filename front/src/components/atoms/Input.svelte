@@ -6,27 +6,44 @@
   export let width = '100%';
   export let value = '';
 
+  /**
+   * @type {boolean}
+  */
+  export let readonly = false;
+
   function typeAction(node:any) {
-      node.type = type;
+    node.type = type;
   }
 </script>
 
-<input 
-  use:typeAction
-  id={id} 
-  name={name} 
-  placeholder={placeholder}
-  class="input text-preset-5 {$$props.class}"
-  style="width: {width}"
-  bind:value
-/>
+{#if readonly}
+  <input 
+    use:typeAction
+    id={id} 
+    name={name} 
+    class="input text-preset-5 {$$props.class}"
+    style="width: {width}"
+    value="{value}"
+    readonly
+  />
+{:else}
+  <input 
+    use:typeAction
+    id={id} 
+    name={name} 
+    placeholder={placeholder}
+    class="input text-preset-5 {$$props.class}"
+    style="width: {width}"
+    bind:value
+  />
+{/if}
 
 <style>
 
   .input{
+    height: 18px;
     color: var(--color-text-medium);
     border: var(--border-height-regular) solid var(--color-disabled);
-    border-radius: var(--color-disabled);
     padding: var(--spacing-2);
     font-family: var(--font-family-primary);
     border-radius: var(--small-radius);
@@ -55,7 +72,8 @@
   }
 
   .input-with-icon{
-    padding-right: 30px;
+    height: 30px;
+    padding-right: 20px;
   }
 
 </style>

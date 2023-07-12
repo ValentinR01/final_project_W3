@@ -1,6 +1,7 @@
 <script>
   import TextArea from "../atoms/Text-Area.svelte";
 
+  export let id = '';
   export let name = '';
 </script>
   

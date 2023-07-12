@@ -1,10 +1,16 @@
+import { error } from '@sveltejs/kit';
+  
 export function load() {
     return {
         metadata:{
             instruments: ["piano","violon","guitare","violoncelle","trombone","harpe","trompette","flute"],
-            categorie: ["masterclass", "concert", "interview"],
+            categorie: ["concert", "interview", "masterclass"],
             rating: [1,2,3,4],
-            role: ["superadmin","admin","user"]
+            role: ["superadmin","admin","user"], 
+            domain: ["post-prod","regisseur","traducteur","editeur"], 
+            translations: ["Français","Anglais","Italien","Espagnol","Allemand","Japonais","Russe","Arabe","Chinois","Coréen","Portugais"],
+            style: ["classical","jazz","medieval"],
+            era: ["XII","XVI","XVIII","XIX","XX"]
         },
         asset: [
             {
@@ -23,6 +29,7 @@ export function load() {
                 rush_received: 1,
                 version: 1,
                 captation_done: 1,
+                translations: ["Français","Anglais"]
             },
             {
                 id: 2,
@@ -40,6 +47,7 @@ export function load() {
                 rush_received: 0,
                 version: 4,
                 captation_done: 0,
+                translations: ["Français","Allemand"]
             },
             {
                 id: 3,
@@ -57,6 +65,7 @@ export function load() {
                 rush_received: 1,
                 version: 3,
                 captation_done: 1,
+                translations: ["Russe","Espagnol","Chinois"]
             },
             {
                 id: 4,
@@ -116,8 +125,9 @@ export function load() {
                 fullname: 'Chloé Doustalet',
                 email: 'test@gmail.com',
                 role: 'user',
-                profile_pic: 'https://fakeimg.pl/40x40/',
-                domain: 'traduction',
+                profile_pic: 'https://cdn.shopify.com/s/files/1/0442/6219/5368/files/3I3A1369-2.jpg?v=1685536090',
+                count_assigning_asset: 3,
+                domain: 'regisseur'
             },
             {
                 id: 2,
@@ -126,6 +136,7 @@ export function load() {
                 role: 'admin',
                 profile_pic: 'https://fakeimg.pl/40x40/',
                 domain: 'édition',
+                count_assigning_asset: 1,
             },
             {
                 id: 3,
@@ -151,6 +162,12 @@ export function load() {
                 profile_pic: 'https://fakeimg.pl/40x40/',
                 domain: 'édition',
             }
-        ]
+        ],
+        booking:{
+            room: [ 'Salle 1', 'Salle 2', 'Salle 3' ],
+            time_slot: ['8h - 10h', '10h - 12h', '12h - 14h', '14h - 16h', '16h - 18h', '18h - 20h']
+        },
+        composer:[ "Compositeur 1","Compositeur 2","Compositeur 3","Compositeur 4","Compositeur 5" ],
+        intervenor:[ "Intervenant 1","Intervenant 2","Intervenant 3","Intervenant 4","Intervenant 5" ],
     };
 }

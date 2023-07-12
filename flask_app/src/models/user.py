@@ -1,9 +1,9 @@
 from db import db
-from .crud import CRUD
+from models.base import Base
 
 
-class User(db.Model, CRUD):
-    """This class represents the users table."""
+class User(Base):
+    """This class represents the users table"""
     __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -13,16 +13,20 @@ class User(db.Model, CRUD):
     profile_picture = db.Column(db.String(1000), nullable=True)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     count_assigning_asset = db.Column(db.Integer, default=0)
+
     # FK
-    role = db.relationship('`Role', backref='user', lazy=True)
-    domain = db.relationship('Domain', backref='user', lazy=True)
+    role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=False)
+    domain_id = \
+        db.Column(db.Integer, db.ForeignKey('domain.id'), nullable=False)
 
-
-    def __init__(self, email, fullname, password):
+    def __init__(self, email, fullname, password, domain_id, role_id,
+                 created_at=None, profile_picture=None,
+                 count_assigning_asset=0):
         self.email = email
         self.fullname = fullname
         self.password = password
-
-    @classmethod
-    def find_by_email(cls, email):
-        return cls.query.filter_by(email=email).first()
+        self.profile_picture = profile_picture
+        self.created_at = created_at
+        self.count_assigning_asset = count_assigning_asset
+        self.role_id = role_id
+        self.domain_id = domain_id

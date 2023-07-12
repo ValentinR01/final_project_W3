@@ -3,6 +3,7 @@
 /*------------------------------------*\
   #GLOBAL VARIABLES
 \*------------------------------------*/
+
 :root{
   /* COLORS */
   --blue-base: #4D6DCA;
@@ -119,11 +120,15 @@ table {
 	border-spacing: 0;
 }
 
+button{
+  cursor: pointer;
+}
+
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-    outline: none;
+  outline: none;
 }
 
 input[type="search"]::-webkit-search-decoration,
@@ -134,7 +139,7 @@ input[type="search"]::-webkit-search-results-decoration {
   -webkit-appearance: none;
 }
 
-input::placeholder, select::placeholder {
+input::placeholder, select::placeholder, textarea::placeholder {
   font-weight: var(--font-weight-light);
 }
 
@@ -149,6 +154,7 @@ body{
   font-family: var(--font-family-primary);
   font-size: var(--font-size-regular);
   color: var(--color-text-regular);
+  background-color: var(--color-background-primary);
 }
 
 .block-center{
@@ -161,10 +167,17 @@ body{
   text-align: center;
 }
 
+.w-100{
+  width: 100%;
+}
+
 hr{
   border: 0.5px solid var(--color-border)
 }
 
+form h1{
+  margin-bottom: var(--spacing-3);
+}
 
 
 
@@ -172,6 +185,7 @@ hr{
 /*------------------------------------*\
   #STYLES
 \*------------------------------------*/
+
 .hidden{
   display: none !important;
 }
@@ -213,11 +227,21 @@ hr{
 }
 
 .text--semibold{
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-semibold) !important;
+}
+
+.text--regular{
+  font-weight: var(--font-weight-regular);
 }
 
 .text--light{
   font-weight: var(--font-weight-light);
+}
+
+.button--transparent{
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 

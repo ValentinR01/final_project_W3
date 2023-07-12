@@ -2,9 +2,11 @@
   
   import moment from 'moment-timezone'
 
-   /**
+  /**
   * @type {String}
   */
+
+  export let widthDatePicker = '100%';
 
   let today = moment(new Date()).tz("Europe/Paris").format("YYYY/MM/DD").replaceAll('/', '-')
   const date = {min: today};
@@ -12,7 +14,7 @@
 
 </script>
 
-<input class="date-picker" type=date min={date.min} {...selected} bind:value={today}/>
+<input class="date-picker" style='width: {widthDatePicker}' type=date min={date.min} {...selected} bind:value={today}/>
 
 <style>
   .date-picker {
@@ -20,6 +22,7 @@
     border: var(--border-height-regular) solid var(--color-disabled);
     border-radius: var(--color-disabled);
     padding: var(--spacing-2);
+    height: 18px;
     min-width: 280px;
     font-family: var(--font-family-primary);
     border-radius: var(--small-radius);

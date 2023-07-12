@@ -164,7 +164,7 @@
 <br><br>
 <RadioForm data={data.metadata.categorie} catForm='categorie'> Type de vidéo </RadioForm>
 <br><br><br>
-<Rating rate={data.projects[0].rating} />
+<Rating rate={data.asset[0].rating} />
 <br><br>
 <Searchbar urlSearchbar="projects" data={data.asset} widthSearchbar="500" />
 <br><br>
@@ -219,7 +219,7 @@
 <ModalIntervenor type='composer'/>
 <br><br>
 <!--
-<SubtitlesRequest languages={data.metadata.translations} data={data.projects[0].translations} /> 
+<SubtitlesRequest languages={data.metadata.translations} data={data.asset[0].translations} /> 
 <br><br>
 <CommentaryForm />
 <br><br>

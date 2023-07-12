@@ -4,7 +4,7 @@ from services.composer import \
     register_service
 from helpers.decorators import rights_manager
 
-namespace = Namespace('composer', 'Composer related endpoints')
+namespace = Namespace('composers', 'Composer related endpoints')
 
 api = Api()
 

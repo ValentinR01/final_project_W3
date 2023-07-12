@@ -18,6 +18,10 @@
     border-radius: var(--card-radius);
   }
 
+  :global(.card--wide){
+    max-height: 100%;
+  }
+
   :global(.tabs) :global(.searchbar-container){
     position: absolute;
     right: 0;

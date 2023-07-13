@@ -1,26 +1,23 @@
 <script>
   import Text from '../../../components/atoms/Text.svelte';
   import Tabs from '../../../components/molecules/Tabs.svelte';
-
-  import Tab1 from "../../../tabs/validation-montage.svelte";
-  import Tab2 from "../../../tabs/validation-finale.svelte";
-  import Tab3 from "../../../tabs/encours-superadmin.svelte";
   import Margin from '../../../components/atoms/Margin.svelte';
 
+  import RegularOngoing from '../../../tabs/RegularOngoing.svelte';
+  import RegularToStart from '../../../tabs/RegularToStart.svelte';
+  import Link from '../../../components/atoms/Link.svelte';
+
+  let domain = 'regisseur';
   export let data;
 
   let items = [
-    { label: "Validation montage",
+    { label: "A commencer",
      value: 1,
-     component: Tab1
-    },
-    { label: "Validation finale",
-     value: 2,
-     component: Tab2
+     component: RegularToStart
     },
     { label: "En cours",
-     value: 3,
-     component: Tab3
+     value: 2,
+     component: RegularOngoing
     }
   ];
 </script>
@@ -34,9 +31,15 @@
       Les projets
     </Text>
   
-    <div class='dashboard-nav'>
-      <Tabs {items} data={data}/>
-    </div>
+    {#if domain == 'regisseur'}
+      <Link linkUrl='/projects/create' linkColor='white' class='link--button'> + Nouveau projet </Link>
+      <p> TABLEAU A AJOUTER </p>
+      <p> DEUXIEME TABLEAU A AJOUTER </p>
+    {:else}
+      <div class='dashboard-nav'>
+        <Tabs {items} data={data}/>
+      </div>
+    {/if}
   
   </div>
 </Margin>

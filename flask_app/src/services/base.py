@@ -1,4 +1,3 @@
-import logging
 from db import db
 
 
@@ -31,8 +30,6 @@ def get_all_entities(entity: db.Model, **filters):
     """
     try:
         entity_list = entity.get_all_by(**filters)
-        logging.info(entity_list)
-        logging.info(type(entity_list))
     except Exception as e:
         return {'error': str(e)}, 500
     return {f"all_{entity.__tablename__}": entity_list}, 200

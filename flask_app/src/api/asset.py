@@ -118,7 +118,7 @@ class Create(Resource):
             }
         }
     )
-    @rights_manager(token=token, role='worker', domain='redaction')
+    # @rights_manager(token=token, role='worker', domain='redaction')
     @namespace.response(200, '')
     def post(self):
         return create_asset(request.json)

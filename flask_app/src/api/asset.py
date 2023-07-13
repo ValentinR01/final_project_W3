@@ -1,18 +1,30 @@
 from flask import request
 from flask_restx import Namespace, Resource, Api
 from helpers.decorators import rights_manager
-from services.asset import create_asset
+from services.asset import create_asset, get_all_assets
 
 namespace = Namespace('assets', 'Asset related endpoints')
 
 api = Api()
 
 
+@namespace.route('/', methods=['GET'])
+class GetAll(Resource):
+    """Get all assets"""
+    @api.doc(
+        params={
+
+        }
+    )
+    def get(self, **kwargs):
+        """Get all assets"""
+        return get_all_assets(**kwargs)
+
+
 @namespace.route('/create', methods=['POST'])
 class Create(Resource):
     """Create a new asset"""
-    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9" \
-            ".eyJpZCI6NSwiZnVsbG5hbWUiOiJ3b3JrZXIiLCJlbWFpbCI6IndvcmtlckBzYWxpbmUuY29tIiwicm9sZSI6IndvcmtlciIsImRvbWFpbiI6InJlZGFjdGlvbiIsImV4cCI6MTY4OTIwNzM3NiwiaWF0IjoxNjg5MTcxMzc2fQ.5SicmBfgh0MYCfbATo4WswHgY8soNjsewbACDiQcZ6o"
+    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImZ1bGxuYW1lIjoid29ya2VyIiwiZW1haWwiOiJ3b3JrZXJAc2FsaW5lLmNvbSIsInJvbGUiOiJ3b3JrZXIiLCJkb21haW4iOiJyZWRhY3Rpb24iLCJleHAiOjE2ODkyNzU2MDEsImlhdCI6MTY4OTIzOTYwMX0.PthvqrWTOjIX8Wk7pMxKiGEfTqvzIEEJcLQROVAfjqc"
     @api.doc(
         params={
             # Required parameters
@@ -109,5 +121,4 @@ class Create(Resource):
     @rights_manager(token=token, role='worker', domain='redaction')
     @namespace.response(200, '')
     def post(self):
-        return {"message": "Asset created successfully."}
-        # return create_asset(request.json)
+        return create_asset(request.json)

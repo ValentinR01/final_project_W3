@@ -16,3 +16,8 @@ def get_composer_by_id(composer_id):
     if not composer:
         return {'message': 'Composer not found'}, 404
     return composer, 200
+
+
+def get_all_composers():
+    composers = Composer.get_all()
+    return {'composers': composers}, 200

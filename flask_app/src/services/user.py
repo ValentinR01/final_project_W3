@@ -56,12 +56,14 @@ def login_service(userdata):
 
         token = auth_handler.generate_token(user)
         expiration_date = datetime.datetime.now() + datetime.timedelta(hours=TOKEN_EXPIRATION_HOURS)
-        response = make_response({
-            'access_token': token,
-            'message': 'Login successful'
-        }, 200)
-        response.set_cookie('authorization', token, expires=expiration_date)  # Set the authorization cookie
-        return response
+        # response.set_cookie('authorization', token, expires=expiration_date)  # Set the authorization cookie
+        return (
+            {'access_token': token, 'message': 'Login successful'},
+            200,
+            {'Set-Cookie': f'authorization={token}; Expires={expiration_date}; Path=/'}
+        )
+
+
     except Exception as e:
         logging.error(e)
         return {e}, 500

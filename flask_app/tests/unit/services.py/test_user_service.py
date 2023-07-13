@@ -1,6 +1,7 @@
 import pytest
 import datetime
 from unittest.mock import patch
+from flask import make_response
 from models.user import User
 from models.domain import Domain
 from helpers.auth import AuthHandler
@@ -17,6 +18,11 @@ def mock_user():
         password='password',
         role_id=1,
         domain_id=1)
+
+
+@pytest.fixture
+def mock_user_list(mock_user) -> list:
+    return [mock_user, mock_user]
 
 
 @pytest.fixture
@@ -49,11 +55,6 @@ def mock_missing_data():
 @pytest.fixture
 def mock_domain():
     return Domain(name='redaction')
-
-
-@pytest.fixture
-def mock_user_list(mock_user) -> list:
-    return [mock_user, mock_user]
 
 
 def test_register_service(mock_register_data, mock_user, mock_missing_data):
@@ -108,9 +109,19 @@ def test_get_all_users(mock_user_list):
 
 def test_login_service(mock_login_data, mock_user):
     auth_handler = AuthHandler()
+
+    # Test login with invalid credentials
     with patch('helpers.auth.AuthHandler.authenticate', return_value=None):
         response = login_service(mock_login_data)
         assert response == ({'message': 'Invalid email or password'}, 401)
 
-
-
+    # Test login with valid credentials
+    with patch('helpers.auth.AuthHandler.authenticate', return_value=mock_user):
+        with patch('helpers.auth.AuthHandler.generate_token', return_value='token'):
+            with patch('datetime.datetime') as mock_datetime:
+                mock_datetime.now.return_value = datetime.datetime(2023, 7, 12)
+                response = login_service(mock_login_data)
+                print(response)
+                assert response[0] == {'access_token': 'token', 'message': 'Login successful'}
+                assert response[1] == 200
+                assert response[2]['Set-Cookie'].startswith('authorization=token')

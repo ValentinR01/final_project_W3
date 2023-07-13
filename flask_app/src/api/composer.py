@@ -2,7 +2,7 @@ from flask import request
 from models.composer import Composer
 from flask_restx import Namespace, Resource, fields, Api
 from services.composer import \
-    register_service, get_composer_by_id
+    register_service, get_composer_by_id, get_all_composers
 from helpers.decorators import rights_manager
 
 namespace = Namespace('composers', 'Composer related endpoints')
@@ -24,6 +24,13 @@ composer_model = namespace.model(
         'language_id': fields.Integer()
     }
 )
+
+composers_list_model = namespace.model(
+    'composers_list', {
+        'composers': fields.List(fields.Nested(composer_model))
+    }, default={}
+)
+
 
 @namespace.route('/register', methods=['POST'])
 class Register(Resource):
@@ -47,5 +54,13 @@ class GetByComposerId(Resource):
     )
     @namespace.marshal_with(composer_model, skip_none=True)
     def get(self, composer_id):
-        """Get speaker by id"""
+        """Get composer by id"""
         return get_composer_by_id(composer_id)
+
+
+@namespace.route('', methods=['GET'])
+class Composers(Resource):
+    @namespace.marshal_with(composers_list_model)
+    def get(self):
+        """Get all composers"""
+        return get_all_composers()

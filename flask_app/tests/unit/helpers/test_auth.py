@@ -1,73 +1,90 @@
 import pytest
 import jwt
-from datetime import datetime, timedelta
-from unittest.mock import patch
-from werkzeug.security import generate_password_hash
 
-from helpers.auth import AuthHandler
+from datetime import datetime, timedelta
+from werkzeug.security import generate_password_hash
+from unittest.mock import patch
 from models.user import User
 from models.role import Role
 from models.domain import Domain
+from helpers.auth import AuthHandler
 from conf import TOKEN_SECRET
 
 
 @pytest.fixture
 def user():
-    return User(
-        email="john@example.com",
-        fullname="John Doe",
-        password=generate_password_hash("password"),
-        domain_id=1,
-        role_id=1
+    password_hash = generate_password_hash('password')
+    role = Role(name='worker')
+    domain = Domain(name='redaction')
+    user = User(
+        email='john@saline.com',
+        fullname='John Doe',
+        password=password_hash,
+        role_id=role,
+        domain_id=domain
     )
+    return user
 
 
-@pytest.fixture
-def role():
-    return Role(name="admin")
+@patch('helpers.auth.User.get_by')
+def test_authenticate_valid_user(mock_get_by, user):
+    # Mock the User.get_by method to return the user
+    mock_get_by.return_value = user
+
+    # Call the authenticate method with valid credentials
+    authenticated_user = AuthHandler.authenticate('john@saline.com', 'password')
+
+    # Assertions
+    assert authenticated_user == user
 
 
-@pytest.fixture
-def domain():
-    return Domain(name="example.com")
+@patch('helpers.auth.User.get_by')
+def test_authenticate_invalid_user(mock_get_by, user):
+    # Mock the User.get_by method to return None
+    mock_get_by.return_value = None
+
+    # Call the authenticate method with invalid credentials
+    authenticated_user = AuthHandler.authenticate('john@saline.com',
+                                                  'wrong_password')
+
+    # Assertions
+    assert authenticated_user is None
 
 
-def test_authenticate_with_valid_credentials(user):
-    with patch('models.user.User.get_by', return_value=user):
-        with patch('werkzeug.security.check_password_hash', return_value=True):
-            result = AuthHandler.authenticate(user.email, "password")
-            assert result == user
-
-
-def test_authenticate_with_invalid_credentials(user):
-    with patch('models.user.User.get_by', return_value=user):
-        with patch('werkzeug.security.check_password_hash', return_value=False):
-            result = AuthHandler.authenticate(user.email, "wrong_password")
-            assert result is None
-
-
-def test_generate_token(user, role, domain):
-    with patch('models.role.Role.get_by', return_value=role):
-        with patch('models.domain.Domain.get_by', return_value=domain):
+def test_generate_token(user):
+    with patch('models.role.Role.get_by', return_value=user.role_id):
+        with patch('models.domain.Domain.get_by', return_value=user.domain_id):
             token = AuthHandler.generate_token(user)
             assert isinstance(token, str)
 
 
-def test_decode_token_with_valid_token(user):
+def test_decode_token_valid_token():
+    # Generate a valid token
+    role = Role(name='worker')
+    domain = Domain(name='redaction')
+    user = User(
+        email='john@saline.com',
+        fullname='John Doe',
+        password='password',
+        role_id=role,
+        domain_id=domain
+    )
     payload = {
-        "id": user.id,
-        "fullname": user.fullname,
-        "email": user.email,
-        "role": "admin",
-        "domain": "example.com",
-        "exp": 1752179546,
-        "iat": 1688984385
+        'id': user.id,
+        'fullname': user.fullname,
+        'email': user.email,
+        'role': role.name,
+        'domain': domain.name,
+        'exp': 1720777536,
+        'iat': 1689241536
     }
     token = jwt.encode(payload, key=TOKEN_SECRET, algorithm='HS256')
 
-    result = AuthHandler.decode_token(token)
+    # Call the decode_token method
+    decoded_payload = AuthHandler.decode_token(token)
 
-    assert result == payload
+    # Assertions
+    assert decoded_payload == payload
 
 
 @patch('helpers.auth.abort')

@@ -6,7 +6,7 @@
 
 </script>
 
-<Margin marginTop='3%'>
+<Margin marginTop='10%'>
   <div class="card block-center">
     <RoomRegistrationForm data={data.booking}/>
   </div>

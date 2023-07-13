@@ -5,7 +5,7 @@
   export let data;
 </script>
 
-<Margin>
+<Margin marginTop='3%'>
   <div class='card card--wide block-center'>
     <ProjectCreationForm data={data}/>
   </div>

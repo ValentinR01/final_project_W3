@@ -1,13 +1,11 @@
 <script lang=ts>
-  export let primary = false;
+  export let secondary = false;
   export let marginTop = "0";
-
-  $: mode = primary ? 'button--primary' : 'button--secondary';
 </script>
 
 <button
   on:click
-  class="button text-preset-4 {$$props.class}"
+  class="button text-preset-4 {secondary === true ? 'button--secondary' : ''} {$$props.class}"
   style='margin-top: {marginTop}'
 >            
   <slot/>
@@ -43,5 +41,11 @@
 
   .button:focus{ 
     border: var(--border-height-thick) solid var(--color-highlight);
+  }
+
+  .button--secondary{
+    border: 1px solid var(--color-highlight);
+    background-color: transparent;
+    color: var(--color-highlight);
   }
 </style>

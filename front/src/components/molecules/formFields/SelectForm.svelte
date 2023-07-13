@@ -5,7 +5,10 @@
   export let nameSelect = "";
   export let widthForm = '100%';
 
-  export let selectValue;
+  /**
+   * @type {any}
+   */
+   export let selectValue;
 
   /**
    * @type {any}

@@ -12,7 +12,7 @@
   /**
   * @type {any}
   */
-  export let valueSelected = options[0];
+  export let valueSelected = options[0].name;
   let value;
 
   $: {
@@ -27,7 +27,7 @@
     bind:value={valueSelected}
   >
     {#each options as valueSelected}
-      <option value={valueSelected}>{valueSelected}</option>
+      <option value={valueSelected.name}>{valueSelected.name}</option>
     {/each}
   </select>
 </div>

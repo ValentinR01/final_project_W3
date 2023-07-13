@@ -13,21 +13,28 @@
   /**
    * @type {string}
   */
-  export let selectValue = '';
+  export let selectRole;
+  /**
+   * @type {string}
+   */
+   export let selectDomain;
 
   /**
    * @type {any}
   */
-  export let employeePicture;
+  export let employeePicture = '';
 
     /**
    * @type {any}
   */
   export let data;
-
+  
+  let domainList = [{ id:1, name:'traducteur'}, {id:2, name:'regisseur'}, {id:3, name:'editeur'}];
+  let roleList = [{ id:1, name:'admin'}, {id:2, name:'superadmin'}, {id:3, name:'user'}];
+  let translationsList = [{ id:1, name:'anglais'}, {id:2, name:'espagnol'}, {id:3, name:'allemand'}, { id:1, name:'italien'}, {id:2, name:'russe'}, {id:3, name:'japonais'}];
 </script>
 
-<form class="form-newUser">
+<form class="form-newUser" method="Post" action="?/register"> 
   <Text
     textTag='h1'
     class='text-preset-1 text--uppercase w-100 text-center'
@@ -48,13 +55,13 @@
     </InputForm>
   </div>
 
-  <InputForm id='lastname' name='lastname' widthForm='calc(50% - 5px)'> Nom </InputForm>
-  <InputForm id='firstname' name='firstname' widthForm='calc(50% - 5px)'> Prénom </InputForm>
-  <InputForm id='email' name='email' type='email'> Email </InputForm>
-  <SelectForm nameSelect="domain" data={data.metadata.domain} labelName='domain' widthForm='calc(50% - 5px)' bind:selectValue={selectValue} > Domaine </SelectForm>
-  <SelectForm nameSelect="role" data={data.metadata.role} labelName='role' widthForm='calc(50% - 5px)' bind:selectValue={selectValue}> Rôle </SelectForm>
-  {#if selectValue == 'traducteur'}
-    <CheckboxForm data={data.metadata.translations} catForm='langues-traducteur'> Langues de traduction </CheckboxForm>
+  <InputForm id='lastname' name='fullname' widthForm='calc(50% - 5px)'> Nom complet </InputForm>
+  <InputForm id='email' name='email' type='email' widthForm='calc(50% - 5px)'> Email </InputForm>
+  <InputForm id='password' name='password'> Mot de passe </InputForm>
+  <SelectForm nameSelect="domain" data={domainList} labelName='domain' widthForm='calc(50% - 5px)' bind:selectValue={selectRole} > Domaine </SelectForm>
+  <SelectForm nameSelect="role" data={roleList} labelName='role' widthForm='calc(50% - 5px)' bind:selectValue={selectDomain}> Rôle </SelectForm>
+  {#if selectDomain == 'traducteur'}
+    <CheckboxForm data={translationsList} catForm='langues-traducteur'> Langues de traduction </CheckboxForm>
   {/if}
   <Button marginTop='var(--spacing-2)'> Valider </Button>
 </form>

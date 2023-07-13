@@ -56,12 +56,11 @@ def login_service(userdata):
             return {'message': 'Invalid email or password'}, 401
 
         token = auth_handler.generate_token(user)
-        expiration_date = datetime.datetime.now() + datetime.timedelta(hours=TOKEN_EXPIRATION_HOURS)
-
+        # TODO : Secure cookie set
+        headers = [('Set-Cookie', f'authorization={token}; max-age={TOKEN_EXPIRATION_HOURS * 60 * 60}; path=/')]
         return (
             {'access_token': token, 'message': 'Login successful'},
-            200,
-            {'Set-Cookie': f'authorization={token}; Expires={expiration_date}; Path=/'}
+            200, headers
         )
 
     except Exception as e:

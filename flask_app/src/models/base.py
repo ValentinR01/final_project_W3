@@ -23,7 +23,7 @@ class Base(db.Model):
 
     @classmethod
     def get_all(cls: db.Model):
-        return cls.query.all()
+        return cls.query.all() or []
 
     @classmethod
     def get_by(cls: db.Model, **kwargs):

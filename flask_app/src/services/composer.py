@@ -1,4 +1,10 @@
 from models.composer import Composer
+from models.domain import Domain
+from werkzeug.security import generate_password_hash
+from helpers.auth import AuthHandler
+from flask_restx import abort
+import logging
+import re
 
 
 def register_service(data):
@@ -9,10 +15,3 @@ def register_service(data):
     new_composer.create()
 
     return {'message': 'Composer well created'}, 201
-
-
-def get_composer_by_id(composer_id):
-    composer = Composer.get_by(id=composer_id)
-    if not composer:
-        return {'message': 'Composer not found'}, 404
-    return composer, 200

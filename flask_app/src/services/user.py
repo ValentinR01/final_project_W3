@@ -51,38 +51,37 @@ def login_service(userdata):
         user = auth_handler.authenticate(
             email=userdata.get('email'), password=userdata.get('password')
         )
+
         if not user:
             return {'message': 'Invalid email or password'}, 401
 
         token = auth_handler.generate_token(user)
-        expiration_date = datetime.datetime.now() + datetime.timedelta(hours=TOKEN_EXPIRATION_HOURS)
-        response = make_response({
-            'access_token': token,
-            'message': 'Login successful'
-        }, 200)
-        response.set_cookie('authorization', token, expires=expiration_date)  # Set the authorization cookie
-        return response
+        # TODO : Secure cookie set
+        headers = [('Set-Cookie', f'authorization={token}; max-age={TOKEN_EXPIRATION_HOURS * 60 * 60}; path=/')]
+        return (
+            {'access_token': token, 'message': 'Login successful'},
+            200, headers
+        )
+
     except Exception as e:
         logging.error(e)
-        return {}, 500
+        return {e}, 500
 
 
 def get_user_by_domain(domain_name):
     domain = Domain.get_by(name=domain_name)
     if domain is None:
-        abort(404, "Domain not found")
+        return {'message': 'Domain not found'}, 404
 
     domain_id = domain.id
     user_list = User.get_all_by(domain_id=domain_id)
 
     if user_list is None:
-        return {'users': []}
+        return {'users': []}, 200
 
     return {'users': user_list}, 200
 
 
 def get_all_users():
     user_list = User.get_all()
-    if user_list is None:
-        return {'users': []}
     return {'users': user_list}, 200

@@ -24,7 +24,7 @@
     padding: var(--spacing-3);
     border: 1px solid var(--color-border);
     border-radius: var(--card-radius);
-    width: 245px;
+    width: 225px;
   }
 
   .employee-card:hover{

@@ -1,7 +1,7 @@
 <script>
-  import Text from "../components/atoms/Text.svelte";
-  import Searchbar from "../components/molecules/Searchbar.svelte";
-  import Pagination from '../components/atoms/Pagination.svelte';
+  import Text from "../../components/atoms/Text.svelte";
+  import Searchbar from "../../components/molecules/Searchbar.svelte";
+  import Pagination from '../../components/atoms/Pagination.svelte';
 
   /**
     * @type { any }

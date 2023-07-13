@@ -1,33 +1,36 @@
 <script>
-    import DownloadIcon from "../../../assets/icons/DownloadIcon.svelte";
-    import UploadIcon from "../../../assets/icons/UploadIcon.svelte";
-    import FileAction from "../../../components/atoms/FileAction.svelte";
+  import DownloadIcon from "../../../assets/icons/DownloadIcon.svelte";
+  import UploadIcon from "../../../assets/icons/UploadIcon.svelte";
+  import FileAction from "../../../components/atoms/FileAction.svelte";
+  import Margin from "../../../components/atoms/Margin.svelte";
   
-    import CommentariesCard from "../../../components/organisms/Cards/commentariesCard.svelte";
-    import ProjectInfosCard from "../../../components/organisms/Cards/projectInfosCard.svelte";
-  
-    export let data;
+  import CommentariesCard from "../../../components/organisms/Cards/commentariesCard.svelte";
+  import ProjectInfosCard from "../../../components/organisms/Cards/projectInfosCard.svelte";
+
+  export let data;
   </script>
   
-  <div class='postprod-details block-center'>
-    <ProjectInfosCard data={data} />
+  <Margin marginTop='3%'>
+    <div class='postprod-details block-center'>
+      <ProjectInfosCard data={data} />
+    
+      <div class='actions-postProd block-center'>
   
-    <div class='actions-postProd block-center'>
-
-      <FileAction action='download' nameInput='file'>
-        <DownloadIcon slot='icon' />
-        <span slot='text'> TÉLÉCHARGER LA VIDÉO MONTÉE </span>  
-      </FileAction> 
-       
-      <FileAction action='upload' nameInput='file'>
-        <UploadIcon slot='icon' />
-        <span slot='text'> UPLOADER LA NOUVELLE VIDEO </span>  
-      </FileAction>
-    
+        <FileAction action='download' nameInput='file'>
+          <DownloadIcon slot='icon' />
+          <span slot='text'> TÉLÉCHARGER LA VIDÉO MONTÉE </span>  
+        </FileAction> 
+         
+        <FileAction action='upload' nameInput='file'>
+          <UploadIcon slot='icon' />
+          <span slot='text'> UPLOADER LA NOUVELLE VIDEO </span>  
+        </FileAction>
+      
+      </div>
+      
+      <CommentariesCard data={data} />
     </div>
-    
-    <CommentariesCard data={data} />
-  </div>
+  </Margin>
   
   <style>
     .postprod-details{

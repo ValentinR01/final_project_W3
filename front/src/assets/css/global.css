@@ -25,6 +25,7 @@
   --color-background-primary: var(--pale-blue);
   --color-background-secondary: var(--white);
   --color-background-tercary: var(--lighter-grey);
+  --color-background-quaternary: var(--lighter-blue);
   --color-primary: var(--blue-base);
   --color-secondary: var(--darker-blue);
   --color-highlight: var(--blue-base);

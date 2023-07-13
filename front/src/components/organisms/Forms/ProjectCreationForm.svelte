@@ -10,12 +10,12 @@
   /**
    * @type {string}
   */
-  export let radioValue;
+  export let radioValue = '';
 
   /**
    * @type {string}
   */
-  export let selectValue;
+  export let selectValue = '';
 
   /**
    * @type { any }

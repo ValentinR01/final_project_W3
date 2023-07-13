@@ -1,22 +1,18 @@
-from flask import request
-from flask_restx import Namespace, Resource, fields, Api
-from services.composer import \
-    register_service
-from helpers.decorators import rights_manager
+from models.composer import Composer
 
-namespace = Namespace('composers', 'Composer related endpoints')
 
-api = Api()
+def register_service(data):
+    if Composer.get_by(fullname=data['fullname']):
+        return {'message': 'Composer already exists'}, 409
 
-register_model = namespace.model('Register', {
-    'fullname': fields.String()
-})
+    new_composer = Composer(fullname=data['fullname'])
+    new_composer.create()
 
-@namespace.route('/register', methods=['POST'])
-class Register(Resource):
-    @namespace.expect(register_model)
-    @namespace.response(201, 'Composer well created')
-    def post(self):
-        """Register a new composer"""
-        data = request.json
-        return register_service(data)
+    return {'message': 'Composer well created'}, 201
+
+
+def get_composer_by_id(composer_id):
+    composer = Composer.get_by(id=composer_id)
+    if not composer:
+        return {'message': 'Composer not found'}, 404
+    return composer, 200

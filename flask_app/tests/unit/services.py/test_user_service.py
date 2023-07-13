@@ -1,7 +1,5 @@
 import pytest
-import datetime
 from unittest.mock import patch
-from flask import make_response
 from models.user import User
 from models.domain import Domain
 from helpers.auth import AuthHandler

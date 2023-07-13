@@ -46,10 +46,10 @@
   import RoomRegistrationForm from '../components/organisms/Forms/RoomRegistrationForm.svelte';
   import Table from '../components/organisms/Table.svelte';
 
-  import ProjectComments from "../../../tabs/Project Details/ProjectComments.svelte";
-  import ProjectInfos from "../../../tabs/Project Details/ProjectInfos.svelte";
-  import ProjectTraduction from "../../../tabs/Project Details/ProjectTraduction.svelte";
-  import ProjectVideo from "../../../tabs/Project Details/ProjectVideo.svelte";
+  import ProjectComments from '../tabs/Project Details/ProjectComments.svelte';
+  import ProjectInfos from "../tabs/Project Details/ProjectInfos.svelte";
+  import ProjectTraduction from "../tabs/Project Details/ProjectTraduction.svelte";
+  import ProjectVideo from "../tabs/Project Details/ProjectVideo.svelte";
 	
 	let values;
 

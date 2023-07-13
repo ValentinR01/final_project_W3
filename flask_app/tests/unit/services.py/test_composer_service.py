@@ -49,10 +49,10 @@ def test_get_composer_by_id(mock_composer):
 def test_get_all_composers(mock_composer_list):
     # Test with a list of composers
     with patch('models.composer.Composer.get_all', return_value=mock_composer_list):
-        speaker_list = get_all_composers()
-        assert speaker_list == ({'speakers': mock_composer_list}, 200)
+        composer_list = get_all_composers()
+        assert composer_list == ({'composers': mock_composer_list}, 200)
 
     # Test with an empty list of speakers
-    with patch('models.composer.Composer.get_all', return_value=None):
-        speaker_list = get_all_composers()
-        assert speaker_list == ({'speakers': []}, 200)
+    with patch('models.composer.Composer.get_all', return_value=[]):
+        composer_list = get_all_composers()
+        assert composer_list == ({'composers': []}, 200)

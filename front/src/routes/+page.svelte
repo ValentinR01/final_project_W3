@@ -3,10 +3,6 @@
 
   import '../assets/css/global.css';
 
-  import ValidationMontage from "../tabs/validation-montage.svelte";
-  import ValidationFinale from "../tabs/validation-finale.svelte";
-  import EncoursSuperadmin from "../tabs/encours-superadmin.svelte";
-
   import Logo from '../assets/img/logo_color.png';
   import Button from '../components/atoms/Button.svelte';
   import Icon from '../components/atoms/Icon.svelte';
@@ -50,6 +46,10 @@
   import RoomRegistrationForm from '../components/organisms/Forms/RoomRegistrationForm.svelte';
   import Table from '../components/organisms/Table.svelte';
 
+  import ProjectComments from "../../../tabs/Project Details/ProjectComments.svelte";
+  import ProjectInfos from "../../../tabs/Project Details/ProjectInfos.svelte";
+  import ProjectTraduction from "../../../tabs/Project Details/ProjectTraduction.svelte";
+  import ProjectVideo from "../../../tabs/Project Details/ProjectVideo.svelte";
 	
 	let values;
 
@@ -57,17 +57,21 @@
 
   // List of tab items with labels, values and assigned components
   let items = [
-    { label: "Tab 1",
+    { label: "Infos projet",
      value: 1,
-     component: ValidationMontage
+     component: ProjectInfos
     },
-    { label: "Tab 2",
+    { label: "Video",
      value: 2,
-     component: ValidationFinale
+     component: ProjectVideo
     },
-    { label: "Tab 3",
+    { label: "Traductions",
      value: 3,
-     component: EncoursSuperadmin
+     component: ProjectTraduction
+    },
+    { label: "Commentaires",
+     value: 4,
+     component: ProjectComments
     }
   ];
 </script>

@@ -3,13 +3,13 @@
   import Tabs from '../../../components/molecules/Tabs.svelte';
   import Margin from '../../../components/atoms/Margin.svelte';
 
-  import SuperadminVideo from "../../../tabs/SuperadminVideo.svelte";
-  import SuperadminFinal from "../../../tabs/SuperadminFinal.svelte";
-  import SuperadminOngoing from "../../../tabs/SuperadminOngoing.svelte";
+  import SuperadminVideo from "../../../tabs/SuperAdmin Dashboard/SuperadminVideo.svelte";
+  import SuperadminFinal from "../../../tabs/SuperAdmin Dashboard/SuperadminFinal.svelte";
+  import SuperadminOngoing from "../../../tabs/SuperAdmin Dashboard/SuperadminOngoing.svelte";
 
-  import AdminAttribution from '../../../tabs/AdminAttribution.svelte';
-  import AdminOngoing from '../../../tabs/AdminOngoing.svelte';
-  import AdminToCome from '../../../tabs/AdminToCome.svelte';
+  import AdminAttribution from '../../../tabs/Admin Dashboard/AdminAttribution.svelte';
+  import AdminOngoing from '../../../tabs/Admin Dashboard/AdminOngoing.svelte';
+  import AdminToCome from '../../../tabs/Admin Dashboard/AdminToCome.svelte';
 
   export let data;
 

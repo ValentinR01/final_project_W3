@@ -3,8 +3,8 @@
   import Tabs from '../../../components/molecules/Tabs.svelte';
   import Margin from '../../../components/atoms/Margin.svelte';
 
-  import RegularOngoing from '../../../tabs/RegularOngoing.svelte';
-  import RegularToStart from '../../../tabs/RegularToStart.svelte';
+  import RegularOngoing from '../../../tabs/Regular Dashboard/RegularOngoing.svelte';
+  import RegularToStart from '../../../tabs/Regular Dashboard/RegularToStart.svelte';
   import Link from '../../../components/atoms/Link.svelte';
 
   let domain = 'regisseur';

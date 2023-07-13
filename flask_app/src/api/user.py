@@ -67,7 +67,7 @@ class Login(Resource):
         """Login a user"""
         data = request.json
         return login_service(data)
-    
+
 
 @namespace.route('/domain/<domain_name>', methods=['GET'])
 class Domain(Resource):

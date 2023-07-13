@@ -2,6 +2,7 @@
   import AddIcon from "../../../../assets/icons/AddIcon.svelte";
   import DownloadIcon from "../../../../assets/icons/DownloadIcon.svelte";
   import FileAction from "../../../../components/atoms/FileAction.svelte";
+  import Margin from "../../../../components/atoms/Margin.svelte";
 
   import CommentariesCard from "../../../../components/organisms/Cards/commentariesCard.svelte";
   import ProjectInfosCard from "../../../../components/organisms/Cards/projectInfosCard.svelte";
@@ -9,24 +10,26 @@
   export let data;
 </script>
 
-<div class='postprod-details block-center'>
-  <ProjectInfosCard data={data} />
-
-  <div class='actions-postProd block-center'>
-    <FileAction action='download' nameInput='file'>
-      <DownloadIcon slot='icon' />
-      <span slot='text'> TÉLÉCHARGER LA VIDÉO MONTÉE </span>  
-    </FileAction> 
-     
-    <FileAction action='edition' nameInput='file'>
-      <AddIcon slot='icon' />
-      <span slot='text'> AJOUTER INFOS DE LA VIDEO </span>  
-    </FileAction>
+<Margin marginTop='3%'>
+  <div class='postprod-details block-center'>
+    <ProjectInfosCard data={data} />
   
+    <div class='actions-postProd block-center'>
+      <FileAction action='download' nameInput='file'>
+        <DownloadIcon slot='icon' />
+        <span slot='text'> TÉLÉCHARGER LA VIDÉO MONTÉE </span>  
+      </FileAction> 
+       
+      <FileAction action='edition' nameInput='file'>
+        <AddIcon slot='icon' />
+        <span slot='text'> AJOUTER INFOS DE LA VIDEO </span>  
+      </FileAction>
+    
+    </div>
+    
+    <CommentariesCard data={data} />
   </div>
-  
-  <CommentariesCard data={data} />
-</div>
+</Margin>
 
 <style>
   .postprod-details{

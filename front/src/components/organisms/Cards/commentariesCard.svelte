@@ -40,7 +40,7 @@
 
 <style>
   .card-commentaries{
-    margin: var(--spacing-2) auto;
+    margin: var(--spacing-3) auto;
     display: flex;
     flex-wrap: wrap;
     row-gap: var(--spacing-2);

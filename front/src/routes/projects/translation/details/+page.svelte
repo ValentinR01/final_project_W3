@@ -31,6 +31,7 @@
 <style>
   .postprod-details{
     width: 60%;
+    margin-top: 3%;
   }
   
   .postprod-details :global(.card){

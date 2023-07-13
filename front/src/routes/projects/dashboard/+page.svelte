@@ -5,6 +5,7 @@
   import Tab1 from "../../../tabs/validation-montage.svelte";
   import Tab2 from "../../../tabs/validation-finale.svelte";
   import Tab3 from "../../../tabs/encours-superadmin.svelte";
+  import Margin from '../../../components/atoms/Margin.svelte';
 
   export let data;
 
@@ -24,19 +25,21 @@
   ];
 </script>
 
-<div class='card block-center'>
-  <Text
-    textTag='h1'
-    class='text-preset-1 text-center text--uppercase'
-    >
-    Les projets
-  </Text>
-
-  <div class='dashboard-nav'>
-    <Tabs {items} data={data}/>
+<Margin marginTop='3%'>
+  <div class='card block-center'>
+    <Text
+      textTag='h1'
+      class='text-preset-1 text-center text--uppercase'
+      >
+      Les projets
+    </Text>
+  
+    <div class='dashboard-nav'>
+      <Tabs {items} data={data}/>
+    </div>
+  
   </div>
-
-</div>
+</Margin>
 
 <style>
   .dashboard-nav{

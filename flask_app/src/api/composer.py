@@ -54,7 +54,7 @@ class GetByComposerId(Resource):
     )
     @namespace.marshal_with(composer_model, skip_none=True)
     def get(self, composer_id):
-        """Get speaker by id"""
+        """Get composer by id"""
         return get_composer_by_id(composer_id)
 
 

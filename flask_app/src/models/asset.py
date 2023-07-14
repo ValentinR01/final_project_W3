@@ -25,7 +25,7 @@ class Asset(Base):
     published = db.Column(db.Boolean, default=False)
 
     # Date
-    created_at = db.Column(db.Date, default=db.func.current_timestamp())
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     published_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     last_assignment_at = \
@@ -55,22 +55,21 @@ class Asset(Base):
     booking_id = \
         db.Column(db.Integer, db.ForeignKey('booking.id'), nullable=False)
     captation_id = \
-        db.Column(db.Integer, db.ForeignKey('captation.id'), nullable=False)
+        db.Column(db.Integer, db.ForeignKey('captation.id'), nullable=True)
     post_prod_id = \
-        db.Column(db.Integer, db.ForeignKey('post_prod.id'), nullable=False)
+        db.Column(db.Integer, db.ForeignKey('post_prod.id'), nullable=True)
     transformation_id = db.Column(
-        db.Integer, db.ForeignKey('transformation.id'), nullable=False
+        db.Integer, db.ForeignKey('transformation.id'), nullable=True
     )
 
-    def __init__(self, title, music_title, composer_id,
-                 current_assigned_user_id, created_by_id,
+    def __init__(self, title, music_title, composer_id, step_lifecycle_id,
+                 current_assigned_user_id, created_by_id, booking_id,
                  updated_by_id, speaker_id, status_by_domain_id,
-                 step_lifecycle_id, booking_id, captation_id, post_prod_id,
-                 transformation_id, has_high_priority=False, published=False,
-                 created_at=None, updated_at=None, published_at=None,
-                 last_assignment_at=None, student_fullname=None,
-                 art_description=None, asset_description=None,
-                 link_partitions=None, thumbnail=None, resumed=None):
+                 captation_id=None, post_prod_id=None, transformation_id=None,
+                 has_high_priority=False, published=False, created_at=None,
+                 updated_at=None, published_at=None, last_assignment_at=None,
+                 student_fullname=None, art_description=None, thumbnail=None,
+                 asset_description=None, link_partitions=None, resumed=None):
         self.title = title
         self.music_title = music_title
         self.art_description = art_description

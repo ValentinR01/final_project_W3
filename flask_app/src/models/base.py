@@ -1,3 +1,5 @@
+import logging
+import datetime
 from db import db
 
 
@@ -23,7 +25,7 @@ class Base(db.Model):
 
     @classmethod
     def get_all(cls: db.Model):
-        return cls.query.all() or []
+        return cls.query.all()
 
     @classmethod
     def get_by(cls: db.Model, **kwargs):
@@ -45,25 +47,19 @@ class Base(db.Model):
         :param kwargs: values to check
         :return: all matching records
         """
-        return cls.query.filter_by(**kwargs).all()
-
-    @classmethod
-    def init_db_value(cls: db.Model, init_values: list):
-        """
-        This method will be used to initialize the values of a table.
-
-        :param cls: table to initialize
-        :param init_values: list of values to initialize
-        :return:
-        """
-        for init_value in init_values:
+        raw_data = cls.query.filter_by(**kwargs).all()
+        if raw_data:
             try:
-                domain = cls.query.filter_by(name=init_value).first()
-                if domain:
-                    continue
-                else:
-                    domain = cls(name=init_value)
-                    domain.create()
+                list_data = [
+                    {
+                        key: value.strftime('%Y-%m-%d %H:%M:%S')
+                        if isinstance(value, datetime.datetime)
+                        else value
+                        for key, value in data.__dict__.items()
+                        if key != '_sa_instance_state'
+                    }
+                    for data in raw_data
+                ]
+                return list_data
             except Exception as e:
-                print(e)
-                continue
+                logging.error(e)

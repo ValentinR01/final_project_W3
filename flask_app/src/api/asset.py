@@ -1,7 +1,7 @@
 from flask import request
 from flask_restx import Namespace, Resource, Api
 from helpers.decorators import rights_manager
-from services.asset import create_asset, get_asset, get_asset_by_id
+from services.asset import create_asset, get_asset
 
 namespace = Namespace('assets', 'Asset related endpoints')
 
@@ -24,7 +24,6 @@ class GetAll(Resource):
 @namespace.route('/create', methods=['POST'])
 class Create(Resource):
     """Create a new asset"""
-    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImZ1bGxuYW1lIjoid29ya2VyIiwiZW1haWwiOiJ3b3JrZXJAc2FsaW5lLmNvbSIsInJvbGUiOiJ3b3JrZXIiLCJkb21haW4iOiJyZWRhY3Rpb24iLCJleHAiOjE2ODkyNzU2MDEsImlhdCI6MTY4OTIzOTYwMX0.PthvqrWTOjIX8Wk7pMxKiGEfTqvzIEEJcLQROVAfjqc"
     @api.doc(
         params={
             # Required parameters

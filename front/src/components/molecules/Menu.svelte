@@ -16,7 +16,7 @@
   {#if role == 'superadmin' || role == 'admin' && domain == 'traducteur'}
     <Link
       class='text--uppercase text--semibold {currentPage === 'home' ? 'link--current' : ''}'
-      linkUrl='projects/dashboard'
+      linkUrl='/projects/dashboard'
       linkStyle='padding: 0 var(--spacing-3);'
       linkColor='{currentPage === 'home' ? 'blue' : 'grey'}'
     > 

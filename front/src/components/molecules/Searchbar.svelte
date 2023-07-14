@@ -24,13 +24,14 @@
 	});
 </script>
 
-<div class="searchbar-container" style="width:{widthSearchbar}px">
+<div class="searchbar-container {$$props.class}" style="width:{widthSearchbar}px">
   <div class="searchbar__field">
     <Input 
       type='search' 
       id='search' 
       name='search'
       class='input-with-icon'
+      width='100%';
       bind:value={$searchStore.search} 
     /> 
 

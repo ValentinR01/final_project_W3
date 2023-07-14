@@ -1,5 +1,5 @@
 <script>
-  export let width = '100%';
+  export let width = 'auto';
   export let placeholder = '';
   export let value = '';
 </script>

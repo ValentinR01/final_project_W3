@@ -48,16 +48,19 @@ class Base(db.Model):
         :return: all matching records
         """
         raw_data = cls.query.filter_by(**kwargs).all()
-        try:
-            list_data = [
-                data.__dict__ for data in raw_data
-            ]
-            for data in list_data:
-                data.pop('_sa_instance_state')
-                for key, value in data.items():
-                    if isinstance(value, datetime.datetime):
-                        data[key] = value.strftime('%Y-%m-%d %H:%M:%S')
-            logging.info(list_data)
-            return list_data
-        except Exception as e:
-            logging.error(e)
+        if raw_data:
+            try:
+                list_data = [
+                    {
+                        key: value.strftime('%Y-%m-%d %H:%M:%S')
+                        if isinstance(value, datetime.datetime)
+                        else value
+                        for key, value in data.__dict__.items()
+                        if key != '_sa_instance_state'
+                    }
+                    for data in raw_data
+                ]
+                logging.info(list_data)
+                return list_data
+            except Exception as e:
+                logging.error(e)

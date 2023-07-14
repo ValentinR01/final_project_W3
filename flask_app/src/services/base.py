@@ -30,6 +30,8 @@ def get_all_entities(entity: db.Model, **filters):
     """
     try:
         entity_list = entity.get_all_by(**filters)
+        if not entity_list:
+            return {'message': "No entities found or it's empty"}, 404
+        return {f"all_{entity.__tablename__}": entity_list}, 200
     except Exception as e:
         return {'error': str(e)}, 500
-    return {f"all_{entity.__tablename__}": entity_list}, 200

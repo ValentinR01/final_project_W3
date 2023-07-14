@@ -60,7 +60,6 @@ class Base(db.Model):
                     }
                     for data in raw_data
                 ]
-                logging.info(list_data)
                 return list_data
             except Exception as e:
                 logging.error(e)

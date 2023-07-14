@@ -1,7 +1,7 @@
 from flask import request
 from flask_restx import Namespace, Resource, Api
 from helpers.decorators import rights_manager
-from services.asset import create_asset, get_all_assets
+from services.asset import create_asset, get_asset, get_asset_by_id
 
 namespace = Namespace('assets', 'Asset related endpoints')
 
@@ -13,12 +13,12 @@ class GetAll(Resource):
     """Get all assets"""
     @api.doc(
         params={
-
         }
     )
-    def get(self, **kwargs):
+    def get(self):
         """Get all assets"""
-        return get_all_assets(**kwargs)
+        kwargs = request.args.to_dict()
+        return get_asset(**kwargs)
 
 
 @namespace.route('/create', methods=['POST'])
@@ -121,4 +121,20 @@ class Create(Resource):
     # @rights_manager(token=token, role='worker', domain='redaction')
     @namespace.response(200, '')
     def post(self):
-        return create_asset(request.json)
+        return create_asset(data=request.json)
+
+
+@namespace.route('/<int:asset_id>', methods=['GET'])
+class GetById(Resource):
+    """Get asset by id"""
+    @api.doc(
+        params={
+            'asset_id': {
+                'description': 'Asset id', 'required': True, 'type':
+                    'integer'
+            }
+        }
+    )
+    def get(self, asset_id):
+        """Get asset by id"""
+        return get_asset(id=asset_id)

@@ -35,7 +35,7 @@ VALUES ('lesson'), ('interview'), ('presentation'), ('concert'), ('masterclass')
 
 -- Domain
 INSERT INTO "domain" (name)
-VALUES ('redaction'), ('translation'), ('management'), ('development'), ('regisseur');
+VALUES ('redaction'), ('translation'), ('management'), ('post-prod'), ('regisseur');
 
 
 -- Status By Domain

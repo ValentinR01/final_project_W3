@@ -19,3 +19,4 @@ from models.post_prod import PostProd
 from models.transformation import Transformation
 from models.asset_translated import AssetTranslated
 from models.subtitle import Subtitle
+from models.specialty import Specialty

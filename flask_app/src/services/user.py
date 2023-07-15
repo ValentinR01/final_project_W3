@@ -2,8 +2,10 @@ from models.user import User
 from models.domain import Domain
 from werkzeug.security import generate_password_hash
 from helpers.auth import AuthHandler
+from flask_restx import abort
+from flask import make_response
 from conf import TOKEN_EXPIRATION_HOURS
-import logging
+import logging, datetime
 import re
 
 
@@ -54,9 +56,13 @@ def login_service(userdata):
 
         token = auth_handler.generate_token(user)
         # TODO : Secure cookie set
-        headers = [('Set-Cookie', f'authorization={token};'
-                                  f'max-age={TOKEN_EXPIRATION_HOURS * 60 * 60};'
-                                  f'path=/')]
+        headers = [
+            (
+                'Set-Cookie',
+                f'authorization={token}; '
+                f'max-age={TOKEN_EXPIRATION_HOURS * 60 * 60}; path=/'
+            )
+        ]
         return (
             {'access_token': token, 'message': 'Login successful'},
             200, headers
@@ -83,7 +89,4 @@ def get_user_by_domain(domain_name):
 
 def get_all_users():
     user_list = User.get_all()
-    if user_list is None:
-        return {'users': []}, 200
     return {'users': user_list}, 200
-

@@ -9,6 +9,8 @@ from conf import POSTGRESQL_DATABASE_URI, DEBUG, ENV
 from sqlalchemy import text
 from sqlalchemy.exc import IntegrityError
 import fnmatch
+from psycopg2.errorcodes import UNIQUE_VIOLATION
+from psycopg2 import errors
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -41,10 +43,9 @@ if __name__ == "__main__":
                         try:
                             session.execute(text(query.read()))
                             session.commit()
-                            logging.info(f"Layer {file} been executed "
-                                         f"successfully")
+                        except errors.lookup(UNIQUE_VIOLATION):
+                            logging.info(f"Layer {file} already executed")
                         except IntegrityError as e:
                             session.rollback()
-                            logging.error(f"Error: {e}")
 
         app.run(host='0.0.0.0', port=8000, debug=debug)

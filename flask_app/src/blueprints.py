@@ -4,6 +4,7 @@ from api.user import namespace as user
 from api.speaker import namespace as speaker
 from api.meta_value import namespace as meta_value
 from api.composer import namespace as composer
+from api.asset import namespace as asset
 
 blueprint = Blueprint('api', __name__)
 api = Api(blueprint)
@@ -21,3 +22,4 @@ api.add_namespace(user)
 api.add_namespace(speaker)
 api.add_namespace(meta_value)
 api.add_namespace(composer)
+api.add_namespace(asset)

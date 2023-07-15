@@ -39,7 +39,6 @@ def register_service(data):
     )
     new_user.create()
 
-
     return {'message': 'User created successfully'}, 201
 
 

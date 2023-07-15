@@ -3,7 +3,9 @@
 
 -- Step Life Cycle
 INSERT INTO "step_lifecycle" (step)
-VALUES ('upload'), ('transformation'), ('subtitle'), ('review'), ('publish'), ('archive'), ('delete');
+VALUES
+    ('initialization'), ('captation'), ('regisseur_review'), ('post_production'), ('admin_review'),
+    ('transformation'), ('edition'), ('translation'), ('ready'), ('deleted'), ('refused');
 
 
 -- Meta Key
@@ -38,7 +40,7 @@ VALUES ('redaction'), ('translation'), ('management'), ('development'), ('regiss
 
 -- Status By Domain
 INSERT INTO "status_by_domain" (status)
-VALUES ('pending'), ('to assign'), ('in progress'), ('to review'), ('done');
+VALUES ('pending'), ('to_assign'), ('in_progress'), ('to_review'), ('done');
 
 
 -- Role

@@ -147,14 +147,10 @@ class Search(Resource):
             'search': {
                 'description': 'Search', 'required': True, 'type':
                     'string'
-            },
-            'columns': {
-                'description': 'Columns', 'required': True, 'type':
-                    'string'
             }
         }
     )
     def get(self):
         """Search assets"""
         search = request.args.get('search')
-        return search_asset(search, "title", "music_title")
+        return search_asset(search)

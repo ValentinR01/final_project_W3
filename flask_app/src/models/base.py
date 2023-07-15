@@ -51,7 +51,6 @@ class Base(db.Model):
         if raw_data:
             return transform(raw_data)
 
-
     @classmethod
     def get_entities_by_search_values(cls, search, *columns):
         filters = or_(*[

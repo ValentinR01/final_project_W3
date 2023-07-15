@@ -14,6 +14,6 @@ def get_asset(**kwargs):
     return get_all_entities(entity=Asset, **kwargs)
 
 
-def search_asset(search: str, *columns):
+def search_asset(search: str):
     """Search assets"""
-    return search_entities(entity=Asset, search=search, *columns)
+    return search_entities(Asset, search, "title", "music_title")

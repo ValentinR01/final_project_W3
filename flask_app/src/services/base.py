@@ -46,9 +46,7 @@ def search_entities(entity, search: str, *columns):
     :param columns: columns to search
     """
     try:
-        entity_list = entity.get_entities_by_search_values(
-            search=search, *columns
-        )
+        entity_list = entity.get_entities_by_search_values(search, *columns)
         if not entity_list:
             return {'message': "No entities found or it's empty"}, 404
         return {f"all_{entity.__tablename__}": entity_list}, 200

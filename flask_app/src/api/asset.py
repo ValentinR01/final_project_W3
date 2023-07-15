@@ -1,7 +1,7 @@
 from flask import request
 from flask_restx import Namespace, Resource, Api
 from helpers.decorators import rights_manager
-from services.asset import create_asset, get_asset
+from services.asset import create_asset, get_asset, search_asset
 
 namespace = Namespace('assets', 'Asset related endpoints')
 
@@ -137,3 +137,24 @@ class GetById(Resource):
     def get(self, asset_id):
         """Get asset by id"""
         return get_asset(id=asset_id)
+
+
+@namespace.route('/search', methods=['GET'])
+class Search(Resource):
+    """Search assets"""
+    @api.doc(
+        params={
+            'search': {
+                'description': 'Search', 'required': True, 'type':
+                    'string'
+            },
+            'columns': {
+                'description': 'Columns', 'required': True, 'type':
+                    'string'
+            }
+        }
+    )
+    def get(self):
+        """Search assets"""
+        search = request.args.get('search')
+        return search_asset(search, "title", "music_title")

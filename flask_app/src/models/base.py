@@ -1,6 +1,6 @@
-import logging
-import datetime
 from db import db
+from sqlalchemy import or_
+from helpers.etl import transform
 
 
 class Base(db.Model):
@@ -41,7 +41,7 @@ class Base(db.Model):
     @classmethod
     def get_all_by(cls: db.Model, **kwargs):
         """
-        This method will be used to get a record from a table.
+        This method will be used to get all record from a table with filter.
 
         :param cls: class to check
         :param kwargs: values to check
@@ -49,17 +49,14 @@ class Base(db.Model):
         """
         raw_data = cls.query.filter_by(**kwargs).all()
         if raw_data:
-            try:
-                list_data = [
-                    {
-                        key: value.strftime('%Y-%m-%d %H:%M:%S')
-                        if isinstance(value, datetime.datetime)
-                        else value
-                        for key, value in data.__dict__.items()
-                        if key != '_sa_instance_state'
-                    }
-                    for data in raw_data
-                ]
-                return list_data
-            except Exception as e:
-                logging.error(e)
+            return transform(raw_data)
+
+
+    @classmethod
+    def get_entities_by_search_values(cls, search, *columns):
+        filters = or_(*[
+            getattr(cls, column).ilike(f'%{search}%') for column in columns
+        ])
+        raw_data = cls.query.filter(filters).all()
+        if raw_data:
+            return transform(raw_data)

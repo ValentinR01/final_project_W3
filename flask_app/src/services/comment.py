@@ -21,7 +21,7 @@ def get_all_comments(asset_id):
                 'created_at': comment.created_at,
                 'external_name': comment.external_name,
                 'posted_by': comment.posted_by,
-                'fullname': comment.user,
+                'fullname': comment.user.fullname,
                 'asset_id': comment.asset_id
             }
             for comment in comments

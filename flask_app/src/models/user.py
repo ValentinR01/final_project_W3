@@ -1,6 +1,18 @@
 from db import db
 from models.base import Base
 
+specialties_users = db.Table(
+    'specialties_users',
+    db.Column(
+        'user_id', db.Integer, db.ForeignKey('user.id'),
+        primary_key=True
+    ),
+    db.Column(
+        'specialty_id', db.Integer, db.ForeignKey('specialty.id'),
+        primary_key=True
+    )
+)
+
 
 class User(Base):
     """This class represents the users table"""
@@ -18,6 +30,13 @@ class User(Base):
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=False)
     domain_id = \
         db.Column(db.Integer, db.ForeignKey('domain.id'), nullable=False)
+
+    # Relationships
+    specialties = db.relationship(
+        'Specialty',
+        secondary=specialties_users,
+        backref=db.backref('users', lazy='dynamic')
+    )
 
     def __init__(self, email, fullname, password, domain_id, role_id,
                  created_at=None, profile_picture=None,

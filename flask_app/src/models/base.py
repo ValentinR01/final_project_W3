@@ -1,4 +1,6 @@
 from db import db
+from sqlalchemy import or_
+from helpers.etl import transform
 
 
 class Base(db.Model):
@@ -23,7 +25,7 @@ class Base(db.Model):
 
     @classmethod
     def get_all(cls: db.Model):
-        return cls.query.all() or []
+        return cls.query.all()
 
     @classmethod
     def get_by(cls: db.Model, **kwargs):
@@ -39,31 +41,21 @@ class Base(db.Model):
     @classmethod
     def get_all_by(cls: db.Model, **kwargs):
         """
-        This method will be used to get a record from a table.
+        This method will be used to get all record from a table with filter.
 
         :param cls: class to check
         :param kwargs: values to check
         :return: all matching records
         """
-        return cls.query.filter_by(**kwargs).all()
+        raw_data = cls.query.filter_by(**kwargs).all()
+        if raw_data:
+            return transform(raw_data)
 
     @classmethod
-    def init_db_value(cls: db.Model, init_values: list):
-        """
-        This method will be used to initialize the values of a table.
-
-        :param cls: table to initialize
-        :param init_values: list of values to initialize
-        :return:
-        """
-        for init_value in init_values:
-            try:
-                domain = cls.query.filter_by(name=init_value).first()
-                if domain:
-                    continue
-                else:
-                    domain = cls(name=init_value)
-                    domain.create()
-            except Exception as e:
-                print(e)
-                continue
+    def get_entities_by_search_values(cls, search, *columns):
+        filters = or_(*[
+            getattr(cls, column).ilike(f'%{search}%') for column in columns
+        ])
+        raw_data = cls.query.filter(filters).all()
+        if raw_data:
+            return transform(raw_data)

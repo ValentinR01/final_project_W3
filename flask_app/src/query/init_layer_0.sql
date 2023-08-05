@@ -3,7 +3,9 @@
 
 -- Step Life Cycle
 INSERT INTO "step_lifecycle" (step)
-VALUES ('upload'), ('transformation'), ('subtitle'), ('review'), ('publish'), ('archive'), ('delete');
+VALUES
+    ('initialization'), ('captation'), ('regisseur_review'), ('post_production'), ('admin_review'),
+    ('transformation'), ('edition'), ('translation'), ('ready'), ('deleted'), ('refused');
 
 
 -- Meta Key
@@ -28,22 +30,22 @@ VALUES ('/saline/transformation/file20230602_AA.mp4');
 
 -- Type
 INSERT INTO "type" (name)
-VALUES ('lesson'), ('interview'), ('presentation'), ('concert'), ('masterclass'),('other');
+VALUES ('lesson'), ('interview'), ('presentation'), ('concert'), ('masterclass'), ('other');
 
 
 -- Domain
 INSERT INTO "domain" (name)
-VALUES ('redaction'), ('translation'), ('management'), ('development');
+VALUES ('redaction'), ('translation'), ('management'), ('post-prod'), ('regisseur');
 
 
 -- Status By Domain
 INSERT INTO "status_by_domain" (status)
-VALUES ('pending'), ('to assign'), ('in progress'), ('to review'), ('done');
+VALUES ('pending'), ('to_assign'), ('in_progress'), ('to_review'), ('done');
 
 
 -- Role
 INSERT INTO "role" (name)
-VALUES ('worker'), ('lead'), ('superadmin'), ('dev');
+VALUES ('worker'), ('lead'), ('superadmin');
 
 
 -- Post Prod

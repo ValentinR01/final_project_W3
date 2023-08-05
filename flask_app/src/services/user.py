@@ -41,7 +41,6 @@ def register_service(data):
     )
     new_user.create()
 
-
     return {'message': 'User created successfully'}, 201
 
 
@@ -57,7 +56,13 @@ def login_service(userdata):
 
         token = auth_handler.generate_token(user)
         # TODO : Secure cookie set
-        headers = [('Set-Cookie', f'authorization={token}; max-age={TOKEN_EXPIRATION_HOURS * 60 * 60}; path=/')]
+        headers = [
+            (
+                'Set-Cookie',
+                f'authorization={token}; '
+                f'max-age={TOKEN_EXPIRATION_HOURS * 60 * 60}; path=/'
+            )
+        ]
         return (
             {'access_token': token, 'message': 'Login successful'},
             200, headers

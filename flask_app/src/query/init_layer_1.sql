@@ -6,10 +6,21 @@ INSERT INTO "user" (
     email, fullname, password, profile_picture, created_at,
     count_assigning_asset, role_id, domain_id
 )
-VALUES (
-    'nass@saline.com', 'Nass La Menass', 'pbkdf2:sha256:600000$MFIgXR9G8QmB3Yqw$cc22c03b43785f647894db48313da07f71a6204029985e671bf611e0c07493b7',
-    NULL, CURRENT_TIMESTAMP, 0, 4, 4
-);
+VALUES
+    ('nass@saline.com', 'Nass La Menass', 'pbkdf2:sha256:600000$MFIgXR9G8QmB3Yqw$cc22c03b43785f647894db48313da07f71a6204029985e671bf611e0c07493b7',
+    NULL, CURRENT_TIMESTAMP, 0, 3, 4),
+    ('translator@saline.com', 'Translator', 'pbkdf2:sha256:600000$MFIgXR9G8QmB3Yqw$cc22c03b43785f647894db48313da07f71a6204029985e671bf611e0c07493b7',
+    NULL, CURRENT_TIMESTAMP, 0, 1, 2);
+
+
+-- Specialty
+INSERT INTO "specialty" (name, domain_id)
+VALUES ('french', 2), ('english', 2);
+
+
+-- specialties_users
+INSERT INTO "specialties_users" (user_id, specialty_id)
+VALUES (2, 2);
 
 
 -- Meta Value

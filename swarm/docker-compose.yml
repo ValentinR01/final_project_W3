@@ -1,6 +1,21 @@
 version: '3.1'
 
 services:
+    dam-backoffice-api:
+        container_name: dam-backoffice-api
+        image: ${ARTIFACTORY}/dam-api:latest
+        ports:
+            - '8004:8000'
+        environment:
+            - POSTGRES_USER=${POSTGRES_USER}
+            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+            - POSTGRES_DB=${POSTGRES_DB}
+            - DEBUG=${DEBUG}
+            - ENV=${ENV}
+        depends_on:
+            - db
+        restart: always
+
     db:
         container_name: dam-postgresql
         image: postgres:14.8
@@ -9,16 +24,22 @@ services:
             - POSTGRES_USER=${POSTGRES_USER}
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
             - POSTGRES_DB=${POSTGRES_DB}
-        expose:
-            - '5432'
+        ports:
+            - '5432:5432'
         volumes:
             - db:/var/lib/postgres
 
     front:
         container_name: dam-front
-        image: nginx:latest
+        image: ${ARTIFACTORY}/dam-front:latest
+        volumes:
+            - ./front/src:/app/src
+        restart: always
         ports:
-            - '80:80'
+            - '80:8080'
+        depends_on:
+            - dam-backoffice-api
+
 
 volumes:
     db:

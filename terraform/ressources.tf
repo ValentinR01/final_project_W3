@@ -44,12 +44,17 @@ resource "azurerm_virtual_machine" "vm" {
 
   os_profile {
     computer_name  = each.value.name
-    admin_username = var.admin_username
-    admin_password = var.admin_password
+    admin_username = var.cd_username
   }
 
   os_profile_linux_config {
-    disable_password_authentication = false
+    disable_password_authentication = true
+
+    ssh_keys {
+      path     = "/home/${var.cd_username}/.ssh/authorized_keys"
+      key_data = ""
+
+    }
   }
 
   tags = {
@@ -69,8 +74,7 @@ resource "azurerm_virtual_machine_extension" "example" {
   protected_settings = <<PROTECTED_SETTINGS
     {
       "script": "${base64encode(templatefile("scripts/init.sh", {
-        cd_username = var.cd_username,
-        cd_password = var.cd_password
+        cd_username = var.cd_username
       }))}"
     }
   PROTECTED_SETTINGS

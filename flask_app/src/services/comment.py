@@ -10,11 +10,7 @@ def register_comment(asset_id, data):
 
 
 def get_all_comments(asset_id):
-    comments = Comment.query \
-        .join(User, Comment.posted_by == User.id) \
-        .filter(Comment.asset_id == asset_id) \
-        .all()
-
+    comments = Comment.get_all_comments(asset_id)
     comments_list = [
         {
             'id': comment.id,

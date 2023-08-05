@@ -32,7 +32,7 @@ def mock_query(asset_id):
 
 def test_get_all_comments():
     # Test with a list of comments
-    with patch('models.comment.Comment.get_all_comments', side_effect=mock_query):
+    with patch('models.comment.Comment.get_all_by', side_effect=mock_query):
         asset_id = 1  # Replace with the desired asset_id for testing
         expected_result = {
             'comments': [
@@ -42,7 +42,7 @@ def test_get_all_comments():
                     'created_at': '2023-08-05',
                     'external_name': 'External',
                     'posted_by': 1,
-                    'fullname': 'John Doe',
+                    'fullname': MockUser("John Doe").fullname,
                     'asset_id': 1
                 },
                 {
@@ -51,7 +51,7 @@ def test_get_all_comments():
                     'created_at': '2023-08-05',
                     'external_name': 'External',
                     'posted_by': 2,
-                    'fullname': 'Jane Smith',
+                    'fullname': MockUser("Jane Smith").fullname,
                     'asset_id': 1
                 }
             ]

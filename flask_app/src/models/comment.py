@@ -26,11 +26,3 @@ class Comment(Base):
         self.external_name = external_name
         self.posted_by = posted_by
         self.asset_id = asset_id
-
-    @classmethod
-    def get_all_comments(cls: db.Model, asset_id):
-        """Get all comments for a given asset, with join on user info"""
-        return cls.query \
-            .join(User, Comment.posted_by == User.id) \
-            .filter(Comment.asset_id == asset_id) \
-            .all()

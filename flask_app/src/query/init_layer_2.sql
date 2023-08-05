@@ -24,3 +24,11 @@ VALUES (
 -- Metadata
 INSERT INTO "metadata" (meta_value_id, asset_id)
 VALUES (1, 1), (7, 1), (11, 1), (12, 1);
+
+
+-- Comment
+INSERT INTO "comment" (content, created_at, external_name, posted_by, asset_id)
+VALUES (
+        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem translated',
+        CURRENT_TIMESTAMP, '', 1, 1
+       );

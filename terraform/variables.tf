@@ -16,22 +16,7 @@ variable "preprod" {
     default = "preprod-saline"
 }
 
-variable "admin_username" {
-    type = string
-    sensitive = true
-}
-
-variable "admin_password" {
-    type = string
-    sensitive = true
-}
-
 variable "cd_username" {
-    type = string
-    sensitive = true
-}
-
-variable "cd_password" {
     type = string
     sensitive = true
 }

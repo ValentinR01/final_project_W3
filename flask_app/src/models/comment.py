@@ -14,7 +14,7 @@ class Comment(Base):
     external_name = db.Column(db.String(100), nullable=True)
 
     # FK
-    posted_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    posted_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
     asset_id = db.Column(db.Integer, db.ForeignKey('asset.id'), nullable=False)
 
     user = relationship(User, backref='comment')

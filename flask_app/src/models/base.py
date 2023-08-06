@@ -1,7 +1,8 @@
 from db import db
 from sqlalchemy import or_
+from sqlalchemy.orm import joinedload
 from helpers.etl import transform
-
+import logging
 
 class Base(db.Model):
     """This class will be used to perform Base operations on the database"""
@@ -59,3 +60,16 @@ class Base(db.Model):
         raw_data = cls.query.filter(filters).all()
         if raw_data:
             return transform(raw_data)
+
+    @classmethod
+    def get_entity_with_joins(cls, entity_id: int):
+        """
+        Join the entity with the related entities
+
+        :param cls: class of the entity you want to get
+        :param entity_id: id of the entity you want to get
+        """
+        query = db.session.query(cls).filter(cls.id == entity_id)
+        for relationship_name in cls.__mapper__.relationships:
+            query = query.options(joinedload(relationship_name))
+        return query.first()

@@ -1,14 +1,20 @@
 import logging
 import datetime
+from typing import Union, List, Dict, Callable
 
 
-def transform(raw_data):
+def transform(raw_data: Union[List, Callable]) -> List[Dict]:
     """
     Transform raw data to a list of dict to be jsonified
 
     :param raw_data: raw data to transform
+    :return: list of dict
     """
     try:
+        if isinstance(raw_data, tuple):
+            raw_data = list(raw_data)
+
+        logging.info(raw_data)
         list_data = [
             {
                 key: value.strftime('%Y-%m-%d %H:%M:%S')
@@ -17,8 +23,10 @@ def transform(raw_data):
                 for key, value in data.__dict__.items()
                 if key != '_sa_instance_state'
             }
+            if isinstance(data, object)
+            else data
             for data in raw_data
         ]
         return list_data
     except Exception as e:
-        logging.error(e)
+        logging.error("Error while transforming data", e)

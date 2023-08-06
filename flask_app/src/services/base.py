@@ -39,9 +39,9 @@ def get_all_entities(entity: db.Model, **filters):
 
 def search_entities(entity, search: str, *columns):
     """
-    Base to search entities
+    Base to search entities from some specific columns with a search value
 
-    :param entity: entity to search
+    :param entity: entity
     :param search: search value
     :param columns: columns to search
     """
@@ -50,5 +50,23 @@ def search_entities(entity, search: str, *columns):
         if not entity_list:
             return {'message': "No entities found or it's empty"}, 404
         return {f"all_{entity.__tablename__}": entity_list}, 200
+    except Exception as e:
+        return {'error': str(e)}, 500
+
+
+def get_entity_by_id(entity: db.Model, entity_id: int,
+                     entity_relation: dict = None):
+    """
+    Base to get entity by id, with all joins
+
+    :param entity: entity to get
+    :param entity_id: entity id
+    :param entity_relation: entity relations
+    """
+    try:
+        entity_inst = entity.get_entity_with_joins(entity_id, entity_relation)
+        if not entity_inst:
+            return {'message': 'Entity not found'}, 404
+        return {f"{entity.__tablename__}": entity_inst}, 200
     except Exception as e:
         return {'error': str(e)}, 500

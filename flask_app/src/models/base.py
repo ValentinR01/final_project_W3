@@ -72,4 +72,4 @@ class Base(db.Model):
         query = db.session.query(cls).filter(cls.id == entity_id)
         for relationship_name in cls.__mapper__.relationships:
             query = query.options(joinedload(relationship_name))
-        return query.first()
+        return transform([query.first()])

@@ -37,7 +37,7 @@ def get_all_entities(entity: db.Model, **filters):
         return {'error': str(e)}, 500
 
 
-def search_entities(entity, search: int, columns):
+def search_entities(entity, search: str, *columns):
     """
     Base to search entities
 

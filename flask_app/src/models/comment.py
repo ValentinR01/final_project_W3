@@ -14,12 +14,12 @@ class Comment(Base):
     external_name = db.Column(db.String(100), nullable=True)
 
     # FK
-    posted_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    posted_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
     asset_id = db.Column(db.Integer, db.ForeignKey('asset.id'), nullable=False)
 
     user = relationship(User, backref='comment')
 
-    def __init__(self, content, posted_by, asset_id,
+    def __init__(self, content, asset_id, posted_by=None,
                  created_at=None, external_name=None):
         self.content = content
         self.created_at = created_at

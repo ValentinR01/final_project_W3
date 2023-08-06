@@ -19,7 +19,7 @@ class Comment(Base):
 
     user = relationship(User, backref='comment')
 
-    def __init__(self, content, posted_by, asset_id,
+    def __init__(self, content, asset_id, posted_by=None,
                  created_at=None, external_name=None):
         self.content = content
         self.created_at = created_at

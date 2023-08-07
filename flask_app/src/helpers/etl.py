@@ -1,9 +1,9 @@
 import logging
 import datetime
-import sqlalchemy
+import sqlalchemy.orm.collections as soc
 
 
-def transform_single_object(obj: object) -> dict:
+def transform_single_object(obj: object):
     """
     Transform a single object into a dictionary
 
@@ -17,9 +17,7 @@ def transform_single_object(obj: object) -> dict:
                 if hasattr(value, "__dict__")
                 else (
                     [transform_single_object(item) for item in value]
-                    if isinstance(
-                        value, sqlalchemy.orm.collections.CollectionAdapter
-                    )
+                    if isinstance(value, soc.CollectionAdapter)
                     else (
                         value.strftime('%Y-%m-%d %H:%M:%S')
                         if isinstance(value, datetime.datetime)

@@ -2,7 +2,6 @@ from db import db
 from sqlalchemy import or_
 from sqlalchemy.orm import joinedload
 from helpers.etl import transformation
-import logging
 
 
 class Base(db.Model):
@@ -50,8 +49,7 @@ class Base(db.Model):
         :return: all matching records
         """
         raw_data = cls.query.filter_by(**kwargs).all()
-        if raw_data:
-            return transformation(raw_data)
+        return transformation(raw_data)
 
     @classmethod
     def get_entities_by_search_values(cls, search, *columns):
@@ -59,8 +57,7 @@ class Base(db.Model):
             getattr(cls, column).ilike(f'%{search}%') for column in columns
         ])
         raw_data = cls.query.filter(filters).all()
-        if raw_data:
-            return transformation(raw_data)
+        return transformation(raw_data)
 
     @classmethod
     def get_entity_with_joins(cls, entity_id: int):
@@ -73,5 +70,4 @@ class Base(db.Model):
         query = db.session.query(cls).filter(cls.id == entity_id)
         for relationship_name in cls.__mapper__.relationships:
             query = query.options(joinedload(relationship_name))
-        logging.info(transformation(query.first()))
         return transformation(query.first())

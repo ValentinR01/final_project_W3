@@ -2,28 +2,43 @@ import logging
 import datetime
 
 
-def transform(raw_data) -> list:
+def transform_single_object(obj: object) -> dict:
     """
-    Transform raw data to a list of dict to be jsonified
+    Transform a single object into a dictionary
 
-    :param raw_data: raw data to transform
-    :return: list of dict
+    :param obj: the object to be transformed
+    :return: a dictionary representing the transformed object
+    """
+    try:
+        return {
+            key: transform_single_object(value)
+            if hasattr(value, "__dict__")
+            else (
+                value.strftime('%Y-%m-%d %H:%M:%S')
+                if isinstance(value, datetime.datetime)
+                else value
+            )
+            for key, value in obj.__dict__.items()
+            if key != '_sa_instance_state'
+        }
+    except Exception as e:
+        logging.error(f"Error while transforming a single object: {e}")
+
+
+def transformation(raw_data) -> list:
+    """
+    Recursively transforms raw data into a list of dictionaries that can be jsonified.
+
+    :param raw_data: raw data to be transformed
+    :return: list of dictionaries
     """
     try:
         if not isinstance(raw_data, list):
             raw_data = [raw_data]
-        list_data = [
-            {
-                key: value.strftime('%Y-%m-%d %H:%M:%S')
-                if isinstance(value, datetime.datetime)
-                else value
-                for key, value in data.__dict__.items()
-                if key != '_sa_instance_state'
-            }
-            if isinstance(data, object)
-            else data
-            for data in raw_data
+        transformed_data = [
+            transform_single_object(obj) for obj in raw_data
         ]
-        return list_data
+        return transformed_data
     except Exception as e:
-        logging.error("Error while transforming data", e)
+        logging.error(f"Error while transforming data: {e}")
+        return raw_data

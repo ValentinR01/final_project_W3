@@ -4,6 +4,7 @@ from sqlalchemy.orm import joinedload
 from helpers.etl import transform
 import logging
 
+
 class Base(db.Model):
     """This class will be used to perform Base operations on the database"""
 
@@ -72,4 +73,5 @@ class Base(db.Model):
         query = db.session.query(cls).filter(cls.id == entity_id)
         for relationship_name in cls.__mapper__.relationships:
             query = query.options(joinedload(relationship_name))
-        return transform([query.first()])
+        logging.info(transform(query.first()))
+

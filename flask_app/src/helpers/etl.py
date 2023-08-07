@@ -1,9 +1,8 @@
 import logging
 import datetime
-from typing import Union, List, Dict, Callable
 
 
-def transform(raw_data: Union[List, Callable]) -> List[Dict]:
+def transform(raw_data) -> list:
     """
     Transform raw data to a list of dict to be jsonified
 
@@ -11,10 +10,8 @@ def transform(raw_data: Union[List, Callable]) -> List[Dict]:
     :return: list of dict
     """
     try:
-        if isinstance(raw_data, tuple):
-            raw_data = list(raw_data)
-
-        logging.info(raw_data)
+        if not isinstance(raw_data, list):
+            raw_data = [raw_data]
         list_data = [
             {
                 key: value.strftime('%Y-%m-%d %H:%M:%S')

@@ -13,14 +13,10 @@ def create_asset(data: dict):
 def get_asset(**kwargs):
     """Get all assets"""
     if kwargs.get('id'):
-        return Asset.get_entity_with_joins(
+        return get_entity_by_id(
+            entity=Asset,
             entity_id=kwargs.get('id')
         )
-        # return get_entity_by_id(
-        #     entity=Asset,
-        #     entity_id=kwargs.get('id'),
-        #     entity_relation=ASSET_RELATIONS
-        # )
     return get_all_entities(entity=Asset, **kwargs)
 
 

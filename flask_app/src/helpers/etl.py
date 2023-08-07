@@ -1,5 +1,6 @@
 import logging
 import datetime
+import sqlalchemy
 
 
 def transform_single_object(obj: object) -> dict:
@@ -11,15 +12,23 @@ def transform_single_object(obj: object) -> dict:
     """
     try:
         return {
-            key: transform_single_object(value)
-            if hasattr(value, "__dict__")
-            else (
-                value.strftime('%Y-%m-%d %H:%M:%S')
-                if isinstance(value, datetime.datetime)
-                else value
+            key: (
+                transform_single_object(value)
+                if hasattr(value, "__dict__")
+                else (
+                    [transform_single_object(item) for item in value]
+                    if isinstance(
+                        value, sqlalchemy.orm.collections.CollectionAdapter
+                    )
+                    else (
+                        value.strftime('%Y-%m-%d %H:%M:%S')
+                        if isinstance(value, datetime.datetime)
+                        else value
+                    )
+                )
             )
             for key, value in obj.__dict__.items()
-            if key != '_sa_instance_state'
+            if not key.startswith('_sa_')
         }
     except Exception as e:
         logging.error(f"Error while transforming a single object: {e}")
@@ -27,7 +36,7 @@ def transform_single_object(obj: object) -> dict:
 
 def transformation(raw_data) -> list:
     """
-    Recursively transforms raw data into a list of dictionaries that can be jsonified.
+    Transforms raw data into a list of dictionaries to be jsonified
 
     :param raw_data: raw data to be transformed
     :return: list of dictionaries

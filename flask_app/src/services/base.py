@@ -54,17 +54,15 @@ def search_entities(entity, search: str, *columns):
         return {'error': str(e)}, 500
 
 
-def get_entity_by_id(entity: db.Model, entity_id: int,
-                     entity_relation: dict = None):
+def get_entity_by_id(entity: db.Model, entity_id: int):
     """
     Base to get entity by id, with all joins
 
     :param entity: entity to get
     :param entity_id: entity id
-    :param entity_relation: entity relations
     """
     try:
-        entity_inst = entity.get_entity_with_joins(entity_id, entity_relation)
+        entity_inst = entity.get_entity_with_joins(entity_id)
         if not entity_inst:
             return {'message': 'Entity not found'}, 404
         return {f"{entity.__tablename__}": entity_inst}, 200

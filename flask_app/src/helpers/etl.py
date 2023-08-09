@@ -3,11 +3,13 @@ import datetime
 import sqlalchemy.orm.collections as soc
 
 
-def transform_single_object(obj: object):
+def transform_single_object(
+        obj: object, keys_to_remove: tuple[str] = ('_sa_', 'password')):
     """
     Transform a single object into a dictionary
 
     :param obj: the object to be transformed
+    :param keys_to_remove: keys to remove from the dictionary
     :return: a dictionary representing the transformed object
     """
     try:
@@ -26,7 +28,7 @@ def transform_single_object(obj: object):
                 )
             )
             for key, value in obj.__dict__.items()
-            if not key.startswith('_sa_')
+            if not key.startswith(keys_to_remove)
         }
     except Exception as e:
         logging.error(f"Error while transforming a single object: {e}")

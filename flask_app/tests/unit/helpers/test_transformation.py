@@ -4,7 +4,7 @@ from helpers.etl import transformation
 
 
 class MockObject:
-    def __init__(self, a, b, c=None):
+    def __init__(self, a, b):
         self.a = a
         self.b = b
 

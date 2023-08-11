@@ -62,6 +62,22 @@ class Asset(Base):
         db.Integer, db.ForeignKey('transformation.id'), nullable=True
     )
 
+    # Relationships FK
+    composer = db.relationship('Composer', backref='assets')
+    current_assigned_user = db.relationship('User', foreign_keys=[
+        current_assigned_user_id], backref='assigned_assets')
+    created_by = db.relationship('User', foreign_keys=[created_by_id],
+                                 backref='created_assets')
+    updated_by = db.relationship('User', foreign_keys=[updated_by_id],
+                                 backref='updated_assets')
+    speaker = db.relationship('Speaker', backref='assets')
+    status_by_domain = db.relationship('StatusByDomain', backref='assets')
+    step_lifecycle = db.relationship('StepLifecycle', backref='assets')
+    booking = db.relationship('Booking', backref='assets')
+    captation = db.relationship('Captation', backref='assets')
+    post_prod = db.relationship('PostProd', backref='assets')
+    transformation = db.relationship('Transformation', backref='assets')
+
     def __init__(self, title, music_title, composer_id, step_lifecycle_id,
                  current_assigned_user_id, created_by_id, booking_id,
                  updated_by_id, speaker_id, status_by_domain_id,

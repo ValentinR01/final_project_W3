@@ -1,4 +1,5 @@
 from db import db
+from helpers.etl import transformation
 
 
 def create_entity(entity: db.Model, data: dict, **kwargs):
@@ -32,16 +33,16 @@ def get_all_entities(entity: db.Model, **filters):
         entity_list = entity.get_all_by(**filters)
         if not entity_list:
             return {'message': "No entities found"}, 204
-        return {f"all_{entity.__tablename__}": entity_list}, 200
+        return {f"all_{entity.__tablename__}": transformation(entity_list)}, 200
     except Exception as e:
         return {'error': str(e)}, 500
 
 
 def search_entities(entity, search: str, *columns):
     """
-    Base to search entities
+    Base to search entities from some specific columns with a search value
 
-    :param entity: entity to search
+    :param entity: entity
     :param search: search value
     :param columns: columns to search
     """
@@ -53,3 +54,18 @@ def search_entities(entity, search: str, *columns):
     except Exception as e:
         return {'error': str(e)}, 500
 
+
+def get_entity_by_id(entity: db.Model, entity_id: int):
+    """
+    Base to get entity by id, with all joins
+
+    :param entity: entity to get
+    :param entity_id: entity id
+    """
+    try:
+        entity_inst = entity.get_entity_with_joins(entity_id)
+        if not entity_inst:
+            return {'message': 'Entity not found'}, 404
+        return {f"{entity.__tablename__}": entity_inst}, 200
+    except Exception as e:
+        return {'error': str(e)}, 500

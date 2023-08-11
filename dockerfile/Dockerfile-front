@@ -1,7 +1,7 @@
 FROM node:lts-slim as base
 WORKDIR /app
 COPY ./front/ .
-RUN npm install
+RUN npm ci
 
 FROM base as DEV
 ENTRYPOINT [ "npm", "run", "dev", "--", "--host"]

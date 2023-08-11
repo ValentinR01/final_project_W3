@@ -7,7 +7,7 @@ class Subtitle(Base):
     __tablename__ = 'subtitle'
 
     id = db.Column(db.Integer, primary_key=True)
-    file_path = db.Column(db.String(100), nullable=False)
+    file_path = db.Column(db.String(100), nullable=False, unique=True)
     published = db.Column(db.Boolean, nullable=False)
 
     # FK

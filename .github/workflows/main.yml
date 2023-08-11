@@ -23,7 +23,7 @@ jobs:
 
       - name: Build Docker Images
         run: docker buildx build . --file ./dockerfile/Dockerfile-api --tag "${{ env.REGISTRY_URL }}"/dam-api:latest
-          && docker buildx build [PROD] . --file ./dockerfile/Dockerfile-front --tag "${{ env.REGISTRY_URL }}"/dam-front:latest
+          && docker buildx build . --file ./dockerfile/Dockerfile-front --tag "${{ env.REGISTRY_URL }}"/dam-front:latest --target PROD
 
       - name: Run Unit Tests
         run: docker run -d -e ENV=TEST --name=dam-api "${{ env.REGISTRY_URL }}"/dam-api:latest

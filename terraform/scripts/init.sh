@@ -1,7 +1,12 @@
 #!/bin/bash
 
+# Create user
 sudo useradd -m -s /bin/bash ${cd_username}
-sudo echo ${cd_username}:${cd_password} | chpasswd
+
+# SSH Key setup
+ssh_dir="/home/${cd_username}/.ssh"
+mkdir -p "$ssh_dir"
+chmod 700 "$ssh_dir"
 
 # Update and install packages
 sudo apt update -y
@@ -22,6 +27,3 @@ newgrp docker
 # Start and enable docker
 sudo systemctl start docker
 sudo systemctl enable docker
-
-# Enable docker swarm
-sudo docker swarm init

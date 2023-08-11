@@ -15,7 +15,7 @@ comment_model = namespace.model(
         'created_at': fields.DateTime(),
         'external_name': fields.String(),
         'posted_by': fields.Integer(),
-        'fullname': fields.String(),
+        'fullname': fields.String(attribute='user.fullname'),
         'asset_id': fields.Integer()
     }
 )

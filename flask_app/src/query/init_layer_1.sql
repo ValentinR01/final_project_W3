@@ -10,17 +10,20 @@ VALUES
     ('nass@saline.com', 'Nass La Menass', 'pbkdf2:sha256:600000$MFIgXR9G8QmB3Yqw$cc22c03b43785f647894db48313da07f71a6204029985e671bf611e0c07493b7',
     NULL, CURRENT_TIMESTAMP, 0, 3, 4),
     ('translator@saline.com', 'Translator', 'pbkdf2:sha256:600000$MFIgXR9G8QmB3Yqw$cc22c03b43785f647894db48313da07f71a6204029985e671bf611e0c07493b7',
-    NULL, CURRENT_TIMESTAMP, 0, 1, 2);
+    NULL, CURRENT_TIMESTAMP, 0, 1, 2),
+    ('regisseur@saline.com', 'Regisseur', 'pbkdf2:sha256:600000$MFIgXR9G8QmB3Yqw$cc22c03b43785f647894db48313da07f71a6204029985e671bf611e0c07493b7',
+    NULL, CURRENT_TIMESTAMP, 0, 1, 5);
 
 
 -- Specialty
-INSERT INTO "specialty" (name, domain_id)
-VALUES ('french', 2), ('english', 2);
+INSERT INTO "specialty" (name, domain_id, language_id)
+VALUES
+    ('logistic', 5, NULL), ('light', 5, NULL), (NULL, 2, 2);
 
 
 -- specialties_users
 INSERT INTO "specialties_users" (user_id, specialty_id)
-VALUES (2, 2);
+VALUES (2, 3), (3, 1), (3, 2);
 
 
 -- Meta Value

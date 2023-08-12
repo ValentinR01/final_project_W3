@@ -28,7 +28,6 @@ class Base(db.Model):
     def get_all(cls: db.Model):
         return cls.query.all()
 
-
     @classmethod
     def get_by(cls: db.Model, **kwargs):
         """
@@ -51,7 +50,6 @@ class Base(db.Model):
         """
         raw_data = cls.query.filter_by(**kwargs).all()
         return raw_data
-
 
     @classmethod
     def get_entities_by_search_values(cls, search, *columns):

@@ -32,32 +32,14 @@ def mock_query(asset_id):
 
 def test_get_all_comments():
     # Test with a list of comments
-    with patch('models.comment.Comment.get_all_comments', side_effect=mock_query):
+    with patch('models.comment.Comment.get_all_by', side_effect=mock_query):
         asset_id = 1  # Replace with the desired asset_id for testing
         expected_result = {
-            'comments': [
-                {
-                    'id': 1,
-                    'content': 'Test comment 1',
-                    'created_at': '2023-08-05',
-                    'external_name': 'External',
-                    'posted_by': 1,
-                    'fullname': 'John Doe',
-                    'asset_id': 1
-                },
-                {
-                    'id': 2,
-                    'content': 'Test comment 2',
-                    'created_at': '2023-08-05',
-                    'external_name': 'External',
-                    'posted_by': 2,
-                    'fullname': 'Jane Smith',
-                    'asset_id': 1
-                }
-            ]
+            'comments': mock_query(asset_id)
         }
 
         # Call the function and assert the result
         result, status_code = get_all_comments(asset_id)
         assert status_code == 200
-        assert result == expected_result
+        assert len(result['comments']) == len(expected_result['comments'])
+

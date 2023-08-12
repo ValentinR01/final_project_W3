@@ -50,6 +50,7 @@ jobs:
   build-test-push-api:
     name: build-test-push-api
     runs-on: ubuntu-latest
+    needs: [python-api-lint]
 
     steps:
       - name: Checkout

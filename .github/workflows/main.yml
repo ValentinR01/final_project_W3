@@ -28,7 +28,7 @@ jobs:
           pip install flake8-flask
       - name: Lint with flake8
         run: cd flask_app
-          && flake8 --config=lint/.flake8 ./src
+          && flake8 --config=lint/.flake8 .
 
 
   build-test-push-front:

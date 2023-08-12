@@ -1,6 +1,5 @@
 from models.comment import Comment
-from models.user import User
-from services.base import create_entity, get_all_entities
+from services.base import create_entity
 
 
 # Todo: Complete with user Token data

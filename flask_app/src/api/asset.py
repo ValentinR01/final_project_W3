@@ -1,6 +1,6 @@
 from flask import request
 from flask_restx import Namespace, Resource, Api
-from helpers.decorators import rights_manager
+# from helpers.decorators import rights_manager
 from services.asset import create_asset, get_asset, search_asset
 
 namespace = Namespace('assets', 'Asset related endpoints')

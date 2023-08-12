@@ -1,7 +1,8 @@
-from flask_app.src.app import app as flask_app
+# pylint: disable=redefined-outer-name
 import pytest
 import sys
 sys.path.append('/flask_app/src/')
+from flask_app.src.app import app as flask_app
 
 
 @pytest.fixture
@@ -12,3 +13,4 @@ def app():
 @pytest.fixture
 def client(app):
     return app.test_client()
+

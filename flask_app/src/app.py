@@ -45,7 +45,7 @@ if __name__ == "__main__":
                             session.commit()
                         except errors.lookup(UNIQUE_VIOLATION):
                             logging.info(f"Layer {file} already executed")
-                        except IntegrityError as e:
+                        except IntegrityError:
                             session.rollback()
 
         app.run(host='0.0.0.0', port=8000, debug=debug)

@@ -35,5 +35,5 @@ VALUES
        ),
        (
         'MAKE SALINE GREAT AGAIN !!!',
-        CURRENT_TIMESTAMP, "Donald TRUMP", NULL, 1
+        CURRENT_TIMESTAMP, 'Donald TRUMP', NULL, 1
        );

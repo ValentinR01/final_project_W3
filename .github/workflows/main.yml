@@ -28,7 +28,7 @@ jobs:
         pip install flake8-flask
     - name: Analysing the code with flake8
       run: cd flask_app/src 
-        && flake8 . --config=flake8
+        && flake8 --config=flake8/.flake8 .
   
   build-test-push-front:
     name: build-test-push-front

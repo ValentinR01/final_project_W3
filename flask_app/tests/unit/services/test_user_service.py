@@ -2,7 +2,6 @@ import pytest
 from unittest.mock import patch
 from models.user import User
 from models.domain import Domain
-from helpers.auth import AuthHandler
 from services.user import register_service, login_service, get_user_by_domain, \
     get_all_users
 import datetime

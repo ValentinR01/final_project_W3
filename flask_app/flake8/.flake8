@@ -1,5 +1,5 @@
 [flake8]
 per-file-ignores =
-    app.py: F401
-    ./models/all_tables.py: F401
+    ./src/app.py: F401
+    ./src/models/all_tables.py: F401
 max-line-length=120

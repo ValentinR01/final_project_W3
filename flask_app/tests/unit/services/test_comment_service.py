@@ -1,8 +1,5 @@
 from unittest.mock import patch
-import pytest
-from services.comment import register_comment, get_all_comments
-from models.comment import Comment
-from models.user import User
+from services.comment import get_all_comments
 
 
 class MockComment:
@@ -42,4 +39,3 @@ def test_get_all_comments():
         result, status_code = get_all_comments(asset_id)
         assert status_code == 200
         assert len(result['comments']) == len(expected_result['comments'])
-

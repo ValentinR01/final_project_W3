@@ -15,6 +15,7 @@ def mock_composer():
         language_id=None
     )
 
+
 @pytest.fixture
 def mock_composer_list(mock_composer) -> list:
     return [mock_composer, mock_composer]

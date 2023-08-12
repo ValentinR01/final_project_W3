@@ -3,8 +3,7 @@ from db import db
 from models.base import Base
 from unittest.mock import Mock
 from flask_app.src.app import app
-from services.base import create_entity, get_all_entities, search_entities, \
-    get_entity_by_id
+from services.base import create_entity
 
 
 class MockEntity(Base):
@@ -94,4 +93,3 @@ def test_create_entity_missing_parameters():
 #     response, status_code = get_entity_by_id(MockEntity, 1)
 #     assert status_code == 200
 #     assert response == {'mockentity': 'entity_data'}
-

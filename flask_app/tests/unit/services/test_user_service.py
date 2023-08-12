@@ -106,7 +106,6 @@ def test_get_all_users(mock_user_list):
 
 
 def test_login_service(mock_login_data, mock_user):
-    auth_handler = AuthHandler()
 
     # Test login with invalid credentials
     with patch('helpers.auth.AuthHandler.authenticate', return_value=None):

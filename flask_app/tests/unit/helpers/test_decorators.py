@@ -6,11 +6,11 @@ from helpers.decorators import rights_manager
 
 def test_rights_manager():
     # Mocking dependencies
-    mocked_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZn" \
-                   "VsbG5hbWUiOiJzYWxpbiIsImVtYWlsIjoic2FsaW5Ac2FsaW5lL" \
-                   "mNvbSIsInJvbGUiOiJ3b3JrZXIiLCJkb21haW4iOiJyZWRhY3Rp" \
-                   "b24iLCJleHAiOjE2ODkwMjk5MDIsImlhdCI6MTY4ODk5MzkwMn" \
-                   "0.r4UalimTKPHVIDABZei3px6armJdAd_TOVAM_uEazTM"
+    # mocked_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZn" \
+    #                "VsbG5hbWUiOiJzYWxpbiIsImVtYWlsIjoic2FsaW5Ac2FsaW5lL" \
+    #                "mNvbSIsInJvbGUiOiJ3b3JrZXIiLCJkb21haW4iOiJyZWRhY3Rp" \
+    #                "b24iLCJleHAiOjE2ODkwMjk5MDIsImlhdCI6MTY4ODk5MzkwMn" \
+    #                "0.r4UalimTKPHVIDABZei3px6armJdAd_TOVAM_uEazTM"
     mocked_decode_token = {
         "id": 4,
         "fullname": "salin",

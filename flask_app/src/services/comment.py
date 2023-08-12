@@ -1,5 +1,4 @@
 from models.comment import Comment
-from models.user import User
 from services.base import create_entity
 
 

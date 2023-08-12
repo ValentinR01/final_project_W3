@@ -1,9 +1,8 @@
 from flask import request
-from models.composer import Composer
 from flask_restx import Namespace, Resource, fields, Api
 from services.composer import \
     register_service, get_composer_by_id, get_all_composers
-from helpers.decorators import rights_manager
+# from helpers.decorators import rights_manager
 
 namespace = Namespace('composers', 'Composer related endpoints')
 

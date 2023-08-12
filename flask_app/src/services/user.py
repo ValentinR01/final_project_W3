@@ -2,10 +2,8 @@ from models.user import User
 from models.domain import Domain
 from werkzeug.security import generate_password_hash
 from helpers.auth import AuthHandler
-from flask_restx import abort
-from flask import make_response
 from conf import TOKEN_EXPIRATION_HOURS
-import logging, datetime
+import logging
 import re
 
 

@@ -17,5 +17,3 @@ class Booking(Base):
         self.date = date
         self.timeslot = timeslot
         self.room_id = room_id
-
-

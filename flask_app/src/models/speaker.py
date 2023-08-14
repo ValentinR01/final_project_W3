@@ -19,8 +19,8 @@ class Speaker(Base):
     language_id = \
         db.Column(db.Integer, db.ForeignKey('language.id'), nullable=True)
 
-    def __init__(self, fullname, biography=None, last_update=None, publishable=False,
-                 speaker_parent=None, language_id=None):
+    def __init__(self, fullname, biography=None, last_update=None,
+                 publishable=False, speaker_parent=None, language_id=None):
         self.fullname = fullname
         self.biography = biography
         self.last_update = last_update

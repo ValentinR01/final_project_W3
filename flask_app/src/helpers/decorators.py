@@ -56,4 +56,3 @@ def rights_manager(request, role: str, domain: str = None):
         return decorator
 
     return decorator_rights_manager
-

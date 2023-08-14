@@ -28,7 +28,12 @@ VALUES (1, 1), (7, 1), (11, 1), (12, 1);
 
 -- Comment
 INSERT INTO "comment" (content, created_at, external_name, posted_by, asset_id)
-VALUES (
+VALUES 
+       (
         'Sed ut perspiciatis unde omnis iste natus error sit voluptatem translated',
-        CURRENT_TIMESTAMP, '', 1, 1
+        CURRENT_TIMESTAMP, NULL, 1, 1
+       ),
+       (
+        'MAKE SALINE GREAT AGAIN !!!',
+        CURRENT_TIMESTAMP, 'Donald TRUMP', NULL, 1
        );

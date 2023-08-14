@@ -49,7 +49,7 @@ class Base(db.Model):
         :return: all matching records
         """
         raw_data = cls.query.filter_by(**kwargs).all()
-        return transformation(raw_data)
+        return raw_data
 
     @classmethod
     def get_entities_by_search_values(cls, search, *columns):

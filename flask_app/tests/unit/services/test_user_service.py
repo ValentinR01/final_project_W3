@@ -2,9 +2,8 @@ import pytest
 from unittest.mock import patch
 from models.user import User
 from models.domain import Domain
-from helpers.auth import AuthHandler
-from services.user import register_service, login_service, get_user_by_domain, \
-    get_all_users
+from services.user import register_service, login_service, \
+    get_user_by_domain, get_all_users
 import datetime
 
 
@@ -58,10 +57,12 @@ def mock_domain():
 def test_register_service(mock_register_data, mock_user, mock_missing_data):
     # Test creation of a new user
     with patch('models.user.User.get_by', return_value=None):
-        with patch('werkzeug.security.generate_password_hash', return_value='hashed_password'):
+        with patch('werkzeug.security.generate_password_hash',
+                   return_value='hashed_password'):
             with patch('models.user.User.create'):
                 response = register_service(mock_register_data)
-                assert response == ({'message': 'User created successfully'}, 201)
+                assert response == ({'message': 'User created successfully'},
+                                    201)
 
     # Test creation of an existing user
     with patch('models.user.User.get_by', return_value=mock_user):
@@ -106,7 +107,6 @@ def test_get_all_users(mock_user_list):
 
 
 def test_login_service(mock_login_data, mock_user):
-    auth_handler = AuthHandler()
 
     # Test login with invalid credentials
     with patch('helpers.auth.AuthHandler.authenticate', return_value=None):
@@ -114,12 +114,16 @@ def test_login_service(mock_login_data, mock_user):
         assert response == ({'message': 'Invalid email or password'}, 401)
 
     # Test login with valid credentials
-    with patch('helpers.auth.AuthHandler.authenticate', return_value=mock_user):
-        with patch('helpers.auth.AuthHandler.generate_token', return_value='token'):
+    with patch('helpers.auth.AuthHandler.authenticate',
+               return_value=mock_user):
+        with patch('helpers.auth.AuthHandler.generate_token',
+                   return_value='token'):
             with patch('datetime.datetime') as mock_datetime:
                 mock_datetime.now.return_value = datetime.datetime(2023, 7, 12)
                 response = login_service(mock_login_data)
                 print(response)
-                assert response[0] == {'access_token': 'token', 'message': 'Login successful'}
+                assert response[0] == {'access_token': 'token',
+                                       'message': 'Login successful'}
                 assert response[1] == 200
-                assert response[2][0][1] == 'authorization=token; max-age=36000; path=/'
+                assert response[2][0][1] == 'authorization=token; ' \
+                                            'max-age=36000; path=/'

@@ -69,7 +69,8 @@ def test_rights_manager():
                 )
 
                 # Test case 4 : Authorized access dor superadmin
-                @rights_manager(request=None, role="worker", domain="redaction")
+                @rights_manager(request=None, role="worker",
+                                domain="redaction")
                 def test_case_4():
                     return "Success"
 

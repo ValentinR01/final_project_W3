@@ -15,7 +15,8 @@ meta_values_model = namespace.model(
 
 meta_values_list_model = namespace.model(
     'meta_values_list_model', {
-        'meta_values': fields.List(fields.Nested(meta_values_model, default={}))
+        'meta_values': fields.List(fields.Nested(meta_values_model,
+                                                 default={}))
     }
 )
 

@@ -3,7 +3,8 @@ from services.comment import get_all_comments
 
 
 class MockComment:
-    def __init__(self, id, content, created_at, external_name, posted_by, user, asset_id):
+    def __init__(self, id, content, created_at, external_name, posted_by, user,
+                 asset_id):
         self.id = id
         self.content = content
         self.created_at = created_at
@@ -21,8 +22,10 @@ class MockUser:
 def mock_query(asset_id):
     # Create mock comment data for testing
     mock_comments = [
-        MockComment(1, "Test comment 1", "2023-08-05", "External", 1, MockUser("John Doe"), asset_id),
-        MockComment(2, "Test comment 2", "2023-08-05", "External", 2, MockUser("Jane Smith"), asset_id),
+        MockComment(1, "Test comment 1", "2023-08-05", "External", 1,
+                    MockUser("John Doe"), asset_id),
+        MockComment(2, "Test comment 2", "2023-08-05", "External", 2,
+                    MockUser("Jane Smith"), asset_id),
     ]
     return mock_comments
 

@@ -34,7 +34,7 @@ def get_all_entities(entity: db.Model, **filters):
         if not entity_list:
             return {'message': "No entities found"}, 204
         return {f"all_{entity.__tablename__}": transformation(entity_list)}, \
-               200
+            200
     except Exception as e:
         return {'error': str(e)}, 500
 

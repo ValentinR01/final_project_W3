@@ -3,6 +3,32 @@
   * @type {Array<any>}
   */
   export let options = [];
+  //let options = [
+  //                {
+  //                    id: 1,
+  //                    name: "Interview 1",
+  //                    instruments: ["piano","violon","guitare"],
+  //                    categorie: "interview",
+  //                    rating: 3,
+  //                    translations: ["Français","Anglais"]
+  //                },
+  //                {
+  //                    id: 2,
+  //                    name: "Interview 2",
+  //                    instruments: ["piano","violon","guitare"],
+  //                    categorie: "interview",
+  //                    rating: 4,
+  //                    translations: ["Français","Allemand"]
+  //                },
+  //                {
+  //                    id: 3,
+  //                    name: "Concert de Jean Mich",
+  //                    instruments: ["piano","violon","guitare"],
+  //                    categorie: "concert",
+  //                    rating: 1,
+  //                    translations: ["Russe","Espagnol","Chinois"]
+  //                }
+  //              ]
 
   /**
   * @type {String}
@@ -12,7 +38,7 @@
   /**
   * @type {any}
   */
-  export let valueSelected = options[0].name;
+  export let valueSelected = options[0];
   let value;
 
   $: {
@@ -23,11 +49,11 @@
 
 <div class="select-wrapper">
   <select 
-    name={nameSelect} 
+    name='{nameSelect} '
     bind:value={valueSelected}
   >
-    {#each options as valueSelected}
-      <option value={valueSelected.name}>{valueSelected.name}</option>
+    {#each options as option}
+      <option value={option}>{option}</option>
     {/each}
   </select>
 </div>
@@ -61,6 +87,5 @@
     right: 15px;
     position: absolute;
   }
-
 
 </style>

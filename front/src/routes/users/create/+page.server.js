@@ -28,3 +28,17 @@ export const actions = {
   },
 };
 
+export function load() {
+  return {
+      metadata:{
+          instruments: ["piano","violon","guitare","violoncelle","trombone","harpe","trompette","flute"],
+          categorie: ["concert", "interview", "masterclass"],
+          rating: [1,2,3,4],
+          role: ["superadmin","admin","user"], 
+          domain: ["post-prod","regisseur","traducteur","editeur"], 
+          translations: ["Français","Anglais","Italien","Espagnol","Allemand","Japonais","Russe","Arabe","Chinois","Coréen","Portugais"],
+          style: ["classical","jazz","medieval"],
+          era: ["XII","XVI","XVIII","XIX","XX"]
+      }
+  }
+}

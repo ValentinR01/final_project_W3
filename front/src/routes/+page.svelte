@@ -76,7 +76,6 @@
   ];
 </script>
 
-
 <Text
   textTag='h1'
   class='text-preset-1'
@@ -98,6 +97,7 @@
   border
 />
 <br><br>
+
 <TextArea placeholder="Enter your text here..." />
 <br><br>
 <Input type='email' id='email' name='email' placeholder='Email' required/>
@@ -143,7 +143,7 @@
 {/if}
 <Pagination rows={data.metadata.instruments} perPage={3} bind:trimmedRows={values} />
 <!-- End pagination exemple -->
-
+ 
 <br><br><br>
 <Text
   textTag='h1'
@@ -162,6 +162,7 @@
   Commentaire
 </TextareaForm>
 <br><br>
+
 <SelectForm labelName='level' nameSelect="rating" options={data.metadata.rating}> Niveau </SelectForm>
 <br><br>
 <CheckboxForm data={data.metadata.instruments} catForm='instruments'> Instruments </CheckboxForm>
@@ -197,6 +198,7 @@
   <span slot='number-projects'>{data.users[1].count_assigning_asset}</span>
 </EmployeeCard>
 <br><br>
+
 <CommentaryCard>
   <span slot='name'>{data.users[1].fullname}</span>
   <span slot='job'>{data.users[1].domain}</span>
@@ -222,6 +224,7 @@
 <br><br>
 <ModalIntervenor type='composer'/>
 <br><br>
+-->
 <!--
 <SubtitlesRequest languages={data.metadata.translations} data={data.asset[0].translations} /> 
 <br><br>

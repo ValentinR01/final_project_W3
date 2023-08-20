@@ -3,32 +3,6 @@
   * @type {Array<any>}
   */
   export let options = [];
-  //let options = [
-  //                {
-  //                    id: 1,
-  //                    name: "Interview 1",
-  //                    instruments: ["piano","violon","guitare"],
-  //                    categorie: "interview",
-  //                    rating: 3,
-  //                    translations: ["Français","Anglais"]
-  //                },
-  //                {
-  //                    id: 2,
-  //                    name: "Interview 2",
-  //                    instruments: ["piano","violon","guitare"],
-  //                    categorie: "interview",
-  //                    rating: 4,
-  //                    translations: ["Français","Allemand"]
-  //                },
-  //                {
-  //                    id: 3,
-  //                    name: "Concert de Jean Mich",
-  //                    instruments: ["piano","violon","guitare"],
-  //                    categorie: "concert",
-  //                    rating: 1,
-  //                    translations: ["Russe","Espagnol","Chinois"]
-  //                }
-  //              ]
 
   /**
   * @type {String}
@@ -49,7 +23,7 @@
 
 <div class="select-wrapper">
   <select 
-    name='{nameSelect} '
+    name={nameSelect}
     bind:value={valueSelected}
   >
     {#each options as option}
@@ -59,6 +33,7 @@
 </div>
 
 <style>
+  
   select{
     -webkit-appearance: none;
     appearance: none;

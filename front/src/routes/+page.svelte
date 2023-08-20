@@ -224,7 +224,7 @@
 <br><br>
 <ModalIntervenor type='composer'/>
 <br><br>
--->
+
 <!--
 <SubtitlesRequest languages={data.metadata.translations} data={data.asset[0].translations} /> 
 <br><br>

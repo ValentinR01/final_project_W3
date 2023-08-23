@@ -4,6 +4,7 @@ from models.role import Role
 from models.user import User
 from models.speaker import Speaker
 from models.composer import Composer
+from models.comment import Comment
 from models.metadata import Metadata
 from models.meta_value import MetaValue
 from models.meta_key import MetaKey

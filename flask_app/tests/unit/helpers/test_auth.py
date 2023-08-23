@@ -41,7 +41,8 @@ def test_authenticate_with_valid_credentials(user):
 
 def test_authenticate_with_invalid_credentials(user):
     with patch('models.user.User.get_by', return_value=user):
-        with patch('werkzeug.security.check_password_hash', return_value=False):
+        with patch('werkzeug.security.check_password_hash',
+                   return_value=False):
             result = AuthHandler.authenticate(user.email, "wrong_password")
             assert result is None
 

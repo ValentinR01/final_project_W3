@@ -40,7 +40,7 @@ class Base(db.Model):
         return cls.query.filter_by(**kwargs).first()
 
     @classmethod
-    def get_all_by(cls: db.Model, **kwargs):
+    def get_all_by(cls: db.Model, **kwargs) -> list:
         """
         This method will be used to get all record from a table with filter.
 
@@ -49,7 +49,7 @@ class Base(db.Model):
         :return: all matching records
         """
         raw_data = cls.query.filter_by(**kwargs).all()
-        return transformation(raw_data)
+        return raw_data
 
     @classmethod
     def get_entities_by_search_values(cls, search, *columns):

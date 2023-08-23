@@ -29,47 +29,46 @@ def mock_asset():
     return Asset(**mock_data)
 
 
-@pytest.fixture
-def mock_asset_list(mock_asset) -> list:
-    return [mock_asset]
-
-
 def test_create_asset(mock_asset):
     with patch('models.asset.Asset.get_by', return_value=None):
         with patch('models.asset.Asset.create'):
-            response = mock_asset.create()
-
             response = create_asset(mock_data)
+            assert response == \
+                   ({'message': 'The asset created successfully'}, 200)
 
-            print(response)
-            # assert response == \
-            #        ({'message': 'The asset created successfully'}, 200)
-
-    # with patch('models.asset.Asset.get_by', return_value=mock_asset):
-    #     response = create_asset(mock_data)
-    #     assert response == \
-    #            ({'message': 'Entity already exists'}, 409)
+    with patch('models.asset.Asset.get_by', return_value=mock_asset):
+        response = create_asset(mock_data)
+        assert response == \
+               ({'message': 'Entity already exists'}, 409)
 
 
-# def test_get_all_assets(mock_asset_list):
-#     app = create_app()
-#     with app.app_context():
-#         with patch('models.asset.Asset.get_all', return_value=mock_asset_list):
-#             assets = get_asset()
-#             print(assets)
-#             assert len(assets[0].get("all_asset")) > 0
-#             assert assets[0].get("all_asset")[1].get("title") == "NassLaMenass"
+def test_get_all_assets():
+    app = create_app()
+    with app.app_context():
+        with patch('models.asset.Asset.get_all'):
+            assets = get_asset()
+            assert len(assets[0].get("all_asset")) > 0
+            assert assets[0].get("all_asset")[0].get("title") == "Title"
 
 
-# def test_get_asset_by_id(mock_asset):
-#     with patch('models.asset.Asset.get_by', return_value=mock_asset):
-#         print(mock_asset)
-#         fetched_asset = get_asset(id=mock_asset.id)
-#         print(fetched_asset)
+def test_get_asset_by_id():
+    app = create_app()
+    with app.app_context():
+        with patch('models.asset.Asset.get_by'):
+            fetched_asset = get_asset(id=1)
+            obj = fetched_asset[0].get("asset")[0]
+            assert fetched_asset[0].get("asset") is not None
+            assert len(fetched_asset[0].get("asset")) == 1
+            assert obj.get("title") == "Title"
+            assert obj.get("id") == 1
+            if isinstance(obj, dict):
+                if any(isinstance(key, dict) for key in obj.values()):
+                    assert True
 
 
-# def test_search_asset(mock_asset):
-#     with patch('models.asset.Asset.search', return_value=[mock_asset]):
-#         results = search_asset(search="NassLaMenass")
-#         assert len(results) == 1
-#         assert results[0].title == "NassLaMenass"
+def test_search_asset():
+    with patch('models.asset.Asset.get_entities_by_search_values',
+               return_value=[mock_data]):
+        results = search_asset(search="NassLaMenass")
+        assert len(results[0]) == 1
+        assert results[0].get("all_asset")[0].get("title") == "NassLaMenass"

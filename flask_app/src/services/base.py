@@ -1,3 +1,5 @@
+import logging
+
 from db import db
 from helpers.etl import transformation
 
@@ -31,6 +33,7 @@ def get_all_entities(entity: db.Model, **filters):
     """
     try:
         entity_list = entity.get_all_by(**filters)
+        logging.info(entity_list)
         if not entity_list:
             return {'message': "No entities found"}, 204
         return {f"all_{entity.__tablename__}": transformation(entity_list)}, \

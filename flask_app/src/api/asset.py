@@ -12,8 +12,7 @@ api = Api()
 class GetAll(Resource):
     """Get all assets"""
     @api.doc(
-        params={
-        }
+        params={}
     )
     def get(self):
         """Get all assets"""
@@ -35,24 +34,12 @@ class Create(Resource):
                 'description': 'Music title', 'required': True, 'type':
                     'string'
             },
-            'composer_id': {
-                'description': 'Composer id', 'required': True, 'type':
-                    'integer'
-            },
-            'current_assigned_user_id': {
-                'description': 'Current assigned user id', 'required': True,
-                'type': 'integer'
-            },
             'created_by_id': {
                 'description': 'Created by id', 'required': True, 'type':
                     'integer'
             },
             'updated_by_id': {
                 'description': 'Updated by id', 'required': True, 'type':
-                    'integer'
-            },
-            'speaker_id': {
-                'description': 'Speaker id', 'required': True, 'type':
                     'integer'
             },
             'status_by_domain_id': {
@@ -63,11 +50,23 @@ class Create(Resource):
                 'description': 'Step lifecycle id', 'required': True,
                 'type': 'integer'
             },
-            'booking_id': {
-                'description': 'Booking id', 'required': True, 'type':
+            # Optional parameters
+            'current_assigned_user_id': {
+                'description': 'Current assigned user id', 'required': False,
+                'type': 'integer'
+            },
+            'speaker_id': {
+                'description': 'Speaker id', 'required': False, 'type':
                     'integer'
             },
-            # Optional parameters
+            'booking_id': {
+                'description': 'Booking id', 'required': False, 'type':
+                    'integer'
+            },
+            'composer_id': {
+                'description': 'Composer id', 'required': False,
+                'type': 'integer'
+            },
             'captation_id': {
                 'description': 'Captation id', 'type': 'integer'
             },
@@ -154,3 +153,5 @@ class Search(Resource):
         """Search assets"""
         search = request.args.get('search')
         return search_asset(search)
+
+

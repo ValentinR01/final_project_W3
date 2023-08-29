@@ -17,7 +17,9 @@ def get_asset(**kwargs):
             entity=Asset,
             entity_id=kwargs.get('id')
         )
-    return get_all_entities(entity=Asset, **kwargs)
+    all_entities = get_all_entities(entity=Asset, **kwargs)
+    print(all_entities)
+    return all_entities
 
 
 def search_asset(search: str):

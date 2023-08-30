@@ -12,7 +12,13 @@ api = Api()
 class GetAll(Resource):
     """Get all assets"""
     @api.doc(
-        params={}
+        params={
+            'status_by_domain_id': {
+                'description': 'Status by domain ID', 'type': 'int',
+                'required': False
+            }
+
+        }
     )
     def get(self):
         """Get all assets"""

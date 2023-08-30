@@ -16,10 +16,13 @@ def create_entity(entity: db.Model, data: dict, **kwargs):
         return {'message': 'Entity already exists'}, 409
     try:
         entity_inst = entity(**data)
-        entity_inst.create()
+        created_id = entity_inst.create()
     except Exception as e:
         return {'error': str(e)}, 500
-    return {'message': f'The {entity.__tablename__} created successfully'}, 200
+    return {
+        'message': f'The {entity.__tablename__} created successfully',
+        'id': created_id
+    }, 200
 
 
 def get_all_entities(entity: db.Model, **filters):
@@ -70,3 +73,19 @@ def get_entity_by_id(entity: db.Model, entity_id: int):
         return {f"{entity.__tablename__}": entity_inst}, 200
     except Exception as e:
         return {'error': str(e)}, 500
+
+
+def update_entity(entity: db.Model, data: dict, entity_id: int):
+    """Base to update entity"""
+    if not data:
+        return {'message': 'Missing parameters'}, 400
+    try:
+        entity_inst = entity.get_by(id=entity_id)
+        if not entity_inst:
+            return {'message': 'Entity not found'}, 404
+        for key, value in data.items():
+            setattr(entity_inst, key, value)
+        entity_inst.update()
+    except Exception as e:
+        return {'error': str(e)}, 500
+    return {'message': f'The {entity.__tablename__} updated successfully'}, 200

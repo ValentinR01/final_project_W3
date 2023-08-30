@@ -15,7 +15,8 @@ class Base(db.Model):
     def create(self):
         if self.id is None:
             db.session.add(self)
-        return db.session.commit()
+            db.session.commit()
+        return self.id
 
     def update(self):
         return db.session.commit()

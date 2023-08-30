@@ -129,7 +129,7 @@ class Create(Resource):
         return create_asset(data=request.json)
 
 
-@namespace.route('/<int:asset_id>', methods=['GET'])
+@namespace.route('/id/<int:asset_id>', methods=['GET'])
 class GetById(Resource):
     """Get asset by id"""
     @api.doc(

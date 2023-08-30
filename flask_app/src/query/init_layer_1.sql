@@ -63,12 +63,12 @@ VALUES
 
 
 -- Booking
-INSERT INTO "booking" (date, timeslot, room_id)
+INSERT INTO "booking" (date, is_am_timeslot, room_id)
 VALUES
-    ('2023-10-08', 'am', 1),
-    ('2023-10-08', 'pm', 1),
-    ('2023-10-09', 'pm', 1),
-    ('2023-10-09', 'am', 2);
+    ('2023-10-08', true, 1),
+    ('2023-10-08', false, 1),
+    ('2023-10-09', false, 1),
+    ('2023-10-09', true, 2);
 
 
 -- Captation

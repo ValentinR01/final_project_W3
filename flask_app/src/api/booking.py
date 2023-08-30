@@ -36,6 +36,7 @@ class Create(Resource):
         booking = create_booking(data=request.json)
         if not booking:
             return {'message': 'Booking not created'}, 400
+        # TODO : thinking about a better way to do this
         update_asset(
             data={
                 "id": request.json.get('asset_id'), "booking_id": booking.id

@@ -22,7 +22,7 @@ def transform_single_object(
                     if isinstance(value, soc.CollectionAdapter)
                     else (
                         value.strftime('%Y-%m-%d %H:%M:%S')
-                        if isinstance(value, datetime.datetime)
+                        if isinstance(value, datetime.date)
                         else value
                     )
                 )

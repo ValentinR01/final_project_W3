@@ -160,5 +160,3 @@ class Search(Resource):
         """Search assets"""
         search = request.args.get('search')
         return search_asset(search)
-
-

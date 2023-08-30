@@ -2,7 +2,7 @@ from flask import request
 from flask_restx import Namespace, Resource, Api
 # from helpers.decorators import rights_manager
 from services.booking import create_booking
-
+from services.asset import update_asset
 
 namespace = Namespace('bookings', 'Booking related to an asset')
 
@@ -14,6 +14,10 @@ class Create(Resource):
     """Create a new booking for an asset"""
     @api.doc(
         params={
+            # Required parameters
+            'asset_id': {
+                'description': 'Asset id', 'required': True, 'type': 'integer'
+            },
             'date': {
                 'description': 'Booking date', 'required': True, 'type':
                     'string'
@@ -29,7 +33,12 @@ class Create(Resource):
     )
     def post(self):
         """Create a new booking for an asset"""
-        return create_booking(data=request.json)
-
-
-
+        booking = create_booking(data=request.json)
+        if not booking:
+            return {'message': 'Booking not created'}, 400
+        update_asset(
+            data={
+                "id": request.json.get('asset_id'), "booking_id": booking.id
+            }
+        )
+        return {'message': 'Booking created'}, 201

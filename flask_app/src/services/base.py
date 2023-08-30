@@ -1,5 +1,3 @@
-import logging
-
 from db import db
 from helpers.etl import transformation
 
@@ -33,9 +31,8 @@ def get_all_entities(entity: db.Model, **filters):
     """
     try:
         entity_list = entity.get_all_by(**filters)
-        logging.info(entity_list)
         if not entity_list:
-            return {'message': "No entities found"}, 204
+            return {'message': 'No entities found'}, 404
         return {f"all_{entity.__tablename__}": transformation(entity_list)}, \
             200
     except Exception as e:
@@ -53,7 +50,7 @@ def search_entities(entity, search: str, *columns):
     try:
         entity_list = entity.get_entities_by_search_values(search, columns)
         if not entity_list:
-            return {'message': "No entities found"}, 204
+            return {'message': 'No entities found'}, 404
         return {f"all_{entity.__tablename__}": entity_list}, 200
     except Exception as e:
         return {'error': str(e)}, 500

@@ -119,6 +119,7 @@ class Create(Resource):
     # @rights_manager(token=token, role='worker', domain='redaction')
     @namespace.response(200, '')
     def post(self):
+        """Create a new asset"""
         return create_asset(data=request.json)
 
 

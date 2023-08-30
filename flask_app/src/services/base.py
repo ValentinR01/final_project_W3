@@ -16,12 +16,13 @@ def create_entity(entity: db.Model, data: dict, **kwargs):
         return {'message': 'Entity already exists'}, 409
     try:
         entity_inst = entity(**data)
-        created_id = entity_inst.create()
+        entity_inst.create()
+        # created_id = entity_inst.create()
     except Exception as e:
         return {'error': str(e)}, 500
     return {
         'message': f'The {entity.__tablename__} created successfully',
-        'id': created_id
+        # 'id': created_id
     }, 200
 
 

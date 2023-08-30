@@ -64,7 +64,7 @@ def test_get_all_entities_no_entity_found():
     with patch('models.base.Base.get_all_by', return_value=[]):
         response, status_code = get_all_entities(MockEntity)
         assert response == {'message': "No entities found"}
-        assert status_code == 204
+        assert status_code == 404
 
 
 def test_get_all_entities_success():
@@ -85,7 +85,7 @@ def test_search_entities_no_entity_found():
         response, status_code = search_entities(
             MockEntity, "search_val", "col1"
         )
-        assert status_code == 204
+        assert status_code == 404
         assert response == {'message': "No entities found"}
 
 

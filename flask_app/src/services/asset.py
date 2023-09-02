@@ -23,3 +23,8 @@ def get_asset(**kwargs):
 def search_asset(search: str):
     """Search assets"""
     return search_entities(Asset, search, "title", "music_title")
+
+
+def share_asset(asset_id: int):
+    """Share asset"""
+    return

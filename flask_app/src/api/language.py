@@ -20,7 +20,7 @@ language_list_model = namespace.model(
 )
 
 
-@namespace.route('/language', methods=["GET"])
+@namespace.route('', methods=["GET"])
 class Language(Resource):
     @namespace.marshal_with(language_list_model)
     def get(self):

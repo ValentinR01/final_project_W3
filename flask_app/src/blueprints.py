@@ -4,6 +4,7 @@ from api.user import namespace as user
 from api.speaker import namespace as speaker
 from api.meta_value import namespace as meta_value
 from api.composer import namespace as composer
+from api.language import namespace as language
 from api.asset import namespace as asset
 
 
@@ -23,5 +24,5 @@ api.add_namespace(user)
 api.add_namespace(speaker)
 api.add_namespace(meta_value)
 api.add_namespace(composer)
-api.add_namespace(asset)
+api.add_namespace(language)
 api.add_namespace(asset)

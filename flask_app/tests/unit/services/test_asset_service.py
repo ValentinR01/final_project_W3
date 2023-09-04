@@ -87,7 +87,8 @@ def test_get_all_assets(mock_assets_list):
 
 def test_get_asset_by_id(mock_assets_list):
     #  Test with assets
-    with patch('models.asset.Asset.get_entity_with_joins', return_value=mock_assets_list):
+    with patch('models.asset.Asset.get_entity_with_joins',
+               return_value=mock_assets_list):
         response = get_asset(id=1)
         assert response == ({'asset': mock_assets_list}, 200)
 

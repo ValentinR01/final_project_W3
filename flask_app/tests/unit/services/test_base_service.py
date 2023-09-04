@@ -1,8 +1,6 @@
 import pytest
 from db import db
-from flask import Flask
 from models.base import Base
-from conf import POSTGRESQL_DATABASE_URI
 from unittest.mock import MagicMock, patch
 from services.base import \
     create_entity, get_all_entities, search_entities, get_entity_by_id
@@ -51,7 +49,7 @@ def test_create_entity_success(mock_session):
         )
         assert \
             response == {'message':
-                         f'The mockentity has been successfully created'}
+                         'The mockentity has been successfully created'}
 
 
 def test_get_all_entities_no_entity_found():

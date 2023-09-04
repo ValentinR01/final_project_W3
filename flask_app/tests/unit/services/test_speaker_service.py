@@ -29,8 +29,8 @@ def test_create_speaker(speaker):
         with patch('models.speaker.Speaker.create', return_value=True):
             response = create_speaker(data)
             assert response == ({'message':
-                                'The speaker has been successfully created'}
-                                , 200)
+                                'The speaker has been successfully created'},
+                                200)
 
     # Test creation of an existing speaker
     with patch('models.speaker.Speaker.get_by', return_value=speaker):
@@ -87,5 +87,5 @@ def test_update_speaker(speaker):
         with patch('models.speaker.Speaker.update', return_value=True):
             response = update_speaker(data=data, speaker_id=1)
             assert response == ({'message':
-                                'The speaker has been successfully updated'}
-                                , 200)
+                                'The speaker has been successfully updated'},
+                                200)

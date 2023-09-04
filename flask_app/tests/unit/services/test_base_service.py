@@ -3,8 +3,7 @@ from db import db
 from models.base import Base
 from unittest.mock import Mock
 from flask_app.src.app import app
-from services.base import create_entity, get_all_entities, search_entities, \
-    get_entity_by_id
+from services.base import create_entity
 
 
 class MockEntity(Base):
@@ -74,10 +73,10 @@ def test_create_entity_missing_parameters():
 #
 #
 # def test_search_entities_success(mock_entity):
-#     mock_entity.get_entities_by_search_values.return_value = ["entity1", "entity2"]
-#     response, status_code = search_entities(MockEntity, "search_val", "col1")
-#     assert status_code == 200
-#     assert response == {'all_mockentity': ["entity1", "entity2"]}
+# mock_entity.get_entities_by_search_values.return_value = ["entity1",
+# "entity2"] response, status_code = search_entities(MockEntity,
+# "search_val", "col1") assert status_code == 200 assert response == {
+# 'all_mockentity': ["entity1", "entity2"]}
 #
 #
 # # Tests for get_entity_by_id
@@ -94,4 +93,3 @@ def test_create_entity_missing_parameters():
 #     response, status_code = get_entity_by_id(MockEntity, 1)
 #     assert status_code == 200
 #     assert response == {'mockentity': 'entity_data'}
-

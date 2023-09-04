@@ -1,6 +1,7 @@
 from unittest.mock import patch
 import pytest
-from services.speaker import register_service, get_all_speakers, get_speaker_by_id
+from services.speaker import register_service, get_all_speakers, \
+    get_speaker_by_id
 from models.speaker import Speaker
 
 
@@ -49,7 +50,8 @@ def test_get_speaker_by_id():
 def test_get_all_speakers():
     #    Test with a list of speakers
     with patch('models.speaker.Speaker.get_all') as mock_get_all:
-        mock_speaker_list = [Speaker(fullname='John Doe'), Speaker(fullname='Jane Doe')]
+        mock_speaker_list = [Speaker(fullname='John Doe'),
+                             Speaker(fullname='Jane Doe')]
         mock_get_all.return_value = mock_speaker_list
         speaker_list = get_all_speakers()
         assert speaker_list == ({'speakers': mock_speaker_list}, 200)

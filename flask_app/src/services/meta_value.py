@@ -13,7 +13,7 @@ def get_all_meta_values(meta_key=None):
 
     meta_key_id = MetaKey.get_by(key=meta_key)
     if meta_key_id is None:
-        logging.error("----- Meta-key id not found, invalid meta_key name ----")
+        logging.error("---- Meta-key id not found, invalid meta_key name ---")
         return {'meta_values': []}, 404
 
     meta_value_list = MetaValue.get_all_by(meta_key_id=meta_key_id.id)

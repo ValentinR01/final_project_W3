@@ -1,7 +1,7 @@
 from flask import request
 from flask_restx import Namespace, Resource, fields, Api
-from services.speaker import register_service, get_all_speakers, \
-    get_speaker_by_id
+from services.speaker import create_speaker, get_all_speakers, \
+    get_speaker_by_id, update_speaker
 
 
 namespace = Namespace('speakers', 'Speaker related endpoints')
@@ -10,7 +10,11 @@ api = Api()
 
 speaker_register_model = namespace.model(
     'speaker_register_model', {
-        'fullname': fields.String(required=True)
+        'fullname': fields.String(required=True),
+        'biography': fields.String(required=False),
+        'language_id': fields.Integer(required=True, default=1),
+        'speaker_parent': fields.Integer(required=False),
+        'publishable': fields.Boolean(required=False, default=False)
     }
 )
 
@@ -41,10 +45,11 @@ class GetBySpeakerId(Resource):
         """Get speaker by id"""
         return get_speaker_by_id(speaker_id)
 
+    @namespace.expect(speaker_register_model)
     def put(self, speaker_id):
         """Update a speaker"""
         data = request.json
-        return register_service(data, speaker_id)
+        return update_speaker(data, speaker_id)
 
 
 @namespace.route('', methods=['GET', 'POST'])
@@ -59,4 +64,4 @@ class Speakers(Resource):
     def post(self):
         """Register a new speaker"""
         data = request.json
-        return register_service(data)
+        return create_speaker(data)

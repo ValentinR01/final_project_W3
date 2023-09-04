@@ -37,15 +37,15 @@ class Asset(Base):
 
     # FK
     composer_id = \
-        db.Column(db.Integer, db.ForeignKey('composer.id'), nullable=False)
+        db.Column(db.Integer, db.ForeignKey('composer.id'), nullable=True)
     current_assigned_user_id = \
-        db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+        db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
     created_by_id = \
         db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     updated_by_id = \
         db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     speaker_id = \
-        db.Column(db.Integer, db.ForeignKey('speaker.id'), nullable=False)
+        db.Column(db.Integer, db.ForeignKey('speaker.id'), nullable=True)
     status_by_domain_id = db.Column(
         db.Integer, db.ForeignKey('status_by_domain.id'), nullable=False
     )
@@ -53,7 +53,7 @@ class Asset(Base):
         db.Integer, db.ForeignKey('step_lifecycle.id'), nullable=False
     )
     booking_id = \
-        db.Column(db.Integer, db.ForeignKey('booking.id'), nullable=False)
+        db.Column(db.Integer, db.ForeignKey('booking.id'), nullable=True)
     captation_id = \
         db.Column(db.Integer, db.ForeignKey('captation.id'), nullable=True)
     post_prod_id = \
@@ -78,10 +78,11 @@ class Asset(Base):
     post_prod = db.relationship('PostProd', backref='assets')
     transformation = db.relationship('Transformation', backref='assets')
 
-    def __init__(self, title, music_title, composer_id, step_lifecycle_id,
-                 current_assigned_user_id, created_by_id, booking_id,
-                 updated_by_id, speaker_id, status_by_domain_id,
-                 captation_id=None, post_prod_id=None, transformation_id=None,
+    def __init__(self, title, music_title, created_by_id,
+                 step_lifecycle_id, updated_by_id, status_by_domain_id,
+                 current_assigned_user_id=None,  booking_id=None,
+                 composer_id=None, speaker_id=None, captation_id=None,
+                 post_prod_id=None, transformation_id=None,
                  has_high_priority=False, published=False, created_at=None,
                  updated_at=None, published_at=None, last_assignment_at=None,
                  student_fullname=None, art_description=None, thumbnail=None,

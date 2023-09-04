@@ -23,16 +23,17 @@
 
 <div class="select-wrapper">
   <select 
-    name={nameSelect} 
+    name={nameSelect}
     bind:value={valueSelected}
   >
-    {#each options as valueSelected}
-      <option value={valueSelected}>{valueSelected}</option>
+    {#each options as option}
+      <option value={option}>{option}</option>
     {/each}
   </select>
 </div>
 
 <style>
+  
   select{
     -webkit-appearance: none;
     appearance: none;
@@ -61,6 +62,5 @@
     right: 15px;
     position: absolute;
   }
-
 
 </style>

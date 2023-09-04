@@ -37,7 +37,7 @@
     <Margin marginBottom='40px'>
       <Text
         textTag='h1'
-        class='text-preset-2 text--uppercase text-center'
+        class='text-preset-2 text--uppercase'
       >
         Nom du projet
       </Text>

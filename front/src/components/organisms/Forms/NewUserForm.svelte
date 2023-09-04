@@ -13,21 +13,25 @@
   /**
    * @type {string}
   */
-  export let selectValue = '';
+  export let selectRole;
+
+  /**
+   * @type {string}
+  */
+  export let selectDomain;
 
   /**
    * @type {any}
   */
-  export let employeePicture;
+  export let employeePicture = '';
 
-    /**
+  /**
    * @type {any}
   */
   export let data;
-
 </script>
 
-<form class="form-newUser">
+<form class="form-newUser" method="Post" action="?/register"> 
   <Text
     textTag='h1'
     class='text-preset-1 text--uppercase w-100 text-center'
@@ -48,12 +52,13 @@
     </InputForm>
   </div>
 
-  <InputForm id='lastname' name='lastname' widthForm='calc(50% - 5px)'> Nom </InputForm>
-  <InputForm id='firstname' name='firstname' widthForm='calc(50% - 5px)'> Prénom </InputForm>
-  <InputForm id='email' name='email' type='email'> Email </InputForm>
-  <SelectForm nameSelect="domain" data={data.metadata.domain} labelName='domain' widthForm='calc(50% - 5px)' bind:selectValue={selectValue} > Domaine </SelectForm>
-  <SelectForm nameSelect="role" data={data.metadata.role} labelName='role' widthForm='calc(50% - 5px)' bind:selectValue={selectValue}> Rôle </SelectForm>
-  {#if selectValue == 'traducteur'}
+  <InputForm id='lastname' name='fullname' widthForm='calc(50% - 5px)'> Nom complet </InputForm>
+  <InputForm id='email' name='email' type='email' widthForm='calc(50% - 5px)'> Email </InputForm>
+  <InputForm id='password' name='password'> Mot de passe </InputForm>
+
+  <SelectForm nameSelect="domain" options={data.metadata.domain} labelName='domain' widthForm='calc(50% - 5px)' bind:selectValue={selectDomain} > Domaine </SelectForm>
+  <SelectForm nameSelect="role" options={data.metadata.role} labelName='role' widthForm='calc(50% - 5px)' bind:selectValue={selectRole}> Rôle </SelectForm>
+  {#if selectDomain == 'traducteur'}
     <CheckboxForm data={data.metadata.translations} catForm='langues-traducteur'> Langues de traduction </CheckboxForm>
   {/if}
   <Button marginTop='var(--spacing-2)'> Valider </Button>

@@ -5,6 +5,7 @@ from api.speaker import namespace as speaker
 from api.meta_value import namespace as meta_value
 from api.composer import namespace as composer
 from api.asset import namespace as asset
+from api.language import namespace as language
 from api.comment import namespace as comment  # Do not delete this line pls
 
 

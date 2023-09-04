@@ -13,7 +13,7 @@ def create_entity(entity: db.Model, data: dict, **kwargs):
     if not data:
         return {'message': 'Missing parameters'}, 400
     if entity.get_by(**kwargs):
-        return {'message': 'Entity already exists'}, 409
+        return {'message': f'{entity.__tablename__} already exists'}, 409
     try:
         entity_inst = entity(**data)
         entity_inst.create()

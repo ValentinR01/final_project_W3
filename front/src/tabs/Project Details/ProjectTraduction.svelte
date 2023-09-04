@@ -30,10 +30,3 @@
   <CheckboxForm data={data.metadata.translations} catForm='sous-titres'> Demande sous-titres additionnels : </CheckboxForm>
   <Button class='block-center' marginTop='var(--spacing-3)'> Valider </Button>
 </form>
-
-<style>
-  .new-subtitles{
-    display: flex;
-    column-gap: var(--spacing-1);
-  }
-</style>

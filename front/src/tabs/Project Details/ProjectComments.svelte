@@ -2,6 +2,8 @@
   import Margin from "../../components/atoms/Margin.svelte";
   import CommentaryCard from "../../components/molecules/cards/CommentaryCard.svelte";
   import CommentaryForm from "../../components/organisms/Forms/CommentaryForm.svelte";
+
+  export let data;
 </script>
 
 <Margin marginBottom='var(--spacing-2)'>

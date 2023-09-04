@@ -17,7 +17,8 @@ export function load() {
                 instruments: ["piano","violon","guitare"],
                 categorie: "interview",
                 rating: 3,
-                translations: ["Français","Anglais"]
+                translations: ["Français","Anglais"],
+                published: true
             },
             {
                 id: 2,
@@ -25,7 +26,8 @@ export function load() {
                 instruments: ["piano","violon","guitare"],
                 categorie: "interview",
                 rating: 4,
-                translations: ["Français","Allemand"]
+                translations: ["Français","Allemand"],
+                published: false
             },
             {
                 id: 3,
@@ -33,28 +35,32 @@ export function load() {
                 instruments: ["piano","violon","guitare"],
                 categorie: "concert",
                 rating: 1,
-                translations: ["Russe","Espagnol","Chinois"]
+                translations: ["Russe","Espagnol","Chinois"],
+                published: true
             },
             {
                 id: 4,
                 name: "Concert de Sabine Wesh",
                 instruments: ["piano","trombone"],
                 categorie: "concert",
-                rating: 1
+                rating: 1,
+                published: true
             },
             {
                 id: 5,
                 name: "Masterclass sur la mélodie romantique",
                 instruments: ["piano","violon","guitare"],
                 categorie: ["masterclass", "concert", "interview"],
-                rating: 5
+                rating: 5,
+                published: false
             },
             {
                 id: 6,
                 name: "Masterclass sur l'intensité de jeu",
                 instruments: ["piano","violon","violoncelle"],
                 categorie: "masterclass",
-                rating: 3
+                rating: 3,
+                published: true
             }
         ],
         users:[

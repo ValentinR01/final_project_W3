@@ -13,11 +13,13 @@
 </script>
 
 <div class='header'>
-  <Image
-    imageSrc={Logo}
-    imageAlt="Saline Academie Logo"
-    imageWidth=160
-  />
+  <a href="/">
+    <Image
+      imageSrc={Logo}
+      imageAlt="Saline Academie Logo"
+      imageWidth=160
+    />
+  </a>
 
   <Menu currentPage={currentPage}/>
 

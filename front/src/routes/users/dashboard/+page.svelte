@@ -1,4 +1,6 @@
 <script>
+  /** @type {import('./$types').PageData} */
+
   import Pagination from '../../../components/atoms/Pagination.svelte';
   import Text from '../../../components/atoms/Text.svelte';
   import Searchbar from '../../../components/molecules/Searchbar.svelte';
@@ -6,11 +8,23 @@
   import Link from '../../../components/atoms/Link.svelte';
   import Margin from '../../../components/atoms/Margin.svelte';
 
+  //import { onMount } from "svelte";
+
   export let data;
+
+  console.log(data);
+//
+  //onMount(async () => {
+  //  const response = await fetch('http://localhost:8004/api/v1/users');
+  //  data = await response.json();
+  //  console.log(data);
+  //});
+
   /**
    * @type {any}
    */
   let values;
+
 </script>
 
 <Margin marginTop='3%'>
@@ -21,7 +35,10 @@
       >
       Les utilisateurs
     </Text>
-  
+
+  <!--
+    {data.users[0].email}
+
     <div class='dashboard-nav'>
       <Searchbar urlSearchbar="projects" data={data.users} widthSearchbar="190" />
       <Link linkUrl='/users/create' linkColor='white' class='link--button'> Ajouter </Link>
@@ -30,6 +47,7 @@
     <p class='text-center'> REMPLACER PAR TABLEAU </p>
   
     <Pagination rows={data.users} perPage={5} bind:trimmedRows={values} />
+  -->
   </div>
 </Margin>
 

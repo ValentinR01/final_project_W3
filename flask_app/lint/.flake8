@@ -2,6 +2,5 @@
 per-file-ignores =
     ./src/app.py: F401
     ./src/models/all_tables.py: F401
-    ./src/blueprints.py: F401
     ./tests/conftest.py: E402
 max-line-length=79

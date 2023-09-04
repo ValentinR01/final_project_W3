@@ -1,12 +1,10 @@
 import pytest
-from db import db
-from flask import Flask
 from models.asset import Asset
 from unittest.mock import patch
-from conf import POSTGRESQL_DATABASE_URI
 from services.asset import create_asset, get_asset, search_asset
+from helpers.etl import transformation
 
-mock_data = {
+data_asset = {
     "title": "NassLaMenass",
     "music_title": "Music Title",
     "created_by_id": 1,
@@ -15,60 +13,93 @@ mock_data = {
     "step_lifecycle_id": 1
 }
 
-
-def create_app():
-    app = Flask(__name__)
-    app.config['RESTPLUS_MASK_SWAGGER'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = POSTGRESQL_DATABASE_URI
-    db.init_app(app)
-    return app
+data_all_assets = \
+    {
+        'art_description': None,
+        'asset_description': None,
+        'booking_id': None,
+        'captation_id': None,
+        'composer_id': None,
+        'created_at': None,
+        'created_by_id': 1,
+        'current_assigned_user_id': None,
+        'has_high_priority': False,
+        'last_assignment_at': None,
+        'link_partitions': None,
+        'music_title': 'Music Title',
+        'post_prod_id': None,
+        'published': False,
+        'published_at': None,
+        'resumed': None,
+        'speaker_id': None,
+        'status_by_domain_id': 1,
+        'step_lifecycle_id': 1,
+        'student_fullname': None,
+        'thumbnail': None,
+        'title': 'NassLaMenass',
+        'transformation_id': None,
+        'updated_at': None,
+        'updated_by_id': 1
+    }
 
 
 @pytest.fixture
 def mock_asset():
-    return Asset(**mock_data)
+    return Asset(**data_asset)
+
+
+@pytest.fixture
+def mock_all_assets():
+    return Asset(**data_all_assets)
+
+
+@pytest.fixture
+def mock_assets_list(mock_all_assets) -> list:
+    return [mock_all_assets, mock_all_assets]
 
 
 def test_create_asset(mock_asset):
     with patch('models.asset.Asset.get_by', return_value=None):
         with patch('models.asset.Asset.create'):
-            response = create_asset(mock_data)
+            response = create_asset(data_asset)
             assert response == \
                    ({'message': 'The asset created successfully'}, 200)
 
-    with patch('models.asset.Asset.get_by', return_value=mock_asset):
-        response = create_asset(mock_data)
+    with patch('models.asset.Asset.get_by', return_value=data_asset):
+        response = create_asset(data_asset)
         assert response == \
                ({'message': 'Entity already exists'}, 409)
 
 
-def test_get_all_assets():
-    app = create_app()
-    with app.app_context():
-        with patch('models.asset.Asset.get_all'):
-            assets = get_asset()
-            assert len(assets[0].get("all_asset")) > 0
-            assert assets[0].get("all_asset")[0].get("title") == "Title"
+def test_get_all_assets(mock_assets_list):
+    #  Test with assets
+    with patch('models.asset.Asset.get_all_by', return_value=mock_assets_list):
+        response = get_asset()
+        print(response)
+        assert response == ({'all_asset': transformation(mock_assets_list)},
+                            200)
+
+    # Test without assets
+    with patch('models.asset.Asset.get_all_by', return_value=[]):
+        response = get_asset()
+        assert response == ({'message': 'No entities found'}, 404)
 
 
-def test_get_asset_by_id():
-    app = create_app()
-    with app.app_context():
-        with patch('models.asset.Asset.get_by'):
-            fetched_asset = get_asset(id=1)
-            obj = fetched_asset[0].get("asset")[0]
-            assert fetched_asset[0].get("asset") is not None
-            assert len(fetched_asset[0].get("asset")) == 1
-            assert obj.get("title") == "Title"
-            assert obj.get("id") == 1
-            if isinstance(obj, dict):
-                if any(isinstance(key, dict) for key in obj.values()):
-                    assert True
+def test_get_asset_by_id(mock_assets_list):
+    #  Test with assets
+    with patch('models.asset.Asset.get_entity_with_joins', return_value=mock_assets_list):
+        response = get_asset(id=1)
+        assert response == ({'asset': mock_assets_list}, 200)
+
+    # Test without assets
+    with patch('models.asset.Asset.get_entity_with_joins', return_value=[]):
+        response = get_asset(id=500)
+        assert response == ({'message': 'Entity not found'}, 404)
 
 
 def test_search_asset():
     with patch('models.asset.Asset.get_entities_by_search_values',
-               return_value=[mock_data]):
+               return_value=[data_asset]):
         results = search_asset(search="NassLaMenass")
         assert len(results[0]) == 1
         assert results[0].get("all_asset")[0].get("title") == "NassLaMenass"

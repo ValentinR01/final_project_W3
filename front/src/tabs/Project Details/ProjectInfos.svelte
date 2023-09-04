@@ -55,8 +55,22 @@
     >
       En ligne :
     </Text>
-    {#if data.asset[1].published }
-      <Icon name="circle" width="20" height="20">
+    {#if data.asset[1].published } 
+      <Icon 
+        name="circle" 
+        width="12" 
+        height="12" 
+        color="var(--color-validation)"
+      >
+        <CircleIcon />
+      </Icon>
+    {:else}
+      <Icon 
+        name="circle" 
+        width="12" 
+        height="12" 
+        color="var(--color-disabled)"
+      >
         <CircleIcon />
       </Icon>
     {/if}
@@ -83,20 +97,22 @@
   <div> 
     <Text
       textTag='p'
-      class='text-preset-4'
+      class='text-preset-4 w-100'
     >
       Nom intervenant : {data.asset[1].name}
     </Text>
   </div> 
 
-  <div> 
-    <Text
-      textTag='p'
-      class='text-preset-4'
-    >
-      Nom élève : {data.asset[1].name}
-    </Text>
-  </div>
+  {#if data.asset[1].categorie == "masterclass" }
+    <div> 
+      <Text
+        textTag='p'
+        class='text-preset-4'
+      >
+        Nom élève : {data.asset[1].name}
+      </Text>
+    </div>
+  {/if}
 
   <div> 
     <Text
@@ -147,6 +163,7 @@
   .infos{
     display: flex;
     column-gap: var(--spacing-1);
+    align-items: center;
   }
 
   .project-infos > div{

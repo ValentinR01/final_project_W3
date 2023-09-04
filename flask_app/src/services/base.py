@@ -91,3 +91,16 @@ def update_entity(entity: db.Model, data: dict, entity_id: int):
         return {'error': str(e)}, 500
     return {'message':
             f'The {entity.__tablename__} has been successfully updated'}, 200
+
+
+def delete_entity(entity: db.Model, entity_id: int):
+    """Base to delete entity"""
+    try:
+        entity_inst = entity.get_by(id=entity_id)
+        if not entity_inst:
+            return {'message': 'Entity not found'}, 404
+        entity_inst.delete()
+    except Exception as e:
+        return {'error': str(e)}, 500
+    return {'message':
+            f'The {entity.__tablename__} has been successfully deleted'}, 200

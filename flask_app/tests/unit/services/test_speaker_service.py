@@ -1,7 +1,7 @@
 from unittest.mock import patch
 import pytest
-from services.speaker import register_service, get_all_speakers, \
-    get_speaker_by_id
+from services.speaker import create_speaker, get_all_speakers, \
+    get_speaker_by_id, update_speaker
 from models.speaker import Speaker
 
 
@@ -17,19 +17,25 @@ def speaker():
     )
 
 
-def test_register_service(speaker):
+def test_create_speaker(speaker):
     data = {'fullname': 'Christina'}
+
+    # Test with empty data
+    response = create_speaker(data={})
+    assert response == ({'message': 'Missing parameters'}, 400)
 
     # Test creation of a new speaker
     with patch('models.speaker.Speaker.get_by', return_value=False):
         with patch('models.speaker.Speaker.create', return_value=True):
-            response = register_service(data)
-            assert response == ({'message': 'Speaker well created'}, 201)
+            response = create_speaker(data)
+            assert response == ({'message':
+                                'The speaker has been successfully created'}
+                                , 200)
 
     # Test creation of an existing speaker
     with patch('models.speaker.Speaker.get_by', return_value=speaker):
-        response = register_service(data)
-        assert response == ({'message': 'Speaker already exists'}, 409)
+        response = create_speaker(data)
+        assert response == ({'message': 'speaker already exists'}, 409)
 
 
 def test_get_speaker_by_id():
@@ -62,3 +68,24 @@ def test_get_all_speakers():
         mock_get_all.return_value = mock_speaker_list
         speaker_list = get_all_speakers()
         assert speaker_list == ({'speakers': []}, 200)
+
+
+def test_update_speaker(speaker):
+    data = {'fullname': 'Christina'}
+
+    # Test with empty data
+    response = update_speaker(data={}, speaker_id=1)
+    assert response == ({'message': 'Missing parameters'}, 400)
+
+    # Test with non-existing speaker
+    with patch('models.speaker.Speaker.get_by', return_value=False):
+        response = update_speaker(data=data, speaker_id=99999)
+        assert response == ({'message': 'Entity not found'}, 404)
+
+    # Test with an existing speaker
+    with patch('models.speaker.Speaker.get_by', return_value=speaker):
+        with patch('models.speaker.Speaker.update', return_value=True):
+            response = update_speaker(data=data, speaker_id=1)
+            assert response == ({'message':
+                                'The speaker has been successfully updated'}
+                                , 200)

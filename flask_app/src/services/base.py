@@ -21,9 +21,9 @@ def create_entity(entity: db.Model, data: dict, **kwargs):
     except Exception as e:
         return {'error': str(e)}, 500
     return {
-        'message': f'The {entity.__tablename__} created successfully',
-        # 'id': created_id
-    }, 200
+               'message':
+               f'The {entity.__tablename__} has been successfully created'},\
+        200
 
 
 def get_all_entities(entity: db.Model, **filters):
@@ -89,4 +89,5 @@ def update_entity(entity: db.Model, data: dict, entity_id: int):
         entity_inst.update()
     except Exception as e:
         return {'error': str(e)}, 500
-    return {'message': f'The {entity.__tablename__} updated successfully'}, 200
+    return {'message':
+            f'The {entity.__tablename__} has been successfully updated'}, 200

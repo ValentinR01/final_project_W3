@@ -15,7 +15,8 @@ class Base(db.Model):
     def create(self):
         if self.id is None:
             db.session.add(self)
-        return db.session.commit()
+            db.session.commit()
+        return self.id
 
     def update(self):
         return db.session.commit()
@@ -40,7 +41,7 @@ class Base(db.Model):
         return cls.query.filter_by(**kwargs).first()
 
     @classmethod
-    def get_all_by(cls: db.Model, **kwargs):
+    def get_all_by(cls: db.Model, **kwargs) -> list:
         """
         This method will be used to get all record from a table with filter.
 

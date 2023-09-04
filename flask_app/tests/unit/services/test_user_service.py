@@ -121,7 +121,6 @@ def test_login_service(mock_login_data, mock_user):
             with patch('datetime.datetime') as mock_datetime:
                 mock_datetime.now.return_value = datetime.datetime(2023, 7, 12)
                 response = login_service(mock_login_data)
-                print(response)
                 assert response[0] == {'access_token': 'token',
                                        'message': 'Login successful'}
                 assert response[1] == 200

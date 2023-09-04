@@ -13,6 +13,11 @@ class GetAll(Resource):
     """Get all assets"""
     @api.doc(
         params={
+            'status_by_domain_id': {
+                'description': 'Status by domain ID', 'type': 'int',
+                'required': False
+            }
+
         }
     )
     def get(self):
@@ -35,24 +40,12 @@ class Create(Resource):
                 'description': 'Music title', 'required': True, 'type':
                     'string'
             },
-            'composer_id': {
-                'description': 'Composer id', 'required': True, 'type':
-                    'integer'
-            },
-            'current_assigned_user_id': {
-                'description': 'Current assigned user id', 'required': True,
-                'type': 'integer'
-            },
             'created_by_id': {
                 'description': 'Created by id', 'required': True, 'type':
                     'integer'
             },
             'updated_by_id': {
                 'description': 'Updated by id', 'required': True, 'type':
-                    'integer'
-            },
-            'speaker_id': {
-                'description': 'Speaker id', 'required': True, 'type':
                     'integer'
             },
             'status_by_domain_id': {
@@ -63,11 +56,23 @@ class Create(Resource):
                 'description': 'Step lifecycle id', 'required': True,
                 'type': 'integer'
             },
-            'booking_id': {
-                'description': 'Booking id', 'required': True, 'type':
+            # Optional parameters
+            'current_assigned_user_id': {
+                'description': 'Current assigned user id', 'required': False,
+                'type': 'integer'
+            },
+            'speaker_id': {
+                'description': 'Speaker id', 'required': False, 'type':
                     'integer'
             },
-            # Optional parameters
+            'booking_id': {
+                'description': 'Booking id', 'required': False, 'type':
+                    'integer'
+            },
+            'composer_id': {
+                'description': 'Composer id', 'required': False,
+                'type': 'integer'
+            },
             'captation_id': {
                 'description': 'Captation id', 'type': 'integer'
             },
@@ -120,10 +125,11 @@ class Create(Resource):
     # @rights_manager(token=token, role='worker', domain='redaction')
     @namespace.response(200, '')
     def post(self):
+        """Create a new asset"""
         return create_asset(data=request.json)
 
 
-@namespace.route('/<int:asset_id>', methods=['GET'])
+@namespace.route('/id/<int:asset_id>', methods=['GET'])
 class GetById(Resource):
     """Get asset by id"""
     @api.doc(

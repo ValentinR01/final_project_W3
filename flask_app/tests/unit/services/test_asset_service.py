@@ -63,12 +63,13 @@ def test_create_asset(mock_asset):
         with patch('models.asset.Asset.create'):
             response = create_asset(data_asset)
             assert response == \
-                   ({'message': 'The asset created successfully'}, 200)
+                   ({'message':
+                    'The asset has been successfully created'}, 200)
 
     with patch('models.asset.Asset.get_by', return_value=data_asset):
         response = create_asset(data_asset)
         assert response == \
-               ({'message': 'Entity already exists'}, 409)
+               ({'message': 'asset already exists'}, 409)
 
 
 def test_get_all_assets(mock_assets_list):

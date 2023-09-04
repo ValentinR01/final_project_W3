@@ -9,7 +9,8 @@ class Speaker(Base):
     id = db.Column(db.Integer, primary_key=True)
     fullname = db.Column(db.String(50), unique=True, nullable=False)
     biography = db.Column(db.String(5000), nullable=True)
-    last_update = db.Column(db.DateTime, default=db.func.current_timestamp())
+    last_update = db.Column(db.DateTime, default=db.func.current_timestamp(),
+                            onupdate=db.func.current_timestamp())
     publishable = db.Column(db.Boolean, default=False)
 
     # FK

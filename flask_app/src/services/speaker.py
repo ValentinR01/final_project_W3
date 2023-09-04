@@ -1,14 +1,19 @@
 from models.speaker import Speaker
+from services.base import create_entity, update_entity
 
 
-def register_service(data):
-    if Speaker.get_by(fullname=data['fullname']):
-        return {'message': 'Speaker already exists'}, 409
+def create_speaker(data):
+    """Create a new speaker"""
+    return create_entity(
+        data=data, entity=Speaker, fullname=data.get('fullname')
+    )
 
-    new_speaker = Speaker(fullname=data['fullname'])
-    new_speaker.create()
 
-    return {'message': 'Speaker well created'}, 201
+def update_speaker(data, speaker_id):
+    """Update a speaker"""
+    return update_entity(
+        data=data, entity=Speaker, entity_id=speaker_id
+    )
 
 
 def get_speaker_by_id(speaker_id):

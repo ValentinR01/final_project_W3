@@ -1,5 +1,5 @@
 from models.comment import Comment
-from services.base import create_entity
+from services.base import create_entity, delete_entity
 
 
 # Todo: Complete with user Token data
@@ -12,3 +12,7 @@ def register_comment(asset_id, data):
 def get_all_comments(asset_id):
     comments = Comment.get_all_by(asset_id=asset_id)
     return {'comments': comments}, 200
+
+
+def delete_comment(comment_id):
+    return delete_entity(Comment, entity_id=comment_id)

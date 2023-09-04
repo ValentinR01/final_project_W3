@@ -33,35 +33,30 @@ speakers_list_model = namespace.model(
 )
 
 
-@namespace.route('/register', methods=['POST'])
-class Register(Resource):
+@namespace.route('/<int:speaker_id>', methods=['GET', 'PUT'])
+@api.doc(params={'speaker_id': 'The speaker id'})
+class GetBySpeakerId(Resource):
+    @namespace.marshal_with(speaker_model, skip_none=True)
+    def get(self, speaker_id):
+        """Get speaker by id"""
+        return get_speaker_by_id(speaker_id)
+
+    def put(self, speaker_id):
+        """Update a speaker"""
+        data = request.json
+        return register_service(data, speaker_id)
+
+
+@namespace.route('', methods=['GET', 'POST'])
+class Speakers(Resource):
+    @namespace.marshal_with(speakers_list_model)
+    def get(self):
+        """Get all speakers"""
+        return get_all_speakers()
+
     @namespace.expect(speaker_register_model)
     @namespace.response(201, 'Speaker well created')
     def post(self):
         """Register a new speaker"""
         data = request.json
         return register_service(data)
-
-
-@namespace.route('/<speaker_id>', methods=['GET'])
-class GetBySpeakerId(Resource):
-    @api.doc(
-        params={
-            'speaker_id': {
-                'description': 'The speaker id', 'required': True,
-                'type': 'integer'
-            }
-        }
-    )
-    @namespace.marshal_with(speaker_model, skip_none=True)
-    def get(self, speaker_id):
-        """Get speaker by id"""
-        return get_speaker_by_id(speaker_id)
-
-
-@namespace.route('', methods=['GET'])
-class Speakers(Resource):
-    @namespace.marshal_with(speakers_list_model)
-    def get(self):
-        """Get all speakers"""
-        return get_all_speakers()

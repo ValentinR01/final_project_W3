@@ -11,7 +11,7 @@
     <InputForm id="name" name="name"> Nom </InputForm>
   {/if}
   <TextArea width='100%' placeholder="Ecrire un commentaire..." />
-  <Button marginTop="var(--spacing-1)"> Valider </Button>  
+  <Button> Valider </Button>  
 </form>
 
 <style>

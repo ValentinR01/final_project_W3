@@ -34,7 +34,7 @@
  
  <style>
   .box {
-	padding: 40px;
+	  padding: 20px 0;
   }
 
   ul {

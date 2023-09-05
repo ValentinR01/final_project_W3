@@ -1,8 +1,12 @@
-// @ts-nocheck
-/** @type {import('./$types').PageLoad} */
-export async function load({ fetch }) {
-  const res = await fetch(`http://127.0.0.1:8004/api/v1/users`);
-  const item = await res.json();
+export const load = async() => {
+  console.log("Server Load Run");
+  const fetchUsers = async () => {
+    const res = await fetch('http://dam-backoffice-api:8000/api/v1/users');
+    const data = await res.json();
+    return data.users;
+  }
 
-  return { item };
+  return {
+    users: fetchUsers(),
+  }
 }

@@ -21,6 +21,7 @@ def mock_composer():
 def mock_composer_list(mock_composer) -> list:
     return [mock_composer, mock_composer]
 
+
 @pytest.fixture
 def mock_input():
     return {'fullname': 'Robert Schumann'}
@@ -92,4 +93,3 @@ def test_update_composer_empty_data():
     # Test with empty data
     response = update_composer(data={}, composer_id=1)
     assert response == ({'message': 'Missing parameters'}, 400)
-

@@ -28,7 +28,7 @@ def test_create_speaker_empty_data():
     assert response == ({'message': 'Missing parameters'}, 400)
 
 
-def test_create_speaker_empty_data(data):
+def test_create_speaker(data):
     # Test creation of a new speaker
     with patch('models.speaker.Speaker.get_by', return_value=False):
         with patch('models.speaker.Speaker.create', return_value=True):

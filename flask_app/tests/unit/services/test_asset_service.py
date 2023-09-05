@@ -59,6 +59,7 @@ def mock_assets_list(mock_all_assets) -> list:
 
 
 def test_create_asset(mock_asset):
+    # Test creation of a new asset
     with patch('models.asset.Asset.get_by', return_value=None):
         with patch('models.asset.Asset.create'):
             response = create_asset(data_asset)
@@ -66,6 +67,8 @@ def test_create_asset(mock_asset):
                    ({'message':
                     'The asset has been successfully created'}, 200)
 
+
+def test_create_asset_already_exists(mock_asset):
     with patch('models.asset.Asset.get_by', return_value=data_asset):
         response = create_asset(data_asset)
         assert response == \
@@ -80,6 +83,8 @@ def test_get_all_assets(mock_assets_list):
         assert response == ({'all_asset': transformation(mock_assets_list)},
                             200)
 
+
+def test_get_all_assets_empty():
     # Test without assets
     with patch('models.asset.Asset.get_all_by', return_value=[]):
         response = get_asset()
@@ -93,6 +98,8 @@ def test_get_asset_by_id(mock_assets_list):
         response = get_asset(id=1)
         assert response == ({'asset': mock_assets_list}, 200)
 
+
+def test_get_asset_by_id_not_existing():
     # Test without assets
     with patch('models.asset.Asset.get_entity_with_joins', return_value=[]):
         response = get_asset(id=500)

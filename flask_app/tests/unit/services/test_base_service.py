@@ -110,12 +110,6 @@ def test_get_entity_by_id_success():
 
 
 def test_delete_entity(mock_entity):
-    # Test on entity not found
-    with patch('models.base.Base.get_by', return_value=None):
-        response, status_code = delete_entity(mock_entity, 999)
-        assert status_code == 404
-        assert response == {'message': 'Entity not found'}
-
     # Test on entity found
     with patch('models.base.Base.get_by', return_value=mock_entity):
         with patch('models.base.Base.delete', return_value=True):
@@ -123,3 +117,11 @@ def test_delete_entity(mock_entity):
             assert status_code == 200
             assert response == {'message':
                                 'The mockentity has been successfully deleted'}
+
+
+def test_delete_entity_not_found(mock_entity):
+    # Test on entity not found
+    with patch('models.base.Base.get_by', return_value=None):
+        response, status_code = delete_entity(mock_entity, 999)
+        assert status_code == 404
+        assert response == {'message': 'Entity not found'}

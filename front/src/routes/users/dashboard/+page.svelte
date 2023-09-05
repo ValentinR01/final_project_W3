@@ -50,19 +50,19 @@
             <Icon name="user" width="50" height="50"> <UserIcon /> </Icon>
           {/if}
           <p>
-            {user.name}
+            {user.fullname}
           </p>
           <p>
             {user.email}
           </p>
           <p>
-            {user.domain_id}
+            {user.domain}
           </p>
           <p>
-            {user.role_id}
+            {user.role}
           </p>
           <Link
-            linkUrl='/{user.id}'> 
+            linkUrl='{user.id}'> 
             <Icon name="details" width="20" height="20"> <ArrowBackgroundIcon /> </Icon>
           </Link>
         </div>

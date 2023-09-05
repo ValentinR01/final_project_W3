@@ -30,19 +30,18 @@ export const actions = {
   },
 };
 
-// REMPLACER AVEC LES BONS ENDPOINTS
 export const load = async() => {
   console.log("Server Load Run");
   const fetchDomains = async () => {
-    const res = await fetch(BASE_URL + '');
+    const res = await fetch(BASE_URL + '/domains');
     const data = await res.json();
-    return data;
+    return data.all_domain;
   }
 
   const fetchRoles = async () => {
-    const res = await fetch(BASE_URL + '');
+    const res = await fetch(BASE_URL + '/roles');
     const data = await res.json();
-    return data;
+    return data.all_role;
   }
 
   const fetchTranslations = async () => {
@@ -52,11 +51,8 @@ export const load = async() => {
   }
 
   return {
-    //domains: fetchDomains(),
-    //roles: fetchRoles(),
-    // A CHANGER UNE FOIS QUE L'ON A LES BONS ENDPOINTS
-    domains: [{"id":1, "name":"traducteur"},{"id":2, "name":"regisseur"},{"id": 3, "name":"post-prod"}],
-    roles: [{"id": 1, "name":"superadmin"},{"id": 2, "name":"admin"},{"id": 3, "name":"user"}],
+    domains: fetchDomains(),
+    roles: fetchRoles(),
     translations: fetchTranslations(),
   }
 }

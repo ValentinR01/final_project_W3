@@ -11,19 +11,19 @@
   /**
    * @type {string}
   */
-  export let selectRole;
+  let selectRole;
 
   /**
    * @type {string}
   */
-  export let selectDomain;
+  let selectDomain;
 
   /**
    * @type {any}
   */
   export let data;
 
-  const domains = data.domains;
+  const domains = data.domains; 
   const domainsList = domains.map((/** @type {{ name: string; }} */ item) => item.name);
   const roles = data.roles;
   const rolesList = roles.map((/** @type {{ name: string; }} */ item) => item.name);

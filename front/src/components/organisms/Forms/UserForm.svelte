@@ -11,12 +11,7 @@
   /**
    * @type {string}
   */
-  export let selectRole;
-
-  /**
-   * @type {string}
-  */
-  export let selectDomain;
+  let selectDomain;
 
   /**
    * @type {any}
@@ -32,6 +27,9 @@
   const translationsList = translations.map((/** @type {{ name: string; }} */ item) => item.name);
 
   let employeePicture = user.profile_picture;
+
+  // TO CHANGER WHEN NASSIM FINISHED ENDPOINT
+  let toChange = ["french"];
 </script>
 
 <form class="form-newUser" method="Post" action="?/register">
@@ -49,15 +47,14 @@
     </InputForm>
   </div>
 
-  <InputForm id='lastname' name='fullname' widthForm='calc(50% - 5px)'> Nom complet </InputForm>
-  <InputForm id='email' name='email' type='email' widthForm='calc(50% - 5px)'> Email </InputForm>
-  <InputForm id='password' name='password' type='password'> Mot de passe </InputForm>
+  <InputForm id='lastname' name='fullname' bind:valueInput={user.fullname} widthForm='calc(50% - 5px)'> Nom complet </InputForm>
+  <InputForm id='email' name='email' type='email' bind:valueInput={user.email} widthForm='calc(50% - 5px)'> Email </InputForm>
 
-  <SelectForm nameSelect="domain" options={domainsList} labelName='domain' widthForm='calc(50% - 5px)' bind:selectValue={selectDomain} > Domaine </SelectForm>
-  <SelectForm nameSelect="role" options={rolesList} labelName='role' widthForm='calc(50% - 5px)' bind:selectValue={selectRole}> Rôle </SelectForm>
+  <SelectForm nameSelect="domain" options={domainsList} labelName='domain' widthForm='calc(50% - 5px)' bind:selectValue={user.domain} > Domaine </SelectForm>
+  <SelectForm nameSelect="role" options={rolesList} labelName='role' widthForm='calc(50% - 5px)' bind:selectValue={user.role}> Rôle </SelectForm>
   
-  {#if selectDomain == 'traducteur'}
-    <CheckboxForm data={translationsList} catForm='langues-traducteur'> Langues de traduction </CheckboxForm>
+  {#if user.domain == 'translation'}
+    <CheckboxForm data={translationsList} catForm='langues-traducteur' bind:optionsSelected={toChange}> Langues de traduction </CheckboxForm>
   {/if}
   <Button marginTop='var(--spacing-2)'> Valider </Button>
 </form>

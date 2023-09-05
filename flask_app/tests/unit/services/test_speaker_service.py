@@ -17,13 +17,18 @@ def speaker():
     )
 
 
-def test_create_speaker(speaker):
-    data = {'fullname': 'Christina'}
+@pytest.fixture
+def data():
+    return {'fullname': 'Christina'}
 
+
+def test_create_speaker_empty_data():
     # Test with empty data
     response = create_speaker(data={})
     assert response == ({'message': 'Missing parameters'}, 400)
 
+
+def test_create_speaker_empty_data(data):
     # Test creation of a new speaker
     with patch('models.speaker.Speaker.get_by', return_value=False):
         with patch('models.speaker.Speaker.create', return_value=True):
@@ -32,6 +37,8 @@ def test_create_speaker(speaker):
                                 'The speaker has been successfully created'},
                                 200)
 
+
+def test_create_speaker_existing_speaker(speaker, data):
     # Test creation of an existing speaker
     with patch('models.speaker.Speaker.get_by', return_value=speaker):
         response = create_speaker(data)
@@ -46,11 +53,22 @@ def test_get_speaker_by_id():
         speaker = get_speaker_by_id(1)
         assert speaker == (speaker_1, 200)
 
-    # Test with an existing speaker
+
+def test_get_speaker_by_id_not_existing():
+    # Test with a non-existing speaker
     with patch('models.speaker.Speaker.get_by') as mock_get_by_id:
         mock_get_by_id.return_value = None
         speaker = get_speaker_by_id(1000)
         assert speaker == ({'message': 'Speaker not found'}, 404)
+
+
+def test_get_all_speakers_empty():
+    #    Test with an empty list of speakers
+    with patch('models.speaker.Speaker.get_all') as mock_get_all:
+        mock_speaker_list = []
+        mock_get_all.return_value = mock_speaker_list
+        speaker_list = get_all_speakers()
+        assert speaker_list == ({'speakers': []}, 200)
 
 
 def test_get_all_speakers():
@@ -62,26 +80,21 @@ def test_get_all_speakers():
         speaker_list = get_all_speakers()
         assert speaker_list == ({'speakers': mock_speaker_list}, 200)
 
-    #    Test with an empty list of speakers
-    with patch('models.speaker.Speaker.get_all') as mock_get_all:
-        mock_speaker_list = []
-        mock_get_all.return_value = mock_speaker_list
-        speaker_list = get_all_speakers()
-        assert speaker_list == ({'speakers': []}, 200)
 
-
-def test_update_speaker(speaker):
-    data = {'fullname': 'Christina'}
-
+def test_update_speaker_missing_data(speaker):
     # Test with empty data
     response = update_speaker(data={}, speaker_id=1)
     assert response == ({'message': 'Missing parameters'}, 400)
 
+
+def test_update_speaker_without_existing_user(speaker, data):
     # Test with non-existing speaker
     with patch('models.speaker.Speaker.get_by', return_value=False):
         response = update_speaker(data=data, speaker_id=99999)
         assert response == ({'message': 'Entity not found'}, 404)
 
+
+def test_update_speaker(speaker, data):
     # Test with an existing speaker
     with patch('models.speaker.Speaker.get_by', return_value=speaker):
         with patch('models.speaker.Speaker.update', return_value=True):

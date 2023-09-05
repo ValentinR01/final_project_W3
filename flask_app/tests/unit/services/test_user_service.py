@@ -54,7 +54,7 @@ def mock_domain():
     return Domain(name='redaction')
 
 
-def test_register_service(mock_register_data, mock_user, mock_missing_data):
+def test_register_service_valid_data(mock_register_data):
     # Test creation of a new user
     with patch('models.user.User.get_by', return_value=None):
         with patch('werkzeug.security.generate_password_hash',
@@ -64,29 +64,37 @@ def test_register_service(mock_register_data, mock_user, mock_missing_data):
                 assert response == ({'message': 'User created successfully'},
                                     201)
 
+
+def test_register_service_existing_user(mock_register_data, mock_user):
     # Test creation of an existing user
     with patch('models.user.User.get_by', return_value=mock_user):
         response = register_service(mock_register_data)
         assert response == ({'message': 'User already exists'}, 409)
 
+
+def test_register_service_missing_data(mock_register_data, mock_missing_data):
     # Test creation with missing datas
     with patch('models.user.User.get_by', return_value=None):
         response = register_service(mock_missing_data)
         assert response == ({'message': 'Missing parameters'}, 400)
 
 
-def test_get_user_by_domain(mock_domain, mock_user_list):
+def test_get_user_by_domain_invalid_domain(mock_domain):
     # Test non existing domain
     with patch('models.domain.Domain.get_by', return_value=None):
         response = get_user_by_domain(mock_domain.name)
         assert response == ({'message': 'Domain not found'}, 404)
 
+
+def test_get_user_by_domain_valid_domain(mock_domain, mock_user_list):
     # Test user found with valid domain
     with patch('models.domain.Domain.get_by', return_value=mock_domain):
         with patch('models.user.User.get_all_by', return_value=mock_user_list):
             response = get_user_by_domain(mock_domain.name)
             assert response == ({'users': mock_user_list}, 200)
 
+
+def test_get_user_by_domain_valid_domain_user_unknown(mock_domain):
     # Test user not found with valid domain
     with patch('models.domain.Domain.get_by', return_value=mock_domain):
         with patch('models.user.User.get_all_by', return_value=[]):
@@ -100,19 +108,22 @@ def test_get_all_users(mock_user_list):
         response = get_all_users()
         assert response == ({'users': mock_user_list}, 200)
 
+
+def test_get_all_users_empty(mock_user_list):
     # Test without users
     with patch('models.user.User.get_all', return_value=[]):
         response = get_all_users()
         assert response == ({'users': []}, 200)
 
 
-def test_login_service(mock_login_data, mock_user):
-
+def test_login_service_invalid_credentials(mock_login_data):
     # Test login with invalid credentials
     with patch('helpers.auth.AuthHandler.authenticate', return_value=None):
         response = login_service(mock_login_data)
         assert response == ({'message': 'Invalid email or password'}, 401)
 
+
+def test_login_service_valid_credentials(mock_login_data, mock_user):
     # Test login with valid credentials
     with patch('helpers.auth.AuthHandler.authenticate',
                return_value=mock_user):

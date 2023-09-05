@@ -23,25 +23,22 @@
   */
   export let data;
 
+  const user = data.user;
   const domains = data.domains;
   const domainsList = domains.map((/** @type {{ name: string; }} */ item) => item.name);
   const roles = data.roles;
   const rolesList = roles.map((/** @type {{ name: string; }} */ item) => item.name);
   const translations = data.translations;
   const translationsList = translations.map((/** @type {{ name: string; }} */ item) => item.name);
+
+  let employeePicture = user.profile_picture;
 </script>
 
-<form class="form-newUser" method="Post" action="?/register"> 
-  <Text
-    textTag='h1'
-    class='text-preset-1 text--uppercase w-100 text-center'
-  > 
-    Nouvel utilisateur
-  </Text>
+<form class="form-newUser" method="Post" action="?/register">
 
   <div class='avatar-upload block-center'>
     <Image
-      imageSrc={Account}
+      imageSrc={employeePicture ? employeePicture : Account }
       imageAlt="Employee picture"
       imageWidth=80
       border

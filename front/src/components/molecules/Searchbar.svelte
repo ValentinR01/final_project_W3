@@ -24,7 +24,7 @@
 	});
 </script>
 
-<div class="searchbar-container" style="width:{widthSearchbar}px">
+<div class="searchbar-container {$$props.class}" style="width:{widthSearchbar}px">
   <div class="searchbar__field">
     <Input 
       type='search' 

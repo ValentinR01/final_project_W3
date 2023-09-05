@@ -25,6 +25,7 @@
   --color-background-primary: var(--pale-blue);
   --color-background-secondary: var(--white);
   --color-background-tercary: var(--lighter-grey);
+  --color-background-quaternary: var(--lighter-blue);
   --color-primary: var(--blue-base);
   --color-secondary: var(--darker-blue);
   --color-highlight: var(--blue-base);
@@ -168,11 +169,11 @@ body{
 }
 
 .w-100{
-  width: 100%;
+  width: 100% !important;
 }
 
 .w-50{
-  width: 50%;
+  width: 50% !important;
 }
 
 hr{

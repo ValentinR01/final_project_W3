@@ -13,18 +13,54 @@ env:
   HOST: ${{ github.event.pull_request.base.ref == 'main' && secrets.PROD_CD_HOST || secrets.PREPROD_CD_HOST }}
 
 jobs:
-  build-test-push:
-    name: build-test-push
+
+  python-linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.9
+      - name: Install linter
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8-flask
+      - name: Lint with flake8
+        run: cd flask_app
+          && flake8 --config=lint/.flake8 .
+
+
+  build-test-push-front:
+    name: build-test-push-front
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Build Docker Images
-        run: docker buildx build . --file ./dockerfile/Dockerfile-api --tag "${{ env.REGISTRY_URL }}"/dam-api:latest
-          && docker buildx build . --file ./dockerfile/Dockerfile-front --tag "${{ env.REGISTRY_URL }}"/dam-front:latest
+      - name: Build Docker Image
+        run: docker buildx build . --file ./dockerfile/Dockerfile-front --tag "${{ env.REGISTRY_URL }}"/dam-front:latest --target PROD
 
+      - name: Login to Registry
+        run: echo "${{ env.TOKEN }}" | docker login "${{ env.REGISTRY_URL }}" -u "${{ env.REGISTRY_USER }}" --password-stdin
+
+      - name: Push to Registry
+        run: docker push "${{ env.REGISTRY_URL }}"/dam-front:latest
+
+
+  build-test-push-api:
+    name: build-test-push-api
+    runs-on: ubuntu-latest
+    needs: [python-linter]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Build Docker Image
+        run: docker buildx build . --file ./dockerfile/Dockerfile-api --tag "${{ env.REGISTRY_URL }}"/dam-api:latest
+       
       - name: Run Unit Tests
         run: docker run -d -e ENV=TEST --name=dam-api "${{ env.REGISTRY_URL }}"/dam-api:latest
               && docker exec dam-api bash -c 'python -m pytest'
@@ -33,14 +69,13 @@ jobs:
         run: echo "${{ env.TOKEN }}" | docker login "${{ env.REGISTRY_URL }}" -u "${{ env.REGISTRY_USER }}" --password-stdin
 
       - name: Push to Registry
-        run: docker push "${{ env.REGISTRY_URL }}"/dam-front:latest
-          && docker push "${{ env.REGISTRY_URL }}"/dam-api:latest
+        run: docker push "${{ env.REGISTRY_URL }}"/dam-api:latest
           
 
   deploy:
     name: deploy
     runs-on: ubuntu-latest
-    needs: build-test-push
+    needs: [build-test-push-front, build-test-push-api]
     
     steps:
       - name: SSH init

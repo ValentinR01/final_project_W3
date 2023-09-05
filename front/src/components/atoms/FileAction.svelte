@@ -7,6 +7,7 @@
    */
    export let nameInput = 'file';
    export let action = 'upload';
+   export let linkAction = '/projects/editor/add-metadata';
 
   /**
    * @type {any}
@@ -37,7 +38,7 @@
         <span class="text-preset-3"> <slot name='text'/> </span>
       </div>
     </a>
-  {:else}
+  {:else if action == 'upload'}
     <label for={nameInput} class="file-action__link text-preset-3">
       <Icon width=60 height=60>
         <slot name='icon' /> 
@@ -45,6 +46,15 @@
       <slot name='text'/>
     </label>
     <input id='{nameInput}' type="file" bind:files hidden>
+  {:else}
+    <a href="{linkAction}">
+      <div class="file-action__link">
+        <Icon width=60 height=60>
+          <slot name='icon' /> 
+        </Icon>
+        <span class="text-preset-3"> <slot name='text'/> </span>
+      </div>
+    </a>
   {/if}
 </div>
 

@@ -11,6 +11,7 @@ class Domain(Base):
 
     # Relationships
     users = db.relationship('User', backref='domain', lazy=True)
+    specialties = db.relationship('Specialty', backref='domain', lazy=True)
 
     def __init__(self, name):
         self.name = name

@@ -1,4 +1,7 @@
 from db import db
+from sqlalchemy import or_
+from sqlalchemy.orm import joinedload
+from helpers.etl import transformation
 
 
 class Base(db.Model):
@@ -12,7 +15,8 @@ class Base(db.Model):
     def create(self):
         if self.id is None:
             db.session.add(self)
-        return db.session.commit()
+            db.session.commit()
+        return self.id
 
     def update(self):
         return db.session.commit()
@@ -37,33 +41,34 @@ class Base(db.Model):
         return cls.query.filter_by(**kwargs).first()
 
     @classmethod
-    def get_all_by(cls: db.Model, **kwargs):
+    def get_all_by(cls: db.Model, **kwargs) -> list:
         """
-        This method will be used to get a record from a table.
+        This method will be used to get all record from a table with filter.
 
         :param cls: class to check
         :param kwargs: values to check
         :return: all matching records
         """
-        return cls.query.filter_by(**kwargs).all()
+        raw_data = cls.query.filter_by(**kwargs).all()
+        return raw_data
 
     @classmethod
-    def init_db_value(cls: db.Model, init_values: list):
-        """
-        This method will be used to initialize the values of a table.
+    def get_entities_by_search_values(cls, search, *columns):
+        filters = or_(*[
+            getattr(cls, column).ilike(f'%{search}%') for column in columns
+        ])
+        raw_data = cls.query.filter(filters).all()
+        return transformation(raw_data)
 
-        :param cls: table to initialize
-        :param init_values: list of values to initialize
-        :return:
+    @classmethod
+    def get_entity_with_joins(cls, entity_id: int):
         """
-        for init_value in init_values:
-            try:
-                domain = cls.query.filter_by(name=init_value).first()
-                if domain:
-                    continue
-                else:
-                    domain = cls(name=init_value)
-                    domain.create()
-            except Exception as e:
-                print(e)
-                continue
+        Join the entity with the related entities
+
+        :param cls: class of the entity you want to get
+        :param entity_id: id of the entity you want to get
+        """
+        query = db.session.query(cls).filter(cls.id == entity_id)
+        for relationship_name in cls.__mapper__.relationships:
+            query = query.options(joinedload(relationship_name))
+        return transformation(query.first())

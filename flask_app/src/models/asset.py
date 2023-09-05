@@ -25,7 +25,7 @@ class Asset(Base):
     published = db.Column(db.Boolean, default=False)
 
     # Date
-    created_at = db.Column(db.Date, default=db.func.current_timestamp())
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     published_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     last_assignment_at = \
@@ -37,15 +37,15 @@ class Asset(Base):
 
     # FK
     composer_id = \
-        db.Column(db.Integer, db.ForeignKey('composer.id'), nullable=False)
+        db.Column(db.Integer, db.ForeignKey('composer.id'), nullable=True)
     current_assigned_user_id = \
-        db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+        db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
     created_by_id = \
         db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     updated_by_id = \
         db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     speaker_id = \
-        db.Column(db.Integer, db.ForeignKey('speaker.id'), nullable=False)
+        db.Column(db.Integer, db.ForeignKey('speaker.id'), nullable=True)
     status_by_domain_id = db.Column(
         db.Integer, db.ForeignKey('status_by_domain.id'), nullable=False
     )
@@ -53,24 +53,40 @@ class Asset(Base):
         db.Integer, db.ForeignKey('step_lifecycle.id'), nullable=False
     )
     booking_id = \
-        db.Column(db.Integer, db.ForeignKey('booking.id'), nullable=False)
+        db.Column(db.Integer, db.ForeignKey('booking.id'), nullable=True)
     captation_id = \
-        db.Column(db.Integer, db.ForeignKey('captation.id'), nullable=False)
+        db.Column(db.Integer, db.ForeignKey('captation.id'), nullable=True)
     post_prod_id = \
-        db.Column(db.Integer, db.ForeignKey('post_prod.id'), nullable=False)
+        db.Column(db.Integer, db.ForeignKey('post_prod.id'), nullable=True)
     transformation_id = db.Column(
-        db.Integer, db.ForeignKey('transformation.id'), nullable=False
+        db.Integer, db.ForeignKey('transformation.id'), nullable=True
     )
 
-    def __init__(self, title, music_title, composer_id,
-                 current_assigned_user_id, created_by_id,
-                 updated_by_id, speaker_id, status_by_domain_id,
-                 step_lifecycle_id, booking_id, captation_id, post_prod_id,
-                 transformation_id, has_high_priority=False, published=False,
-                 created_at=None, updated_at=None, published_at=None,
-                 last_assignment_at=None, student_fullname=None,
-                 art_description=None, asset_description=None,
-                 link_partitions=None, thumbnail=None, resumed=None):
+    # Relationships FK
+    composer = db.relationship('Composer', backref='assets')
+    current_assigned_user = db.relationship('User', foreign_keys=[
+        current_assigned_user_id], backref='assigned_assets')
+    created_by = db.relationship('User', foreign_keys=[created_by_id],
+                                 backref='created_assets')
+    updated_by = db.relationship('User', foreign_keys=[updated_by_id],
+                                 backref='updated_assets')
+    speaker = db.relationship('Speaker', backref='assets')
+    status_by_domain = db.relationship('StatusByDomain', backref='assets')
+    step_lifecycle = db.relationship('StepLifecycle', backref='assets')
+    booking = db.relationship('Booking', backref='assets')
+    captation = db.relationship('Captation', backref='assets')
+    post_prod = db.relationship('PostProd', backref='assets')
+    transformation = db.relationship('Transformation', backref='assets')
+
+    def __init__(self, title, music_title, created_by_id,
+                 step_lifecycle_id, updated_by_id, status_by_domain_id,
+                 current_assigned_user_id=None,  booking_id=None,
+                 composer_id=None, speaker_id=None, captation_id=None,
+                 post_prod_id=None, transformation_id=None,
+                 has_high_priority=False, published=False, created_at=None,
+                 updated_at=None, published_at=None, last_assignment_at=None,
+                 student_fullname=None, art_description=None, thumbnail=None,
+                 asset_description=None, link_partitions=None, resumed=None):
         self.title = title
         self.music_title = music_title
         self.art_description = art_description

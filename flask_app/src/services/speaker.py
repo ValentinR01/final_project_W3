@@ -1,23 +1,28 @@
 from models.speaker import Speaker
-import logging
-import re
+from services.base import create_entity, update_entity
 
 
-def register_service(data):
-    if Speaker.get_by(fullname=data['fullname']):
-        return {'message': 'Speaker already exists'}, 409
-
-    new_speaker = Speaker(fullname=data['fullname'])
-    new_speaker.create()
-
-    return {'message': 'Speaker well created'}, 201
+def create_speaker(data):
+    """Create a new speaker"""
+    return create_entity(
+        data=data, entity=Speaker, fullname=data.get('fullname')
+    )
 
 
-def get_all_speakers(self):
-    speaker_list = Speaker.get_all(self)
-    return speaker_list, 200 
+def update_speaker(data, speaker_id):
+    """Update a speaker"""
+    return update_entity(
+        data=data, entity=Speaker, entity_id=speaker_id
+    )
+
 
 def get_speaker_by_id(speaker_id):
-    speaker = Speaker.find_by_id(speaker_id)
-    return speaker, 200 
+    speaker = Speaker.get_by(id=speaker_id)
+    if not speaker:
+        return {'message': 'Speaker not found'}, 404
+    return speaker, 200
 
+
+def get_all_speakers():
+    speakers_list = Speaker.get_all()
+    return {'speakers': speakers_list}, 200

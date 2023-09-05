@@ -1,42 +1,48 @@
 <script>
   import Text from '../../../components/atoms/Text.svelte';
   import Tabs from '../../../components/molecules/Tabs.svelte';
+  import Margin from '../../../components/atoms/Margin.svelte';
 
-  import Tab1 from "../../../tabs/validation-montage.svelte";
-  import Tab2 from "../../../tabs/validation-finale.svelte";
-  import Tab3 from "../../../tabs/encours-superadmin.svelte";
+  import RegularOngoing from '../../../tabs/Regular Dashboard/RegularOngoing.svelte';
+  import RegularToStart from '../../../tabs/Regular Dashboard/RegularToStart.svelte';
+  import Link from '../../../components/atoms/Link.svelte';
 
+  let domain = 'regisseur';
   export let data;
 
   let items = [
-    { label: "Validation montage",
+    { label: "A commencer",
      value: 1,
-     component: Tab1
-    },
-    { label: "Validation finale",
-     value: 2,
-     component: Tab2
+     component: RegularToStart
     },
     { label: "En cours",
-     value: 3,
-     component: Tab3
+     value: 2,
+     component: RegularOngoing
     }
   ];
 </script>
 
-<div class='card block-center'>
-  <Text
-    textTag='h1'
-    class='text-preset-1 text-center text--uppercase'
-    >
-    Les projets
-  </Text>
-
-  <div class='dashboard-nav'>
-    <Tabs {items} data={data}/>
+<Margin marginTop='3%'>
+  <div class='card block-center'>
+    <Text
+      textTag='h1'
+      class='text-preset-1 text-center text--uppercase'
+      >
+      Les projets
+    </Text>
+  
+    {#if domain == 'regisseur'}
+      <Link linkUrl='/projects/create' linkColor='white' class='link--button'> + Nouveau projet </Link>
+      <p> TABLEAU A AJOUTER </p>
+      <p> DEUXIEME TABLEAU A AJOUTER </p>
+    {:else}
+      <div class='dashboard-nav'>
+        <Tabs {items} data={data}/>
+      </div>
+    {/if}
+  
   </div>
-
-</div>
+</Margin>
 
 <style>
   .dashboard-nav{

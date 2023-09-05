@@ -10,8 +10,8 @@
   {#if userComment == 'new'}
     <InputForm id="name" name="name"> Nom </InputForm>
   {/if}
-  <TextArea placeholder="Ecrire un commentaire..." />
-  <Button marginTop="var(--spacing-1)"> Valider </Button>  
+  <TextArea width='100%' placeholder="Ecrire un commentaire..." />
+  <Button> Valider </Button>  
 </form>
 
 <style>

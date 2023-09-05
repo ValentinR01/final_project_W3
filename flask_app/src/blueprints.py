@@ -2,8 +2,13 @@ from flask import Blueprint
 from flask_restx import Api
 from api.user import namespace as user
 from api.speaker import namespace as speaker
-from api.metadata import namespace as metadata
-from api.composer import namespace as composers
+from api.meta_value import namespace as meta_value
+from api.composer import namespace as composer
+from api.asset import namespace as asset
+from api.booking import namespace as booking
+from api.language import namespace as language
+from api.comment import namespace as comment  # Do not delete this line pls
+
 
 blueprint = Blueprint('api', __name__)
 api = Api(blueprint)
@@ -19,5 +24,8 @@ api = Api(
 
 api.add_namespace(user)
 api.add_namespace(speaker)
-api.add_namespace(metadata)
-api.add_namespace(composers)
+api.add_namespace(meta_value)
+api.add_namespace(composer)
+api.add_namespace(booking)
+api.add_namespace(language)
+api.add_namespace(asset)

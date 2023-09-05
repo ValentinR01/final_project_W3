@@ -106,7 +106,7 @@ class Users(Resource):
 
 @namespace.route('/<int:user_id>', methods=['GET'])
 @namespace.response(200, users_model)
-class Users(Resource):
+class UserByID(Resource):
     @namespace.marshal_with(users_model)
     def get(self, user_id):
         """Get user by ID"""

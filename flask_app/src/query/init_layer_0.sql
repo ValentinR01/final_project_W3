@@ -40,7 +40,7 @@ VALUES ('redaction'), ('translation'), ('management'), ('post-prod'), ('regisseu
 
 -- Status By Domain
 INSERT INTO "status_by_domain" (status)
-VALUES ('pending'), ('to_assign'), ('in_progress'), ('to_review'), ('done');
+VALUES ('to_assign'), ('in_progress');
 
 
 -- Role

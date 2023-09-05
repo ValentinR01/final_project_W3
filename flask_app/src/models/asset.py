@@ -26,8 +26,9 @@ class Asset(Base):
 
     # Date
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
-    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp())
-    published_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(),
+                           onupdate=db.func.current_timestamp())
+    published_at = db.Column(db.DateTime, nullable=True)
     last_assignment_at = \
         db.Column(db.DateTime, default=db.func.current_timestamp())
 
@@ -47,10 +48,10 @@ class Asset(Base):
     speaker_id = \
         db.Column(db.Integer, db.ForeignKey('speaker.id'), nullable=True)
     status_by_domain_id = db.Column(
-        db.Integer, db.ForeignKey('status_by_domain.id'), nullable=False
+        db.Integer, db.ForeignKey('status_by_domain.id'), default=1
     )
     step_lifecycle_id = db.Column(
-        db.Integer, db.ForeignKey('step_lifecycle.id'), nullable=False
+        db.Integer, db.ForeignKey('step_lifecycle.id'), default=1
     )
     booking_id = \
         db.Column(db.Integer, db.ForeignKey('booking.id'), nullable=True)
@@ -80,7 +81,7 @@ class Asset(Base):
 
     def __init__(self, title, music_title, created_by_id,
                  step_lifecycle_id, updated_by_id, status_by_domain_id,
-                 current_assigned_user_id=None,  booking_id=None,
+                 current_assigned_user_id=None, booking_id=None,
                  composer_id=None, speaker_id=None, captation_id=None,
                  post_prod_id=None, transformation_id=None,
                  has_high_priority=False, published=False, created_at=None,

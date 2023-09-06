@@ -16,7 +16,7 @@
 <img
   src={imageSrc}
   alt={imageAlt}
-  class='image {border === true ? 'image--border' : ''}'
+  class='image {$$props.class} {border === true ? 'image--border' : ''}'
   width={imageWidth}
   height={imageHeight}
 />

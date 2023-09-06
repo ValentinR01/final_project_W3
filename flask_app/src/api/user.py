@@ -35,8 +35,8 @@ users_model = namespace.model(
         'profile_picture': fields.String(),
         'created_at': fields.DateTime(),
         'count_assigning_asset': fields.String(),
-        'role_id': fields.Integer(),
-        'domain_id': fields.Integer()
+        'role': fields.String(attribute='role.name'),
+        'domain': fields.String(attribute='domain.name')
     }
 )
 

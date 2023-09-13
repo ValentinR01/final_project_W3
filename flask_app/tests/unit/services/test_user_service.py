@@ -3,7 +3,7 @@ from unittest.mock import patch
 from models.user import User
 from models.domain import Domain
 from services.user import register_service, login_service, \
-    get_user_by_domain, get_all_users
+    get_user_by_domain, get_all_users, get_user_by_id
 import datetime
 
 
@@ -137,3 +137,14 @@ def test_login_service_valid_credentials(mock_login_data, mock_user):
                 assert response[1] == 200
                 assert response[2][0][1] == 'authorization=token; ' \
                                             'max-age=2592000; path=/'
+
+def test_get_user_by_id(mock_user):
+    with patch('models.user.User.get_by', return_value=mock_user):
+        response = get_user_by_id(1)
+        assert response == (mock_user, 200)
+
+
+def test_get_user_by_id_not_found():
+    with patch('models.user.User.get_by', return_value=[]):
+        response = get_user_by_id(999)
+        assert response == ({'message': 'User not found'}, 404)

@@ -14,7 +14,7 @@ VALUES ('style'), ('period'), ('level'), ('instruments'), ('skill');
 
 -- Language
 INSERT INTO "language" (name, code)
-VALUES ('english', 'en'), ('french', 'fr');
+VALUES ('anglais', 'an'), ('français', 'fr'), ('allemand', 'al'), ('espagnol', 'es'), ('italien', 'it'), ('japonais', 'jp');
 
 
 -- Room

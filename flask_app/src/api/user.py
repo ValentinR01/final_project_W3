@@ -2,7 +2,8 @@ from flask import request
 from flask_restx import Namespace, Resource, fields, Api
 # from helpers.decorators import rights_manager
 from services.user import \
-    register_service, login_service, get_user_by_domain, get_all_users
+    register_service, login_service, get_user_by_domain, get_all_users, \
+    get_user_by_id
 
 
 namespace = Namespace('users', 'User related endpoints')
@@ -31,12 +32,11 @@ users_model = namespace.model(
         'id': fields.Integer(),
         'email': fields.String(),
         'fullname': fields.String(),
-        'password': fields.String(),
         'profile_picture': fields.String(),
         'created_at': fields.DateTime(),
         'count_assigning_asset': fields.String(),
-        'role_id': fields.Integer(),
-        'domain_id': fields.Integer()
+        'role': fields.String(attribute='role.name'),
+        'domain': fields.String(attribute='domain.name')
     }
 )
 
@@ -101,3 +101,12 @@ class Users(Resource):
     def get(self):
         """Get all users"""
         return get_all_users()
+
+
+@namespace.route('/<int:user_id>', methods=['GET'])
+@namespace.response(200, users_model)
+class UserByID(Resource):
+    @namespace.marshal_with(users_model)
+    def get(self, user_id):
+        """Get user by ID"""
+        return get_user_by_id(user_id)

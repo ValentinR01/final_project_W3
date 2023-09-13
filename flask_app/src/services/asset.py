@@ -45,10 +45,10 @@ def create_asset(data: dict):
 
     if not request:
         token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZnVsbG5hb" \
-                "WUiOiJzYWxpbmUiLCJlbWFpbCI6InNhbGluZUBzYWxpbmUuY29tIiwicm9" \
-                "sZSI6IndvcmtlciIsImRvbWFpbiI6InJlZGFjdGlvbiIsImV4cCI6MTY5N" \
-                "DAyMzg0MCwiaWF0IjoxNjkzOTg3ODQwfQ.3kPaLPHQir0DBi05xaWsWmEFZ" \
-                "MvDstd4RBlOmQPI354"
+                "WUiOiJzYWxpbmUiLCJlbWFpbCI6InNhbGluZUBzYWxpbmUuY29tIiwicm9s" \
+                "ZSI6IndvcmtlciIsImRvbWFpbiI6InJlZGFjdGlvbiIsImV4cCI6MTY5NzI" \
+                "yMDE2NSwiaWF0IjoxNjk0NjI4MTY1fQ.duieAudQgx8JGmWMdksZkgxL2kP" \
+                "djd_J-64pUXq_Hqw"
     else:
         token = request.cookies.get('authorization')
     decode_token = AuthHandler.decode_token(token)
@@ -66,7 +66,7 @@ def create_asset(data: dict):
                       step_lifecycle_id=1)
     new_asset.create()
 
-    asset_id = Asset.get_by(title=data['title'])['id']
+    asset_id = Asset.get_by(title=data['title']).id
 
     if 'comment' in data:
         new_comment = Comment(asset_id=asset_id, content=data['comment'],
@@ -82,25 +82,16 @@ def create_asset(data: dict):
         for instrument in data['instruments']:
             meta_value = MetaValue.get_by(value=instrument)
             new_instrument = Metadata(asset_id=asset_id,
-                                      meta_value_id=meta_value['id'])
+                                      meta_value_id=meta_value.id)
             new_instrument.create()
 
         #
         check_instruments = Metadata.get_by(asset_id=asset_id)
-        logging.info(f'check_instruments)
+        logging.info(f'check instruments : {check_instruments}')
         #
 
-    if 'category' in data:
-        category = data['category']
-        meta_value = MetaValue.get_by(value=category)
-        new_category = Metadata(asset_id=asset_id,
-                                meta_value_id=meta_value['id'])
-        new_category.create()
-
-        #
-        check_category = Metadata.get_by(asset_id=asset_id)
-        logging.info(check_category)
-        #
+    # TODO : Faire le new category si elle existe une fois que val a fait
+    #  l'endpoint category et a modifié le modèle
 
     return {'Asset created successfully': data}, 200
 

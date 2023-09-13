@@ -1,4 +1,3 @@
-from flask import request
 from flask_restx import Resource, fields, Api, Namespace
 from services.category import get_all_categories
 

@@ -7,6 +7,7 @@
    * @type {string | any[]}
   */
   export let rows;
+  console.log(rows);
   
   /**
    * @type {number}

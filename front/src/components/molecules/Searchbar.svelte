@@ -12,7 +12,7 @@
 
 	const searchItems = data.map((item: any) => ({
 		...item,
-		searchTerms: `${item.name} ${item.fullname}` 
+		searchTerms: `${item.title} ${item.fullname}` 
 	}));
 
 	const searchStore = createSearchStore(searchItems);
@@ -53,7 +53,7 @@
           linkColor='grey'
         > 
           {#if urlSearchbar === 'projects'}
-            {item.name}
+            {item.title}
           {:else if urlSearchbar === 'users' }
             {item.fullname}
           {/if }

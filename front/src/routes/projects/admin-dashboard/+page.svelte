@@ -12,6 +12,7 @@
   import AdminToCome from '../../../tabs/Admin Dashboard/AdminToCome.svelte';
 
   export let data;
+  const { projects } = data;
 
   let role = 'admin';
 
@@ -57,12 +58,19 @@
   
     <div class='dashboard-nav'>
       {#if role == 'superadmin'}
-        <Tabs items={itemsSuperAdmin} data={data}/>
+        <Tabs items={itemsSuperAdmin} data={projects}/>
       {:else if role == 'admin'}
-        <Tabs items={itemsAdmin} data={data}/>
+        <Tabs items={itemsAdmin} data={projects}/>
       {/if }
     </div>
-  
+
+    <p> TEST DE DATA A SUPPRIMER LORS DE L'AJOUT DES TABLEAUX </p>
+    {#each projects as project}
+      {project.title}
+      {project.created_at}
+      {project.has_high_priority}
+      {project.step_lifecycle_id}
+    {/each}
   </div>
 </Margin>
 

@@ -6,6 +6,7 @@
   export let type = 'text';
   export let placeholder = "";
   export let widthForm = '100%';
+  export let valueInput = "";
 </script>
 
 <div 
@@ -13,7 +14,7 @@
   style="width: {widthForm}"
 >
   <label for={name} class="input-form__label text-preset-4"> <slot /> </label>
-  <Input name={name} id={id} type={type} placeholder={placeholder} width=auto/>
+  <Input name={name} id={id} type={type} placeholder={placeholder} bind:inputValue={valueInput} width=auto/>
 </div>
 
 <style>

@@ -136,4 +136,4 @@ def test_login_service_valid_credentials(mock_login_data, mock_user):
                                        'message': 'Login successful'}
                 assert response[1] == 200
                 assert response[2][0][1] == 'authorization=token; ' \
-                                            'max-age=36000; path=/'
+                                            'max-age=2592000; path=/'

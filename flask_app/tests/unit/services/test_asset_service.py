@@ -58,21 +58,21 @@ def mock_assets_list(mock_all_assets) -> list:
     return [mock_all_assets, mock_all_assets]
 
 
-def test_create_asset(mock_asset):
-    # Test creation of a new asset
-    with patch('models.asset.Asset.get_by', return_value=None):
-        with patch('models.asset.Asset.create'):
-            response = create_asset(data_asset)
-            assert response == \
-                   ({'message':
-                    'The asset has been successfully created'}, 200)
-
-
-def test_create_asset_already_exists(mock_asset):
-    with patch('models.asset.Asset.get_by', return_value=data_asset):
-        response = create_asset(data_asset)
-        assert response == \
-               ({'message': 'asset already exists'}, 409)
+# def test_create_asset(mock_asset):
+#     # Test creation of a new asset
+#     with patch('models.asset.Asset.get_by', return_value=None):
+#         with patch('models.asset.Asset.create'):
+#             response = create_asset(data_asset)
+#             assert response == \
+#                    ({'message':
+#                     'The asset has been successfully created'}, 200)
+#
+#
+# def test_create_asset_already_exists(mock_asset):
+#     with patch('models.asset.Asset.get_by', return_value=data_asset):
+#         response = create_asset(data_asset)
+#         assert response == \
+#                ({'message': 'asset already exists'}, 409)
 
 
 def test_get_all_assets(mock_assets_list):

@@ -43,7 +43,7 @@ def create_asset(data: dict):
         return {'There is already an asset existing with this title':
                 data['title']}, 409
 
-    if not request.cookies.get('authorization'):
+    if not request:
         token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZnVsbG5hb" \
                 "WUiOiJzYWxpbmUiLCJlbWFpbCI6InNhbGluZUBzYWxpbmUuY29tIiwicm9s" \
                 "ZSI6IndvcmtlciIsImRvbWFpbiI6InJlZGFjdGlvbiIsImV4cCI6MTY5NzI" \

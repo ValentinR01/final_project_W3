@@ -6,7 +6,7 @@ from models.comment import Comment
 from models.metadata import Metadata
 from models.meta_value import MetaValue
 from helpers.auth import AuthHandler
-from services.base import get_all_entities, search_entities,\
+from services.base import get_all_entities, search_entities, \
     get_entity_by_id, update_entity
 
 
@@ -41,7 +41,7 @@ def create_asset(data: dict):
     check_title = Asset.get_all_by(title=data['title'])
     if len(check_title) > 0:
         return {'There is already an asset existing with this title':
-                    data['title']}, 409
+                data['title']}, 409
 
     if not request:
         token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZnVsbG5hb" \

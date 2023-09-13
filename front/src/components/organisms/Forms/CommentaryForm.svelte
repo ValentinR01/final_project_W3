@@ -1,7 +1,7 @@
 <script>
   import Button from "../../atoms/Button.svelte";
   import TextArea from "../../atoms/Text-Area.svelte";
-  import InputForm from "../../molecules/InputForm.svelte";
+  import InputForm from "../../molecules/formFields//InputForm.svelte";
 
   export let userComment = 'existing';
 </script>

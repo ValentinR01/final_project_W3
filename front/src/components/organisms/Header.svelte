@@ -3,6 +3,7 @@
   import Logo from '../../assets/img/logo_color.png'
   import Account from "../../assets/img/account.png";
   import Menu from "../molecules/Menu.svelte";
+  import Link from "../atoms/Link.svelte";
 
   /**
   * @type {string | undefined}
@@ -13,13 +14,13 @@
 </script>
 
 <div class='header'>
-  <a href="/">
+  <Link linkUrl="/">
     <Image
       imageSrc={Logo}
       imageAlt="Saline Academie Logo"
       imageWidth=160
     />
-  </a>
+  </Link>
 
   <Menu currentPage={currentPage}/>
 

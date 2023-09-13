@@ -9,6 +9,11 @@
    * @type {string[]}
   */
   export let disabled = [];
+  
+  /**
+   * @type {string[]}
+   */
+   export let optionsSelected = [];
 
   /**
    * @type {any}
@@ -23,6 +28,7 @@
     values={data} 
     cat={catForm} 
     disabled={disabled}
+    bind:selectedOptions={optionsSelected}
   />
 </div>
 

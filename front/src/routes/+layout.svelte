@@ -2,9 +2,26 @@
   import '../assets/css/global.css';
 
   import Header from "../components/organisms/Header.svelte";
+  
+  import { onMount } from 'svelte';
+
+  let url = ``;
+
+  onMount(() => url = window.location.href)
+
+  //let showHeader = true;
+  //var currentURL = window.location.href;
+  //if(currentURL.includes("login")){
+  //  showHeader = false;
+  //}
+
 </script>
 
-<Header />
+{#if url.includes("login")}
+  <br>
+{:else}
+  <Header />
+{/if}
 
 <slot></slot>
 

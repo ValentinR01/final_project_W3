@@ -11,6 +11,10 @@
   */
   export let readonly = false;
 
+  /**
+   * @type {string}
+  */
+  export let inputValue = "";
   
   let files: any;
 
@@ -52,7 +56,7 @@
     placeholder={placeholder}
     class="input text-preset-5 {$$props.class}"
     style="width: {width}"
-    bind:value
+    bind:value={inputValue}
   />
 {/if}
 

@@ -72,11 +72,10 @@ class Login(Resource):
 @namespace.route('/domain/<domain_name>', methods=['GET'])
 class Domain(Resource):
 
-    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZnVsbG5hbWU" \
-            "iOiJzYWxpbiIsImVtYWlsIjoic2FsaW5Ac2FsaW5lLmNvbSIsInJvbGUiOiJ" \
-            "3b3JrZXIiLCJkb21haW4iOiJyZWRhY3Rpb24iLCJleHAiOjE2ODkwMjk5MDI" \
-            "sImlhdCI6MTY4ODk5MzkwMn0.r4UalimTKPHVIDABZei3px6armJdAd_TOVA" \
-            "M_uEazTM"
+    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZnVsbG5hbWUiO" \
+            "iJzYWxpbmUiLCJlbWFpbCI6InNhbGluZUBzYWxpbmUuY29tIiwicm9sZSI6Indv" \
+            "cmtlciIsImRvbWFpbiI6InJlZGFjdGlvbiIsImV4cCI6MTY5NzIyMDE2NSwiaWF" \
+            "0IjoxNjk0NjI4MTY1fQ.duieAudQgx8JGmWMdksZkgxL2kPdjd_J-64pUXq_Hqw"
 
     """Filter users by domain name"""
     @api.doc(

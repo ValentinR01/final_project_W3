@@ -138,6 +138,7 @@ def test_login_service_valid_credentials(mock_login_data, mock_user):
                 assert response[2][0][1] == 'authorization=token; ' \
                                             'max-age=2592000; path=/'
 
+
 def test_get_user_by_id(mock_user):
     with patch('models.user.User.get_by', return_value=mock_user):
         response = get_user_by_id(1)

@@ -6,8 +6,8 @@ from models.comment import Comment
 from models.metadata import Metadata
 from models.meta_value import MetaValue
 from helpers.auth import AuthHandler
-from services.base import get_all_entities, search_entities, get_entity_by_id, \
-    update_entity
+from services.base import get_all_entities, search_entities,\
+    get_entity_by_id, update_entity
 
 
 def create_asset(data: dict):

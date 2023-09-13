@@ -1,7 +1,7 @@
 import pytest
 from models.asset import Asset
 from unittest.mock import patch
-from services.asset import create_asset, get_asset, search_asset
+from services.asset import get_asset, search_asset
 from helpers.etl import transformation
 
 data_asset = {

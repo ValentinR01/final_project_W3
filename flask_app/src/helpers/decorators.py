@@ -9,9 +9,9 @@ def rights_manager(request, role: str, domain: str = None):
             if not request:
                 token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZn" \
                         "VsbG5hbWUiOiJzYWxpbmUiLCJlbWFpbCI6InNhbGluZUBzYWxpb" \
-                        "mUuY29tIiwicm9sZSI6IndvcmtlciIsImRvbWFpbiI6InJlZGFjd" \
-                        "GlvbiIsImV4cCI6MTY5NzIyMDE2NSwiaWF0IjoxNjk0NjI4MTY1f" \
-                        "Q.duieAudQgx8JGmWMdksZkgxL2kPdjd_J-64pUXq_Hqw"
+                        "mUuY29tIiwicm9sZSI6IndvcmtlciIsImRvbWFpbiI6InJlZGFj" \
+                        "dGlvbiIsImV4cCI6MTY5NzIyMDE2NSwiaWF0IjoxNjk0NjI4MTY" \
+                        "1fQ.duieAudQgx8JGmWMdksZkgxL2kPdjd_J-64pUXq_Hqw"
             else:
                 token = request.cookies.get('authorization')
             decode_token = AuthHandler.decode_token(token)

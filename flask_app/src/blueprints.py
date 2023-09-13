@@ -7,6 +7,7 @@ from api.composer import namespace as composer
 from api.asset import namespace as asset
 from api.booking import namespace as booking
 from api.language import namespace as language
+from api.category import namespace as categories
 from api.comment import namespace as comment  # Do not delete this line pls
 
 
@@ -29,3 +30,4 @@ api.add_namespace(composer)
 api.add_namespace(booking)
 api.add_namespace(language)
 api.add_namespace(asset)
+api.add_namespace(categories)

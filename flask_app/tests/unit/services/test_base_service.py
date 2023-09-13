@@ -1,19 +1,10 @@
 import pytest
 from db import db
-from flask import Flask
 from models.base import Base
-from conf import POSTGRESQL_DATABASE_URI
 from unittest.mock import MagicMock, patch
 from services.base import \
-    create_entity, get_all_entities, search_entities, get_entity_by_id
-
-
-def create_app():
-    app = Flask(__name__)
-    app.config['RESTPLUS_MASK_SWAGGER'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = POSTGRESQL_DATABASE_URI
-    db.init_app(app)
-    return app
+    create_entity, get_all_entities, search_entities, get_entity_by_id, \
+    delete_entity
 
 
 class MockEntity(Base):
@@ -48,7 +39,8 @@ def test_create_entity_already_exists(mock_entity):
     with patch('models.base.Base.get_by', return_value=mock_entity):
         response, status_code = create_entity(MockEntity, {"data": "value"})
         assert status_code == 409
-        assert response == {'message': 'Entity already exists'}
+        assert response == {'message':
+                            f'{mock_entity.__tablename__} already exists'}
 
 
 def test_create_entity_success(mock_session):
@@ -57,7 +49,8 @@ def test_create_entity_success(mock_session):
             MockEntity, {"data": "value"}
         )
         assert \
-            response == {'message': 'The mockentity created successfully'}
+            response == {'message':
+                         'The mockentity has been successfully created'}
 
 
 def test_get_all_entities_no_entity_found():
@@ -114,3 +107,21 @@ def test_get_entity_by_id_success():
         response, status_code = get_entity_by_id(MockEntity, 1)
         assert status_code == 200
         assert response == {'mockentity': 'entity_data'}
+
+
+def test_delete_entity(mock_entity):
+    # Test on entity found
+    with patch('models.base.Base.get_by', return_value=mock_entity):
+        with patch('models.base.Base.delete', return_value=True):
+            response, status_code = delete_entity(mock_entity, 1)
+            assert status_code == 200
+            assert response == {'message':
+                                'The mockentity has been successfully deleted'}
+
+
+def test_delete_entity_not_found(mock_entity):
+    # Test on entity not found
+    with patch('models.base.Base.get_by', return_value=None):
+        response, status_code = delete_entity(mock_entity, 999)
+        assert status_code == 404
+        assert response == {'message': 'Entity not found'}

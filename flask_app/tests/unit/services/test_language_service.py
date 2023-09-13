@@ -24,6 +24,8 @@ def test_get_all_languages(mock_language_list):
         language_list = get_all_languages()
         assert language_list == ({'languages': mock_language_list}, 200)
 
+
+def test_get_all_languages_empty():
     # Test with an empty list of languages
     with patch('models.language.Language.get_all', return_value=[]):
         language_list = get_all_languages()

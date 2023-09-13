@@ -8,6 +8,11 @@
    * @type {string | string[]}
   */
   export let disabled = [];
+  
+  /**
+   * @type {string[]}
+   */
+   export let selectedOptions = [];
 
   /**
   * @type {any}
@@ -21,7 +26,7 @@
       <input class="input-checkbox input-checkbox--disabled" type=checkbox id={option} value={option} name={cat} disabled>
       <label class="label-checkbox label-checkbox--disabled text-preset-5" for={option}> {option} </label>
     {:else}
-      <input class="input-checkbox" type=checkbox id={option} value={option} name={cat}>
+      <input class="input-checkbox" type=checkbox id={option} value={option} name={cat} bind:group={selectedOptions}>
       <label class="label-checkbox text-preset-5" for={option}> {option} </label>
     {/if }
   {/each}

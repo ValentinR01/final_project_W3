@@ -1,6 +1,6 @@
 from flask import request
 from flask_restx import Resource, fields, Api
-from services.comment import register_comment, get_all_comments
+from services.comment import register_comment, get_all_comments, delete_comment
 from api.asset import namespace as namespace
 
 api = Api()
@@ -39,3 +39,12 @@ class Comment(Resource):
         """Post a comment to an asset"""
         comment = request.json
         return register_comment(asset_id, comment)
+
+
+# Todo: Allow only self user to delete comment
+@namespace.route('/<int:asset_id>/comments/<int:comment_id>',
+                 methods=["DELETE"])
+class DeleteComment(Resource):
+    def delete(self, comment_id, asset_id):
+        """Delete a comment from an asset"""
+        return delete_comment(comment_id)

@@ -88,3 +88,10 @@ def get_user_by_domain(domain_name):
 def get_all_users():
     user_list = User.get_all()
     return {'users': user_list}, 200
+
+
+def get_user_by_id(user_id):
+    user = User.get_by(id=user_id)
+    if not user:
+        return {'message': 'User not found'}, 404
+    return user, 200

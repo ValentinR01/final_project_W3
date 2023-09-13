@@ -13,7 +13,7 @@ def create_entity(entity: db.Model, data: dict, **kwargs):
     if not data:
         return {'message': 'Missing parameters'}, 400
     if entity.get_by(**kwargs):
-        return {'message': 'Entity already exists'}, 409
+        return {'message': f'{entity.__tablename__} already exists'}, 409
     try:
         entity_inst = entity(**data)
         entity_inst.create()
@@ -21,9 +21,9 @@ def create_entity(entity: db.Model, data: dict, **kwargs):
     except Exception as e:
         return {'error': str(e)}, 500
     return {
-        'message': f'The {entity.__tablename__} created successfully',
-        # 'id': created_id
-    }, 200
+               'message':
+               f'The {entity.__tablename__} has been successfully created'},\
+        200
 
 
 def get_all_entities(entity: db.Model, **filters):
@@ -89,4 +89,18 @@ def update_entity(entity: db.Model, data: dict, entity_id: int):
         entity_inst.update()
     except Exception as e:
         return {'error': str(e)}, 500
-    return {'message': f'The {entity.__tablename__} updated successfully'}, 200
+    return {'message':
+            f'The {entity.__tablename__} has been successfully updated'}, 200
+
+
+def delete_entity(entity: db.Model, entity_id: int):
+    """Base to delete entity"""
+    try:
+        entity_inst = entity.get_by(id=entity_id)
+        if not entity_inst:
+            return {'message': 'Entity not found'}, 404
+        entity_inst.delete()
+    except Exception as e:
+        return {'error': str(e)}, 500
+    return {'message':
+            f'The {entity.__tablename__} has been successfully deleted'}, 200

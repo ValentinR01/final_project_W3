@@ -1,14 +1,17 @@
 from models.composer import Composer
+from services.base import create_entity, update_entity
 
 
-def register_service(data):
-    if Composer.get_by(fullname=data['fullname']):
-        return {'message': 'Composer already exists'}, 409
+def create_composer(data):
+    return create_entity(
+        data=data, entity=Composer, fullname=data.get('fullname')
+    )
 
-    new_composer = Composer(fullname=data['fullname'])
-    new_composer.create()
 
-    return {'message': 'Composer well created'}, 201
+def update_composer(data, composer_id):
+    return update_entity(
+        data=data, entity=Composer, entity_id=composer_id
+    )
 
 
 def get_composer_by_id(composer_id):

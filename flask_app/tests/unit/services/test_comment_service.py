@@ -38,7 +38,13 @@ def test_get_all_comments():
             'comments': mock_query(asset_id)
         }
 
-        # Call the function and assert the result
         result, status_code = get_all_comments(asset_id)
         assert status_code == 200
         assert len(result['comments']) == len(expected_result['comments'])
+
+
+def test_get_all_comments_empty():
+    with patch('models.comment.Comment.get_all_by', return_value=[]):
+        result, status_code = get_all_comments(asset_id=999)
+        assert status_code == 200
+        assert len(result['comments']) == 0

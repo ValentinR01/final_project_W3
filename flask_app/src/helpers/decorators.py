@@ -7,11 +7,11 @@ def rights_manager(request, role: str, domain: str = None):
     def decorator_rights_manager(func):
         def decorator(*args, **kwargs):
             if not request:
-                token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZn" \
-                        "VsbG5hbWUiOiJzYWxpbiIsImVtYWlsIjoic2FsaW5Ac2FsaW5lL" \
-                        "mNvbSIsInJvbGUiOiJ3b3JrZXIiLCJkb21haW4iOiJyZWRhY3Rp" \
-                        "b24iLCJleHAiOjE2ODkwMjk5MDIsImlhdCI6MTY4ODk5MzkwMn" \
-                        "0.r4UalimTKPHVIDABZei3px6armJdAd_TOVAM_uEazTM"
+                token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZn" \
+                        "VsbG5hbWUiOiJzYWxpbmUiLCJlbWFpbCI6InNhbGluZUBzYWxpb" \
+                        "mUuY29tIiwicm9sZSI6IndvcmtlciIsImRvbWFpbiI6InJlZGFj" \
+                        "dGlvbiIsImV4cCI6MTY5NzIyMDE2NSwiaWF0IjoxNjk0NjI4MTY" \
+                        "1fQ.duieAudQgx8JGmWMdksZkgxL2kPdjd_J-64pUXq_Hqw"
             else:
                 token = request.cookies.get('authorization')
             decode_token = AuthHandler.decode_token(token)

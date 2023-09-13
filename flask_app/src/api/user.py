@@ -2,7 +2,8 @@ from flask import request
 from flask_restx import Namespace, Resource, fields, Api
 # from helpers.decorators import rights_manager
 from services.user import \
-    register_service, login_service, get_user_by_domain, get_all_users
+    register_service, login_service, get_user_by_domain, get_all_users, \
+    get_user_by_id
 
 
 namespace = Namespace('users', 'User related endpoints')
@@ -31,12 +32,11 @@ users_model = namespace.model(
         'id': fields.Integer(),
         'email': fields.String(),
         'fullname': fields.String(),
-        'password': fields.String(),
         'profile_picture': fields.String(),
         'created_at': fields.DateTime(),
         'count_assigning_asset': fields.String(),
-        'role_id': fields.Integer(),
-        'domain_id': fields.Integer()
+        'role': fields.String(attribute='role.name'),
+        'domain': fields.String(attribute='domain.name')
     }
 )
 
@@ -72,11 +72,10 @@ class Login(Resource):
 @namespace.route('/domain/<domain_name>', methods=['GET'])
 class Domain(Resource):
 
-    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZnVsbG5hbWU" \
-            "iOiJzYWxpbiIsImVtYWlsIjoic2FsaW5Ac2FsaW5lLmNvbSIsInJvbGUiOiJ" \
-            "3b3JrZXIiLCJkb21haW4iOiJyZWRhY3Rpb24iLCJleHAiOjE2ODkwMjk5MDI" \
-            "sImlhdCI6MTY4ODk5MzkwMn0.r4UalimTKPHVIDABZei3px6armJdAd_TOVA" \
-            "M_uEazTM"
+    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZnVsbG5hbWUiO" \
+            "iJzYWxpbmUiLCJlbWFpbCI6InNhbGluZUBzYWxpbmUuY29tIiwicm9sZSI6Indv" \
+            "cmtlciIsImRvbWFpbiI6InJlZGFjdGlvbiIsImV4cCI6MTY5NzIyMDE2NSwiaWF" \
+            "0IjoxNjk0NjI4MTY1fQ.duieAudQgx8JGmWMdksZkgxL2kPdjd_J-64pUXq_Hqw"
 
     """Filter users by domain name"""
     @api.doc(
@@ -102,3 +101,12 @@ class Users(Resource):
     def get(self):
         """Get all users"""
         return get_all_users()
+
+
+@namespace.route('/<int:user_id>', methods=['GET'])
+@namespace.response(200, users_model)
+class UserByID(Resource):
+    @namespace.marshal_with(users_model)
+    def get(self, user_id):
+        """Get user by ID"""
+        return get_user_by_id(user_id)

@@ -10,7 +10,8 @@ class Composer(Base):
     fullname = db.Column(db.String(100), unique=True, nullable=False)
     biography = db.Column(db.String(5000), nullable=True)
     publishable = db.Column(db.Boolean, default=False)
-    last_update = db.Column(db.DateTime, default=db.func.current_timestamp())
+    last_update = db.Column(db.DateTime, default=db.func.current_timestamp(),
+                            onupdate=db.func.current_timestamp())
 
     # FK
     composer_parent = db.Column(

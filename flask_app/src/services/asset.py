@@ -2,6 +2,9 @@ from flask import request
 import logging
 
 from models.asset import Asset
+from models.comment import Comment
+from models.metadata import Metadata
+from models.meta_value import MetaValue
 from helpers.auth import AuthHandler
 from services.base import get_all_entities, search_entities, get_entity_by_id, \
     update_entity
@@ -22,36 +25,82 @@ def create_asset(data: dict):
     # - composer_id yes
     # - speaker_id yes
     # - student_fullname yes
-    # - comment yes # à modifier pour créer un commentaire dans la table commentaire
+    # - comment yes # à modifier pour créer un commentaire dans la table
+    # commentaire
     # - instruments yes # à modifier pour créer une/des key value
     # - category yes # à modifier pour créer une key value
 
-    # 1. Récupérer dans le token l'id de l'user en cours et l'assigner à created_by_id et updated_by_id
-    # 2. Créer l'asset
-    # 3. Créer le commentaire si il y en a un
-    # 4. Assicier le/les instruments si il y en a à l'asset
-    # 5. Associer la catégorie si il y en a une à l'asset
+    # 1. Récupérer dans le token l'id de l'user en cours et l'assigner à
+    # created_by_id et updated_by_id
+    # 2. Vérifier si le titre est unique
+    # 3. Créer l'asset
+    # 4. Créer le commentaire si il y en a un
+    # 5. Assicier le/les instruments si il y en a à l'asset
+    # 6. Associer la catégorie si il y en a une à l'asset
 
-    del data['instruments']
-    del data['category']
+    check_title = Asset.get_all_by(title=data['title'])
+    if len(check_title) > 0:
+        return {'There is already an asset existing with this title':
+                    data['title']}, 409
 
     if not request:
-        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZn" \
-                "VsbG5hbWUiOiJzYWxpbiIsImVtYWlsIjoic2FsaW5Ac2FsaW5lL" \
-                "mNvbSIsInJvbGUiOiJ3b3JrZXIiLCJkb21haW4iOiJyZWRhY3Rp" \
-                "b24iLCJleHAiOjE2ODkwMjk5MDIsImlhdCI6MTY4ODk5MzkwMn" \
-                "0.r4UalimTKPHVIDABZei3px6armJdAd_TOVAM_uEazTM"
+        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZnVsbG5hb" \
+                "WUiOiJzYWxpbmUiLCJlbWFpbCI6InNhbGluZUBzYWxpbmUuY29tIiwicm9" \
+                "sZSI6IndvcmtlciIsImRvbWFpbiI6InJlZGFjdGlvbiIsImV4cCI6MTY5N" \
+                "DAyMzg0MCwiaWF0IjoxNjkzOTg3ODQwfQ.3kPaLPHQir0DBi05xaWsWmEFZ" \
+                "MvDstd4RBlOmQPI354"
     else:
         token = request.cookies.get('authorization')
     decode_token = AuthHandler.decode_token(token)
 
-    user = decode_token['id']
+    user_id = decode_token['id']
 
-    new_asset = Asset(title=data['title'], music_title=data['music_title'],
-                      created_by_id=user, updated_by_id=user,
-                      composer_id=data['composer_id'])
+    new_asset = Asset(title=data['title'],
+                      music_title=data['music_title'],
+                      created_by_id=user_id,
+                      updated_by_id=user_id,
+                      composer_id=data.get('composer_id'),
+                      speaker_id=data.get('speaker_id'),
+                      student_fullname=data.get('student_fullname'),
+                      status_by_domain_id=1,
+                      step_lifecycle_id=1)
     new_asset.create()
 
+    asset_id = Asset.get_by(title=data['title'])['id']
+
+    if 'comment' in data:
+        new_comment = Comment(asset_id=asset_id, content=data['comment'],
+                              posted_by=user_id)
+        new_comment.create()
+
+        #
+        check_comment = Comment.get_by(content=data['comment'])
+        logging.info(check_comment)
+        #
+
+    if 'instruments' in data:
+        for instrument in data['instruments']:
+            meta_value = MetaValue.get_by(value=instrument)
+            new_instrument = Metadata(asset_id=asset_id,
+                                      meta_value_id=meta_value['id'])
+            new_instrument.create()
+
+        #
+        check_instruments = Metadata.get_by(asset_id=asset_id)
+        logging.info(f'check_instruments)
+        #
+
+    if 'category' in data:
+        category = data['category']
+        meta_value = MetaValue.get_by(value=category)
+        new_category = Metadata(asset_id=asset_id,
+                                meta_value_id=meta_value['id'])
+        new_category.create()
+
+        #
+        check_category = Metadata.get_by(asset_id=asset_id)
+        logging.info(check_category)
+        #
 
     return {'Asset created successfully': data}, 200
 

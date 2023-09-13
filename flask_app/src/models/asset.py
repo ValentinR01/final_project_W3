@@ -48,10 +48,10 @@ class Asset(Base):
     speaker_id = \
         db.Column(db.Integer, db.ForeignKey('speaker.id'), nullable=True)
     status_by_domain_id = db.Column(
-        db.Integer, db.ForeignKey('status_by_domain.id'), default=1
+        db.Integer, db.ForeignKey('status_by_domain.id'), nullable=False
     )
     step_lifecycle_id = db.Column(
-        db.Integer, db.ForeignKey('step_lifecycle.id'), default=1
+        db.Integer, db.ForeignKey('step_lifecycle.id'), nullable=False
     )
     booking_id = \
         db.Column(db.Integer, db.ForeignKey('booking.id'), nullable=True)

@@ -72,13 +72,16 @@ export const load = async() => {
     return data.meta_values;
   }
 
+  const fetchCategories =  async () => {
+    const res = await fetch(BASE_URL + 'categories');
+    const data = await res.json();
+    return data.categories;
+  }
+
   return {
     composers: fetchComposers(),
     intervenors: fetchIntervenors(),
     instruments: fetchInstruments(),
-    metadata:{
-      instruments: ["piano","violon","guitare","violoncelle","trombone","harpe","trompette","flute"],
-      categorie: ["concert", "interview", "masterclass","archive"],
-    }
+    categories: fetchCategories(),
   }
 }

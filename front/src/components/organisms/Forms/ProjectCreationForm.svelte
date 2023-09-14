@@ -26,7 +26,6 @@
    * @type { any }
   */
   export let data; 
-  console.log(data);
 
   const composers = data.composers;
   const composersList = composers.map((/** @type {{ fullname: string; }} */ item) => item.fullname);
@@ -34,6 +33,8 @@
   const intervenorsList = intervenors.map((/** @type {{ fullname: string; }} */ item) => item.fullname);
   const instruments = data.instruments;
   const instrumentsList = intervenors.map((/** @type {{ value: string; }} */ item) => item.value);
+  const categories = data.categories;
+  const categoriesList = intervenors.map((/** @type {{ name: string; }} */ item) => item.name);
 
 </script>
 
@@ -44,21 +45,18 @@
   > 
     Création de projet
   </Text>
-
-
   <InputForm id='name-project' name='name-project'> Nom du projet </InputForm>
-  <RadioForm data={data.metadata.categorie} catForm='categorie' bind:radioValue={radioValue}> Catégorie du projet </RadioForm>
+  <RadioForm data={categoriesList} catForm='categorie' bind:radioValue={radioValue}> Catégorie du projet </RadioForm>
   {#if radioValue == 'masterclass'}
     <SelectForm nameSelect="intervenor" options={intervenorsList} labelName='room' widthForm='calc(50% - 5px)' bind:selectValue={selectValue}> Nom de l'intervenant </SelectForm>
     <InputForm id='name-project' name='name-project' widthForm='calc(50% - 5px)'> Nom de l'étudiant </InputForm>
   {:else}
     <SelectForm nameSelect="intervenor" options={intervenorsList} labelName='room' bind:selectValue={selectValue}> Nom de l'intervenant </SelectForm>
   {/if}
-  <CheckboxForm data={data.metadata.instruments} catForm='langues-traducteur'> Instruments </CheckboxForm>
+  <CheckboxForm data={instrumentsList} catForm='instruments'> Instruments </CheckboxForm>
   <InputForm id='music-title' name='music-title' widthForm='calc(50% - 5px)'> Nom(s) du/des morceau(x) </InputForm>
   <SelectForm nameSelect="composer" options={composersList} labelName='room' widthForm='calc(50% - 5px)' bind:selectValue={selectValue2}> Compositeur </SelectForm>
   <TextareaForm> Commentaire </TextareaForm>
-
   <Button> Valider </Button>
 </form>
 

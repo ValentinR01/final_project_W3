@@ -56,21 +56,32 @@
       Les projets
     </Text>
   
-    <div class='dashboard-nav'>
-      {#if role == 'superadmin'}
-        <Tabs items={itemsSuperAdmin} data={projects}/>
-      {:else if role == 'admin'}
-        <Tabs items={itemsAdmin} data={projects}/>
-      {/if }
-    </div>
+    <br><br>
+    <p class="text-preset-Z text-center">AJOUTER TABLEAUX</p>
 
-    <p> TEST DE DATA A SUPPRIMER LORS DE L'AJOUT DES TABLEAUX </p>
-    {#each projects as project}
-      {project.title}
-      {project.created_at}
-      {project.has_high_priority}
-      {project.step_lifecycle_id}
-    {/each}
+    {#if projects}
+      <div class='dashboard-nav'>
+        {#if role == 'superadmin'}
+          <Tabs items={itemsSuperAdmin} data={projects}/>
+        {:else if role == 'admin'}
+          <Tabs items={itemsAdmin} data={projects}/>
+        {/if }
+      </div>
+  
+      <p> TEST DE DATA A SUPPRIMER LORS DE L'AJOUT DES TABLEAUX </p>
+      {#each projects as project}
+        {project.title}
+        {project.created_at}
+        {project.has_high_priority}
+        {project.step_lifecycle_id}
+      {/each}
+    {:else}
+      <Margin marginTop='var(--spacing-5)' marginBottom='var(--spacing-6)'>
+        <Text textTag='p'class='text-preset-4 text-center'>
+          Vous n'avez pas encore de projets.
+        </Text>
+      </Margin>
+    {/if}
   </div>
 </Margin>
 

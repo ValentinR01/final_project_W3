@@ -10,7 +10,6 @@
   let domain = 'regisseur';
   export let data;
   const { projects } = data;
-  console.log(projects);
 
   let items = [
     { label: "A commencer",
@@ -37,12 +36,20 @@
       <Link linkUrl='/projects/create' linkColor='white' class='link--button'> + Nouveau projet </Link>
       <p> TABLEAU A AJOUTER </p>
       <p> DEUXIEME TABLEAU A AJOUTER </p>
-      {#each projects as project}
-        {project.title}
-        {project.created_at}
-        {project.has_high_priority}
-        {project.step_lifecycle_id}
-      {/each}
+      {#if projects}
+        {#each projects as project}
+          {project.title}
+          {project.created_at}
+          {project.has_high_priority}
+          {project.step_lifecycle_id}
+        {/each}
+      {:else}
+        <Margin marginTop='var(--spacing-5)' marginBottom='var(--spacing-6)'>
+          <Text textTag='p'class='text-preset-4 text-center'>
+            Vous n'avez pas encore de projets.
+          </Text>
+        </Margin>
+      {/if}
     {:else}
       <div class='dashboard-nav'>
         <Tabs {items} data={data}/>

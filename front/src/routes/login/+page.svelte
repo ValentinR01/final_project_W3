@@ -1,15 +1,14 @@
 <script>
   import Logo from '../../assets/img/logo_white.png';
-
   import LoginForm from '../../components/organisms/Forms/LoginForm.svelte';
   import Image from '../../components/atoms/Image.svelte';
 
-  export let data;
+  export let form;
 </script>
 
 <div class='login block-center'>
   <div class='card card-login' style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
-    <LoginForm />
+    <LoginForm form={form} />
   </div>
   <div class='card card-login card-logo'>
     <Image
@@ -37,6 +36,10 @@
     background-color: var(--color-secondary);
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+  }
+
+  .error-message{
+    color: var(--color-error);
   }
 
   :global(.login-logo){

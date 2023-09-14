@@ -17,6 +17,7 @@
   --white: #FFFFFF;
   --pale-blue: #F0F3FA;
   --green: #A5F5C0;
+  --red: #ff4d4d;
 
   --color-text-regular: var(--black-blue);
   --color-text-dark: var(--dark-blue-grey);
@@ -32,6 +33,7 @@
   --color-disabled: var(--grey);
   --color-border: var(--grey);
   --color-validation: var(--green);
+  --color-error: var(--red);
 
   /* FONTS */
   --font-family-primary: 'Montserrat';

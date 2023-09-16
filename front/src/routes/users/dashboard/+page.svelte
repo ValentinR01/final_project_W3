@@ -1,39 +1,52 @@
-<script>
+<script lang="ts">
   import Pagination from '../../../components/atoms/Pagination.svelte';
   import Text from '../../../components/atoms/Text.svelte';
   import Searchbar from '../../../components/molecules/Searchbar.svelte';
   import Button from '../../../components/atoms/Button.svelte';
-  import Link from '../../../components/atoms/Link.svelte';
+  import TableUsers from '../../../components/organisms/TableUsers.svelte';
   import Margin from '../../../components/atoms/Margin.svelte';
 
   export let data;
-  /**
-   * @type {any}
-   */
-  let values;
+
+  let rowElements : any = data.users;
+
+	let selectedRowElements = rowElements.map((
+    { profile_pic, fullname, email, domain, role }: any) => ({ profile_pic, fullname, email, domain, role }
+  ));
+
+  let selectedValues = selectedRowElements
 </script>
 
-<Margin marginTop='3%'>
-  <div class='card block-center'>
-    <Text
-      textTag='h1'
-      class='text-preset-1 text-center text--uppercase'
-      >
-      Les utilisateurs
-    </Text>
-  
-    <div class='dashboard-nav'>
-      <Searchbar urlSearchbar="projects" data={data.users} widthSearchbar="190" />
-      <Link linkUrl='/users/create' linkColor='white' class='link--button'> Ajouter </Link>
-    </div>
-  
-    <p class='text-center'> REMPLACER PAR TABLEAU </p>
-  
-    <Pagination rows={data.users} perPage={5} bind:trimmedRows={values} />
+<div class='card block-center'>
+  <Text
+    textTag='h1'
+    class='text-preset-1 text-center text--uppercase'
+    >
+    Les utilisateurs
+  </Text>
+
+  <div class="table-container">
+    <Margin marginTop='15px'>
+      <div class='dashboard-nav'>
+        <Searchbar urlSearchbar="projects" data={data.users} widthSearchbar="190" />
+        <Button> Ajouter </Button>
+      </div>
+    </Margin>
+
+    <Margin marginTop='40px'>
+      <TableUsers {selectedRowElements} />
+    </Margin>
   </div>
-</Margin>
+
+  <Pagination rows={selectedValues} perPage={3} bind:trimmedRows={selectedRowElements} />
+</div>
 
 <style>
+  .table-container {
+    display: table;
+    margin-right: auto;
+    margin-left: auto;
+  }
   .dashboard-nav{
     display: flex;
     justify-content: space-between;

@@ -16,18 +16,20 @@ export const actions = {
             "email" : username, 
             "password" : password})
         })
-
-        console.log(res.status);
-
-        if (res.status == 200){
-          // TO DO : change by real data of the user
-          sessionStorage.setItem("role", "superadmin");
-          sessionStorage.setItem("domain", "traduction");
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Handle the response data here
           cookies.set("access", "true", { path: "/", sameSite: "strict"});
-          cookies.set("role", "superadmin", { path: "/", sameSite: "strict"});
-          cookies.set("domain", "traduction", { path: "/", sameSite: "strict"});
+          cookies.set("role", data.user.role, { path: "/", sameSite: "strict"});
+          cookies.set("domain", data.user.domain, { path: "/", sameSite: "strict"});
+          cookies.set("id", data.user.id, { path: "/", sameSite: "strict"});
           throw redirect(302, '/projects/admin-dashboard');
-        }
+        })
 
         return {
           formSubmitted,

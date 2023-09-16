@@ -53,7 +53,6 @@ def login_service(userdata):
             return {'message': 'Invalid email or password'}, 401
 
         token = auth_handler.generate_token(user)
-        # TODO : Secure cookie set
         headers = [
             (
                 'Set-Cookie',
@@ -62,8 +61,7 @@ def login_service(userdata):
             )
         ]
         return (
-            {'access_token': token, 'message': 'Login successful'},
-            200, headers
+            {'user': user, 'token': token}, 200, headers
         )
 
     except Exception as e:

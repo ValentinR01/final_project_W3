@@ -132,8 +132,8 @@ def test_login_service_valid_credentials(mock_login_data, mock_user):
             with patch('datetime.datetime') as mock_datetime:
                 mock_datetime.now.return_value = datetime.datetime(2023, 7, 12)
                 response = login_service(mock_login_data)
-                assert response[0] == {'access_token': 'token',
-                                       'message': 'Login successful'}
+                assert response[0] == {'token': 'token',
+                                       'user': mock_user}
                 assert response[1] == 200
                 assert response[2][0][1] == 'authorization=token; ' \
                                             'max-age=2592000; path=/'

@@ -46,6 +46,13 @@ user_list_model = namespace.model(
     }
 )
 
+user_authenticated_model = namespace.model(
+    'user_authentificated_model', {
+        'user': fields.Nested(users_model, default={}),
+        'token': fields.String()
+    }
+)
+
 
 @namespace.route('/register', methods=['POST'])
 class Register(Resource):
@@ -62,7 +69,7 @@ class Register(Resource):
 class Login(Resource):
     """Login a user"""
     @namespace.expect(user_login_model)
-    @namespace.response(200, 'Successfully login')
+    @namespace.marshal_with(user_authenticated_model)
     def post(self):
         """Login a user"""
         data = request.json

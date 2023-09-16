@@ -69,7 +69,7 @@ def get_entity_by_id(entity: db.Model, entity_id: int):
     """
     try:
         entity_inst = entity.get_entity_with_joins(entity_id)
-        if not entity_inst[0]:
+        if not entity_inst:
             return {'message': 'Entity not found'}, 404
         return {f"{entity.__tablename__}": entity_inst}, 200
     except Exception as e:

@@ -21,3 +21,7 @@ OPTIONAL :
      - pip freeze > requirements.txt
  Uninstall all dependancies :
      - pip freeze | xargs pip uninstall -y
+
+TO TEST THE PROJECT, LOG IN WITH : 
+- username : saline@saline.com
+- password : Sªl1nĒ

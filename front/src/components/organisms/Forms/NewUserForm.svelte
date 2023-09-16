@@ -52,9 +52,9 @@
     </InputForm>
   </div>
 
-  <InputForm id='lastname' name='fullname' widthForm='calc(50% - 5px)'> Nom complet </InputForm>
-  <InputForm id='email' name='email' type='email' widthForm='calc(50% - 5px)'> Email </InputForm>
-  <InputForm id='password' name='password' type='password'> Mot de passe </InputForm>
+  <InputForm id='lastname' name='fullname' widthForm='calc(50% - 5px)' required> Nom complet </InputForm>
+  <InputForm id='email' name='email' type='email' widthForm='calc(50% - 5px)' required> Email </InputForm>
+  <InputForm id='password' name='password' type='password' required> Mot de passe </InputForm>
 
   <SelectForm nameSelect="domain" options={domainsList} labelName='domain' widthForm='calc(50% - 5px)' bind:selectValue={selectDomain} > Domaine </SelectForm>
   <SelectForm nameSelect="role" options={rolesList} labelName='role' widthForm='calc(50% - 5px)' bind:selectValue={selectRole}> Rôle </SelectForm>

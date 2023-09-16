@@ -11,6 +11,8 @@
   import AdminOngoing from '../../../tabs/Admin Dashboard/AdminOngoing.svelte';
   import AdminToCome from '../../../tabs/Admin Dashboard/AdminToCome.svelte';
 
+  import { user } from "../../../store";
+
   export let data;
 
   let role = 'admin';

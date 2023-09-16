@@ -14,6 +14,7 @@
   import AdminToCome from '../../../tabs/Admin Dashboard/AdminToCome.svelte';
 
   import TableProjects from '../../../components/organisms/TableProjects.svelte';
+  import { user } from "../../../store";
 
   export let data;
 

@@ -7,7 +7,6 @@ VALUES
     ('initialization'), ('captation'), ('regisseur_review'), ('post_production'), ('admin_review'),
     ('transformation'), ('edition'), ('translation'), ('ready'), ('deleted'), ('refused');
 
-
 -- Meta Key
 INSERT INTO "meta_key" (key)
 VALUES ('style'), ('period'), ('level'), ('instruments'), ('skill');
@@ -15,7 +14,7 @@ VALUES ('style'), ('period'), ('level'), ('instruments'), ('skill');
 
 -- Language
 INSERT INTO "language" (name, code)
-VALUES ('english', 'en'), ('french', 'fr');
+VALUES ('anglais', 'an'), ('français', 'fr'), ('allemand', 'al'), ('espagnol', 'es'), ('italien', 'it'), ('japonais', 'jp');
 
 
 -- Room
@@ -35,12 +34,12 @@ VALUES ('lesson'), ('interview'), ('presentation'), ('concert'), ('masterclass')
 
 -- Domain
 INSERT INTO "domain" (name)
-VALUES ('redaction'), ('translation'), ('management'), ('post-prod'), ('regisseur');
+VALUES ('Regie'), ('Captation'), ('Post-prod'), ('Edition'), ('Traduction');
 
 
 -- Status By Domain
 INSERT INTO "status_by_domain" (status)
-VALUES ('pending'), ('to_assign'), ('in_progress'), ('to_review'), ('done');
+VALUES ('to_assign'), ('to_begin'), ('in_progress');
 
 
 -- Role

@@ -6,6 +6,9 @@
   export let type = 'text';
   export let placeholder = "";
   export let widthForm = '100%';
+  export let valueInput = "";
+  export let readonly = false;
+  export let required = false; 
 </script>
 
 <div 
@@ -13,7 +16,13 @@
   style="width: {widthForm}"
 >
   <label for={name} class="input-form__label text-preset-4"> <slot /> </label>
-  <Input name={name} id={id} type={type} placeholder={placeholder} width=auto/>
+  {#if readonly}
+    <Input name={name} id={id} type={type} placeholder={placeholder} bind:inputValue={valueInput} width=auto readonly/>
+  {:else if required}
+    <Input name={name} id={id} type={type} placeholder={placeholder} bind:inputValue={valueInput} width=auto required/>
+  {:else}
+    <Input name={name} id={id} type={type} placeholder={placeholder} bind:inputValue={valueInput} width=auto/>
+  {/if}
 </div>
 
 <style>

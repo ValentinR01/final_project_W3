@@ -1,10 +1,15 @@
 <script lang="ts">
+
+  import UserIcon from '../../../assets/icons/UserIcon.svelte';
   import Pagination from '../../../components/atoms/Pagination.svelte';
   import Text from '../../../components/atoms/Text.svelte';
   import Searchbar from '../../../components/molecules/Searchbar.svelte';
   import Button from '../../../components/atoms/Button.svelte';
   import TableUsers from '../../../components/organisms/TableUsers.svelte';
   import Margin from '../../../components/atoms/Margin.svelte';
+  import Icon from '../../../components/atoms/Icon.svelte';
+  import Image from '../../../components/atoms/Image.svelte';
+  import ArrowBackgroundIcon from '../../../assets/icons/ArrowBackgroundIcon.svelte';
 
   export let data;
 
@@ -33,7 +38,7 @@
       </div>
     </Margin>
 
-    <Margin marginTop='40px'>
+    <Margin marginTop="var(--spacing-3)">
       <TableUsers {selectedRowElements} />
     </Margin>
   </div>
@@ -51,5 +56,12 @@
     display: flex;
     justify-content: space-between;
     margin-top: var(--spacing-5);
+  }
+
+  .data-exemple{
+    display: flex;
+    column-gap: 20px;
+    row-gap: 20px;
+    align-items: center;
   }
 </style>

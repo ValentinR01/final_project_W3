@@ -2,9 +2,32 @@
   import '../assets/css/global.css';
 
   import Header from "../components/organisms/Header.svelte";
+  
+  import { onMount } from 'svelte';
+  import { goto } from "$app/navigation";
+  import { user } from "../store";
+
+  export let data;
+
+  let url = ``;
+  user.set({ domain: data.cookies_domain, role: data.cookies_role, authentification: data.cookies_connexion});
+
+  onMount(async () =>{
+    url = window.location.href;
+
+    if (!$user) {
+      goto("/login");
+    } else {
+      console.log("User connected");
+    }
+  })
 </script>
 
-<Header />
+{#if url.includes('login')}
+  <br>
+{:else if $user}
+  <Header />
+{/if}
 
 <slot></slot>
 

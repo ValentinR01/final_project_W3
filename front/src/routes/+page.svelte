@@ -1,5 +1,14 @@
 <script lang="ts">
 // @ts-nocheck
+  import { browser } from '$app/environment';
+  import { user } from '../store';
+  if (browser) {
+    if($user.authentification == "logged in" && $user.role != 'dev'){
+      window.location.href = "/projects/dashboard";
+    } else if ($user.authentification != "logged in" && $user.role != 'dev') {
+      window.location.href = "/login";
+    }
+  }
 
   import '../assets/css/global.css';
 
@@ -82,6 +91,9 @@
   ));
 </script>
 
+{$user.role}
+{$user.domain}
+{$user.authentification}
 <Text
   textTag='h1'
   class='text-preset-1'

@@ -18,7 +18,7 @@ VALUES
 -- Specialty
 INSERT INTO "specialty" (name, domain_id, language_id)
 VALUES
-    ('logistic', 5, NULL), ('light', 5, NULL), (NULL, 2, 2);
+    ('logistic', 5, NULL), ('light', 5, NULL), (NULL, 2, 2), (NULL, 2, 1), (NULL, 2, 3), (NULL, 2, 4), (NULL, 2, 5);
 
 
 -- specialties_users

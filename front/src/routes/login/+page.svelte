@@ -38,10 +38,6 @@
     border-bottom-left-radius: 0;
   }
 
-  .error-message{
-    color: var(--color-error);
-  }
-
   :global(.login-logo){
     margin-top: 50%;
     transform: translateY(-50%);

@@ -1,6 +1,5 @@
 /** @type {import('./$types').Actions} */
 import { redirect } from '@sveltejs/kit';
-//import { BASE_URL } from '$env/static/private';
 let BASE_URL = 'http://dam-backoffice-api:8000/api/v1/';
 
 export const actions = {

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 // @ts-nocheck
 
   import '../assets/css/global.css';
@@ -44,7 +44,7 @@
   import ProjectCreationForm from '../components/organisms/Forms/ProjectCreationForm.svelte';
   import BioEdition from '../components/organisms/Forms/BioEdition.svelte';
   import RoomRegistrationForm from '../components/organisms/Forms/RoomRegistrationForm.svelte';
-  import Table from '../components/organisms/Table.svelte';
+  import TableProjects from '../components/organisms/TableProjects.svelte';
 
   import ProjectComments from '../tabs/Project Details/ProjectComments.svelte';
   import ProjectInfos from "../tabs/Project Details/ProjectInfos.svelte";
@@ -74,6 +74,12 @@
      component: ProjectComments
     }
   ];
+
+  let rowElements : any = data.asset;
+
+	let selectedRowElements = rowElements.map((
+    {title, has_high_priority, categorie, language, created_at, step_lifecycle, published_at, last_assignment_date, name_by_domain, rush_received, version, captation_done}: any) => ({ title, has_high_priority, categorie, language, created_at, step_lifecycle, published_at, last_assignment_date, name_by_domain, rush_received, version, captation_done }
+  ));
 </script>
 
 <Text
@@ -216,7 +222,7 @@
 </Text>
 
 <br><br>
-<Table rowElements={data.asset}/>
+<TableProjects {selectedRowElements}/>
 <br><br>
 <Header />
 <br><br>

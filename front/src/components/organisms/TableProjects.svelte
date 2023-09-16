@@ -1,13 +1,9 @@
 <script lang="ts">
-	import TableRow from '../molecules/TableRow.svelte';
+	import TableRowProjects from '../molecules/TableRowProjects.svelte';
   import Icon from '../atoms/Icon.svelte';
   import SortArrowIcon from '../../assets/icons/SortArrowIcon.svelte';
 
-	export let rowElements : any;
-
-	let selectedRowElements = rowElements.map((
-    {title, has_high_priority, categorie, language, created_at, status_by_domain, published_at, last_assignment_date, name_by_domain, rush_received, version, captation_done}: any) => ({ title, has_high_priority, categorie, language, created_at, status_by_domain, published_at, last_assignment_date, name_by_domain, rush_received, version, captation_done }
-  ));
+	export let selectedRowElements : any;
 
   const tableHeaders = Object.keys(selectedRowElements[0])
 
@@ -36,13 +32,14 @@
     }
     selectedHeader = colHeader;
   }
+  let motSpecifique = "has_high_priority";
 </script>
 
-<table id="myTable">
+<table>
 	<thead>
     <tr> 
       {#each tableHeaders as header}
-      <th on:click={() => (header === "has_high_priority" || header === "rush_received" || header === "captation_done" ) ? sortByNumber(header) : sortByString(header)}>
+      <th class:text-center={header.includes(motSpecifique)} on:click={() => (header === "has_high_priority" || header === "rush_received" || header === "captation_done" ) ? sortByNumber(header) : sortByString(header)}>
         <button on:click={() => ascendingOrder = !ascendingOrder}>
           {header
           .replace("title", "Projet")
@@ -50,15 +47,15 @@
           .replace("categorie", "Catégorie")
           .replace("language", "Langue")
           .replace("created_at", "Créé le")
-          .replace("status_by_domain", "Étape")
+          .replace("step_lifecycle", "Étape")
           .replace("published_at", "Mise en ligne")
           .replace("last_assignment_date", "Attribué le")
           .replace("name_by_domain", "Personne")
           .replace("rush_received", "Rushes récupérés")
           .replace("version", "Version")
           .replace("captation_done", "Captation réalisée")}
-          <span class="order-icon">
-            <Icon color="var(--grey)" width="15" height="15">
+          <span>
+            <Icon color="var(--darker-grey)" width="10" height="12">
               <SortArrowIcon />
             </Icon>
           </span>		
@@ -68,22 +65,34 @@
     </tr>
   </thead>
   <tbody>
-	  <TableRow {selectedRowElements}/>
+	  <TableRowProjects {selectedRowElements}/>
 	</tbody>
 </table>
 
 <style>
+  .text-center {
+    /* Styles pour la classe ajoutée */
+   text-align: center;
+  }
+  table {
+    margin: auto;
+    width: 100%;
+  }
   tr {
     white-space: nowrap;
   }
   th {
-    padding: var(--spacing-3);
+    padding-bottom: var(--spacing-3);
+    padding-left: var(--spacing-4);
+    padding-right: var(--spacing-4);
     text-align: left;
+  }
+  th:first-child {
+    padding-left: 0;
   }
   span {
     display: inline-block;
     vertical-align: middle;
-    margin-top: var(--spacing-1);
     margin-left: var(--spacing-1);
   }
   button {
@@ -94,7 +103,7 @@
     width: auto;
     overflow: visible;
     background: transparent;
-    color: inherit;
+    color: var(--darker-grey);
     font: inherit;
     line-height: normal;
     -webkit-font-smoothing: inherit;

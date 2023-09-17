@@ -1,6 +1,10 @@
 <script lang='ts'>
   import Icon from '../atoms/Icon.svelte';
+  import Image from '../atoms/Image.svelte';
+  import Link from '../atoms/Link.svelte';
+
   import ArrowBackgroundIcon from '../../assets/icons/ArrowBackgroundIcon.svelte';
+  import UserIcon from '../../assets/icons/UserIcon.svelte';
 
   export let selectedRowElements: any;
 
@@ -8,15 +12,17 @@
 
 {#each selectedRowElements as selectedRowElement}
 	<tr>
-    {#if selectedRowElement.profile_pic}
-      <td>
-        <img
-        class="profile_pic"
-        src={selectedRowElement.profile_pic}
-        alt="The profile picture of {selectedRowElement.fullname}"
+    <td>
+      {#if selectedRowElement.profile_pic != null }
+        <Image
+          imageSrc={selectedRowElement.profile_pic}
+          imageAlt="The profile picture of {selectedRowElement.fullname}"
+          imageWidth=50
         />
-      </td>
-		{/if}
+      {:else}
+        <Icon name="user" width="50" height="50"> <UserIcon /> </Icon>
+      {/if}
+    </td>
 		{#if selectedRowElement.fullname}
 			<td>{selectedRowElement.fullname}</td>
 		{/if}
@@ -30,11 +36,10 @@
 			<td>{selectedRowElement.role}</td>
 		{/if}
     <td> 
-      <a href="">
-        <Icon title="arrow" color="transparent">
-          <ArrowBackgroundIcon />
-        </Icon> 
-      </a> 
+      <Link
+        linkUrl='{selectedRowElement.id}'> 
+        <Icon name="details" width="20" height="20"> <ArrowBackgroundIcon /> </Icon>
+      </Link>
     </td>
 	</tr>
 {/each}
@@ -44,6 +49,7 @@
     white-space: nowrap;
     text-transform: capitalize;
   }
+  
   td {
     border-top: 1px solid var(--grey);
     padding-bottom: var(--spacing-3);
@@ -53,15 +59,14 @@
     white-space: nowrap;
     vertical-align: middle;
   }
+
   td:first-child {
     padding-left: 0;
   }
+
   tr td:last-child {
     padding: 0;
     vertical-align: middle;
   }
-  .profile_pic {
-    width: 40px;
-    border-radius: 10px;
-  }
+
 </style>

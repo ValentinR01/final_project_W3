@@ -10,6 +10,7 @@ from api.language import namespace as language
 from api.category import namespace as categories
 from api.role import namespace as role
 from api.domain import namespace as domain
+from api.specialty import namespace as specialty
 from api.comment import namespace as comment  # Do not delete this line pls
 
 
@@ -35,3 +36,4 @@ api.add_namespace(asset)
 api.add_namespace(categories)
 api.add_namespace(role)
 api.add_namespace(domain)
+api.add_namespace(specialty)

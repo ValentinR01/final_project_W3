@@ -4,22 +4,28 @@
   import Header from "../components/organisms/Header.svelte";
   
   import { onMount } from 'svelte';
+  import { goto } from "$app/navigation";
+  import { user } from "../store";
+
+  export let data;
 
   let url = ``;
+  user.set({ domain: data.cookies_domain, role: data.cookies_role, authentification: data.cookies_connexion});
 
-  onMount(() => url = window.location.href)
+  onMount(async () =>{
+    url = window.location.href;
 
-  //let showHeader = true;
-  //var currentURL = window.location.href;
-  //if(currentURL.includes("login")){
-  //  showHeader = false;
-  //}
-
+    if (!$user) {
+      goto("/login");
+    } else {
+      console.log("User connected");
+    }
+  })
 </script>
 
-{#if url.includes("login")}
+{#if url.includes('login')}
   <br>
-{:else}
+{:else if $user}
   <Header />
 {/if}
 

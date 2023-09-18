@@ -1,6 +1,6 @@
 <script lang='ts'>
   import Icon from '../atoms/Icon.svelte';
-  import ArrowRightIcon from '../../assets/icons/ArrowRightIcon.svelte';
+  import ArrowBackgroundIcon from '../../assets/icons/ArrowBackgroundIcon.svelte';
   import CircleIcon from '../../assets/icons/CircleIcon.svelte';
 
   export let selectedRowElements: any;
@@ -20,8 +20,8 @@
     if (Number.isInteger(selectedRowElement.version)) {
       isTrue.version_is_true = true;
     }
-    if (selectedRowElement.title && selectedRowElement.title.length > 40) {
-      selectedRowElement.title = `${selectedRowElement.title.substr(0, 40)}...`
+    if (selectedRowElement.title && selectedRowElement.title.length > 30) {
+      selectedRowElement.title = `${selectedRowElement.title.substr(0, 30)}...`
       console.log(selectedRowElement.title)
     }
   }
@@ -34,8 +34,8 @@
 		{/if}
 		{#if isTrue.has_high_priority_is_true}
       {#if selectedRowElement.has_high_priority === 1}
-        <td>
-          <Icon class="block-center" title="prio" color="var(--blue-base)" width="15" height="15">
+        <td class="prio">
+          <Icon class="" title="prio" color="var(--blue-base)" width="15" height="15">
             <CircleIcon />
           </Icon>
         </td>
@@ -52,8 +52,8 @@
 		{#if selectedRowElement.created_at}
 			<td>{selectedRowElement.created_at}</td>
 		{/if}
-		{#if selectedRowElement.status_by_domain}
-			<td>{selectedRowElement.status_by_domain}</td>
+		{#if selectedRowElement.step_lifecycle}
+			<td>{selectedRowElement.step_lifecycle}</td>
 		{/if}
 		{#if selectedRowElement.published_at}
 			<td>{selectedRowElement.published_at}</td>
@@ -64,9 +64,9 @@
 		{#if selectedRowElement.name_by_domain}
 			<td>{selectedRowElement.name_by_domain}</td>
 		{/if}
-    	{#if selectedRowElement.name_by_domain.length === 0 }
-			<td><a href="">Ajouter</a></td>
-		{/if}
+    {#if 'name_by_domain' in selectedRowElement && selectedRowElement.name_by_domain.length === 0 }
+      <td><a href="">Ajouter</a></td>
+    {/if}
 		{#if isTrue.rush_received_is_true}
       {#if selectedRowElement.rush_received === 1}
         <td>
@@ -103,7 +103,7 @@
     <td> 
       <a href="">
         <Icon title="arrow" color="transparent">
-          <ArrowRightIcon />
+          <ArrowBackgroundIcon />
         </Icon> 
       </a> 
     </td>
@@ -117,8 +117,19 @@
   }
   td {
     border-top: 1px solid var(--grey);
-    padding: var(--spacing-3);
+    padding-bottom: var(--spacing-3);
+    padding-top: var(--spacing-3);
+    padding-left: var(--spacing-4);
+    padding-right: var(--spacing-4);
     white-space: nowrap;
+    vertical-align: middle;
+  }
+  :global(.prio div){
+    margin-left: auto;
+    margin-right: auto;
+  }
+  td:first-child {
+    padding-left: 0;
   }
   tr td:last-child {
     padding: 0;

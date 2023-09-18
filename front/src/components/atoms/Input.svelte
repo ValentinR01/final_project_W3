@@ -10,6 +10,7 @@
    * @type {boolean}
   */
   export let readonly = false;
+  export let required = false;
 
   /**
    * @type {string}
@@ -47,6 +48,16 @@
     style="width: {width}"
     value="{value}"
     readonly
+  />
+{:else if required}
+  <input 
+    use:typeAction
+    id={id} 
+    name={name} 
+    class="input text-preset-5 {$$props.class}"
+    style="width: {width}"
+    value="{value}"
+    required
   />
 {:else}
   <input 

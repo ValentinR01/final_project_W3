@@ -9,8 +9,12 @@
 
   export let data;
 
+  user.set({ domain: data.cookies_domain, role: "superadmin", authentification: data.cookies_connexion});
+
   let url = ``;
-  user.set({ domain: data.cookies_domain, role: data.cookies_role, authentification: data.cookies_connexion});
+  //if(data.cookies_connexion){
+  //  user.set({ domain: data.cookies_domain, role: data.cookies_role, authentification: data.cookies_connexion});
+  //}
 
   onMount(async () =>{
     url = window.location.href;
@@ -29,14 +33,22 @@
   <Header />
 {/if}
 
-<slot></slot>
+<div class='main'>
+  <slot></slot>
+</div>
 
 <style>
+  .main{
+    height: calc(100vh - 90px);
+    display: flex;
+    align-items: center;
+  }
+
   :global(.card){
     width: 60%;
     max-height: 500px;
     background-color: var(--color-background-secondary);
-    padding: var(--spacing-4) var(--spacing-5);
+    padding: var(--spacing-5) var(--spacing-6);
     border-radius: var(--card-radius);
   }
 

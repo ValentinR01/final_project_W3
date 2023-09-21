@@ -23,7 +23,6 @@ export const actions = {
           return response.json();
         })
         .then(data => {
-          // Handle the response data here
           cookies.set("access", "true", { path: "/", sameSite: "strict"});
           cookies.set("role", data.user.role, { path: "/", sameSite: "strict"});
           cookies.set("domain", data.user.domain, { path: "/", sameSite: "strict"});

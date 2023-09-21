@@ -88,8 +88,89 @@ INSERT INTO "asset"(
     created_by_id, updated_by_id, speaker_id, status_by_domain_id, step_lifecycle_id,
     booking_id, captation_id, post_prod_id, transformation_id
 )
-VALUES (
-    'Title', 'Music Title', 'Art Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+VALUES 
+(
+    'Project number 1', 'Music Title', 'Art Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    'Jean VALJEAN','Asset Description: Lorem ipsum dolor sit amet',
+    'https://www.saline.com/partition/toto?file', 'https://www.saline.com/thumbnail/toto?picture',
+    'Resumed: At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium',
+    true, false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, '2023-07-11',
+    1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1
+),
+(
+    'Project number 2', 'Music Title', 'Art Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    'Jean VALJEAN','Asset Description: Lorem ipsum dolor sit amet',
+    'https://www.saline.com/partition/toto?file', 'https://www.saline.com/thumbnail/toto?picture',
+    'Resumed: At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium',
+    true, false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, '2023-07-11',
+    1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1
+),
+(
+    'Project number 3', 'Music Title', 'Art Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    'Jean VALJEAN','Asset Description: Lorem ipsum dolor sit amet',
+    'https://www.saline.com/partition/toto?file', 'https://www.saline.com/thumbnail/toto?picture',
+    'Resumed: At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium',
+    true, false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, '2023-07-11',
+    1, 1, 1, 1, 3, 2, 2, 1, 1, 1, 1
+),
+(
+    'Project number 4', 'Music Title', 'Art Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    'Jean VALJEAN','Asset Description: Lorem ipsum dolor sit amet',
+    'https://www.saline.com/partition/toto?file', 'https://www.saline.com/thumbnail/toto?picture',
+    'Resumed: At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium',
+    true, false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, '2023-07-11',
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+),
+(
+    'Project number 5', 'Music Title', 'Art Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    'Jean VALJEAN','Asset Description: Lorem ipsum dolor sit amet',
+    'https://www.saline.com/partition/toto?file', 'https://www.saline.com/thumbnail/toto?picture',
+    'Resumed: At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium',
+    true, false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, '2023-07-11',
+    1, 1, 1, 1, 2, 3, 3, 1, 1, 1, 1
+),
+(
+    'Project number 6', 'Music Title', 'Art Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    'Jean VALJEAN','Asset Description: Lorem ipsum dolor sit amet',
+    'https://www.saline.com/partition/toto?file', 'https://www.saline.com/thumbnail/toto?picture',
+    'Resumed: At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium',
+    true, false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, '2023-07-11',
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+),
+(
+    'Project number 7', 'Music Title', 'Art Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    'Jean VALJEAN','Asset Description: Lorem ipsum dolor sit amet',
+    'https://www.saline.com/partition/toto?file', 'https://www.saline.com/thumbnail/toto?picture',
+    'Resumed: At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium',
+    true, false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, '2023-07-11',
+    1, 1, 1, 1, 2, 3, 3, 1, 1, 1, 1
+),
+(
+    'Project number 8', 'Music Title', 'Art Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    'Jean VALJEAN','Asset Description: Lorem ipsum dolor sit amet',
+    'https://www.saline.com/partition/toto?file', 'https://www.saline.com/thumbnail/toto?picture',
+    'Resumed: At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium',
+    true, false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, '2023-07-11',
+    1, 1, 1, 1, 3, 2, 2, 1, 1, 1, 1
+),
+(
+    'Project number 9', 'Music Title', 'Art Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    'Jean VALJEAN','Asset Description: Lorem ipsum dolor sit amet',
+    'https://www.saline.com/partition/toto?file', 'https://www.saline.com/thumbnail/toto?picture',
+    'Resumed: At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium',
+    true, false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, '2023-07-11',
+    1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1
+),
+(
+    'Project number 10', 'Music Title', 'Art Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    'Jean VALJEAN','Asset Description: Lorem ipsum dolor sit amet',
+    'https://www.saline.com/partition/toto?file', 'https://www.saline.com/thumbnail/toto?picture',
+    'Resumed: At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium',
+    true, false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, '2023-07-11',
+    1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1
+),
+(
+    'Project number 11', 'Music Title', 'Art Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     'Jean VALJEAN','Asset Description: Lorem ipsum dolor sit amet',
     'https://www.saline.com/partition/toto?file', 'https://www.saline.com/thumbnail/toto?picture',
     'Resumed: At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium',

@@ -3,7 +3,7 @@
   import { browser } from '$app/environment';
   import { user } from '../store';
   if (browser) {
-    if($user.authentification == "logged in" && $user.role != 'dev'){
+    if($user.authentification == true && $user.role != 'dev'){
       window.location.href = "/projects/dashboard";
     } else if ($user.authentification != "logged in" && $user.role != 'dev') {
       window.location.href = "/login";
